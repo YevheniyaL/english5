@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Numbers 1–20</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #faf9f4; --paper-raised: #ffffff;
+    --rule: #aecdea; --rule-soft: #d7e6f5;
+    --margin: #d3564d; --margin-soft: #f1c3bf;
+    --ink: #24304a; --ink-soft: #647089; --ink-faint: #97a2b8;
+    --good: #3c8a5c; --good-bg: #dff1e5;
+    --bad: #c85a4f; --bad-bg: #fbe4e1;
+    --mark: #e3a836; --mark-bg: #fbedd0;
+    --shadow: rgba(36, 48, 74, 0.14);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1b2431; --paper-raised: #232f3f;
+      --rule: #3c4d68; --rule-soft: #2a374a;
+      --margin: #e08078; --margin-soft: #4a3339;
+      --ink: #eceff5; --ink-soft: #a7b2c8; --ink-faint: #6d788e;
+      --good: #6fcb93; --good-bg: #23392c;
+      --bad: #e0847a; --bad-bg: #402b2a;
+      --mark: #f0c463; --mark-bg: #3d3320;
+      --shadow: rgba(0, 0, 0, 0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1b2431; --paper-raised: #232f3f;
+    --rule: #3c4d68; --rule-soft: #2a374a;
+    --margin: #e08078; --margin-soft: #4a3339;
+    --ink: #eceff5; --ink-soft: #a7b2c8; --ink-faint: #6d788e;
+    --good: #6fcb93; --good-bg: #23392c;
+    --bad: #e0847a; --bad-bg: #402b2a;
+    --mark: #f0c463; --mark-bg: #3d3320;
+    --shadow: rgba(0, 0, 0, 0.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: 'PT Sans', Arial, sans-serif; line-height: 1.5; -webkit-tap-highlight-color: transparent; }
+  h1, h2, .hand { font-family: 'Caveat', 'Comic Sans MS', cursive; font-weight: 700; text-wrap: balance; }
+  .back-link { font-size: 13px; color: var(--ink-faint); text-decoration: none; }
+  .back-link:hover { color: var(--margin); }
+  .sheet { max-width: 640px; margin: 0 auto; padding: 22px 20px 60px 44px; position: relative;
+    background-image: repeating-linear-gradient(to bottom, transparent, transparent 37px, var(--rule-soft) 38px);
+    background-position: 0 150px; }
+  .sheet::before { content: ""; position: absolute; top: 0; bottom: 0; left: 26px; width: 2px; background: var(--margin); opacity: 0.75; }
+  header.page { padding-top: 6px; padding-bottom: 14px; }
+  h1 { font-size: 40px; margin: 8px 0 2px; line-height: 1.1; }
+  .subtitle { font-size: 16px; color: var(--ink-soft); margin: 0 0 10px; }
+  .skill { display: inline-block; background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 3px; padding: 7px 12px; font-size: 14px; color: var(--ink); box-shadow: 1px 2px 0 var(--shadow); }
+  .skill b { color: var(--margin); font-weight: 700; }
+  nav.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 20px; }
+  .tab { font-family: 'Caveat', cursive; font-size: 19px; font-weight: 600; background: var(--paper-raised); border: 1px solid var(--rule); border-bottom-width: 3px; color: var(--ink-soft); padding: 7px 16px 6px; border-radius: 8px 8px 4px 4px; cursor: pointer; box-shadow: 1px 2px 0 var(--shadow); }
+  .tab:nth-child(1) { transform: rotate(-1.2deg); }
+  .tab:nth-child(2) { transform: rotate(0.8deg); }
+  .tab:nth-child(3) { transform: rotate(-0.6deg); }
+  .tab:nth-child(4) { transform: rotate(1deg); }
+  .tab[aria-selected="true"] { color: var(--paper); background: var(--margin); border-color: var(--margin); }
+  .tab:focus-visible, button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid var(--margin); outline-offset: 2px; }
+  section.page { display: none; }
+  section.page.active { display: block; }
+  .lead { font-size: 14px; color: var(--ink-soft); margin: 0 0 16px; }
+  .counter { font-family: 'Caveat', cursive; font-size: 20px; font-weight: 700; color: var(--margin); margin-bottom: 12px; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  @media (min-width: 480px) { .cards { grid-template-columns: repeat(4, 1fr); } }
+  .card { perspective: 800px; height: 76px; }
+  .card-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.45s cubic-bezier(.4,.2,.2,1); cursor: pointer; }
+  .card.flipped .card-inner { transform: rotateY(180deg); }
+  .card-face { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; backface-visibility: hidden; border-radius: 6px; border: 1px solid var(--rule); background: var(--paper-raised); box-shadow: 2px 3px 0 var(--shadow); padding: 4px; text-align: center; }
+  .card-face.back { transform: rotateY(180deg); background: var(--mark-bg); border-color: var(--mark); }
+  .card-face .en { font-size: 22px; font-weight: 700; }
+  .card-face .word { font-size: 13px; font-weight: 700; }
+  .card-face .ru { font-size: 11px; color: var(--ink-soft); }
+  @media (prefers-reduced-motion: reduce) { .card-inner { transition: none; } }
+  .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .match-col { display: flex; flex-direction: column; gap: 6px; }
+  .chip { font-size: 13px; text-align: left; background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 5px; padding: 7px 9px; cursor: pointer; box-shadow: 1px 2px 0 var(--shadow); }
+  .chip.selected { border-color: var(--margin); box-shadow: 0 0 0 2px var(--margin-soft) inset; }
+  .chip.matched { background: var(--good-bg); border-color: var(--good); color: var(--good); cursor: default; box-shadow: none; }
+  .chip.wrong { animation: shake 0.3s; border-color: var(--bad); background: var(--bad-bg); }
+  @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+  @media (prefers-reduced-motion: reduce) { .chip.wrong { animation: none; } }
+  .reset-line { margin-top: 18px; }
+  .reset-btn { font-family: 'Caveat', cursive; font-size: 16px; background: none; border: none; color: var(--ink-faint); text-decoration: underline; cursor: pointer; padding: 0; }
+  .reset-btn:hover { color: var(--margin); }
+  .fib-item { margin-bottom: 14px; }
+  .fib-sentence { font-size: 15px; margin-bottom: 6px; }
+  .fib-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .fib-row input[type="text"] { font-family: 'PT Sans', sans-serif; font-size: 15px; padding: 6px 9px; border: none; border-bottom: 2px solid var(--ink-faint); background: transparent; color: var(--ink); width: 130px; }
+  .fib-row input[type="text"]:focus { border-bottom-color: var(--margin); }
+  .fib-row input.correct { border-bottom-color: var(--good); color: var(--good); }
+  .fib-row input.incorrect { border-bottom-color: var(--bad); color: var(--bad); }
+  .check-btn { font-family: 'PT Sans', sans-serif; font-size: 13px; background: var(--ink); color: var(--paper); border: none; border-radius: 5px; padding: 6px 12px; cursor: pointer; }
+  .check-btn:hover { opacity: 0.88; }
+  .fib-mark { font-family: 'Caveat', cursive; font-size: 20px; font-weight: 700; min-width: 90px; }
+  .fib-mark.good-mark { color: var(--good); }
+  .fib-mark.bad-mark { color: var(--bad); }
+  .pool { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; min-height: 42px; }
+  .pool .chip { padding: 7px 14px; font-size: 15px; }
+  .pool .chip.picked { border-color: var(--margin); box-shadow: 0 0 0 2px var(--margin-soft) inset; }
+  .buckets { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .bucket { border: 1px dashed var(--rule); border-radius: 8px; padding: 10px; min-height: 100px; }
+  .bucket h3 { font-family: 'Caveat', cursive; font-size: 20px; margin: 0 0 8px; color: var(--ink-soft); }
+  .bucket-btn { width: 100%; font-family: 'PT Sans', sans-serif; font-size: 13px; background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 5px; padding: 6px; margin-bottom: 8px; cursor: pointer; }
+  .bucket-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .bucket-list .word { font-size: 13px; background: var(--good-bg); color: var(--good); border: 1px solid var(--good); border-radius: 10px; padding: 3px 9px; }
+  footer.page { margin-top: 30px; font-size: 12px; color: var(--ink-faint); }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="page">
+    <a class="back-link" href="../index.html">← ко всем урокам</a>
+    <h1>Numbers 1–20</h1>
+    <p class="subtitle">Unit 1 · Home and away · Урок 1.5 (стр. 8)</p>
+    <span class="skill">Умею: <b>I can recognize and use numbers</b> — узнавать и использовать числа</span>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Упражнения">
+    <button class="tab" role="tab" aria-selected="true" data-target="cards">Карточки</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="match">Найди пару</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="fib">Впиши число</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="sort">1–10 или 11–20</button>
+  </nav>
+
+  <section class="page active" id="cards">
+    <p class="lead">Нажми на карточку — увидишь, как число пишется словом.</p>
+    <div class="cards" id="cardsGrid"></div>
+  </section>
+
+  <section class="page" id="match">
+    <p class="lead">Нажми на цифру, потом на слово, которым она пишется.</p>
+    <p class="counter" id="matchCounter">Пары найдены: 0 из 20</p>
+    <div class="match-grid">
+      <div class="match-col" id="matchEn"></div>
+      <div class="match-col" id="matchRu"></div>
+    </div>
+    <div class="reset-line"><button class="reset-btn" id="matchReset">начать заново</button></div>
+  </section>
+
+  <section class="page" id="fib">
+    <p class="lead">Впиши то, чего не хватает: если дана цифра — напиши слово, если слово — напиши цифру.</p>
+    <p class="counter" id="fibCounter">Верно: 0 из 10</p>
+    <div id="fibList"></div>
+  </section>
+
+  <section class="page" id="sort">
+    <p class="lead">Нажми на число, потом на нужную группу.</p>
+    <div class="pool" id="sortPool"></div>
+    <div class="buckets">
+      <div class="bucket">
+        <h3>1–10</h3>
+        <button class="bucket-btn" id="btnLow">Положить сюда</button>
+        <div class="bucket-list" id="listLow"></div>
+      </div>
+      <div class="bucket">
+        <h3>11–20</h3>
+        <button class="bucket-btn" id="btnHigh">Положить сюда</button>
+        <div class="bucket-list" id="listHigh"></div>
+      </div>
+    </div>
+    <div class="reset-line"><button class="reset-btn" id="sortReset">начать заново</button></div>
+  </section>
+
+  <footer class="page">English Plus 5 · Unit 1, Урок 1.5 · домашняя тетрадь</footer>
+</div>
+
+<script>
+(function () {
+  var NUMBERS = [
+    { n: 1, word: "one", ru: "один" }, { n: 2, word: "two", ru: "два" },
+    { n: 3, word: "three", ru: "три" }, { n: 4, word: "four", ru: "четыре" },
+    { n: 5, word: "five", ru: "пять" }, { n: 6, word: "six", ru: "шесть" },
+    { n: 7, word: "seven", ru: "семь" }, { n: 8, word: "eight", ru: "восемь" },
+    { n: 9, word: "nine", ru: "девять" }, { n: 10, word: "ten", ru: "десять" },
+    { n: 11, word: "eleven", ru: "одиннадцать" }, { n: 12, word: "twelve", ru: "двенадцать" },
+    { n: 13, word: "thirteen", ru: "тринадцать" }, { n: 14, word: "fourteen", ru: "четырнадцать" },
+    { n: 15, word: "fifteen", ru: "пятнадцать" }, { n: 16, word: "sixteen", ru: "шестнадцать" },
+    { n: 17, word: "seventeen", ru: "семнадцать" }, { n: 18, word: "eighteen", ru: "восемнадцать" },
+    { n: 19, word: "nineteen", ru: "девятнадцать" }, { n: 20, word: "twenty", ru: "двадцать" }
+  ];
+
+  var FIB = [
+    { given: "7", type: "n2w", answer: "seven" },
+    { given: "thirteen", type: "w2n", answer: "13" },
+    { given: "15", type: "n2w", answer: "fifteen" },
+    { given: "eighteen", type: "w2n", answer: "18" },
+    { given: "4", type: "n2w", answer: "four" },
+    { given: "eleven", type: "w2n", answer: "11" },
+    { given: "20", type: "n2w", answer: "twenty" },
+    { given: "six", type: "w2n", answer: "6" },
+    { given: "16", type: "n2w", answer: "sixteen" },
+    { given: "nineteen", type: "w2n", answer: "19" }
+  ];
+
+  function shuffled(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  var tabs = document.querySelectorAll(".tab");
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      tabs.forEach(function (t) { t.setAttribute("aria-selected", "false"); });
+      document.querySelectorAll("section.page").forEach(function (s) { s.classList.remove("active"); });
+      tab.setAttribute("aria-selected", "true");
+      document.getElementById(tab.dataset.target).classList.add("active");
+    });
+  });
+
+  /* Cards */
+  var cardsGrid = document.getElementById("cardsGrid");
+  NUMBERS.forEach(function (nObj) {
+    var card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML =
+      '<div class="card-inner">' +
+        '<div class="card-face front"><span class="en">' + nObj.n + '</span></div>' +
+        '<div class="card-face back"><span class="word">' + nObj.word + '</span><span class="ru">' + nObj.ru + '</span></div>' +
+      '</div>';
+    card.querySelector(".card-inner").addEventListener("click", function () { card.classList.toggle("flipped"); });
+    cardsGrid.appendChild(card);
+  });
+
+  /* Matching: digit -> word */
+  var matchEnCol = document.getElementById("matchEn");
+  var matchRuCol = document.getElementById("matchRu");
+  var matchCounter = document.getElementById("matchCounter");
+  var matched, selectedEn, selectedRu, lock;
+  function buildMatch() {
+    matchEnCol.innerHTML = ""; matchRuCol.innerHTML = "";
+    matched = 0; selectedEn = null; selectedRu = null; lock = false;
+    matchCounter.textContent = "Пары найдены: 0 из 20";
+    shuffled(NUMBERS).forEach(function (nObj) {
+      var b = document.createElement("button");
+      b.className = "chip"; b.textContent = nObj.n; b.type = "button";
+      b.addEventListener("click", function () { pick(b, "en", nObj.n); });
+      matchEnCol.appendChild(b);
+    });
+    shuffled(NUMBERS).forEach(function (nObj) {
+      var b = document.createElement("button");
+      b.className = "chip"; b.textContent = nObj.word; b.type = "button";
+      b.addEventListener("click", function () { pick(b, "ru", nObj.n); });
+      matchRuCol.appendChild(b);
+    });
+  }
+  function pick(el, side, key) {
+    if (lock || el.classList.contains("matched")) return;
+    if (side === "en") { if (selectedEn) selectedEn.el.classList.remove("selected"); selectedEn = { el: el, key: key }; el.classList.add("selected"); }
+    else { if (selectedRu) selectedRu.el.classList.remove("selected"); selectedRu = { el: el, key: key }; el.classList.add("selected"); }
+    if (selectedEn && selectedRu) {
+      lock = true;
+      if (selectedEn.key === selectedRu.key) {
+        selectedEn.el.classList.remove("selected"); selectedRu.el.classList.remove("selected");
+        selectedEn.el.classList.add("matched"); selectedRu.el.classList.add("matched");
+        matched++; matchCounter.textContent = "Пары найдены: " + matched + " из 20";
+        selectedEn = null; selectedRu = null; lock = false;
+      } else {
+        selectedEn.el.classList.add("wrong"); selectedRu.el.classList.add("wrong");
+        setTimeout(function () {
+          selectedEn.el.classList.remove("selected", "wrong"); selectedRu.el.classList.remove("selected", "wrong");
+          selectedEn = null; selectedRu = null; lock = false;
+        }, 500);
+      }
+    }
+  }
+  buildMatch();
+  document.getElementById("matchReset").addEventListener("click", buildMatch);
+
+  /* Fill in the number */
+  var fibList = document.getElementById("fibList");
+  var fibCounter = document.getElementById("fibCounter");
+  var fibCorrectCount = 0;
+  FIB.forEach(function (f, idx) {
+    var item = document.createElement("div");
+    item.className = "fib-item";
+    var prompt = f.type === "n2w" ? f.given + " → напиши словом" : f.given + " → напиши цифрой";
+    item.innerHTML =
+      '<div class="fib-sentence">' + (idx + 1) + '. ' + prompt + '</div>' +
+      '<div class="fib-row">' +
+        '<input type="text" autocomplete="off" autocapitalize="off" spellcheck="false">' +
+        '<button class="check-btn" type="button">Проверить</button>' +
+        '<span class="fib-mark"></span>' +
+      '</div>';
+    var input = item.querySelector("input");
+    var btn = item.querySelector(".check-btn");
+    var mark = item.querySelector(".fib-mark");
+    var checkedRight = false;
+    function check() {
+      var val = input.value.trim().toLowerCase();
+      var ok = val === f.answer.toLowerCase();
+      input.classList.toggle("correct", ok);
+      input.classList.toggle("incorrect", val.length > 0 && !ok);
+      if (ok) {
+        mark.textContent = "верно!"; mark.className = "fib-mark good-mark";
+        if (!checkedRight) { fibCorrectCount++; checkedRight = true; updateFibCounter(); }
+      } else {
+        mark.textContent = "верный ответ: " + f.answer; mark.className = "fib-mark bad-mark";
+        if (checkedRight) { fibCorrectCount--; checkedRight = false; updateFibCounter(); }
+      }
+    }
+    btn.addEventListener("click", check);
+    input.addEventListener("keydown", function (e) { if (e.key === "Enter") check(); });
+    fibList.appendChild(item);
+  });
+  function updateFibCounter() { fibCounter.textContent = "Верно: " + fibCorrectCount + " из 10"; }
+
+  /* Sorting 1-10 / 11-20 */
+  var sortPool = document.getElementById("sortPool");
+  var listLow = document.getElementById("listLow");
+  var listHigh = document.getElementById("listHigh");
+  var btnLow = document.getElementById("btnLow");
+  var btnHigh = document.getElementById("btnHigh");
+  var pickedNum = null, pickedChip = null;
+
+  function buildSort() {
+    sortPool.innerHTML = ""; listLow.innerHTML = ""; listHigh.innerHTML = "";
+    pickedNum = null; pickedChip = null;
+    shuffled(NUMBERS).forEach(function (nObj) {
+      var b = document.createElement("button");
+      b.className = "chip"; b.type = "button"; b.textContent = nObj.n;
+      b.addEventListener("click", function () {
+        if (pickedChip) pickedChip.classList.remove("picked");
+        pickedNum = nObj; pickedChip = b;
+        b.classList.add("picked");
+      });
+      sortPool.appendChild(b);
+    });
+  }
+  function place(target) {
+    if (!pickedNum) return;
+    var isLow = pickedNum.n <= 10;
+    var correct = (target === "low") === isLow;
+    if (correct) {
+      var tag = document.createElement("span");
+      tag.className = "word"; tag.textContent = pickedNum.n + " — " + pickedNum.word;
+      (target === "low" ? listLow : listHigh).appendChild(tag);
+      pickedChip.remove();
+      pickedNum = null; pickedChip = null;
+    } else {
+      pickedChip.classList.add("wrong");
+      setTimeout(function () { if (pickedChip) pickedChip.classList.remove("wrong"); }, 350);
+    }
+  }
+  btnLow.addEventListener("click", function () { place("low"); });
+  btnHigh.addEventListener("click", function () { place("high"); });
+  buildSort();
+  document.getElementById("sortReset").addEventListener("click", buildSort);
+})();
+</script>
+</body>
+</html>
