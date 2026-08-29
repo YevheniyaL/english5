@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Clubs and Days</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #faf9f4; --paper-raised: #ffffff;
+    --rule: #aecdea; --rule-soft: #d7e6f5;
+    --margin: #d3564d; --margin-soft: #f1c3bf;
+    --ink: #24304a; --ink-soft: #647089; --ink-faint: #97a2b8;
+    --good: #3c8a5c; --good-bg: #dff1e5;
+    --bad: #c85a4f; --bad-bg: #fbe4e1;
+    --mark: #e3a836; --mark-bg: #fbedd0;
+    --shadow: rgba(36, 48, 74, 0.14);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1b2431; --paper-raised: #232f3f;
+      --rule: #3c4d68; --rule-soft: #2a374a;
+      --margin: #e08078; --margin-soft: #4a3339;
+      --ink: #eceff5; --ink-soft: #a7b2c8; --ink-faint: #6d788e;
+      --good: #6fcb93; --good-bg: #23392c;
+      --bad: #e0847a; --bad-bg: #402b2a;
+      --mark: #f0c463; --mark-bg: #3d3320;
+      --shadow: rgba(0, 0, 0, 0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1b2431; --paper-raised: #232f3f;
+    --rule: #3c4d68; --rule-soft: #2a374a;
+    --margin: #e08078; --margin-soft: #4a3339;
+    --ink: #eceff5; --ink-soft: #a7b2c8; --ink-faint: #6d788e;
+    --good: #6fcb93; --good-bg: #23392c;
+    --bad: #e0847a; --bad-bg: #402b2a;
+    --mark: #f0c463; --mark-bg: #3d3320;
+    --shadow: rgba(0, 0, 0, 0.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: 'PT Sans', Arial, sans-serif; line-height: 1.5; -webkit-tap-highlight-color: transparent; }
+  h1, h2, .hand { font-family: 'Caveat', 'Comic Sans MS', cursive; font-weight: 700; text-wrap: balance; }
+  .back-link { font-size: 13px; color: var(--ink-faint); text-decoration: none; }
+  .back-link:hover { color: var(--margin); }
+  .sheet { max-width: 640px; margin: 0 auto; padding: 22px 20px 60px 44px; position: relative;
+    background-image: repeating-linear-gradient(to bottom, transparent, transparent 37px, var(--rule-soft) 38px);
+    background-position: 0 150px; }
+  .sheet::before { content: ""; position: absolute; top: 0; bottom: 0; left: 26px; width: 2px; background: var(--margin); opacity: 0.75; }
+  header.page { padding-top: 6px; padding-bottom: 14px; }
+  h1 { font-size: 40px; margin: 8px 0 2px; line-height: 1.1; }
+  .subtitle { font-size: 16px; color: var(--ink-soft); margin: 0 0 10px; }
+  .skill { display: inline-block; background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 3px; padding: 7px 12px; font-size: 14px; color: var(--ink); box-shadow: 1px 2px 0 var(--shadow); }
+  .skill b { color: var(--margin); font-weight: 700; }
+  nav.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 20px; }
+  .tab { font-family: 'Caveat', cursive; font-size: 19px; font-weight: 600; background: var(--paper-raised); border: 1px solid var(--rule); border-bottom-width: 3px; color: var(--ink-soft); padding: 7px 16px 6px; border-radius: 8px 8px 4px 4px; cursor: pointer; box-shadow: 1px 2px 0 var(--shadow); }
+  .tab:nth-child(1) { transform: rotate(-1.2deg); }
+  .tab:nth-child(2) { transform: rotate(0.8deg); }
+  .tab:nth-child(3) { transform: rotate(-0.6deg); }
+  .tab:nth-child(4) { transform: rotate(1deg); }
+  .tab[aria-selected="true"] { color: var(--paper); background: var(--margin); border-color: var(--margin); }
+  .tab:focus-visible, button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid var(--margin); outline-offset: 2px; }
+  section.page { display: none; }
+  section.page.active { display: block; }
+  .lead { font-size: 14px; color: var(--ink-soft); margin: 0 0 16px; }
+  .counter { font-family: 'Caveat', cursive; font-size: 20px; font-weight: 700; color: var(--margin); margin-bottom: 12px; }
+  .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  @media (min-width: 480px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+  .card { perspective: 800px; height: 84px; }
+  .card-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.45s cubic-bezier(.4,.2,.2,1); cursor: pointer; }
+  .card.flipped .card-inner { transform: rotateY(180deg); }
+  .card-face { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; backface-visibility: hidden; border-radius: 6px; border: 1px solid var(--rule); background: var(--paper-raised); box-shadow: 2px 3px 0 var(--shadow); padding: 6px; text-align: center; }
+  .card-face.back { transform: rotateY(180deg); background: var(--mark-bg); border-color: var(--mark); }
+  .card-face .en { font-size: 14px; font-weight: 700; }
+  .card-face .ru { font-size: 14px; }
+  @media (prefers-reduced-motion: reduce) { .card-inner { transition: none; } }
+  .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .match-col { display: flex; flex-direction: column; gap: 6px; }
+  .chip { font-size: 13px; text-align: left; background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 5px; padding: 7px 9px; cursor: pointer; box-shadow: 1px 2px 0 var(--shadow); }
+  .chip.selected { border-color: var(--margin); box-shadow: 0 0 0 2px var(--margin-soft) inset; }
+  .chip.matched { background: var(--good-bg); border-color: var(--good); color: var(--good); cursor: default; box-shadow: none; }
+  .chip.wrong { animation: shake 0.3s; border-color: var(--bad); background: var(--bad-bg); }
+  @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+  @media (prefers-reduced-motion: reduce) { .chip.wrong { animation: none; } }
+  .reset-line { margin-top: 18px; }
+  .reset-btn { font-family: 'Caveat', cursive; font-size: 16px; background: none; border: none; color: var(--ink-faint); text-decoration: underline; cursor: pointer; padding: 0; }
+  .reset-btn:hover { color: var(--margin); }
+  .fib-item { margin-bottom: 14px; }
+  .fib-sentence { font-size: 15px; margin-bottom: 6px; }
+  .fib-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .fib-row input[type="text"] { font-family: 'PT Sans', sans-serif; font-size: 15px; padding: 6px 9px; border: none; border-bottom: 2px solid var(--ink-faint); background: transparent; color: var(--ink); width: 150px; }
+  .fib-row input[type="text"]:focus { border-bottom-color: var(--margin); }
+  .fib-row input.correct { border-bottom-color: var(--good); color: var(--good); }
+  .fib-row input.incorrect { border-bottom-color: var(--bad); color: var(--bad); }
+  .check-btn { font-family: 'PT Sans', sans-serif; font-size: 13px; background: var(--ink); color: var(--paper); border: none; border-radius: 5px; padding: 6px 12px; cursor: pointer; }
+  .check-btn:hover { opacity: 0.88; }
+  .fib-mark { font-family: 'Caveat', cursive; font-size: 20px; font-weight: 700; min-width: 90px; }
+  .fib-mark.good-mark { color: var(--good); }
+  .fib-mark.bad-mark { color: var(--bad); }
+  .pool { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; min-height: 42px; }
+  .pool .chip { padding: 7px 12px; }
+  .pool .chip.picked { border-color: var(--margin); box-shadow: 0 0 0 2px var(--margin-soft) inset; }
+  .buckets { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .bucket { border: 1px dashed var(--rule); border-radius: 8px; padding: 10px; min-height: 140px; }
+  .bucket h3 { font-family: 'Caveat', cursive; font-size: 20px; margin: 0 0 8px; color: var(--ink-soft); }
+  .bucket-btn { width: 100%; font-family: 'PT Sans', sans-serif; font-size: 13px; background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 5px; padding: 6px; margin-bottom: 8px; cursor: pointer; }
+  .bucket-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .bucket-list .word { font-size: 13px; background: var(--good-bg); color: var(--good); border: 1px solid var(--good); border-radius: 10px; padding: 3px 9px; }
+  footer.page { margin-top: 30px; font-size: 12px; color: var(--ink-faint); }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="page">
+    <a class="back-link" href="../index.html">← ко всем урокам</a>
+    <h1>Clubs and Days</h1>
+    <p class="subtitle">Unit 2 · Sports · Урок 2.2 (стр. 14)</p>
+    <span class="skill">Умею: <b>I can understand a text about clubs and people's hobbies</b> — понять текст о клубах и увлечениях людей</span>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Упражнения">
+    <button class="tab" role="tab" aria-selected="true" data-target="cards">Карточки</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="match">Найди пару</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="fib">Впиши слово</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="sort">Дни или увлечения?</button>
+  </nav>
+
+  <section class="page active" id="cards">
+    <p class="lead">Нажми на карточку — увидишь перевод.</p>
+    <div class="cards" id="cardsGrid"></div>
+  </section>
+
+  <section class="page" id="match">
+    <p class="lead">Нажми на английское слово, потом на его перевод.</p>
+    <p class="counter" id="matchCounter">Пары найдены: 0 из 15</p>
+    <div class="match-grid">
+      <div class="match-col" id="matchEn"></div>
+      <div class="match-col" id="matchRu"></div>
+    </div>
+    <div class="reset-line"><button class="reset-btn" id="matchReset">начать заново</button></div>
+  </section>
+
+  <section class="page" id="fib">
+    <p class="lead">Сначала — дни недели по порядку (впиши недостающий день), потом — увлечения по подсказке.</p>
+    <p class="counter" id="fibCounter">Верно: 0 из 15</p>
+    <div id="fibList"></div>
+  </section>
+
+  <section class="page" id="sort">
+    <p class="lead">Нажми на слово, потом на нужную группу.</p>
+    <div class="pool" id="sortPool"></div>
+    <div class="buckets">
+      <div class="bucket">
+        <h3>Дни недели</h3>
+        <button class="bucket-btn" id="btnDays">Положить сюда</button>
+        <div class="bucket-list" id="listDays"></div>
+      </div>
+      <div class="bucket">
+        <h3>Увлечения</h3>
+        <button class="bucket-btn" id="btnHobbies">Положить сюда</button>
+        <div class="bucket-list" id="listHobbies"></div>
+      </div>
+    </div>
+    <div class="reset-line"><button class="reset-btn" id="sortReset">начать заново</button></div>
+  </section>
+
+  <footer class="page">English Plus 5 · Unit 2, Урок 2.2 · домашняя тетрадь</footer>
+</div>
+
+<script>
+(function () {
+  var DAYS = [
+    { en: "Monday", ru: "понедельник" }, { en: "Tuesday", ru: "вторник" },
+    { en: "Wednesday", ru: "среда" }, { en: "Thursday", ru: "четверг" },
+    { en: "Friday", ru: "пятница" }, { en: "Saturday", ru: "суббота" },
+    { en: "Sunday", ru: "воскресенье" }
+  ];
+  var HOBBIES = [
+    { en: "dance", ru: "танцы" }, { en: "drama", ru: "театр (драмкружок)" },
+    { en: "climbing", ru: "скалолазание" }, { en: "chess", ru: "шахматы" },
+    { en: "art", ru: "рисование" }, { en: "photography", ru: "фотография" },
+    { en: "tae kwon do", ru: "тхэквондо" }, { en: "rugby", ru: "регби" }
+  ];
+  var ALL = DAYS.concat(HOBBIES);
+  var HOBBY_SET = HOBBIES.map(function (h) { return h.en; });
+
+  var DAY_SEQ = [
+    { text: "___, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday", answer: "Monday" },
+    { text: "Monday, ___, Wednesday, Thursday, Friday, Saturday, Sunday", answer: "Tuesday" },
+    { text: "Monday, Tuesday, ___, Thursday, Friday, Saturday, Sunday", answer: "Wednesday" },
+    { text: "Monday, Tuesday, Wednesday, ___, Friday, Saturday, Sunday", answer: "Thursday" },
+    { text: "Monday, Tuesday, Wednesday, Thursday, ___, Saturday, Sunday", answer: "Friday" },
+    { text: "Monday, Tuesday, Wednesday, Thursday, Friday, ___, Sunday", answer: "Saturday" },
+    { text: "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, ___", answer: "Sunday" }
+  ];
+  var HOBBY_HINTS = [
+    { text: "I love ___. I draw every day. (рисование)", answer: "art" },
+    { text: "___ is a Korean martial art. (тхэквондо)", answer: "tae kwon do" },
+    { text: "I take photos of animals. I love ___. (фотография)", answer: "photography" },
+    { text: "We do ___ in the mountains — it's exciting but hard! (скалолазание)", answer: "climbing" },
+    { text: "My favourite game is ___. I like the pieces. (шахматы)", answer: "chess" },
+    { text: "I play ___ on Saturdays with my team. (регби)", answer: "rugby" },
+    { text: "I love salsa and hip hop. I do ___. (танцы)", answer: "dance" },
+    { text: "My friends and I act in plays. We're in the ___ club. (драмкружок)", answer: "drama" }
+  ];
+  var SENTENCES = DAY_SEQ.concat(HOBBY_HINTS);
+
+  function shuffled(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  var tabs = document.querySelectorAll(".tab");
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      tabs.forEach(function (t) { t.setAttribute("aria-selected", "false"); });
+      document.querySelectorAll("section.page").forEach(function (s) { s.classList.remove("active"); });
+      tab.setAttribute("aria-selected", "true");
+      document.getElementById(tab.dataset.target).classList.add("active");
+    });
+  });
+
+  /* Cards */
+  var cardsGrid = document.getElementById("cardsGrid");
+  ALL.forEach(function (w) {
+    var card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML =
+      '<div class="card-inner">' +
+        '<div class="card-face front"><span class="en">' + w.en + '</span></div>' +
+        '<div class="card-face back"><span class="ru">' + w.ru + '</span></div>' +
+      '</div>';
+    card.querySelector(".card-inner").addEventListener("click", function () { card.classList.toggle("flipped"); });
+    cardsGrid.appendChild(card);
+  });
+
+  /* Matching */
+  var matchEnCol = document.getElementById("matchEn");
+  var matchRuCol = document.getElementById("matchRu");
+  var matchCounter = document.getElementById("matchCounter");
+  var matched, selectedEn, selectedRu, lock;
+  function buildMatch() {
+    matchEnCol.innerHTML = ""; matchRuCol.innerHTML = "";
+    matched = 0; selectedEn = null; selectedRu = null; lock = false;
+    matchCounter.textContent = "Пары найдены: 0 из 15";
+    shuffled(ALL).forEach(function (w) {
+      var b = document.createElement("button");
+      b.className = "chip"; b.textContent = w.en; b.type = "button";
+      b.addEventListener("click", function () { pick(b, "en", w.en); });
+      matchEnCol.appendChild(b);
+    });
+    shuffled(ALL).forEach(function (w) {
+      var b = document.createElement("button");
+      b.className = "chip"; b.textContent = w.ru; b.type = "button";
+      b.addEventListener("click", function () { pick(b, "ru", w.en); });
+      matchRuCol.appendChild(b);
+    });
+  }
+  function pick(el, side, key) {
+    if (lock || el.classList.contains("matched")) return;
+    if (side === "en") { if (selectedEn) selectedEn.el.classList.remove("selected"); selectedEn = { el: el, key: key }; el.classList.add("selected"); }
+    else { if (selectedRu) selectedRu.el.classList.remove("selected"); selectedRu = { el: el, key: key }; el.classList.add("selected"); }
+    if (selectedEn && selectedRu) {
+      lock = true;
+      if (selectedEn.key === selectedRu.key) {
+        selectedEn.el.classList.remove("selected"); selectedRu.el.classList.remove("selected");
+        selectedEn.el.classList.add("matched"); selectedRu.el.classList.add("matched");
+        matched++; matchCounter.textContent = "Пары найдены: " + matched + " из 15";
+        selectedEn = null; selectedRu = null; lock = false;
+      } else {
+        selectedEn.el.classList.add("wrong"); selectedRu.el.classList.add("wrong");
+        setTimeout(function () {
+          selectedEn.el.classList.remove("selected", "wrong"); selectedRu.el.classList.remove("selected", "wrong");
+          selectedEn = null; selectedRu = null; lock = false;
+        }, 500);
+      }
+    }
+  }
+  buildMatch();
+  document.getElementById("matchReset").addEventListener("click", buildMatch);
+
+  /* Fill in */
+  var fibList = document.getElementById("fibList");
+  var fibCounter = document.getElementById("fibCounter");
+  var fibCorrectCount = 0;
+  SENTENCES.forEach(function (s, idx) {
+    var item = document.createElement("div");
+    item.className = "fib-item";
+    item.innerHTML =
+      '<div class="fib-sentence">' + (idx + 1) + '. ' + s.text + '</div>' +
+      '<div class="fib-row">' +
+        '<input type="text" autocomplete="off" autocapitalize="off" spellcheck="false">' +
+        '<button class="check-btn" type="button">Проверить</button>' +
+        '<span class="fib-mark"></span>' +
+      '</div>';
+    var input = item.querySelector("input");
+    var btn = item.querySelector(".check-btn");
+    var mark = item.querySelector(".fib-mark");
+    var checkedRight = false;
+    function check() {
+      var val = input.value.trim().toLowerCase();
+      var ok = val === s.answer.toLowerCase();
+      input.classList.toggle("correct", ok);
+      input.classList.toggle("incorrect", val.length > 0 && !ok);
+      if (ok) {
+        mark.textContent = "верно!"; mark.className = "fib-mark good-mark";
+        if (!checkedRight) { fibCorrectCount++; checkedRight = true; updateFibCounter(); }
+      } else {
+        mark.textContent = "верный ответ: " + s.answer; mark.className = "fib-mark bad-mark";
+        if (checkedRight) { fibCorrectCount--; checkedRight = false; updateFibCounter(); }
+      }
+    }
+    btn.addEventListener("click", check);
+    input.addEventListener("keydown", function (e) { if (e.key === "Enter") check(); });
+    fibList.appendChild(item);
+  });
+  function updateFibCounter() { fibCounter.textContent = "Верно: " + fibCorrectCount + " из 15"; }
+
+  /* Sorting */
+  var sortPool = document.getElementById("sortPool");
+  var listDays = document.getElementById("listDays");
+  var listHobbies = document.getElementById("listHobbies");
+  var btnDays = document.getElementById("btnDays");
+  var btnHobbies = document.getElementById("btnHobbies");
+  var pickedWord = null, pickedChip = null;
+
+  function buildSort() {
+    sortPool.innerHTML = ""; listDays.innerHTML = ""; listHobbies.innerHTML = "";
+    pickedWord = null; pickedChip = null;
+    shuffled(ALL).forEach(function (w) {
+      var b = document.createElement("button");
+      b.className = "chip"; b.type = "button"; b.textContent = w.en;
+      b.addEventListener("click", function () {
+        if (pickedChip) pickedChip.classList.remove("picked");
+        pickedWord = w; pickedChip = b;
+        b.classList.add("picked");
+      });
+      sortPool.appendChild(b);
+    });
+  }
+  function place(target) {
+    if (!pickedWord) return;
+    var isHobby = HOBBY_SET.indexOf(pickedWord.en) !== -1;
+    var correct = (target === "hobbies") === isHobby;
+    if (correct) {
+      var tag = document.createElement("span");
+      tag.className = "word"; tag.textContent = pickedWord.en + " — " + pickedWord.ru;
+      (target === "hobbies" ? listHobbies : listDays).appendChild(tag);
+      pickedChip.remove();
+      pickedWord = null; pickedChip = null;
+    } else {
+      pickedChip.classList.add("wrong");
+      setTimeout(function () { if (pickedChip) pickedChip.classList.remove("wrong"); }, 350);
+    }
+  }
+  btnDays.addEventListener("click", function () { place("days"); });
+  btnHobbies.addEventListener("click", function () { place("hobbies"); });
+  buildSort();
+  document.getElementById("sortReset").addEventListener("click", buildSort);
+})();
+</script>
+</body>
+</html>
