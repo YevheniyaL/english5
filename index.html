@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>English Plus 5 — тетрадь</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #faf9f4;
+    --paper-raised: #ffffff;
+    --rule: #aecdea;
+    --rule-soft: #d7e6f5;
+    --margin: #d3564d;
+    --ink: #24304a;
+    --ink-soft: #647089;
+    --ink-faint: #97a2b8;
+    --shadow: rgba(36, 48, 74, 0.14);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1b2431;
+      --paper-raised: #232f3f;
+      --rule: #3c4d68;
+      --rule-soft: #2a374a;
+      --margin: #e08078;
+      --ink: #eceff5;
+      --ink-soft: #a7b2c8;
+      --ink-faint: #6d788e;
+      --shadow: rgba(0, 0, 0, 0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1b2431;
+    --paper-raised: #232f3f;
+    --rule: #3c4d68;
+    --rule-soft: #2a374a;
+    --margin: #e08078;
+    --ink: #eceff5;
+    --ink-soft: #a7b2c8;
+    --ink-faint: #6d788e;
+    --shadow: rgba(0, 0, 0, 0.35);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'PT Sans', Arial, sans-serif;
+    line-height: 1.5;
+  }
+  h1, .hand { font-family: 'Caveat', cursive; font-weight: 700; text-wrap: balance; }
+  .sheet {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 26px 20px 60px 44px;
+    position: relative;
+    background-image: repeating-linear-gradient(to bottom, transparent, transparent 37px, var(--rule-soft) 38px);
+    background-position: 0 130px;
+  }
+  .sheet::before {
+    content: "";
+    position: absolute; top: 0; bottom: 0; left: 26px;
+    width: 2px; background: var(--margin); opacity: 0.75;
+  }
+  h1 { font-size: 40px; margin: 0 0 2px; }
+  .subtitle { font-size: 15px; color: var(--ink-soft); margin: 0 0 24px; }
+  .unit {
+    margin-bottom: 26px;
+  }
+  .unit h2 {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--margin);
+    margin: 0 0 8px;
+  }
+  ul.lessons { list-style: none; margin: 0; padding: 0; }
+  ul.lessons li { margin-bottom: 8px; }
+  a.lesson {
+    display: block;
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 10px 14px;
+    color: var(--ink);
+    text-decoration: none;
+    box-shadow: 1px 2px 0 var(--shadow);
+    font-size: 15px;
+  }
+  a.lesson:hover { border-color: var(--margin); }
+  a.lesson .en { font-weight: 700; }
+  a.lesson .page { color: var(--ink-faint); font-size: 13px; }
+  .todo {
+    font-size: 13px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+  a:focus-visible { outline: 2px solid var(--margin); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <h1>English Plus 5</h1>
+  <p class="subtitle">Тетрадь для отработки уроков — открывай нужный урок по ссылке ниже</p>
+
+  <div class="unit">
+    <h2>Unit 1 — Home and away</h2>
+    <ul class="lessons">
+      <li>
+        <a class="lesson" href="unit1/urok1.html">
+          <span class="en">Урок 1.1 — Familiar words</span><br>
+          <span class="page">стр. 4 · I can ask about the meaning of words</span>
+        </a>
+      </li>
+    </ul>
+    <p class="todo">остальные уроки юнита появятся здесь по мере готовности</p>
+  </div>
+</div>
+</body>
+</html>
