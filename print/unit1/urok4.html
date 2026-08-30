@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Печать карточек — Personal Information</title>
+<style>
+  body { font-family: 'PT Sans', Arial, sans-serif; color: #222; max-width: 800px; margin: 20px auto; }
+  h1 { font-size: 20px; margin-bottom: 4px; }
+  .instructions { background: #f2f5fa; border: 1px solid #c7d3e3; border-radius: 6px; padding: 14px 18px; font-size: 14px; line-height: 1.6; }
+  .instructions b { color: #1a3a66; }
+  .page-label { font-size: 13px; color: #888; margin: 26px 0 6px; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); grid-auto-rows: 42mm; border: 1px solid #333; page-break-before: always; }
+  .cell { border: 1px dashed #999; display: flex; align-items: center; justify-content: center; font-size: 18px; text-align: center; padding: 8px; }
+  .cell.en { font-weight: bold; }
+  @media print { .instructions { display: block; } .page-label { display: none; } }
+</style>
+</head>
+<body>
+
+<h1>Карточки Personal Information — печать для вырезания (стр. 7)</h1>
+<div class="instructions">
+  <p><b>Если принтер печатает с двух сторон (дуплекс):</b> в диалоге печати
+  включите "Печать на двух сторонах" / "Two-sided" и переплёт по
+  <b>длинному краю</b>. Разрежьте лист по пунктирным линиям — получится
+  3 двусторонних карточки.</p>
+  <p><b>Если принтер печатает только с одной стороны:</b> напечатайте
+  первый лист, затем переверните эту же стопку листов и вставьте обратно в
+  лоток для второго листа. Направление переворота зависит от принтера —
+  сначала проверьте на одном листе.</p>
+</div>
+
+<p class="page-label">Лист 1 — вопросы (лицевая сторона)</p>
+<div class="grid">
+  <div class="cell en">What's your name?</div>
+  <div class="cell en">How old are you?</div>
+  <div class="cell en">Where are you from?</div>
+  <div class="cell"></div>
+</div>
+
+<p class="page-label">Лист 2 — переводы (обратная сторона, тот же порядок ячеек)</p>
+<div class="grid">
+  <div class="cell">Как тебя зовут?</div>
+  <div class="cell">Сколько тебе лет?</div>
+  <div class="cell">Откуда ты?</div>
+  <div class="cell"></div>
+</div>
+
+</body>
+</html>

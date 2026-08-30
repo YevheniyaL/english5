@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Печать карточек — Numbers 1–20</title>
+<style>
+  body { font-family: 'PT Sans', Arial, sans-serif; color: #222; max-width: 800px; margin: 20px auto; }
+  h1 { font-size: 20px; margin-bottom: 4px; }
+  .instructions { background: #f2f5fa; border: 1px solid #c7d3e3; border-radius: 6px; padding: 14px 18px; font-size: 14px; line-height: 1.6; }
+  .instructions b { color: #1a3a66; }
+  .page-label { font-size: 13px; color: #888; margin: 26px 0 6px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 36mm; border: 1px solid #333; page-break-before: always; }
+  .cell { border: 1px dashed #999; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 26px; text-align: center; padding: 4px; }
+  .cell.en { font-weight: bold; }
+  .cell .word { font-weight: bold; font-size: 15px; }
+  .cell .ru { font-size: 11px; color: #666; margin-top: 3px; }
+  @media print { .instructions { display: block; } .page-label { display: none; } }
+</style>
+</head>
+<body>
+
+<h1>Карточки Numbers 1–20 — печать для вырезания (стр. 8)</h1>
+<div class="instructions">
+  <p><b>Если принтер печатает с двух сторон (дуплекс):</b> в диалоге печати
+  включите "Печать на двух сторонах" / "Two-sided" и переплёт по
+  <b>длинному краю</b>. Тогда цифра и слово окажутся на разных сторонах
+  одной карточки. Разрежьте лист по пунктирным линиям — получится
+  20 двусторонних карточек.</p>
+  <p><b>Если принтер печатает только с одной стороны:</b> напечатайте
+  первый лист, затем переверните эту же стопку листов и вставьте обратно в
+  лоток для второго листа. Направление переворота зависит от принтера —
+  сначала проверьте на одном листе.</p>
+</div>
+
+<p class="page-label">Лист 1 — цифры (лицевая сторона)</p>
+<div class="grid">
+  <div class="cell en">1</div><div class="cell en">2</div><div class="cell en">3</div><div class="cell en">4</div>
+  <div class="cell en">5</div><div class="cell en">6</div><div class="cell en">7</div><div class="cell en">8</div>
+  <div class="cell en">9</div><div class="cell en">10</div><div class="cell en">11</div><div class="cell en">12</div>
+  <div class="cell en">13</div><div class="cell en">14</div><div class="cell en">15</div><div class="cell en">16</div>
+  <div class="cell en">17</div><div class="cell en">18</div><div class="cell en">19</div><div class="cell en">20</div>
+</div>
+
+<p class="page-label">Лист 2 — слова (обратная сторона, тот же порядок ячеек)</p>
+<div class="grid">
+  <div class="cell"><span class="word">one</span><span class="ru">один</span></div>
+  <div class="cell"><span class="word">two</span><span class="ru">два</span></div>
+  <div class="cell"><span class="word">three</span><span class="ru">три</span></div>
+  <div class="cell"><span class="word">four</span><span class="ru">четыре</span></div>
+  <div class="cell"><span class="word">five</span><span class="ru">пять</span></div>
+  <div class="cell"><span class="word">six</span><span class="ru">шесть</span></div>
+  <div class="cell"><span class="word">seven</span><span class="ru">семь</span></div>
+  <div class="cell"><span class="word">eight</span><span class="ru">восемь</span></div>
+  <div class="cell"><span class="word">nine</span><span class="ru">девять</span></div>
+  <div class="cell"><span class="word">ten</span><span class="ru">десять</span></div>
+  <div class="cell"><span class="word">eleven</span><span class="ru">одиннадцать</span></div>
+  <div class="cell"><span class="word">twelve</span><span class="ru">двенадцать</span></div>
+  <div class="cell"><span class="word">thirteen</span><span class="ru">тринадцать</span></div>
+  <div class="cell"><span class="word">fourteen</span><span class="ru">четырнадцать</span></div>
+  <div class="cell"><span class="word">fifteen</span><span class="ru">пятнадцать</span></div>
+  <div class="cell"><span class="word">sixteen</span><span class="ru">шестнадцать</span></div>
+  <div class="cell"><span class="word">seventeen</span><span class="ru">семнадцать</span></div>
+  <div class="cell"><span class="word">eighteen</span><span class="ru">восемнадцать</span></div>
+  <div class="cell"><span class="word">nineteen</span><span class="ru">девятнадцать</span></div>
+  <div class="cell"><span class="word">twenty</span><span class="ru">двадцать</span></div>
+</div>
+
+</body>
+</html>

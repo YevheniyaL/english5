@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Печать карточек — Favourite Things</title>
+<style>
+  body { font-family: 'PT Sans', Arial, sans-serif; color: #222; max-width: 800px; margin: 20px auto; }
+  h1 { font-size: 20px; margin-bottom: 4px; }
+  .instructions { background: #f2f5fa; border: 1px solid #c7d3e3; border-radius: 6px; padding: 14px 18px; font-size: 14px; line-height: 1.6; }
+  .instructions b { color: #1a3a66; }
+  .page-label { font-size: 13px; color: #888; margin: 26px 0 6px; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); grid-auto-rows: 42mm; border: 1px solid #333; page-break-before: always; }
+  .cell { border: 1px dashed #999; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 18px; text-align: center; padding: 6px; }
+  .cell.en { font-weight: bold; }
+  .cell .ru { font-weight: bold; }
+  .cell .ex { font-size: 13px; color: #666; margin-top: 3px; }
+  @media print { .instructions { display: block; } .page-label { display: none; } }
+</style>
+</head>
+<body>
+
+<h1>Карточки Favourite Things — печать для вырезания (стр. 16)</h1>
+<div class="instructions">
+  <p><b>Если принтер печатает с двух сторон (дуплекс):</b> в диалоге печати
+  включите "Печать на двух сторонах" / "Two-sided" и переплёт по
+  <b>длинному краю</b>. Разрежьте лист по пунктирным линиям — получится
+  10 двусторонних карточек.</p>
+  <p><b>Если принтер печатает только с одной стороны:</b> напечатайте
+  первый лист, затем переверните эту же стопку листов и вставьте обратно в
+  лоток для второго листа. Направление переворота зависит от принтера —
+  сначала проверьте на одном листе.</p>
+</div>
+
+<p class="page-label">Лист 1 — категории (лицевая сторона)</p>
+<div class="grid">
+  <div class="cell en">food</div>
+  <div class="cell en">colour</div>
+  <div class="cell en">game</div>
+  <div class="cell en">animal</div>
+  <div class="cell en">sport</div>
+  <div class="cell en">team</div>
+  <div class="cell en">TV programme</div>
+  <div class="cell en">film</div>
+  <div class="cell en">singer</div>
+  <div class="cell en">film star</div>
+</div>
+
+<p class="page-label">Лист 2 — переводы и примеры (обратная сторона, тот же порядок ячеек)</p>
+<div class="grid">
+  <div class="cell"><span class="ru">еда</span><span class="ex">напр. rice</span></div>
+  <div class="cell"><span class="ru">цвет</span><span class="ex">напр. blue</span></div>
+  <div class="cell"><span class="ru">игра</span><span class="ex">напр. Angry Birds</span></div>
+  <div class="cell"><span class="ru">животное</span><span class="ex">напр. dog</span></div>
+  <div class="cell"><span class="ru">спорт</span><span class="ex">напр. basketball</span></div>
+  <div class="cell"><span class="ru">команда</span><span class="ex">напр. CSK Moscow</span></div>
+  <div class="cell"><span class="ru">телепередача</span><span class="ex">напр. The Simpsons</span></div>
+  <div class="cell"><span class="ru">фильм</span><span class="ex">напр. The Hobbit</span></div>
+  <div class="cell"><span class="ru">певец</span><span class="ex">напр. Jessie J</span></div>
+  <div class="cell"><span class="ru">кинозвезда</span><span class="ex">напр. Angelina Jolie</span></div>
+</div>
+
+</body>
+</html>

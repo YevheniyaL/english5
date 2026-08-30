@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Глаголы заданий</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #faf9f4;
+    --paper-raised: #ffffff;
+    --rule: #aecdea;
+    --rule-soft: #d7e6f5;
+    --margin: #d3564d;
+    --margin-soft: #f1c3bf;
+    --ink: #24304a;
+    --ink-soft: #647089;
+    --ink-faint: #97a2b8;
+    --good: #3c8a5c;
+    --good-bg: #dff1e5;
+    --bad: #c85a4f;
+    --bad-bg: #fbe4e1;
+    --mark: #e3a836;
+    --mark-bg: #fbedd0;
+    --shadow: rgba(36, 48, 74, 0.14);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1b2431;
+      --paper-raised: #232f3f;
+      --rule: #3c4d68;
+      --rule-soft: #2a374a;
+      --margin: #e08078;
+      --margin-soft: #4a3339;
+      --ink: #eceff5;
+      --ink-soft: #a7b2c8;
+      --ink-faint: #6d788e;
+      --good: #6fcb93;
+      --good-bg: #23392c;
+      --bad: #e0847a;
+      --bad-bg: #402b2a;
+      --mark: #f0c463;
+      --mark-bg: #3d3320;
+      --shadow: rgba(0, 0, 0, 0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1b2431;
+    --paper-raised: #232f3f;
+    --rule: #3c4d68;
+    --rule-soft: #2a374a;
+    --margin: #e08078;
+    --margin-soft: #4a3339;
+    --ink: #eceff5;
+    --ink-soft: #a7b2c8;
+    --ink-faint: #6d788e;
+    --good: #6fcb93;
+    --good-bg: #23392c;
+    --bad: #e0847a;
+    --bad-bg: #402b2a;
+    --mark: #f0c463;
+    --mark-bg: #3d3320;
+    --shadow: rgba(0, 0, 0, 0.35);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'PT Sans', Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-tap-highlight-color: transparent;
+  }
+  h1, h2, .hand {
+    font-family: 'Caveat', 'Comic Sans MS', cursive;
+    font-weight: 700;
+    text-wrap: balance;
+  }
+
+  .sheet {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 22px 20px 60px 44px;
+    position: relative;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 37px,
+      var(--rule-soft) 38px
+    );
+    background-position: 0 160px;
+  }
+  .sheet::before {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0; left: 26px;
+    width: 2px;
+    background: var(--margin);
+    opacity: 0.75;
+  }
+
+  header.page {
+    padding-top: 6px;
+    padding-bottom: 14px;
+  }
+  h1 {
+    font-size: 40px;
+    margin: 0 0 2px;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .subtitle {
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin: 0 0 10px;
+  }
+  .skill {
+    display: inline-block;
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 7px 12px;
+    font-size: 14px;
+    color: var(--ink);
+    box-shadow: 1px 2px 0 var(--shadow);
+  }
+  .skill b { color: var(--margin); font-weight: 700; }
+  .back-link { font-size: 13px; color: var(--ink-faint); text-decoration: none; }
+  .back-link:hover { color: var(--margin); }
+  .sibling-link {
+    display: block;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--margin);
+  }
+
+  nav.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 18px 0 20px;
+  }
+  .tab {
+    font-family: 'Caveat', cursive;
+    font-size: 19px;
+    font-weight: 600;
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-bottom-width: 3px;
+    color: var(--ink-soft);
+    padding: 7px 16px 6px;
+    border-radius: 8px 8px 4px 4px;
+    cursor: pointer;
+    box-shadow: 1px 2px 0 var(--shadow);
+    transition: transform 0.12s ease;
+  }
+  .tab:hover { color: var(--ink); }
+  .tab:nth-child(1) { transform: rotate(-1.2deg); }
+  .tab:nth-child(2) { transform: rotate(0.8deg); }
+  .tab:nth-child(3) { transform: rotate(-0.6deg); }
+  .tab[aria-selected="true"] {
+    color: var(--paper);
+    background: var(--margin);
+    border-color: var(--margin);
+  }
+  .tab:focus-visible, button:focus-visible, input:focus-visible, a:focus-visible {
+    outline: 2px solid var(--margin);
+    outline-offset: 2px;
+  }
+
+  section.page { display: none; }
+  section.page.active { display: block; }
+
+  .lead {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin: 0 0 4px;
+  }
+  .print-link {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--margin);
+    margin: 0 0 16px;
+  }
+  h2.section-title {
+    font-size: 26px;
+    margin: 22px 0 10px;
+    color: var(--ink);
+  }
+  h2.section-title:first-of-type { margin-top: 4px; }
+  .counter {
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--margin);
+    margin-bottom: 12px;
+  }
+
+  /* Flip cards */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  @media (min-width: 480px) {
+    .cards { grid-template-columns: repeat(3, 1fr); }
+  }
+  .card {
+    perspective: 800px;
+    height: 122px;
+  }
+  .card-inner {
+    position: relative;
+    width: 100%; height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.45s cubic-bezier(.4,.2,.2,1);
+    cursor: pointer;
+  }
+  .card.flipped .card-inner { transform: rotateY(180deg); }
+  .card-face {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    backface-visibility: hidden;
+    border-radius: 6px;
+    border: 1px solid var(--rule);
+    background: var(--paper-raised);
+    box-shadow: 2px 3px 0 var(--shadow);
+    padding: 8px;
+    text-align: center;
+  }
+  .card-face.back {
+    transform: rotateY(180deg);
+    background: var(--mark-bg);
+    border-color: var(--mark);
+  }
+  .card-face .en { font-size: 18px; font-weight: 700; }
+  .card-face .ru { font-size: 15px; color: var(--ink); margin-bottom: 4px; }
+  .card-face .ex { font-size: 11px; color: var(--ink-soft); line-height: 1.3; }
+  .card-face .src { font-size: 10px; color: var(--ink-faint); margin-top: 4px; }
+  .card-status {
+    margin-top: 6px;
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+  }
+  .status-btn {
+    font-size: 11px;
+    border: 1px solid var(--rule);
+    background: transparent;
+    color: var(--ink-soft);
+    border-radius: 10px;
+    padding: 2px 8px;
+    cursor: pointer;
+  }
+  .status-btn.on.know { background: var(--good-bg); border-color: var(--good); color: var(--good); }
+  .status-btn.on.learn { background: var(--mark-bg); border-color: var(--mark); color: #8a5f14; }
+
+  /* Fill-in-blank */
+  .fib-item { margin-bottom: 16px; }
+  .fib-sentence { font-size: 15px; margin-bottom: 6px; }
+  .fib-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .fib-row input[type="text"] {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 15px;
+    padding: 6px 9px;
+    border: none;
+    border-bottom: 2px solid var(--ink-faint);
+    background: transparent;
+    color: var(--ink);
+    width: 140px;
+  }
+  .fib-row input[type="text"]:focus { border-bottom-color: var(--margin); }
+  .fib-row input.correct { border-bottom-color: var(--good); color: var(--good); }
+  .fib-row input.incorrect { border-bottom-color: var(--bad); color: var(--bad); }
+  .check-btn {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 13px;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+  .check-btn:hover { opacity: 0.88; }
+  .fib-mark { font-family: 'Caveat', cursive; font-size: 20px; font-weight: 700; min-width: 90px; }
+  .fib-mark.good-mark { color: var(--good); }
+  .fib-mark.bad-mark { color: var(--bad); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card-inner { transition: none; }
+  }
+
+  footer.page {
+    margin-top: 30px;
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="page">
+    <a class="back-link" href="index.html">← ко всем урокам</a>
+    <h1>Глаголы заданий</h1>
+    <p class="subtitle">Все юниты · формулировки упражнений</p>
+    <span class="skill">Глаголы, которыми учебник ставит задачу («Listen…», «Match…», «Complete…») — общие для всего курса, не привязаны к теме одного юнита. Пока здесь только Unit 1 (29 слов); страница будет пополняться по мере разбора следующих юнитов.</span>
+    <a class="sibling-link" href="unit1/verbs.html">← Глаголы текста Unit 1 (тема и навыки юнита)</a>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Странички">
+    <button class="tab" role="tab" aria-selected="true" data-target="p1">Стр. 1 · 10 слов</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="p2">Стр. 2 · 10 слов</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="p3">Стр. 3 · 9 слов</button>
+  </nav>
+
+  <section class="page active" id="p1">
+    <p class="lead">Нажми на карточку — она перевернётся. Отметь, знаешь слово или ещё учишь.</p>
+    <a class="print-link" href="print/instruction_verbs.html#p1" target="_blank" rel="noopener">Распечатать карточки этой странички →</a>
+    <h2 class="section-title hand">Карточки</h2>
+    <div class="cards" data-cards="1"></div>
+    <h2 class="section-title hand">Проверь себя</h2>
+    <p class="counter" data-counter="1">Верно: 0 из 10</p>
+    <div data-fib="1"></div>
+  </section>
+
+  <section class="page" id="p2">
+    <p class="lead">Нажми на карточку — она перевернётся. Отметь, знаешь слово или ещё учишь.</p>
+    <a class="print-link" href="print/instruction_verbs.html#p2" target="_blank" rel="noopener">Распечатать карточки этой странички →</a>
+    <h2 class="section-title hand">Карточки</h2>
+    <div class="cards" data-cards="2"></div>
+    <h2 class="section-title hand">Проверь себя</h2>
+    <p class="counter" data-counter="2">Верно: 0 из 10</p>
+    <div data-fib="2"></div>
+  </section>
+
+  <section class="page" id="p3">
+    <p class="lead">Нажми на карточку — она перевернётся. Отметь, знаешь слово или ещё учишь.</p>
+    <a class="print-link" href="print/instruction_verbs.html#p3" target="_blank" rel="noopener">Распечатать карточки этой странички →</a>
+    <h2 class="section-title hand">Карточки</h2>
+    <div class="cards" data-cards="3"></div>
+    <h2 class="section-title hand">Проверь себя</h2>
+    <p class="counter" data-counter="3">Верно: 0 из 9</p>
+    <div data-fib="3"></div>
+  </section>
+
+  <footer class="page">English Plus 5 · глаголы формулировок заданий · копится по юнитам · домашняя тетрадь</footer>
+</div>
+
+<script>
+/*
+  Как пополнять при разборе следующего юнита:
+  1. Из нового юнита выпиши глаголы, которые встречаются в формулировках
+     заданий (Listen, Match, Complete и т.п.), а не в самом тексте юнита.
+  2. Проверь ALL_WORDS ниже — если глагол уже есть, ничего не добавляй
+     (эта страница копит уникальные слова по всему курсу).
+  3. Новые слова добавь в ALL_WORDS с полем unit ("Unit 2" и т.д.).
+  4. Пересчитай PAGES: раздели ALL_WORDS на группы по 10 слов (последняя
+     группа может быть короче), обнови число вкладок nav.tabs и число
+     <section class="page">, а также счётчики "Верно: 0 из N" в разметке.
+*/
+(function () {
+  var ALL_WORDS = [
+    { en: "listen", ru: "слушать", sent: "___ and read the dialogues.", ans: ["listen"], unit: "Unit 1" },
+    { en: "read", ru: "читать", sent: "Listen and ___ the dialogues.", ans: ["read"], unit: "Unit 1" },
+    { en: "choose", ru: "выбирать", sent: "___ the correct words in 1–3.", ans: ["choose"], unit: "Unit 1" },
+    { en: "complete", ru: "дополнять, заполнять", sent: "___ the sentences with words in the box.", ans: ["complete"], unit: "Unit 1" },
+    { en: "look", ru: "смотреть", sent: "___ at the table and complete the short forms.", ans: ["look"], unit: "Unit 1" },
+    { en: "change", ru: "менять", sent: "Practise the dialogue. ___ the names in blue.", ans: ["change"], unit: "Unit 1" },
+    { en: "practise", ru: "тренироваться, практиковаться", sent: "___ the dialogues.", ans: ["practise", "practice"], unit: "Unit 1" },
+    { en: "repeat", ru: "повторять", sent: "___ the words.", ans: ["repeat"], unit: "Unit 1" },
+    { en: "ask", ru: "спрашивать", sent: "___ and answer questions.", ans: ["ask"], unit: "Unit 1" },
+    { en: "answer", ru: "отвечать", sent: "Ask and ___ questions.", ans: ["answer"], unit: "Unit 1" },
+
+    { en: "test", ru: "проверять, тестировать", sent: "___ the class.", ans: ["test"], unit: "Unit 1" },
+    { en: "draw", ru: "рисовать", sent: "___ a picture on the board.", ans: ["draw"], unit: "Unit 1" },
+    { en: "compare", ru: "сравнивать", sent: "___ your answers with a partner.", ans: ["compare"], unit: "Unit 1" },
+    { en: "make", ru: "делать, составлять", sent: "___ true and false sentences.", ans: ["make"], unit: "Unit 1" },
+    { en: "use", ru: "использовать", sent: "___ the words in the box.", ans: ["use"], unit: "Unit 1" },
+    { en: "point", ru: "указывать", sent: "___ to the numbers.", ans: ["point"], unit: "Unit 1" },
+    { en: "work", ru: "работать", sent: "___ in pairs.", ans: ["work"], unit: "Unit 1" },
+    { en: "play", ru: "играть", sent: "___ guess the age.", ans: ["play"], unit: "Unit 1" },
+    { en: "follow", ru: "следовать", sent: "___ your teacher's instructions.", ans: ["follow"], unit: "Unit 1" },
+    { en: "give", ru: "давать", sent: "___ scores out of twenty for each person.", ans: ["give"], unit: "Unit 1" },
+
+    { en: "reorder", ru: "переставлять в правильном порядке", sent: "___ the letters and write the countries.", ans: ["reorder"], unit: "Unit 1" },
+    { en: "find", ru: "находить", sent: "___ these things in the comic.", ans: ["find"], unit: "Unit 1" },
+    { en: "translate", ru: "переводить", sent: "Then ___ the expressions.", ans: ["translate"], unit: "Unit 1" },
+    { en: "act", ru: "играть роль, разыгрывать", sent: "___ out the story in the comic.", ans: ["act"], unit: "Unit 1" },
+    { en: "write", ru: "писать", sent: "___ sentences.", ans: ["write"], unit: "Unit 1" },
+    { en: "match", ru: "соотносить, подбирать пару", sent: "___ the countries to the capitals.", ans: ["match"], unit: "Unit 1" },
+    { en: "check", ru: "проверять (ответы)", sent: "Listen and ___ your answers.", ans: ["check"], unit: "Unit 1" },
+    { en: "replace", ru: "заменять", sent: "___ the words in blue with words in the box.", ans: ["replace"], unit: "Unit 1" },
+    { en: "invent", ru: "придумывать (в задании)", sent: "Practise the dialogue, but ___ new information.", ans: ["invent"], unit: "Unit 1" }
+  ];
+
+  var PAGES = {
+    1: ALL_WORDS.slice(0, 10),
+    2: ALL_WORDS.slice(10, 20),
+    3: ALL_WORDS.slice(20, 29)
+  };
+
+  var LS_KEY = "edu5_en_instruction_verbs";
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(LS_KEY)) || {}; }
+    catch (e) { return {}; }
+  }
+  function saveState(s) {
+    try { localStorage.setItem(LS_KEY, JSON.stringify(s)); } catch (e) {}
+  }
+  var state = loadState();
+  state.cardStatus = state.cardStatus || {};
+
+  /* Tabs */
+  var tabs = document.querySelectorAll(".tab");
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      tabs.forEach(function (t) { t.setAttribute("aria-selected", "false"); });
+      document.querySelectorAll("section.page").forEach(function (s) { s.classList.remove("active"); });
+      tab.setAttribute("aria-selected", "true");
+      document.getElementById(tab.dataset.target).classList.add("active");
+    });
+  });
+
+  Object.keys(PAGES).forEach(function (pageNum) {
+    var words = PAGES[pageNum];
+
+    /* Cards */
+    var cardsGrid = document.querySelector('[data-cards="' + pageNum + '"]');
+    words.forEach(function (w) {
+      var key = w.en;
+      var card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML =
+        '<div class="card-inner">' +
+          '<div class="card-face front"><span class="en">' + w.en + '</span></div>' +
+          '<div class="card-face back">' +
+            '<span class="ru">' + w.ru + '</span>' +
+            '<span class="ex">' + w.sent.replace("___", w.en) + '</span>' +
+            '<span class="src">' + w.unit + '</span>' +
+            '<div class="card-status">' +
+              '<button class="status-btn know" type="button">знаю</button>' +
+              '<button class="status-btn learn" type="button">учу</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      var inner = card.querySelector(".card-inner");
+      inner.addEventListener("click", function (e) {
+        if (e.target.classList.contains("status-btn")) return;
+        card.classList.toggle("flipped");
+      });
+      var knowBtn = card.querySelector(".know");
+      var learnBtn = card.querySelector(".learn");
+      function refreshStatus() {
+        var st = state.cardStatus[key];
+        knowBtn.classList.toggle("on", st === "know");
+        learnBtn.classList.toggle("on", st === "learn");
+      }
+      knowBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        state.cardStatus[key] = state.cardStatus[key] === "know" ? null : "know";
+        saveState(state); refreshStatus();
+      });
+      learnBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        state.cardStatus[key] = state.cardStatus[key] === "learn" ? null : "learn";
+        saveState(state); refreshStatus();
+      });
+      refreshStatus();
+      cardsGrid.appendChild(card);
+    });
+
+    /* Fill in the blank */
+    var fibList = document.querySelector('[data-fib="' + pageNum + '"]');
+    var counterEl = document.querySelector('[data-counter="' + pageNum + '"]');
+    var correctCount = 0;
+    words.forEach(function (w, idx) {
+      var item = document.createElement("div");
+      item.className = "fib-item";
+      var display = w.sent.replace("___", "<b>______</b>");
+      item.innerHTML =
+        '<div class="fib-sentence">' + (idx + 1) + '. ' + display +
+          ' <span style="color:var(--ink-faint)">(' + w.ru + ')</span></div>' +
+        '<div class="fib-row">' +
+          '<input type="text" autocomplete="off" autocapitalize="off" spellcheck="false">' +
+          '<button class="check-btn" type="button">Проверить</button>' +
+          '<span class="fib-mark"></span>' +
+        '</div>';
+      var input = item.querySelector("input");
+      var btn = item.querySelector(".check-btn");
+      var mark = item.querySelector(".fib-mark");
+      var checkedRight = false;
+      function check() {
+        var val = input.value.trim().toLowerCase();
+        var ok = w.ans.indexOf(val) !== -1;
+        input.classList.toggle("correct", ok);
+        input.classList.toggle("incorrect", val.length > 0 && !ok);
+        if (ok) {
+          mark.textContent = "верно!";
+          mark.className = "fib-mark good-mark";
+          if (!checkedRight) { correctCount++; checkedRight = true; updateCounter(); }
+        } else {
+          mark.textContent = "верный ответ: " + w.ans[0];
+          mark.className = "fib-mark bad-mark";
+          if (checkedRight) { correctCount--; checkedRight = false; updateCounter(); }
+        }
+      }
+      btn.addEventListener("click", check);
+      input.addEventListener("keydown", function (e) { if (e.key === "Enter") check(); });
+      fibList.appendChild(item);
+    });
+    function updateCounter() {
+      counterEl.textContent = "Верно: " + correctCount + " из " + words.length;
+    }
+  });
+
+  var hash = window.location.hash.replace("#", "");
+  if (hash) {
+    var target = document.querySelector('.tab[data-target="' + hash + '"]');
+    if (target) target.click();
+  }
+})();
+</script>
+</body>
+</html>

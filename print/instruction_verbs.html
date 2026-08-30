@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Печать карточек — глаголы заданий</title>
+<style>
+  body {
+    font-family: 'PT Sans', Arial, sans-serif;
+    color: #222;
+    max-width: 800px;
+    margin: 20px auto;
+  }
+  h1 { font-size: 20px; margin-bottom: 4px; }
+  .instructions {
+    background: #f2f5fa;
+    border: 1px solid #c7d3e3;
+    border-radius: 6px;
+    padding: 14px 18px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .instructions b { color: #1a3a66; }
+  .group-title {
+    font-size: 17px;
+    margin: 34px 0 2px;
+    scroll-margin-top: 16px;
+  }
+  .page-label {
+    font-size: 13px;
+    color: #888;
+    margin: 10px 0 6px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 45mm;
+    border: 1px solid #333;
+    page-break-before: always;
+  }
+  .cell {
+    border: 1px dashed #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    text-align: center;
+    padding: 6px;
+  }
+  .cell.en { font-weight: bold; }
+  @media print {
+    .instructions { display: block; }
+    .page-label, .group-title { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Карточки «Глаголы заданий» — печать для вырезания (пока Unit 1, 29 слов)</h1>
+<div class="instructions">
+  <p>Эта страница копится по всем юнитам — при добавлении новых слов из
+  следующих юнитов здесь появятся новые странички.</p>
+  <p><b>Если принтер печатает с двух сторон (дуплекс):</b> в диалоге печати
+  включите "Печать на двух сторонах" / "Two-sided" и переплёт по
+  <b>длинному краю</b>. Тогда слово и перевод сразу окажутся на разных
+  сторонах одной карточки. Каждую пару листов (английские слова / переводы)
+  печатайте отдельно — они относятся к одной страничке. Разрежьте лист по
+  пунктирным линиям.</p>
+  <p><b>Если принтер печатает только с одной стороны:</b> напечатайте
+  сначала лист с английскими словами, затем переверните эту же стопку
+  листов и вставьте обратно в лоток, чтобы напечатать лист с переводами на
+  обратной стороне. Направление переворота зависит от принтера — лучше
+  сначала попробовать на одном листе и проверить, совпали ли слово и
+  перевод на одной карточке, прежде чем печатать весь тираж.</p>
+</div>
+
+<h2 class="group-title" id="p1">Страничка 1 · 10 слов</h2>
+<p class="page-label">Лист 1 — английские слова (лицевая сторона)</p>
+<div class="grid">
+  <div class="cell en">listen</div>
+  <div class="cell en">read</div>
+  <div class="cell en">choose</div>
+  <div class="cell en">complete</div>
+  <div class="cell en">look</div>
+  <div class="cell en">change</div>
+  <div class="cell en">practise</div>
+  <div class="cell en">repeat</div>
+  <div class="cell en">ask</div>
+  <div class="cell en">answer</div>
+</div>
+<p class="page-label">Лист 2 — переводы (обратная сторона, тот же порядок ячеек)</p>
+<div class="grid">
+  <div class="cell">слушать</div>
+  <div class="cell">читать</div>
+  <div class="cell">выбирать</div>
+  <div class="cell">дополнять, заполнять</div>
+  <div class="cell">смотреть</div>
+  <div class="cell">менять</div>
+  <div class="cell">тренироваться, практиковаться</div>
+  <div class="cell">повторять</div>
+  <div class="cell">спрашивать</div>
+  <div class="cell">отвечать</div>
+</div>
+
+<h2 class="group-title" id="p2">Страничка 2 · 10 слов</h2>
+<p class="page-label">Лист 1 — английские слова (лицевая сторона)</p>
+<div class="grid">
+  <div class="cell en">test</div>
+  <div class="cell en">draw</div>
+  <div class="cell en">compare</div>
+  <div class="cell en">make</div>
+  <div class="cell en">use</div>
+  <div class="cell en">point</div>
+  <div class="cell en">work</div>
+  <div class="cell en">play</div>
+  <div class="cell en">follow</div>
+  <div class="cell en">give</div>
+</div>
+<p class="page-label">Лист 2 — переводы (обратная сторона, тот же порядок ячеек)</p>
+<div class="grid">
+  <div class="cell">проверять, тестировать</div>
+  <div class="cell">рисовать</div>
+  <div class="cell">сравнивать</div>
+  <div class="cell">делать, составлять</div>
+  <div class="cell">использовать</div>
+  <div class="cell">указывать</div>
+  <div class="cell">работать</div>
+  <div class="cell">играть</div>
+  <div class="cell">следовать</div>
+  <div class="cell">давать</div>
+</div>
+
+<h2 class="group-title" id="p3">Страничка 3 · 9 слов</h2>
+<p class="page-label">Лист 1 — английские слова (лицевая сторона)</p>
+<div class="grid">
+  <div class="cell en">reorder</div>
+  <div class="cell en">find</div>
+  <div class="cell en">translate</div>
+  <div class="cell en">act</div>
+  <div class="cell en">write</div>
+  <div class="cell en">match</div>
+  <div class="cell en">check</div>
+  <div class="cell en">replace</div>
+  <div class="cell en">invent</div>
+</div>
+<p class="page-label">Лист 2 — переводы (обратная сторона, тот же порядок ячеек)</p>
+<div class="grid">
+  <div class="cell">переставлять в правильном порядке</div>
+  <div class="cell">находить</div>
+  <div class="cell">переводить</div>
+  <div class="cell">играть роль, разыгрывать</div>
+  <div class="cell">писать</div>
+  <div class="cell">соотносить, подбирать пару</div>
+  <div class="cell">проверять (ответы)</div>
+  <div class="cell">заменять</div>
+  <div class="cell">придумывать (в задании)</div>
+</div>
+
+</body>
+</html>
