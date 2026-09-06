@@ -99,6 +99,12 @@
   .fib-mark { font-family: 'Caveat', cursive; font-size: 20px; font-weight: 700; min-width: 90px; }
   .fib-mark.good-mark { color: var(--good); }
   .fib-mark.bad-mark { color: var(--bad); }
+  .print-link {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--margin);
+    margin: 0 0 16px;
+  }
   footer.page { margin-top: 30px; font-size: 12px; color: var(--ink-faint); }
 </style>
 </head>
@@ -120,6 +126,7 @@
 
   <section class="page active" id="cards">
     <p class="lead">Нажми на карточку — увидишь перевод.</p>
+    <a class="print-link" href="../print/unit2/urok1.html" target="_blank" rel="noopener">Распечатать карточки этого урока →</a>
     <div class="cards" id="cardsGrid"></div>
   </section>
 

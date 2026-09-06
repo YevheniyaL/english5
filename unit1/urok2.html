@@ -93,6 +93,12 @@
   .blank-btn.active { border-color: var(--margin); border-style: solid; }
   .blank-btn.filled { background: var(--good-bg); border: 1px solid var(--good); color: var(--good); }
   .bank { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .print-link {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--margin);
+    margin: 0 0 16px;
+  }
   footer.page { margin-top: 30px; font-size: 12px; color: var(--ink-faint); }
 </style>
 </head>
@@ -114,6 +120,7 @@
 
   <section class="page active" id="cards">
     <p class="lead">Нажми на карточку — она перевернётся и покажет перевод.</p>
+    <a class="print-link" href="../print/unit1/urok2.html" target="_blank" rel="noopener">Распечатать карточки этого урока →</a>
     <div class="cards" id="cardsGrid"></div>
   </section>
 

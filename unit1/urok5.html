@@ -110,6 +110,12 @@
   .bucket-btn { width: 100%; font-family: 'PT Sans', sans-serif; font-size: 13px; background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 5px; padding: 6px; margin-bottom: 8px; cursor: pointer; }
   .bucket-list { display: flex; flex-wrap: wrap; gap: 6px; }
   .bucket-list .word { font-size: 13px; background: var(--good-bg); color: var(--good); border: 1px solid var(--good); border-radius: 10px; padding: 3px 9px; }
+  .print-link {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--margin);
+    margin: 0 0 16px;
+  }
   footer.page { margin-top: 30px; font-size: 12px; color: var(--ink-faint); }
 </style>
 </head>
@@ -132,6 +138,7 @@
 
   <section class="page active" id="cards">
     <p class="lead">Нажми на карточку — увидишь, как число пишется словом.</p>
+    <a class="print-link" href="../print/unit1/urok5.html" target="_blank" rel="noopener">Распечатать карточки этого урока →</a>
     <div class="cards" id="cardsGrid"></div>
   </section>
 
