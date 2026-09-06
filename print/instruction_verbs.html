@@ -10,7 +10,6 @@
     max-width: 800px;
     margin: 20px auto;
   }
-  h1 { font-size: 20px; margin-bottom: 4px; }
   .instructions {
     background: #f2f5fa;
     border: 1px solid #c7d3e3;
@@ -34,9 +33,8 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: 26mm;
-    border: 1px solid #333;
-    page-break-before: always;
-  }
+    border: 1px solid #333; }
+  .grid.p2 { page-break-before: always; }
   .cell {
     border: 1px dashed #999;
     display: flex;
@@ -48,14 +46,13 @@
   }
   .cell.en { font-weight: bold; }
   @media print {
-    .instructions { display: block; }
+    .instructions { display: none; }
     .page-label, .group-title { display: none; }
   }
 </style>
 </head>
 <body>
 
-<h1>Карточки «Глаголы заданий» — печать для вырезания (пока Unit 1, 29 слов)</h1>
 <div class="instructions">
   <p>Эта страница копится по всем юнитам — при добавлении новых слов из
   следующих юнитов здесь появятся новые странички.</p>
@@ -88,7 +85,7 @@
   <div class="cell en">answer</div>
 </div>
 <p class="page-label">Лист 2 — переводы (обратная сторона, ячейки в каждом ряду зеркальны — для совпадения при печати)</p>
-<div class="grid">
+<div class="grid p2">
   <div class="cell">выбирать</div>
   <div class="cell">читать</div>
   <div class="cell">слушать</div>
