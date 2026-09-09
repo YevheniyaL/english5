@@ -220,6 +220,11 @@
     background: var(--mark-bg);
     border-color: var(--mark);
   }
+  .speak-btn { position: absolute; top: 3px; right: 3px; width: 22px; height: 22px; border-radius: 50%;
+    border: 1px solid var(--rule); background: var(--paper); color: var(--ink-soft); font-size: 12px;
+    line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+  .speak-btn:hover { border-color: var(--margin); color: var(--margin); }
+  .speak-btn:active { transform: scale(0.92); }
   .card-face .en { font-size: 17px; font-weight: 700; }
   .card-face .ru { font-size: 17px; color: var(--ink); }
   .card-status {
@@ -475,6 +480,16 @@
   var state = loadState();
   state.cardStatus = state.cardStatus || {};
 
+  function speak(text) {
+    try {
+      if (!window.speechSynthesis) return;
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = "en-US";
+      window.speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+
   function shuffled(arr) {
     var a = arr.slice();
     for (var i = a.length - 1; i > 0; i--) {
@@ -502,7 +517,10 @@
     card.className = "card";
     card.innerHTML =
       '<div class="card-inner">' +
-        '<div class="card-face front"><span class="en">' + w.en + '</span></div>' +
+        '<div class="card-face front">' +
+          '<button class="speak-btn" type="button" title="озвучить" aria-label="озвучить">&#128266;</button>' +
+          '<span class="en">' + w.en + '</span>' +
+        '</div>' +
         '<div class="card-face back">' +
           '<span class="ru">' + w.ru + '</span>' +
           '<div class="card-status">' +
@@ -513,8 +531,12 @@
       '</div>';
     var inner = card.querySelector(".card-inner");
     inner.addEventListener("click", function (e) {
-      if (e.target.classList.contains("status-btn")) return;
+      if (e.target.classList.contains("status-btn") || e.target.classList.contains("speak-btn")) return;
       card.classList.toggle("flipped");
+    });
+    card.querySelector(".speak-btn").addEventListener("click", function (e) {
+      e.stopPropagation();
+      speak(w.en);
     });
     var knowBtn = card.querySelector(".know");
     var learnBtn = card.querySelector(".learn");
