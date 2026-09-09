@@ -98,6 +98,21 @@
   .blank-btn.active { border-color: var(--margin); border-style: solid; }
   .blank-btn.filled { background: var(--good-bg); border: 1px solid var(--good); color: var(--good); }
   .bank { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .fib-item { margin-bottom: 14px; }
+  .fib-sentence { font-size: 15px; margin-bottom: 6px; }
+  .fib-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .fib-row input[type="text"] { font-family: 'PT Sans', sans-serif; font-size: 15px; padding: 6px 9px; border: none; border-bottom: 2px solid var(--ink-faint); background: transparent; color: var(--ink); width: 160px; }
+  .fib-row input[type="text"]:focus { border-bottom-color: var(--margin); }
+  .fib-row input.correct { border-bottom-color: var(--good); color: var(--good); }
+  .fib-row input.incorrect { border-bottom-color: var(--bad); color: var(--bad); }
+  .check-btn { font-family: 'PT Sans', sans-serif; font-size: 13px; background: var(--ink); color: var(--paper); border: none; border-radius: 5px; padding: 6px 12px; cursor: pointer; }
+  .check-btn:hover { opacity: 0.88; }
+  .fib-mark { font-family: 'Caveat', cursive; font-size: 20px; font-weight: 700; min-width: 90px; }
+  .fib-mark.good-mark { color: var(--good); }
+  .fib-mark.bad-mark { color: var(--bad); }
+  .listen-btn { font-family: 'PT Sans', sans-serif; font-size: 14px; background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 5px; padding: 8px 14px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; box-shadow: 1px 2px 0 var(--shadow); }
+  .listen-btn:hover { border-color: var(--margin); color: var(--margin); }
+  .listen-btn:active { transform: scale(0.97); }
   .print-link {
     display: inline-block;
     font-size: 13px;
@@ -121,6 +136,7 @@
     <button class="tab" role="tab" aria-selected="true" data-target="cards">Карточки</button>
     <button class="tab" role="tab" aria-selected="false" data-target="match">Найди пару</button>
     <button class="tab" role="tab" aria-selected="false" data-target="dlg">Собери диалог</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="listen">Слушай и переводи</button>
   </nav>
 
   <section class="page active" id="cards">
@@ -145,6 +161,12 @@
     <div id="dlgLines"></div>
     <div class="bank" id="dlgBank"></div>
     <div class="reset-line"><button class="reset-btn" id="dlgReset">начать заново</button></div>
+  </section>
+
+  <section class="page" id="listen">
+    <p class="lead">Нажми на кнопку — услышишь вопрос по-английски. Напиши его перевод по-русски.</p>
+    <p class="counter" id="listenCounter">Верно: 0 из 3</p>
+    <div id="listenList"></div>
   </section>
 
   <footer class="page">English Plus 5 · Unit 1, Урок 1.4 · домашняя тетрадь</footer>
@@ -328,6 +350,46 @@
   }
   buildDialogue();
   document.getElementById("dlgReset").addEventListener("click", buildDialogue);
+
+  /* Listen and translate */
+  var listenList = document.getElementById("listenList");
+  var listenCounter = document.getElementById("listenCounter");
+  var listenCorrectCount = 0;
+  shuffled(PHRASES).forEach(function (p, idx) {
+    var item = document.createElement("div");
+    item.className = "fib-item";
+    item.innerHTML =
+      '<div class="fib-sentence">' + (idx + 1) + '. ' +
+        '<button class="listen-btn" type="button">&#128266; Слушай</button></div>' +
+      '<div class="fib-row">' +
+        '<input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="перевод по-русски">' +
+        '<button class="check-btn" type="button">Проверить</button>' +
+        '<span class="fib-mark"></span>' +
+      '</div>';
+    var listenBtn = item.querySelector(".listen-btn");
+    var input = item.querySelector("input");
+    var btn = item.querySelector(".check-btn");
+    var mark = item.querySelector(".fib-mark");
+    var checkedRight = false;
+    listenBtn.addEventListener("click", function () { speak(p.en); });
+    function check() {
+      var val = input.value.trim().toLowerCase();
+      var ok = val === p.ru.toLowerCase();
+      input.classList.toggle("correct", ok);
+      input.classList.toggle("incorrect", val.length > 0 && !ok);
+      if (ok) {
+        mark.textContent = "верно!"; mark.className = "fib-mark good-mark";
+        if (!checkedRight) { listenCorrectCount++; checkedRight = true; updateListenCounter(); }
+      } else {
+        mark.textContent = "верный ответ: " + p.ru; mark.className = "fib-mark bad-mark";
+        if (checkedRight) { listenCorrectCount--; checkedRight = false; updateListenCounter(); }
+      }
+    }
+    btn.addEventListener("click", check);
+    input.addEventListener("keydown", function (e) { if (e.key === "Enter") check(); });
+    listenList.appendChild(item);
+  });
+  function updateListenCounter() { listenCounter.textContent = "Верно: " + listenCorrectCount + " из 3"; }
 })();
 </script>
 </body>

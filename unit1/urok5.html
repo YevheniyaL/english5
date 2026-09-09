@@ -115,6 +115,9 @@
   .bucket-btn { width: 100%; font-family: 'PT Sans', sans-serif; font-size: 13px; background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 5px; padding: 6px; margin-bottom: 8px; cursor: pointer; }
   .bucket-list { display: flex; flex-wrap: wrap; gap: 6px; }
   .bucket-list .word { font-size: 13px; background: var(--good-bg); color: var(--good); border: 1px solid var(--good); border-radius: 10px; padding: 3px 9px; }
+  .listen-btn { font-family: 'PT Sans', sans-serif; font-size: 14px; background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 5px; padding: 8px 14px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; box-shadow: 1px 2px 0 var(--shadow); }
+  .listen-btn:hover { border-color: var(--margin); color: var(--margin); }
+  .listen-btn:active { transform: scale(0.97); }
   .print-link {
     display: inline-block;
     font-size: 13px;
@@ -139,6 +142,7 @@
     <button class="tab" role="tab" aria-selected="false" data-target="match">Найди пару</button>
     <button class="tab" role="tab" aria-selected="false" data-target="fib">Впиши число</button>
     <button class="tab" role="tab" aria-selected="false" data-target="sort">1–10 или 11–20</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="listen">Слушай и переводи</button>
   </nav>
 
   <section class="page active" id="cards">
@@ -179,6 +183,12 @@
       </div>
     </div>
     <div class="reset-line"><button class="reset-btn" id="sortReset">начать заново</button></div>
+  </section>
+
+  <section class="page" id="listen">
+    <p class="lead">Нажми на кнопку — услышишь число по-английски. Напиши перевод по-русски (словом).</p>
+    <p class="counter" id="listenCounter">Верно: 0 из 20</p>
+    <div id="listenList"></div>
   </section>
 
   <footer class="page">English Plus 5 · Unit 1, Урок 1.5 · домашняя тетрадь</footer>
@@ -389,6 +399,46 @@
   btnHigh.addEventListener("click", function () { place("high"); });
   buildSort();
   document.getElementById("sortReset").addEventListener("click", buildSort);
+
+  /* Listen and translate */
+  var listenList = document.getElementById("listenList");
+  var listenCounter = document.getElementById("listenCounter");
+  var listenCorrectCount = 0;
+  shuffled(NUMBERS).forEach(function (nObj, idx) {
+    var item = document.createElement("div");
+    item.className = "fib-item";
+    item.innerHTML =
+      '<div class="fib-sentence">' + (idx + 1) + '. ' +
+        '<button class="listen-btn" type="button">&#128266; Слушай</button></div>' +
+      '<div class="fib-row">' +
+        '<input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="перевод по-русски">' +
+        '<button class="check-btn" type="button">Проверить</button>' +
+        '<span class="fib-mark"></span>' +
+      '</div>';
+    var listenBtn = item.querySelector(".listen-btn");
+    var input = item.querySelector("input");
+    var btn = item.querySelector(".check-btn");
+    var mark = item.querySelector(".fib-mark");
+    var checkedRight = false;
+    listenBtn.addEventListener("click", function () { speak(nObj.word); });
+    function check() {
+      var val = input.value.trim().toLowerCase();
+      var ok = val === nObj.ru.toLowerCase();
+      input.classList.toggle("correct", ok);
+      input.classList.toggle("incorrect", val.length > 0 && !ok);
+      if (ok) {
+        mark.textContent = "верно!"; mark.className = "fib-mark good-mark";
+        if (!checkedRight) { listenCorrectCount++; checkedRight = true; updateListenCounter(); }
+      } else {
+        mark.textContent = "верный ответ: " + nObj.ru; mark.className = "fib-mark bad-mark";
+        if (checkedRight) { listenCorrectCount--; checkedRight = false; updateListenCounter(); }
+      }
+    }
+    btn.addEventListener("click", check);
+    input.addEventListener("keydown", function (e) { if (e.key === "Enter") check(); });
+    listenList.appendChild(item);
+  });
+  function updateListenCounter() { listenCounter.textContent = "Верно: " + listenCorrectCount + " из 20"; }
 })();
 </script>
 </body>

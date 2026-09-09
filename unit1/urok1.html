@@ -307,6 +307,22 @@
   .fib-mark.good-mark { color: var(--good); }
   .fib-mark.bad-mark { color: var(--bad); }
 
+  .listen-btn {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 14px;
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    padding: 8px 14px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 1px 2px 0 var(--shadow);
+  }
+  .listen-btn:hover { border-color: var(--margin); color: var(--margin); }
+  .listen-btn:active { transform: scale(0.97); }
+
   /* Sorting */
   .pool {
     display: flex; flex-wrap: wrap; gap: 8px;
@@ -391,6 +407,7 @@
     <button class="tab" role="tab" aria-selected="false" data-target="match">Найди пару</button>
     <button class="tab" role="tab" aria-selected="false" data-target="fib">Впиши слово</button>
     <button class="tab" role="tab" aria-selected="false" data-target="sort">Разложи по группам</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="listen">Слушай и переводи</button>
   </nav>
 
   <section class="page active" id="cards">
@@ -431,6 +448,12 @@
       </div>
     </div>
     <div class="reset-line"><button class="reset-btn" id="sortReset">начать заново</button></div>
+  </section>
+
+  <section class="page" id="listen">
+    <p class="lead">Нажми на кнопку — услышишь слово по-английски. Напиши его перевод по-русски.</p>
+    <p class="counter" id="listenCounter">Верно: 0 из 12</p>
+    <div id="listenList"></div>
   </section>
 
   <footer class="page">English Plus 5 · Unit 1, Урок 1.1 · домашняя тетрадь</footer>
@@ -703,6 +726,50 @@
   btnThings.addEventListener("click", function () { place("things"); });
   buildSort();
   document.getElementById("sortReset").addEventListener("click", buildSort);
+
+  /* 5. Listen and translate */
+  var listenList = document.getElementById("listenList");
+  var listenCounter = document.getElementById("listenCounter");
+  var listenCorrectCount = 0;
+  shuffled(WORDS).forEach(function (w, idx) {
+    var item = document.createElement("div");
+    item.className = "fib-item";
+    item.innerHTML =
+      '<div class="fib-sentence">' + (idx + 1) + '. ' +
+        '<button class="listen-btn" type="button">&#128266; Слушай</button></div>' +
+      '<div class="fib-row">' +
+        '<input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="перевод по-русски">' +
+        '<button class="check-btn" type="button">Проверить</button>' +
+        '<span class="fib-mark"></span>' +
+      '</div>';
+    var listenBtn = item.querySelector(".listen-btn");
+    var input = item.querySelector("input");
+    var btn = item.querySelector(".check-btn");
+    var mark = item.querySelector(".fib-mark");
+    var checkedRight = false;
+    listenBtn.addEventListener("click", function () { speak(w.en); });
+    function check() {
+      var val = input.value.trim().toLowerCase();
+      var ok = val === w.ru.toLowerCase();
+      input.classList.toggle("correct", ok);
+      input.classList.toggle("incorrect", val.length > 0 && !ok);
+      if (ok) {
+        mark.textContent = "верно!";
+        mark.className = "fib-mark good-mark";
+        if (!checkedRight) { listenCorrectCount++; checkedRight = true; updateListenCounter(); }
+      } else {
+        mark.textContent = "верный ответ: " + w.ru;
+        mark.className = "fib-mark bad-mark";
+        if (checkedRight) { listenCorrectCount--; checkedRight = false; updateListenCounter(); }
+      }
+    }
+    btn.addEventListener("click", check);
+    input.addEventListener("keydown", function (e) { if (e.key === "Enter") check(); });
+    listenList.appendChild(item);
+  });
+  function updateListenCounter() {
+    listenCounter.textContent = "Верно: " + listenCorrectCount + " из 12";
+  }
 })();
 </script>
 </body>
