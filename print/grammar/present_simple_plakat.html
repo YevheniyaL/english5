@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Плакат — Present Simple</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #24304a; --soft: #56627a; --faint: #8a95aa;
+    --red: #d3564d; --red-bg: #fbe4e1;
+    --line: #aecdea; --line-soft: #e6eff8;
+    --s: #2f7d4f; --s-bg: #dff1e5;
+    --es: #2a64a3; --es-bg: #dde9f7;
+    --ies: #a8561f; --ies-bg: #f8e3d3;
+    --good: #2f7d4f; --bad: #c0463c;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #eceae3; color: var(--ink); font-family: 'PT Sans', Arial, sans-serif; line-height: 1.35; padding: 16px; }
+  .poster { width: 210mm; min-height: 297mm; max-width: 100%; margin: 0 auto; background: #fff; padding: 9mm 11mm 6mm; box-shadow: 0 4px 18px rgba(0,0,0,.18); }
+  .top { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; border-bottom: 3px solid var(--red); padding-bottom: 6px; margin-bottom: 10px; }
+  h1 { font-family: 'Caveat', cursive; font-size: 64px; line-height: 0.9; margin: 0; white-space: nowrap; }
+  .top .sub { font-size: 15px; color: var(--soft); text-align: right; }
+  .top .sub b { color: var(--ink); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+  .box { border: 1.5px solid var(--line); border-radius: 8px; padding: 11px 14px 13px; }
+  .box.wide { grid-column: 1 / -1; }
+  h2 { font-family: 'Caveat', cursive; font-size: 33px; line-height: 1; margin: 0 0 8px; }
+  h2 .n { display: inline-block; width: 30px; height: 30px; border-radius: 50%; background: var(--red); color: #fff; font-family: 'PT Sans', sans-serif; font-size: 17px; text-align: center; line-height: 30px; margin-right: 6px; vertical-align: 3px; }
+  p { margin: 5px 0; font-size: 16.5px; }
+  .src { font-family: 'PT Sans', sans-serif; font-size: 12px; color: var(--faint); font-weight: 400; }
+  .ex { font-style: italic; }
+  table { border-collapse: collapse; width: 100%; font-size: 17.5px; margin: 5px 0; }
+  th, td { border: 1px solid var(--line); padding: 6px 10px; text-align: left; vertical-align: top; }
+  th { background: var(--line-soft); font-size: 15px; }
+  .hl { color: var(--red); font-weight: 700; }
+  .check { display: flex; flex-wrap: wrap; gap: 6px 8px; margin-top: 6px; }
+  .check > span { font-size: 14.5px; border: 1px solid var(--line); border-radius: 12px; padding: 2px 10px; }
+  .spell { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 10px; margin-top: 6px; }
+  .rule { border-radius: 6px; padding: 8px 12px 10px; border-top: 6px solid; }
+  .rule.s { background: var(--s-bg); border-color: var(--s); }
+  .rule.es { background: var(--es-bg); border-color: var(--es); }
+  .rule.ies { background: var(--ies-bg); border-color: var(--ies); }
+  .rule .end { font-size: 38px; font-weight: 700; line-height: 1; }
+  .rule.s .end, .e-s { color: var(--s); }
+  .rule.es .end, .e-es { color: var(--es); }
+  .rule.ies .end, .e-ies { color: var(--ies); }
+  .e-s, .e-es, .e-ies { font-weight: 700; }
+  .rule .when { font-size: 15.5px; font-weight: 700; margin: 3px 0 5px; }
+  .rule .w { font-size: 16.5px; line-height: 1.55; }
+  .trap { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .trap div { flex: 1 1 200px; font-size: 16px; border: 1.5px dashed var(--red); border-radius: 6px; padding: 6px 12px; background: #fff; }
+  .words { font-size: 16.5px; }
+  .mist { list-style: none; margin: 2px 0 0; padding: 0; font-size: 15.5px; line-height: 1.3; }
+  .mist li { margin-bottom: 2px; }
+  .no { color: var(--bad); text-decoration: line-through; }
+  .yes { color: var(--good); font-weight: 700; }
+  .foot { margin-top: 6px; font-size: 12px; color: var(--faint); display: flex; justify-content: space-between; gap: 10px; }
+  @media (max-width: 600px) {
+    .grid, .spell { grid-template-columns: 1fr; }
+    .poster { padding: 16px; min-height: 0; }
+  }
+  @media print {
+    @page { size: A4; margin: 10mm; }
+    body { background: #fff !important; padding: 0; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+    .poster, .page { zoom: 0.88; box-shadow: none !important; }
+    .poster *, .page * { box-shadow: none !important; }
+    .poster { width: auto; min-height: 0; margin: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <div class="top">
+    <h1>Present Simple</h1>
+    <div class="sub"><b>простое настоящее время</b><br>English Plus 5 · Unit 5 (стр. 57, 59) · Unit 6 (стр. 68, 71, 73)</div>
+  </div>
+
+  <div class="grid">
+
+    <div class="box">
+      <h2><span class="n">1</span>Когда? <span class="src">✏️</span></h2>
+      <p><b>Привычки, то, что бывает регулярно:</b><br><span class="ex">I play football on Saturdays.</span></p>
+      <p><b>Факты:</b> <span class="ex">Cats like fish.</span></p>
+      <p style="margin-top:5px">Подсказки: <b>every day, on Mondays, always, usually, often, sometimes, never</b></p>
+    </div>
+
+    <div class="box">
+      <h2><span class="n">2</span>Утверждение <span class="src">📖 стр. 57</span></h2>
+      <table>
+        <tr><th>I / you / we / they</th><th>he / she / it</th></tr>
+        <tr><td>I <b>play</b><br>They <b>play</b></td><td>He play<span class="hl">s</span><br>She play<span class="hl">s</span></td></tr>
+      </table>
+      <p><b>Проверка</b> <span class="src">✏️</span> — замени на местоимение:</p>
+      <div class="check">
+        <span>Harry → <b>he</b> → play<span class="hl">s</span></span>
+        <span>Harry and Nic → <b>they</b> → play</span>
+      </div>
+    </div>
+
+    <div class="box wide">
+      <h2><span class="n">3</span>he / she / it: -s, -es или -ies? <span class="src">📖 стр. 71</span></h2>
+      <div class="spell">
+        <div class="rule s">
+          <div class="end">-s</div>
+          <div class="when">большинство глаголов</div>
+          <div class="w">speak → speak<span class="e-s">s</span><br>like → like<span class="e-s">s</span><br>eat → eat<span class="e-s">s</span></div>
+        </div>
+        <div class="rule es">
+          <div class="end">-es</div>
+          <div class="when">на -o, -sh, -ch, -x, -ss</div>
+          <div class="w">go → go<span class="e-es">es</span> · do → do<span class="e-es">es</span><br>wash → wash<span class="e-es">es</span> · watch → watch<span class="e-es">es</span><br>fix → fix<span class="e-es">es</span> · kiss → kiss<span class="e-es">es</span></div>
+        </div>
+        <div class="rule ies">
+          <div class="end">-ies</div>
+          <div class="when">согласная + y → -ies</div>
+          <div class="w">study → stud<span class="e-ies">ies</span><br>copy → cop<span class="e-ies">ies</span><br>carry → carr<span class="e-ies">ies</span></div>
+        </div>
+      </div>
+      <div class="trap">
+        <div>⚠️ <b>Гласная + y → просто -s</b> <span class="src">✏️</span><br>play → play<span class="e-s">s</span> · buy → buy<span class="e-s">s</span> · enjoy → enjoy<span class="e-s">s</span></div>
+        <div>⚠️ <b>Исключение</b> <span class="src">✏️</span><br>have → <b>has</b> &nbsp;<span class="ex">She has a cat.</span></div>
+      </div>
+    </div>
+
+    <div class="box">
+      <h2><span class="n">4</span>Отрицание <span class="src">📖 стр. 59</span></h2>
+      <table>
+        <tr><th>I / you / we / they</th><th>he / she / it</th></tr>
+        <tr><td><b>don't</b> + глагол<br><span class="ex">I don't eat meat.</span></td><td><b>doesn't</b> + глагол<br><span class="ex">He doesn't eat meat.</span></td></tr>
+      </table>
+      <p><span class="src">✏️</span> -s ушло в doesn't, у глагола его нет:<br><span class="no">He doesn't plays.</span> → <span class="yes">He doesn't play.</span></p>
+    </div>
+
+    <div class="box">
+      <h2><span class="n">5</span>Вопрос и ответ <span class="src">📖 стр. 73</span></h2>
+      <table>
+        <tr><th>I / you / we / they</th><th>he / she / it</th></tr>
+        <tr><td><b>Do</b> you like maths?<br>Yes, I <b>do</b>.<br>No, I <b>don't</b>.</td><td><b>Does</b> she swim?<br>Yes, she <b>does</b>.<br>No, she <b>doesn't</b>.</td></tr>
+      </table>
+      <p><span class="ex">Where <b>do</b> you live? · What <b>does</b> he eat?</span></p>
+    </div>
+
+    <div class="box">
+      <h2><span class="n">6</span>always, often, never <span class="src">📖 стр. 68</span></h2>
+      <p class="words"><b>always</b> всегда · <b>usually</b> обычно · <b>often</b> часто · <b>sometimes</b> иногда · <b>never</b> никогда</p>
+      <p>Стоят <b>перед глаголом</b>: <span class="ex">He <b>never</b> watches TV.</span></p>
+      <p><span class="src">✏️</span> но после am / is / are: <span class="ex">She is <b>always</b> happy.</span></p>
+    </div>
+
+    <div class="box">
+      <h2><span class="n">7</span>Не ошибись! <span class="src">✏️</span></h2>
+      <ul class="mist">
+        <li><span class="no">He play</span> → <span class="yes">He plays</span></li>
+        <li><span class="no">They plays</span> → <span class="yes">They play</span></li>
+        <li><span class="no">He studys</span> → <span class="yes">He studies</span></li>
+        <li><span class="no">She haves</span> → <span class="yes">She has</span></li>
+        <li><span class="no">Does he plays?</span> → <span class="yes">Does he play?</span></li>
+        <li><span class="no">They doesn't</span> → <span class="yes">They don't</span></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="foot">
+    <span>📖 — из учебника English Plus 5 · ✏️ — объяснение и примеры добавлены для понятности</span>
+    <span>домашняя тетрадь · грамматика</span>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Грамматика — English Plus 5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #faf9f4; --paper-raised: #ffffff;
+    --rule: #aecdea; --rule-soft: #d7e6f5;
+    --margin: #d3564d; --margin-soft: #f1c3bf;
+    --ink: #24304a; --ink-soft: #647089; --ink-faint: #97a2b8;
+    --good: #3c8a5c; --good-bg: #dff1e5;
+    --mark: #e3a836; --mark-bg: #fbedd0;
+    --shadow: rgba(36, 48, 74, 0.14);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1b2431; --paper-raised: #232f3f;
+      --rule: #3c4d68; --rule-soft: #2a374a;
+      --margin: #e08078; --margin-soft: #4a3339;
+      --ink: #eceff5; --ink-soft: #a7b2c8; --ink-faint: #6d788e;
+      --good: #6fcb93; --good-bg: #23392c;
+      --mark: #f0c463; --mark-bg: #3d3320;
+      --shadow: rgba(0, 0, 0, 0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1b2431; --paper-raised: #232f3f;
+    --rule: #3c4d68; --rule-soft: #2a374a;
+    --margin: #e08078; --margin-soft: #4a3339;
+    --ink: #eceff5; --ink-soft: #a7b2c8; --ink-faint: #6d788e;
+    --good: #6fcb93; --good-bg: #23392c;
+    --mark: #f0c463; --mark-bg: #3d3320;
+    --shadow: rgba(0, 0, 0, 0.35);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: 12px; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: 'PT Sans', Arial, sans-serif; line-height: 1.5; }
+  h1, h2, h3 { font-family: 'Caveat', cursive; font-weight: 700; text-wrap: balance; }
+  .sheet { max-width: 680px; margin: 0 auto; padding: 22px 20px 60px 44px; position: relative;
+    background-image: repeating-linear-gradient(to bottom, transparent, transparent 37px, var(--rule-soft) 38px);
+    background-position: 0 150px; }
+  .sheet::before { content: ""; position: absolute; top: 0; bottom: 0; left: 26px; width: 2px; background: var(--margin); opacity: 0.75; }
+  .back-link { font-size: 13px; color: var(--ink-faint); text-decoration: none; }
+  .back-link:hover { color: var(--margin); }
+  h1 { font-size: 42px; margin: 8px 0 2px; line-height: 1.1; }
+  .subtitle { font-size: 15px; color: var(--ink-soft); margin: 0 0 12px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; color: var(--ink-soft); margin-bottom: 8px; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 700; border-radius: 10px; padding: 0 8px; border: 1px solid; white-space: nowrap; vertical-align: 1px; }
+  .badge.ready { color: var(--good); background: var(--good-bg); border-color: var(--good); }
+  .badge.soon { color: var(--ink-faint); border-color: var(--rule); }
+  .badge.ext { color: #8a5f14; background: var(--mark-bg); border-color: var(--mark); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .badge.ext { color: var(--mark); } }
+  :root[data-theme="dark"] .badge.ext { color: var(--mark); }
+
+  nav.views { display: flex; gap: 8px; margin: 16px 0 18px; }
+  .view-btn { font-family: 'Caveat', cursive; font-size: 20px; font-weight: 600; background: var(--paper-raised); border: 1px solid var(--rule); border-bottom-width: 3px; color: var(--ink-soft); padding: 6px 16px 5px; border-radius: 8px 8px 4px 4px; cursor: pointer; box-shadow: 1px 2px 0 var(--shadow); }
+  .view-btn[aria-selected="true"] { color: var(--paper); background: var(--margin); border-color: var(--margin); }
+  .view-btn:focus-visible, a:focus-visible { outline: 2px solid var(--margin); outline-offset: 2px; }
+  section.view { display: none; }
+  section.view.active { display: block; }
+
+  .group { margin-bottom: 22px; }
+  .group > h2 { font-size: 27px; color: var(--margin); margin: 0 0 8px; }
+  .topic { background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 6px; box-shadow: 1px 2px 0 var(--shadow); padding: 10px 14px; margin-bottom: 10px; }
+  .topic.ready { border-left: 4px solid var(--good); }
+  .topic:target { box-shadow: 0 0 0 3px var(--margin-soft); }
+  .topic-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+  .topic-title { font-weight: 700; font-size: 16px; }
+  .topic-title a { color: var(--ink); }
+  .topic-ru { font-size: 14px; color: var(--ink-soft); }
+  .parts { list-style: none; margin: 6px 0 0; padding: 0; }
+  .parts li { font-size: 14px; padding: 2px 0; display: flex; gap: 8px; align-items: baseline; }
+  .parts .where { font-family: 'Caveat', cursive; font-size: 18px; font-weight: 700; color: var(--margin); min-width: 104px; flex-shrink: 0; }
+  .parts .where a { color: inherit; text-decoration: none; border-bottom: 1px dotted currentColor; }
+  .links { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 6px; font-size: 13px; }
+  .links a { color: var(--margin); }
+  .note { font-size: 13px; color: var(--ink-soft); margin-top: 4px; }
+
+  .unit-block { margin-bottom: 22px; }
+  .unit-block > h2 { font-size: 27px; color: var(--margin); margin: 0 0 6px; }
+  .unit-list { list-style: none; margin: 0; padding: 0; }
+  .unit-list li { background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 6px; padding: 7px 12px; margin-bottom: 6px; font-size: 14px; display: flex; flex-wrap: wrap; gap: 2px 10px; align-items: baseline; box-shadow: 1px 2px 0 var(--shadow); }
+  .unit-list li.ready { border-left: 4px solid var(--good); }
+  .unit-list .pg { font-weight: 700; color: var(--ink-soft); min-width: 64px; }
+  .unit-list .t a { font-weight: 700; color: var(--ink); }
+  .unit-list .what { color: var(--ink-soft); }
+  .unit-block:target > h2 { text-decoration: underline; text-decoration-color: var(--margin-soft); text-decoration-thickness: 4px; }
+  footer.page { margin-top: 30px; font-size: 12px; color: var(--ink-faint); }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <a class="back-link" href="../index.html">← ко всем урокам</a>
+  <h1>Грамматика</h1>
+  <p class="subtitle">Все правила учебника English Plus 5 — собраны по темам. У каждой темы видно, в каком юните и на какой странице её проходят.</p>
+  <div class="legend">
+    <span><span class="badge ready">готово</span> правило, карточки, тренажёр, плакат</span>
+    <span><span class="badge soon">скоро</span> ещё не сделано</span>
+    <span><span class="badge ext">расширение</span> раздел «My country» — не обязательный минимум</span>
+  </div>
+
+  <nav class="views" role="tablist" aria-label="Как показать">
+    <button class="view-btn" role="tab" aria-selected="true" data-view="byTopic">По темам</button>
+    <button class="view-btn" role="tab" aria-selected="false" data-view="byUnit">По юнитам — что когда учить</button>
+  </nav>
+
+  <section class="view active" id="byTopic"></section>
+  <section class="view" id="byUnit"></section>
+
+  <footer class="page">English Plus 5 · Грамматика · домашняя тетрадь · страницы — по оглавлению и тексту учебника</footer>
+</div>
+
+<script>
+(function () {
+  var UNITS = {
+    1: "Home and away", 2: "Sports", 3: "Fantasy world", 4: "Living things", 5: "Values",
+    6: "World of work", 7: "Holidays", 8: "Creativity", 9: "Reading for pleasure"
+  };
+
+  // page — ссылка на страницу темы (если готова); print — печатные материалы
+  // parts: u — юнит, p — страница учебника, w — что именно, ext — раздел «My country» (расширение)
+  var GROUPS = [
+    { title: "Глаголы be и have got", topics: [
+      { id: "be", title: "be — am / is / are", ru: "глагол «быть»", parts: [
+        { u: 1, p: "5", w: "утверждение, единственное число: I am, you are, he is" },
+        { u: 1, p: "7", w: "множественное число: we are, they are" },
+        { u: 2, p: "15", w: "отрицание: isn't, aren't" },
+        { u: 2, p: "17", w: "вопросы и краткие ответы: Is he…? — Yes, he is." }
+      ]},
+      { id: "have-got", title: "have got", ru: "«у меня есть»", parts: [
+        { u: 4, p: "43", w: "утверждение: I've got, she's got" },
+        { u: 4, p: "45", w: "отрицание, вопросы и краткие ответы" }
+      ]}
+    ]},
+    { title: "there is / there are", topics: [
+      { id: "there-is", title: "there is / there are", ru: "«есть, находится»", parts: [
+        { u: 1, p: "9", w: "there is, there are, some, a lot of" },
+        { u: 3, p: "29", w: "some и any: утверждение и отрицание" },
+        { u: 3, p: "31", w: "вопросы и краткие ответы: Is there…? Are there…?" }
+      ]}
+    ]},
+    { title: "Времена глагола", topics: [
+      { id: "present-simple", title: "Present Simple", ru: "простое настоящее: привычки и факты",
+        page: "present_simple.html",
+        print: [["плакат", "../print/grammar/present_simple_plakat.html"], ["карточки для печати", "../print/grammar/present_simple.html"]],
+        parts: [
+        { u: 5, p: "57", w: "утверждение: I play / he plays" },
+        { u: 5, p: "59", w: "отрицание: don't / doesn't" },
+        { u: 6, p: "68", w: "always, usually, often, sometimes, never" },
+        { u: 6, p: "71", w: "правила -s / -es / -ies" },
+        { u: 6, p: "73", w: "вопросы: Do…? / Does…? и краткие ответы" }
+      ]},
+      { id: "present-continuous", title: "Present Continuous", ru: "настоящее длительное: что происходит сейчас", parts: [
+        { u: 7, p: "85", w: "утверждение и отрицание: I'm reading, he isn't sleeping" },
+        { u: 7, p: "87", w: "вопросы: Are you…ing?" },
+        { u: 7, p: "90", w: "для планов на ближайшее будущее", ext: true }
+      ]},
+      { id: "going-to", title: "be going to", ru: "планы на будущее: «собираюсь»", parts: [
+        { u: 8, p: "99", w: "утверждение и отрицание: I'm going to…" },
+        { u: 8, p: "101", w: "вопросы и краткие ответы: Are you going to…?" }
+      ]},
+      { id: "past-simple", title: "Past Simple", ru: "простое прошедшее", parts: [
+        { u: 6, p: "76", w: "первое знакомство: was / were, -ed; when, before, after", ext: true },
+        { u: 9, p: "107", w: "утверждение: правильные и неправильные глаголы" },
+        { u: 9, p: "109", w: "вопросы и отрицание: Did you…? I didn't…" }
+      ]}
+    ]},
+    { title: "Приказы и модальные глаголы", topics: [
+      { id: "imperatives", title: "Imperatives", ru: "повелительное наклонение: Open! Don't run!", parts: [
+        { u: 7, p: "82–83", w: "просьбы, указания, запреты" }
+      ]},
+      { id: "can", title: "can", ru: "умею / можно", parts: [
+        { u: 6, p: "74", w: "умение и просьба: I can swim. Can I…, please?" }
+      ]},
+      { id: "have-to", title: "have to / don't have to", ru: "надо / не надо", parts: [
+        { u: 5, p: "62", w: "обязанность", ext: true }
+      ]}
+    ]},
+    { title: "Существительные и артикли", topics: [
+      { id: "articles", title: "a / an / the", ru: "артикли", parts: [
+        { u: 2, p: "12–13", w: "a или an — по первому звуку слова" },
+        { u: 5, p: "62", w: "когда a / an, а когда the", ext: true }
+      ]},
+      { id: "plurals", title: "Plural forms", ru: "множественное число: books, children", parts: [
+        { u: 3, p: "26–27", w: "правильные и неправильные формы" }
+      ]},
+      { id: "countable", title: "Countable / uncountable", ru: "исчисляемые и неисчисляемые", parts: [
+        { u: 3, p: "34", w: "water, bread — без a и без -s", ext: true }
+      ]},
+      { id: "possessive-s", title: "Possessive 's", ru: "чей? Nic's bag", parts: [
+        { u: 4, p: "40–41", w: "притяжательный падеж" }
+      ]},
+      { id: "ing-nouns", title: "Nouns ending in -ing", ru: "существительные на -ing: swimming, reading", parts: [
+        { u: 7, p: "90", w: "I like swimming.", ext: true }
+      ]}
+    ]},
+    { title: "Местоимения", topics: [
+      { id: "pronouns", title: "I / me / my / mine", ru: "личные и притяжательные местоимения — одна таблица", parts: [
+        { u: 1, p: "7", w: "I, you, he, she, it, we, they — кто делает" },
+        { u: 4, p: "43", w: "my, your, his, her, its, our, their — чей" },
+        { u: 6, p: "71", w: "me, you, him, her, it, us, them — кого, кому" },
+        { u: 7, p: "90", w: "mine, yours, his, hers, ours, theirs", ext: true }
+      ]},
+      { id: "this-that", title: "this / that / these / those", ru: "этот / тот / эти / те", parts: [
+        { u: 2, p: "20", w: "близко и далеко, один и много", ext: true }
+      ]},
+      { id: "question-words", title: "Question words", ru: "вопросительные слова: who, what, where, when, how", parts: [
+        { u: 4, p: "48", w: "вопросительные местоимения", ext: true },
+        { u: 9, p: "104", w: "wh- и how: вопросы для рассказа" }
+      ]}
+    ]},
+    { title: "Прилагательные и наречия", topics: [
+      { id: "adverbs-frequency", title: "always / often / never", ru: "наречия частотности",
+        page: "present_simple.html", note: "Разобрано на странице Present Simple (раздел 6).", parts: [
+        { u: 6, p: "68", w: "как часто и где стоят в предложении" }
+      ]},
+      { id: "comparative", title: "big → bigger → the biggest", ru: "сравнительная и превосходная степень", parts: [
+        { u: 4, p: "48", w: "сравнение прилагательных", ext: true }
+      ]},
+      { id: "adverbs-manner", title: "quickly, quietly", ru: "наречия образа действия (-ly)", parts: [
+        { u: 5, p: "62", w: "как? — прилагательное + ly", ext: true }
+      ]},
+      { id: "modifiers", title: "quite, very, really", ru: "усилители", parts: [
+        { u: 7, p: "89", w: "It's really nice." }
+      ]},
+      { id: "exclamations", title: "What a …!", ru: "восклицания", parts: [
+        { u: 2, p: "20", w: "What a beautiful horse!", ext: true }
+      ]}
+    ]},
+    { title: "Предлоги", topics: [
+      { id: "prep-time", title: "on / at", ru: "предлоги времени", parts: [
+        { u: 2, p: "15", w: "on Monday, at 5 o'clock" }
+      ]},
+      { id: "prep-place", title: "in, on, under, next to…", ru: "предлоги места", parts: [
+        { u: 3, p: "31", w: "где находится" },
+        { u: 5, p: "62", w: "места и направления", ext: true }
+      ]},
+      { id: "prep-transport", title: "by / on, for / with / without", ru: "транспорт и другие предлоги", parts: [
+        { u: 7, p: "86", w: "by bus, on foot" },
+        { u: 7, p: "90", w: "for, with, without", ext: true }
+      ]}
+    ]},
+    { title: "Как связать предложения и оформить текст", topics: [
+      { id: "linkers", title: "and, but, or, because, also", ru: "союзы и связки", parts: [
+        { u: 3, p: "33", w: "be + also: It is also…" },
+        { u: 4, p: "47", w: "and, but, or" },
+        { u: 5, p: "61", w: "because — потому что" },
+        { u: 6, p: "76", w: "when, before, after; to + глагол «чтобы»", ext: true }
+      ]},
+      { id: "punctuation", title: "Capital letters & punctuation", ru: "заглавные буквы и знаки препинания", parts: [
+        { u: 2, p: "19", w: "заглавные буквы" },
+        { u: 6, p: "75", w: "точка, запятая, вопросительный знак" }
+      ]}
+    ]}
+  ];
+
+  function el(tag, cls, html) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (html != null) e.innerHTML = html;
+    return e;
+  }
+  function badge(t) {
+    return t.page ? '<span class="badge ready">готово</span>' : '<span class="badge soon">скоро</span>';
+  }
+
+  /* По темам */
+  var byTopic = document.getElementById("byTopic");
+  GROUPS.forEach(function (g) {
+    var gEl = el("div", "group");
+    gEl.appendChild(el("h2", null, g.title));
+    g.topics.forEach(function (t) {
+      var card = el("div", "topic" + (t.page ? " ready" : ""));
+      card.id = "t-" + t.id;
+      var titleHtml = t.page ? '<a href="' + t.page + '">' + t.title + '</a>' : t.title;
+      card.appendChild(el("div", "topic-head",
+        '<span class="topic-title">' + titleHtml + '</span>' +
+        '<span class="topic-ru">' + t.ru + '</span>' + badge(t)));
+      var ul = el("ul", "parts");
+      t.parts.forEach(function (p) {
+        ul.appendChild(el("li", null,
+          '<span class="where"><a href="#u' + p.u + '">Unit ' + p.u + '</a>, стр. ' + p.p + '</span>' +
+          '<span>' + p.w + (p.ext ? ' <span class="badge ext">расширение</span>' : '') + '</span>'));
+      });
+      card.appendChild(ul);
+      if (t.note) card.appendChild(el("div", "note", t.note));
+      if (t.page && t.id !== "adverbs-frequency") {
+        var links = '<a href="' + t.page + '">правило, карточки и тренажёр →</a>';
+        (t.print || []).forEach(function (pr) {
+          links += '<a href="' + pr[1] + '" target="_blank" rel="noopener">' + pr[0] + ' →</a>';
+        });
+        card.appendChild(el("div", "links", links));
+      }
+      gEl.appendChild(card);
+    });
+    byTopic.appendChild(gEl);
+  });
+
+  /* По юнитам */
+  var byUnit = document.getElementById("byUnit");
+  var perUnit = {};
+  GROUPS.forEach(function (g) {
+    g.topics.forEach(function (t) {
+      t.parts.forEach(function (p) {
+        (perUnit[p.u] = perUnit[p.u] || []).push({ t: t, p: p });
+      });
+    });
+  });
+  function firstPage(s) { return parseInt(s, 10); }
+  Object.keys(UNITS).forEach(function (u) {
+    var block = el("div", "unit-block");
+    block.id = "u" + u;
+    block.appendChild(el("h2", null, "Unit " + u + " — " + UNITS[u]));
+    var ul = el("ul", "unit-list");
+    (perUnit[u] || []).sort(function (a, b) { return firstPage(a.p.p) - firstPage(b.p.p); }).forEach(function (x) {
+      var href = x.t.page ? x.t.page : "#t-" + x.t.id;
+      ul.appendChild(el("li", x.t.page ? "ready" : null,
+        '<span class="pg">стр. ' + x.p.p + '</span>' +
+        '<span class="t"><a href="' + href + '">' + x.t.title + '</a></span>' +
+        '<span class="what">' + x.p.w + '</span>' +
+        (x.p.ext ? '<span class="badge ext">расширение</span>' : '') + badge(x.t)));
+    });
+    block.appendChild(ul);
+    byUnit.appendChild(block);
+  });
+
+  /* Переключение видов */
+  var btns = document.querySelectorAll(".view-btn");
+  function show(viewId) {
+    btns.forEach(function (b) { b.setAttribute("aria-selected", b.dataset.view === viewId ? "true" : "false"); });
+    document.querySelectorAll("section.view").forEach(function (s) { s.classList.toggle("active", s.id === viewId); });
+  }
+  btns.forEach(function (b) { b.addEventListener("click", function () { show(b.dataset.view); }); });
+
+  // ссылки #u1…#u9 открывают вид «по юнитам», #t-… — «по темам»
+  function followHash() {
+    var h = location.hash.slice(1);
+    if (!h) return;
+    var target = document.getElementById(h);
+    if (!target) return;
+    show(/^u\d$/.test(h) ? "byUnit" : "byTopic");
+    target.scrollIntoView({ block: "start" });
+  }
+  window.addEventListener("hashchange", followHash);
+  followHash();
+})();
+</script>
+</body>
+</html>
