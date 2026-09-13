@@ -126,9 +126,12 @@
   // parts: u — юнит, p — страница учебника, w — что именно, ext — раздел «My country» (расширение)
   var GROUPS = [
     { title: "Глаголы be и have got", topics: [
-      { id: "be", title: "be — am / is / are", ru: "глагол «быть»", parts: [
+      { id: "be", title: "be — am / is / are", ru: "глагол «быть»: I am beautiful",
+        page: "be.html",
+        print: [["плакат", "../print/grammar/be_plakat.html"], ["карточки для печати", "../print/grammar/be.html"]],
+        parts: [
         { u: 1, p: "5", w: "утверждение, единственное число: I am, you are, he is" },
-        { u: 1, p: "7", w: "множественное число: we are, they are" },
+        { u: 1, p: "7", w: "множественное число: we are, they are; короткие формы" },
         { u: 2, p: "15", w: "отрицание: isn't, aren't" },
         { u: 2, p: "17", w: "вопросы и краткие ответы: Is he…? — Yes, he is." }
       ]},

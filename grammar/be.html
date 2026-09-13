@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Глагол be — am / is / are</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #faf9f4; --paper-raised: #ffffff;
+    --rule: #aecdea; --rule-soft: #d7e6f5;
+    --margin: #d3564d; --margin-soft: #f1c3bf;
+    --ink: #24304a; --ink-soft: #647089; --ink-faint: #97a2b8;
+    --good: #3c8a5c; --good-bg: #dff1e5;
+    --bad: #c85a4f; --bad-bg: #fbe4e1;
+    --mark: #e3a836; --mark-bg: #fbedd0;
+    --am: #b0602a; --am-bg: #f8e3d3;
+    --is: #3c8a5c; --is-bg: #dff1e5;
+    --are: #2f6fb0; --are-bg: #dde9f7;
+    --shadow: rgba(36, 48, 74, 0.14);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1b2431; --paper-raised: #232f3f;
+      --rule: #3c4d68; --rule-soft: #2a374a;
+      --margin: #e08078; --margin-soft: #4a3339;
+      --ink: #eceff5; --ink-soft: #a7b2c8; --ink-faint: #6d788e;
+      --good: #6fcb93; --good-bg: #23392c;
+      --bad: #e0847a; --bad-bg: #402b2a;
+      --mark: #f0c463; --mark-bg: #3d3320;
+      --am: #eba674; --am-bg: #402f22;
+      --is: #6fcb93; --is-bg: #23392c;
+      --are: #7fb3ea; --are-bg: #22324a;
+      --shadow: rgba(0, 0, 0, 0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1b2431; --paper-raised: #232f3f;
+    --rule: #3c4d68; --rule-soft: #2a374a;
+    --margin: #e08078; --margin-soft: #4a3339;
+    --ink: #eceff5; --ink-soft: #a7b2c8; --ink-faint: #6d788e;
+    --good: #6fcb93; --good-bg: #23392c;
+    --bad: #e0847a; --bad-bg: #402b2a;
+    --mark: #f0c463; --mark-bg: #3d3320;
+    --am: #eba674; --am-bg: #402f22;
+    --is: #6fcb93; --is-bg: #23392c;
+    --are: #7fb3ea; --are-bg: #22324a;
+    --shadow: rgba(0, 0, 0, 0.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: 'PT Sans', Arial, sans-serif; line-height: 1.5; -webkit-tap-highlight-color: transparent; }
+  h1, h2, h3, .hand { font-family: 'Caveat', 'Comic Sans MS', cursive; font-weight: 700; text-wrap: balance; }
+  .back-link { font-size: 13px; color: var(--ink-faint); text-decoration: none; margin-right: 14px; }
+  .back-link:hover { color: var(--margin); }
+  .sheet { max-width: 680px; margin: 0 auto; padding: 22px 20px 60px 44px; position: relative;
+    background-image: repeating-linear-gradient(to bottom, transparent, transparent 37px, var(--rule-soft) 38px);
+    background-position: 0 150px; }
+  .sheet::before { content: ""; position: absolute; top: 0; bottom: 0; left: 26px; width: 2px; background: var(--margin); opacity: 0.75; }
+  header.page { padding-top: 6px; padding-bottom: 10px; }
+  h1 { font-size: 42px; margin: 8px 0 2px; line-height: 1.1; }
+  .subtitle { font-size: 16px; color: var(--ink-soft); margin: 0 0 10px; }
+  .print-links { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; }
+  .print-links a { color: var(--margin); }
+  nav.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 20px; }
+  .tab { font-family: 'Caveat', cursive; font-size: 20px; font-weight: 600; background: var(--paper-raised); border: 1px solid var(--rule); border-bottom-width: 3px; color: var(--ink-soft); padding: 7px 16px 6px; border-radius: 8px 8px 4px 4px; cursor: pointer; box-shadow: 1px 2px 0 var(--shadow); }
+  .tab:nth-child(1) { transform: rotate(-1.2deg); }
+  .tab:nth-child(2) { transform: rotate(0.8deg); }
+  .tab:nth-child(3) { transform: rotate(-0.6deg); }
+  .tab[aria-selected="true"] { color: var(--paper); background: var(--margin); border-color: var(--margin); }
+  .tab:focus-visible, button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid var(--margin); outline-offset: 2px; }
+  section.page { display: none; }
+  section.page.active { display: block; }
+  .lead { font-size: 14px; color: var(--ink-soft); margin: 0 0 16px; }
+  .counter { font-family: 'Caveat', cursive; font-size: 21px; font-weight: 700; color: var(--margin); margin-bottom: 12px; }
+
+  /* Rule */
+  .legend { font-size: 12px; color: var(--ink-faint); margin: -6px 0 14px; }
+  .block { background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 6px; box-shadow: 2px 3px 0 var(--shadow); padding: 12px 16px 14px; margin-bottom: 18px; }
+  .block h2 { font-size: 27px; margin: 0 0 6px; line-height: 1.15; }
+  .block h2 .num { color: var(--margin); margin-right: 4px; }
+  .block p { margin: 6px 0; font-size: 15px; }
+  .block ul { margin: 6px 0; padding-left: 20px; font-size: 15px; }
+  .block li { margin-bottom: 3px; }
+  .src { font-size: 12px; color: var(--ink-faint); white-space: nowrap; }
+  .ex { font-style: italic; }
+  .when-list { list-style: none; padding: 0 !important; }
+  .when-list li { display: flex; gap: 10px; align-items: baseline; padding: 4px 0; border-bottom: 1px dashed var(--rule-soft); }
+  .when-list li:last-child { border-bottom: none; }
+  .when-list .unit { font-family: 'Caveat', cursive; font-size: 19px; font-weight: 700; color: var(--margin); min-width: 104px; }
+  .table-wrap { overflow-x: auto; }
+  table.forms { border-collapse: collapse; margin: 8px 0; font-size: 15px; width: 100%; }
+  table.forms th, table.forms td { border: 1px solid var(--rule); padding: 6px 10px; text-align: left; vertical-align: top; }
+  table.forms th { background: var(--rule-soft); font-weight: 700; }
+  .c-am { color: var(--am); font-weight: 700; }
+  .c-is { color: var(--is); font-weight: 700; }
+  .c-are { color: var(--are); font-weight: 700; }
+  .hidden-verb { display: inline-block; border: 2px dashed var(--margin); border-radius: 6px; padding: 0 6px; color: var(--margin); font-weight: 700; }
+  .ru-en { display: grid; grid-template-columns: auto auto; gap: 4px 14px; margin: 8px 0; font-size: 15px; justify-content: start; }
+  .ru-en .ru { color: var(--ink-soft); }
+  .check-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+  .check-row > span { font-size: 14px; background: var(--paper); border: 1px solid var(--rule); border-radius: 12px; padding: 3px 10px; }
+  .num-cols { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 8px; }
+  @media (min-width: 520px) { .num-cols { grid-template-columns: 1fr 1fr; } }
+  .num-col { border-left: 5px solid; border-radius: 4px; padding: 8px 12px; }
+  .num-col.is { border-color: var(--is); background: var(--is-bg); }
+  .num-col.are { border-color: var(--are); background: var(--are-bg); }
+  .num-col .head { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .num-col ul { margin: 0; padding-left: 18px; font-size: 14.5px; }
+  .tip { border: 1.5px dashed var(--margin); border-radius: 6px; padding: 8px 12px; margin-top: 10px; font-size: 14.5px; }
+  .note { font-size: 14px; color: var(--ink-soft); margin-top: 6px; }
+  .mistakes { list-style: none; padding: 0 !important; }
+  .mistakes li { display: flex; flex-wrap: wrap; gap: 4px 12px; padding: 4px 0; }
+  .wrong { color: var(--bad); text-decoration: line-through; }
+  .right { color: var(--good); font-weight: 700; }
+
+  /* Cards */
+  .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  @media (min-width: 480px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+  .card { perspective: 800px; height: 96px; }
+  .card-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.45s cubic-bezier(.4,.2,.2,1); cursor: pointer; }
+  .card.flipped .card-inner { transform: rotateY(180deg); }
+  .card-face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; backface-visibility: hidden; border-radius: 6px; border: 1px solid var(--rule); background: var(--paper-raised); box-shadow: 2px 3px 0 var(--shadow); padding: 6px; text-align: center; }
+  .card-face.back { transform: rotateY(180deg); }
+  .card-face.back.am { background: var(--am-bg); border-color: var(--am); }
+  .card-face.back.is { background: var(--is-bg); border-color: var(--is); }
+  .card-face.back.are { background: var(--are-bg); border-color: var(--are); }
+  .card-face .word { font-size: 18px; font-weight: 700; line-height: 1.2; }
+  .card-face .form { font-size: 18px; font-weight: 700; line-height: 1.2; }
+  .card-face .short { font-size: 12px; color: var(--ink-soft); }
+  .card-face .why { font-size: 12px; color: var(--ink-soft); line-height: 1.25; margin-top: 2px; }
+  .speak-btn { position: absolute; top: 3px; right: 3px; width: 22px; height: 22px; border-radius: 50%;
+    border: 1px solid var(--rule); background: var(--paper); color: var(--ink-soft); font-size: 12px;
+    line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+  .speak-btn:hover { border-color: var(--margin); color: var(--margin); }
+  @media (prefers-reduced-motion: reduce) { .card-inner { transition: none; } }
+
+  /* Trainer */
+  .ex-block { margin-bottom: 30px; }
+  .ex-block h2 { font-size: 27px; margin: 0 0 2px; }
+  .ex-block .lead { margin-bottom: 10px; }
+  .q { margin-bottom: 12px; }
+  .q-text { font-size: 16px; margin-bottom: 5px; }
+  .q-text .gap { display: inline-block; min-width: 64px; border-bottom: 2px solid var(--ink-faint); text-align: center; font-weight: 700; }
+  .q-text .gap.ok { border-bottom-color: var(--good); color: var(--good); }
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .opt { font-family: 'PT Sans', sans-serif; font-size: 15px; background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 5px; padding: 5px 14px; cursor: pointer; color: var(--ink); box-shadow: 1px 2px 0 var(--shadow); text-align: left; }
+  .opt:hover { border-color: var(--margin); }
+  .opt.ok { background: var(--good-bg); border-color: var(--good); color: var(--good); }
+  .opt.no { background: var(--bad-bg); border-color: var(--bad); color: var(--bad); }
+  .feedback { font-size: 14px; min-height: 1em; }
+  .feedback.good { color: var(--good); }
+  .feedback.bad { color: var(--bad); }
+  .reset-btn { font-family: 'Caveat', cursive; font-size: 17px; background: none; border: none; color: var(--ink-faint); text-decoration: underline; cursor: pointer; padding: 0; }
+  .reset-btn:hover { color: var(--margin); }
+  footer.page { margin-top: 30px; font-size: 12px; color: var(--ink-faint); }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="page">
+    <a class="back-link" href="../index.html">← ко всем урокам</a>
+    <a class="back-link" href="index.html">← все правила грамматики</a>
+    <h1>Глагол be — am / is / are</h1>
+    <p class="subtitle">«быть, являться, находиться» · Unit 1–2</p>
+    <div class="print-links">
+      <a href="../print/grammar/be_plakat.html" target="_blank" rel="noopener">Плакат для печати (A4) →</a>
+      <a href="../print/grammar/be.html" target="_blank" rel="noopener">Карточки для печати →</a>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Разделы">
+    <button class="tab" role="tab" aria-selected="true" data-target="rule">Правило</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="cards">Карточки am / is / are</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="trainer">Тренажёр</button>
+  </nav>
+
+  <!-- ============ RULE ============ -->
+  <section class="page active" id="rule">
+    <p class="legend">📖 — из учебника English Plus 5 (страница указана) · ✏️ — объяснение и примеры добавлены для понятности</p>
+
+    <div class="block">
+      <h2>Когда это учат</h2>
+      <ul class="when-list">
+        <li><span class="unit">Unit 1, стр. 5</span><span>I am, you are, he / she / it is <span class="src">📖</span></span></li>
+        <li><span class="unit">Unit 1, стр. 7</span><span>множественное число: we / you / they are, короткие формы <span class="src">📖</span></span></li>
+        <li><span class="unit">Unit 2, стр. 15</span><span>отрицание: I'm not, isn't, aren't <span class="src">📖</span></span></li>
+        <li><span class="unit">Unit 2, стр. 17</span><span>вопросы и краткие ответы: Are you…? — Yes, I am. <span class="src">📖</span></span></li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">1</span>Зачем нужен be <span class="src">✏️</span></h2>
+      <p>По-русски мы говорим <b>«Я красивая»</b> — и в предложении нет глагола. В английском <b>так нельзя</b>: в каждом предложении должен быть глагол. Если другого глагола нет — ставим <b>am / is / are</b>.</p>
+      <div class="ru-en">
+        <span class="ru">Я <span class="hidden-verb">?</span> красивая.</span><span>I <span class="c-am">am</span> beautiful.</span>
+        <span class="ru">Мне <span class="hidden-verb">?</span> 10 лет.</span><span>I <span class="c-am">am</span> ten. <span class="note">(не «I have ten»!)</span></span>
+        <span class="ru">Он <span class="hidden-verb">?</span> из Казахстана.</span><span>He <span class="c-is">is</span> from Kazakhstan.</span>
+        <span class="ru">Кошка <span class="hidden-verb">?</span> на столе.</span><span>The cat <span class="c-is">is</span> on the table.</span>
+        <span class="ru">Мы <span class="hidden-verb">?</span> друзья.</span><span>We <span class="c-are">are</span> friends.</span>
+      </div>
+      <p><b>be нужен, когда говорим:</b> кто или что это · какой · сколько лет · откуда · где находится · как себя чувствуем (<span class="ex">I'm fine. I'm hungry.</span>)</p>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">2</span>am, is или are? <span class="src">📖 стр. 5, 7</span></h2>
+      <div class="table-wrap">
+        <table class="forms">
+          <tr><th>полная форма</th><th>короткая форма</th></tr>
+          <tr><td>I <span class="c-am">am</span></td><td>I'm</td></tr>
+          <tr><td>he <span class="c-is">is</span> · she <span class="c-is">is</span> · it <span class="c-is">is</span></td><td>he's · she's · it's</td></tr>
+          <tr><td>we <span class="c-are">are</span> · you <span class="c-are">are</span> · they <span class="c-are">are</span></td><td>we're · you're · they're</td></tr>
+        </table>
+      </div>
+      <p><b>Как проверить</b> <span class="src">✏️</span> — замени того, о ком говорим, на местоимение:</p>
+      <div class="check-row">
+        <span>Harry → <b>he</b> → <span class="c-is">is</span></span>
+        <span>my mum → <b>she</b> → <span class="c-is">is</span></span>
+        <span>Astana → <b>it</b> → <span class="c-is">is</span></span>
+        <span>Harry and Nic → <b>they</b> → <span class="c-are">are</span></span>
+      </div>
+      <p class="note">📖 стр. 7: <span class="ex">Astana is the capital city. <b>It</b> is big.</span></p>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">3</span>Один или много? <span class="src">✏️ + 📖 стр. 7, 15</span></h2>
+      <p>Главный вопрос для is и are: <b>о скольких</b> мы говорим.</p>
+      <div class="num-cols">
+        <div class="num-col is">
+          <div class="head">Один человек или предмет → <span class="c-is">is</span></div>
+          <ul>
+            <li>My friend <span class="c-is">is</span> ten.</li>
+            <li>The cat <span class="c-is">is</span> black.</li>
+            <li>The book <span class="c-is">is</span> new.</li>
+            <li>Almaty <span class="c-is">is</span> a city.</li>
+          </ul>
+        </div>
+        <div class="num-col are">
+          <div class="head">Много (два и больше) → <span class="c-are">are</span></div>
+          <ul>
+            <li>My friend<b>s</b> <span class="c-are">are</span> ten.</li>
+            <li>The cat<b>s</b> <span class="c-are">are</span> black.</li>
+            <li>The book<b>s</b> <span class="c-are">are</span> new.</li>
+            <li>London <b>and</b> Tokyo <span class="c-are">are</span> capitals. <span class="src">📖</span></li>
+          </ul>
+        </div>
+      </div>
+      <ul style="margin-top:10px">
+        <li><b>Два имени через and</b> — это уже много: <span class="ex">Harry <b>and</b> Nic <span class="c-are">are</span> friends.</span></li>
+        <li><b>«Я и кто-то»</b> = мы (we): <span class="ex">Katie and I <span class="c-are">are</span> in the club.</span> <span class="src">📖 стр. 15</span></li>
+        <li><b>you</b> — это и «ты», и «вы», но всегда <span class="c-are">are</span>: <span class="ex">You are my friend. · You are my friends.</span></li>
+        <li><b>Слова «много» без -s:</b> children (дети), people (люди) → <span class="c-are">are</span>: <span class="ex">The children <span class="c-are">are</span> at school.</span></li>
+      </ul>
+      <div class="tip">💡 <b>Подсказка</b> <span class="src">✏️</span>: у существительного есть хвостик <b>-s</b> (friend<b>s</b>, cat<b>s</b>) — значит их много → <span class="c-are">are</span>. Нет хвостика — один → <span class="c-is">is</span>. Только помни про children и people!</div>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">4</span>Отрицание <span class="src">📖 стр. 15</span></h2>
+      <p>Добавляем <b>not</b> после am / is / are:</p>
+      <div class="table-wrap">
+        <table class="forms">
+          <tr><th>полная форма</th><th>короткая форма</th></tr>
+          <tr><td>I am not</td><td>I'm not</td></tr>
+          <tr><td>he / she / it is not</td><td>he / she / it <b>isn't</b></td></tr>
+          <tr><td>we / you / they are not</td><td>we / you / they <b>aren't</b></td></tr>
+        </table>
+      </div>
+      <p><span class="ex">I'm not hungry. · Harry isn't at school. · My friends aren't here.</span></p>
+      <p class="note">✏️ Формы «amn't» нет — говорим только <b>I'm not</b>.</p>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">5</span>Вопрос и краткий ответ <span class="src">📖 стр. 17</span></h2>
+      <p>Чтобы спросить, <b>ставим am / is / are в начало</b>: <span class="ex">You are OK. → <b>Are</b> you OK?</span> <span class="src">✏️</span></p>
+      <div class="table-wrap">
+        <table class="forms">
+          <tr><th>Вопрос</th><th>Да</th><th>Нет</th></tr>
+          <tr><td><b>Am</b> I late?</td><td>Yes, you are.</td><td>No, you aren't.</td></tr>
+          <tr><td><b>Are</b> you OK?</td><td>Yes, I am.</td><td>No, I'm not.</td></tr>
+          <tr><td><b>Is</b> he your friend?</td><td>Yes, he is.</td><td>No, he isn't.</td></tr>
+          <tr><td><b>Are</b> they from Britain?</td><td>Yes, they are.</td><td>No, they aren't.</td></tr>
+        </table>
+      </div>
+      <p>С вопросительным словом: <span class="ex">Where <b>are</b> you from? · How old <b>are</b> you? · What<b>'s</b> your name?</span> <span class="src">📖 стр. 7, 17</span></p>
+      <p class="note">✏️ В кратком «да» не сокращаем: <span class="wrong">Yes, I'm.</span> → <span class="right">Yes, I am.</span></p>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">6</span>be или другой глагол? <span class="src">✏️</span></h2>
+      <p>Если в предложении <b>уже есть глагол-действие</b> (play, like, go, eat…), am / is / are <b>не нужен</b>:</p>
+      <div class="ru-en">
+        <span class="ru">Я играю в футбол.</span><span><span class="wrong">I am play football.</span> → <span class="right">I play football.</span></span>
+        <span class="ru">Она любит кошек.</span><span><span class="wrong">She is like cats.</span> → <span class="right">She likes cats.</span></span>
+        <span class="ru">Я ученик.</span><span class="right">I am a student.</span>
+      </div>
+      <p class="note">Про глаголы-действия — отдельное правило <a href="present_simple.html" style="color:var(--margin)">Present Simple →</a></p>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">7</span>Частые ошибки <span class="src">✏️</span></h2>
+      <ul class="mistakes">
+        <li><span class="wrong">I beautiful.</span><span class="right">I am beautiful.</span></li>
+        <li><span class="wrong">I have ten years.</span><span class="right">I am ten.</span></li>
+        <li><span class="wrong">I is a student.</span><span class="right">I am a student.</span></li>
+        <li><span class="wrong">My friends is here.</span><span class="right">My friends are here.</span></li>
+        <li><span class="wrong">Harry and Nic is friends.</span><span class="right">Harry and Nic are friends.</span></li>
+        <li><span class="wrong">The children is at school.</span><span class="right">The children are at school.</span></li>
+        <li><span class="wrong">You is my friend.</span><span class="right">You are my friend.</span></li>
+        <li><span class="wrong">Is you OK?</span><span class="right">Are you OK?</span></li>
+        <li><span class="wrong">I am play football.</span><span class="right">I play football.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CARDS ============ -->
+  <section class="page" id="cards">
+    <p class="lead">На карточке — о ком говорим. Скажи: am, is или are? Нажми — проверь себя. Цвет подсказывает: оранжевый — <span class="c-am">am</span>, зелёный — <span class="c-is">is</span> (один), синий — <span class="c-are">are</span> (много).</p>
+    <div class="cards" id="cardsGrid"></div>
+  </section>
+
+  <!-- ============ TRAINER ============ -->
+  <section class="page" id="trainer">
+    <p class="counter" id="totalCounter">Всего верно: 0 из 0</p>
+    <p class="lead">Пять заданий — от простого к сложному. Ошибся — прочитай подсказку и попробуй ещё раз.</p>
+
+    <div class="ex-block">
+      <h2>1. am, is или are?</h2>
+      <p class="lead">Замени того, о ком говорим, на I / he / she / it / we / you / they.</p>
+      <div id="ex1"></div>
+    </div>
+
+    <div class="ex-block">
+      <h2>2. Один или много: is или are?</h2>
+      <p class="lead">Посмотри на хвостик -s и на слово and.</p>
+      <div id="ex2"></div>
+    </div>
+
+    <div class="ex-block">
+      <h2>3. Как сказать по-английски?</h2>
+      <p class="lead">Выбери правильный перевод. Помни: если нет другого глагола — нужен am / is / are.</p>
+      <div id="ex3"></div>
+    </div>
+
+    <div class="ex-block">
+      <h2>4. Отрицание: 'm not, isn't или aren't?</h2>
+      <div id="ex4"></div>
+    </div>
+
+    <div class="ex-block">
+      <h2>5. Вопрос и краткий ответ</h2>
+      <div id="ex5"></div>
+    </div>
+
+    <button class="reset-btn" id="resetAll" type="button">начать заново</button>
+  </section>
+
+  <footer class="page">English Plus 5 · Грамматика · глагол be · домашняя тетрадь</footer>
+</div>
+
+<script>
+(function () {
+  var CARDS = [
+    { w: "I", f: "I am", sh: "I'm", t: "am", why: "am — только с I" },
+    { w: "you", f: "you are", sh: "you're", t: "are", why: "you — всегда are" },
+    { w: "he", f: "he is", sh: "he's", t: "is", why: "один → is" },
+    { w: "she", f: "she is", sh: "she's", t: "is", why: "одна → is" },
+    { w: "it", f: "it is", sh: "it's", t: "is", why: "один предмет → is" },
+    { w: "we", f: "we are", sh: "we're", t: "are", why: "много → are" },
+    { w: "they", f: "they are", sh: "they're", t: "are", why: "много → are" },
+    { w: "Harry", f: "Harry is", t: "is", why: "один → he → is" },
+    { w: "Harry and Nic", f: "Harry and Nic are", t: "are", why: "двое → they → are" },
+    { w: "my mum", f: "my mum is", t: "is", why: "одна → she → is" },
+    { w: "my friends", f: "my friends are", t: "are", why: "хвостик -s: много → are" },
+    { w: "the cat", f: "the cat is", t: "is", why: "один → it → is" },
+    { w: "the cats", f: "the cats are", t: "are", why: "хвостик -s: много → are" },
+    { w: "Katie and I", f: "Katie and I are", t: "are", why: "я и Katie → we → are" },
+    { w: "Almaty", f: "Almaty is", t: "is", why: "один город → it → is" },
+    { w: "London and Tokyo", f: "London and Tokyo are", t: "are", why: "два города → they → are" },
+    { w: "the children", f: "the children are", t: "are", why: "дети — много, хоть и без -s" },
+    { w: "people", f: "people are", t: "are", why: "люди — много, хоть и без -s" },
+    { w: "my brother", f: "my brother is", t: "is", why: "один → he → is" },
+    { w: "you and your sister", f: "you and your sister are", t: "are", why: "вы двое → you → are" },
+    { w: "this book", f: "this book is", t: "is", why: "одна книга → it → is" }
+  ];
+
+  var EX1 = [
+    { s: "I ___ ten years old.", o: ["am", "is", "are"], a: "am", h: "I → am" },
+    { s: "Harry ___ my friend.", o: ["am", "is", "are"], a: "is", h: "Harry → he → is" },
+    { s: "Harry and Nic ___ friends.", o: ["am", "is", "are"], a: "are", h: "Harry and Nic → they → are" },
+    { s: "My mum ___ a teacher.", o: ["am", "is", "are"], a: "is", h: "my mum → she → is" },
+    { s: "You ___ a good student.", o: ["am", "is", "are"], a: "are", h: "you → всегда are" },
+    { s: "We ___ from Kazakhstan.", o: ["am", "is", "are"], a: "are", h: "we → are" },
+    { s: "It ___ cold today.", o: ["am", "is", "are"], a: "is", h: "it → is" },
+    { s: "Aliya ___ in the park.", o: ["am", "is", "are"], a: "is", h: "Aliya → she → is" },
+    { s: "They ___ happy.", o: ["am", "is", "are"], a: "are", h: "they → are" },
+    { s: "I ___ at home.", o: ["am", "is", "are"], a: "am", h: "I → am" },
+    { s: "This ___ my dog.", o: ["am", "is", "are"], a: "is", h: "this (это — одно) → is" },
+    { s: "Astana ___ the capital city.", o: ["am", "is", "are"], a: "is", h: "Astana → it → is" }
+  ];
+
+  var EX2 = [
+    { s: "The cat ___ black.", o: ["is", "are"], a: "is", h: "cat — один кот → is" },
+    { s: "The cats ___ black.", o: ["is", "are"], a: "are", h: "cats — хвостик -s, много → are" },
+    { s: "My friend ___ from Almaty.", o: ["is", "are"], a: "is", h: "friend — один → is" },
+    { s: "My friends ___ from Almaty.", o: ["is", "are"], a: "are", h: "friends — много → are" },
+    { s: "The book ___ on the table.", o: ["is", "are"], a: "is", h: "book — одна → is" },
+    { s: "The books ___ on the table.", o: ["is", "are"], a: "are", h: "books — много → are" },
+    { s: "Katie and I ___ in the club.", o: ["is", "are"], a: "are", h: "Katie and I → we → are" },
+    { s: "The children ___ at school.", o: ["is", "are"], a: "are", h: "children — дети, много (хоть и без -s) → are" },
+    { s: "The people ___ friendly.", o: ["is", "are"], a: "are", h: "people — люди, много (хоть и без -s) → are" },
+    { s: "My dad and my uncle ___ tall.", o: ["is", "are"], a: "are", h: "двое через and → they → are" }
+  ];
+
+  var EX3 = [
+    { s: "Я красивая. ___", o: ["I am beautiful.", "I beautiful.", "I is beautiful."], a: "I am beautiful.", h: "по-русски глагола нет, а в английском нужен am" },
+    { s: "Мне 10 лет. ___", o: ["I am ten.", "I have ten.", "Me ten."], a: "I am ten.", h: "возраст говорим через am / is / are: I am ten" },
+    { s: "Он из Казахстана. ___", o: ["He is from Kazakhstan.", "He from Kazakhstan.", "He are from Kazakhstan."], a: "He is from Kazakhstan.", h: "he → is" },
+    { s: "Мы друзья. ___", o: ["We are friends.", "We friends.", "We is friends."], a: "We are friends.", h: "we → are" },
+    { s: "Кошка под столом. ___", o: ["The cat is under the table.", "The cat under the table.", "The cat are under the table."], a: "The cat is under the table.", h: "где находится — нужен is; кошка одна → is" },
+    { s: "Мои родители дома. ___", o: ["My parents are at home.", "My parents is at home.", "My parents at home."], a: "My parents are at home.", h: "parents — много → are" },
+    { s: "Я играю в футбол. ___", o: ["I play football.", "I am play football.", "I is play football."], a: "I play football.", h: "есть глагол-действие play — am не нужен" },
+    { s: "Она любит кошек. ___", o: ["She likes cats.", "She is like cats.", "She is likes cats."], a: "She likes cats.", h: "есть глагол like — is не нужен" }
+  ];
+
+  var EX4 = [
+    { s: "I ___ hungry.", o: ["'m not", "isn't", "aren't"], a: "'m not", h: "I → I'm not" },
+    { s: "Harry ___ at school today.", o: ["'m not", "isn't", "aren't"], a: "isn't", h: "Harry → he → isn't" },
+    { s: "My friends ___ here.", o: ["'m not", "isn't", "aren't"], a: "aren't", h: "friends — много → aren't" },
+    { s: "The dog ___ big.", o: ["'m not", "isn't", "aren't"], a: "isn't", h: "the dog → it → isn't" },
+    { s: "We ___ late.", o: ["'m not", "isn't", "aren't"], a: "aren't", h: "we → aren't" },
+    { s: "You ___ in my class.", o: ["'m not", "isn't", "aren't"], a: "aren't", h: "you → aren't" },
+    { s: "She ___ twelve.", o: ["'m not", "isn't", "aren't"], a: "isn't", h: "she → isn't" },
+    { s: "I ___ from London.", o: ["'m not", "isn't", "aren't"], a: "'m not", h: "I → I'm not" },
+    { s: "The books ___ new.", o: ["'m not", "isn't", "aren't"], a: "aren't", h: "books — много → aren't" },
+    { s: "It ___ my bag.", o: ["'m not", "isn't", "aren't"], a: "isn't", h: "it → isn't" }
+  ];
+
+  var EX5 = [
+    { s: "___ you ten?", o: ["Am", "Is", "Are"], a: "Are", h: "you → Are you…?" },
+    { s: "___ Harry your friend?", o: ["Am", "Is", "Are"], a: "Is", h: "Harry → he → Is…?" },
+    { s: "___ they from Almaty?", o: ["Am", "Is", "Are"], a: "Are", h: "they → Are…?" },
+    { s: "___ I late?", o: ["Am", "Is", "Are"], a: "Am", h: "I → Am I…?" },
+    { s: "___ the cats hungry?", o: ["Am", "Is", "Are"], a: "Are", h: "cats — много → Are…?" },
+    { s: "Are you OK? — Yes, I ___.", o: ["am", "'m", "is"], a: "am", h: "в кратком «да» не сокращаем: Yes, I am." },
+    { s: "Is she your sister? — No, she ___.", o: ["isn't", "aren't", "'m not"], a: "isn't", h: "she → isn't" },
+    { s: "Are Harry and Nic at home? — Yes, they ___.", o: ["are", "is", "'re"], a: "are", h: "они → they → are (не сокращаем)" },
+    { s: "Is it your dog? — Yes, it ___.", o: ["is", "'s", "are"], a: "is", h: "it → is (в «да» не сокращаем)" },
+    { s: "Where ___ you from?", o: ["am", "is", "are"], a: "are", h: "you → are" }
+  ];
+
+  var TOTAL = EX1.length + EX2.length + EX3.length + EX4.length + EX5.length;
+
+  function speak(text) {
+    try {
+      if (!window.speechSynthesis) return;
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = "en-US";
+      window.speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+  function shuffled(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+
+  /* Tabs */
+  var tabs = document.querySelectorAll(".tab");
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      tabs.forEach(function (t) { t.setAttribute("aria-selected", "false"); });
+      document.querySelectorAll("section.page").forEach(function (s) { s.classList.remove("active"); });
+      tab.setAttribute("aria-selected", "true");
+      document.getElementById(tab.dataset.target).classList.add("active");
+    });
+  });
+
+  /* Cards */
+  var cardsGrid = document.getElementById("cardsGrid");
+  CARDS.forEach(function (c) {
+    var card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML =
+      '<div class="card-inner">' +
+        '<div class="card-face front">' +
+          '<button class="speak-btn" type="button" title="озвучить" aria-label="озвучить">&#128266;</button>' +
+          '<span class="word">' + c.w + ' ___</span>' +
+        '</div>' +
+        '<div class="card-face back ' + c.t + '">' +
+          '<button class="speak-btn" type="button" title="озвучить" aria-label="озвучить">&#128266;</button>' +
+          '<span class="form">' + c.f + '</span>' +
+          (c.sh ? '<span class="short">= ' + c.sh + '</span>' : '') +
+          '<span class="why">' + c.why + '</span>' +
+        '</div>' +
+      '</div>';
+    card.querySelector(".card-inner").addEventListener("click", function (e) {
+      if (e.target.classList.contains("speak-btn")) return;
+      card.classList.toggle("flipped");
+    });
+    var btns = card.querySelectorAll(".speak-btn");
+    btns[0].addEventListener("click", function (e) { e.stopPropagation(); speak(c.w); });
+    btns[1].addEventListener("click", function (e) { e.stopPropagation(); speak(c.f); });
+    cardsGrid.appendChild(card);
+  });
+
+  /* Trainer */
+  var solved = {};
+  var totalCounter = document.getElementById("totalCounter");
+  function updateTotal() {
+    var n = 0;
+    for (var k in solved) if (solved[k]) n++;
+    totalCounter.textContent = "Всего верно: " + n + " из " + TOTAL;
+  }
+
+  function buildChoice(containerId, items, prefix) {
+    var box = document.getElementById(containerId);
+    box.innerHTML = "";
+    items.forEach(function (it, idx) {
+      var key = prefix + idx;
+      solved[key] = false;
+      var q = document.createElement("div");
+      q.className = "q";
+      var parts = it.s.split("___");
+      q.innerHTML =
+        '<div class="q-text">' + (idx + 1) + '. ' + esc(parts[0]) + '<span class="gap">&nbsp;</span>' + esc(parts[1] || "") + '</div>' +
+        '<div class="opts"></div>' +
+        '<div class="feedback"></div>';
+      var gap = q.querySelector(".gap");
+      var opts = q.querySelector(".opts");
+      var fb = q.querySelector(".feedback");
+      shuffled(it.o).forEach(function (o) {
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "opt"; b.textContent = o;
+        b.addEventListener("click", function () {
+          if (solved[key]) return;
+          if (o === it.a) {
+            b.classList.add("ok");
+            gap.textContent = o; gap.classList.add("ok");
+            fb.textContent = "верно! " + it.h; fb.className = "feedback good";
+            solved[key] = true; updateTotal();
+          } else {
+            b.classList.add("no");
+            fb.textContent = "не то. Подсказка: " + it.h; fb.className = "feedback bad";
+          }
+        });
+        opts.appendChild(b);
+      });
+      box.appendChild(q);
+    });
+  }
+
+  function buildAll() {
+    solved = {};
+    buildChoice("ex1", EX1, "a");
+    buildChoice("ex2", EX2, "b");
+    buildChoice("ex3", EX3, "c");
+    buildChoice("ex4", EX4, "d");
+    buildChoice("ex5", EX5, "e");
+    updateTotal();
+  }
+  buildAll();
+  document.getElementById("resetAll").addEventListener("click", function () {
+    buildAll();
+    document.getElementById("trainer").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+})();
+</script>
+</body>
+</html>

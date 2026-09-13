@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Печать карточек — глагол be: am / is / are</title>
+<style>
+  body {
+    font-family: 'PT Sans', Arial, sans-serif;
+    color: #222;
+    max-width: 800px;
+    margin: 20px auto;
+  }
+  .instructions {
+    background: #f2f5fa;
+    border: 1px solid #c7d3e3;
+    border-radius: 6px;
+    padding: 14px 18px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .instructions b { color: #1a3a66; }
+  .page-label {
+    font-size: 13px;
+    color: #888;
+    margin: 26px 0 6px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 26mm;
+    border: 1px solid #333; }
+  .grid.p2 { page-break-before: always; padding-top: 20px; }
+  .cell {
+    border: 1px dashed #999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    text-align: center;
+    padding: 4px;
+  }
+  .cell .word { font-size: 19px; font-weight: bold; }
+  .cell .form { font-size: 17px; font-weight: bold; }
+  .cell .short { font-size: 12px; color: #555; }
+  .cell .why { font-size: 11px; color: #555; margin-top: 2px; }
+  .cell.am { background: #f9e8db; }
+  .cell.is { background: #e6f4ea; }
+  .cell.are { background: #e3edf8; }
+  @media print {
+    .instructions { display: none; }
+    .page-label { display: none; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="instructions">
+  <p><b>Если принтер печатает с двух сторон (дуплекс):</b> в диалоге печати
+  включите "Печать на двух сторонах" / "Two-sided" и переплёт по
+  <b>длинному краю</b>. Тогда слово и правильная форма сразу окажутся на разных
+  сторонах одной карточки. Разрежьте лист по пунктирным линиям — получится
+  21 двусторонняя карточка.</p>
+  <p><b>Если принтер печатает только с одной стороны:</b> напечатайте
+  первый лист (о ком говорим), затем переверните эту же стопку листов и
+  вставьте обратно в лоток, чтобы напечатать второй лист (ответы) на
+  обратной стороне. Направление переворота зависит от принтера — лучше
+  сначала попробовать на одном листе и проверить, совпали ли стороны
+  одной карточки, прежде чем печатать весь тираж.</p>
+  <p><b>Как играть:</b> ребёнок видит, о ком речь (например, «my friends»),
+  говорит am, is или are и переворачивает карточку. Цвет обратной стороны:
+  оранжевый — am, зелёный — is (один), синий — are (много). На чёрно-белом
+  принтере подсказка всё равно подписана на карточке.</p>
+</div>
+
+<p class="page-label">Лист 1 — о ком говорим (лицевая сторона)</p>
+<div class="grid">
+  <div class="cell"><span class="word">I ___</span></div>
+  <div class="cell"><span class="word">you ___</span></div>
+  <div class="cell"><span class="word">he ___</span></div>
+
+  <div class="cell"><span class="word">she ___</span></div>
+  <div class="cell"><span class="word">it ___</span></div>
+  <div class="cell"><span class="word">we ___</span></div>
+
+  <div class="cell"><span class="word">they ___</span></div>
+  <div class="cell"><span class="word">Harry ___</span></div>
+  <div class="cell"><span class="word">Harry and Nic ___</span></div>
+
+  <div class="cell"><span class="word">my mum ___</span></div>
+  <div class="cell"><span class="word">my friends ___</span></div>
+  <div class="cell"><span class="word">the cat ___</span></div>
+
+  <div class="cell"><span class="word">the cats ___</span></div>
+  <div class="cell"><span class="word">Katie and I ___</span></div>
+  <div class="cell"><span class="word">Almaty ___</span></div>
+
+  <div class="cell"><span class="word">London and Tokyo ___</span></div>
+  <div class="cell"><span class="word">the children ___</span></div>
+  <div class="cell"><span class="word">people ___</span></div>
+
+  <div class="cell"><span class="word">my brother ___</span></div>
+  <div class="cell"><span class="word">you and your sister ___</span></div>
+  <div class="cell"><span class="word">this book ___</span></div>
+</div>
+
+<p class="page-label">Лист 2 — ответы (обратная сторона, ячейки в каждом ряду зеркальны — для совпадения при печати)</p>
+<div class="grid p2">
+  <div class="cell is"><span class="form">he is</span><span class="short">= he's</span><span class="why">один → is</span></div>
+  <div class="cell are"><span class="form">you are</span><span class="short">= you're</span><span class="why">you — всегда are</span></div>
+  <div class="cell am"><span class="form">I am</span><span class="short">= I'm</span><span class="why">am — только с I</span></div>
+
+  <div class="cell are"><span class="form">we are</span><span class="short">= we're</span><span class="why">много → are</span></div>
+  <div class="cell is"><span class="form">it is</span><span class="short">= it's</span><span class="why">один предмет → is</span></div>
+  <div class="cell is"><span class="form">she is</span><span class="short">= she's</span><span class="why">одна → is</span></div>
+
+  <div class="cell are"><span class="form">Harry and Nic are</span><span class="why">двое → they → are</span></div>
+  <div class="cell is"><span class="form">Harry is</span><span class="why">один → he → is</span></div>
+  <div class="cell are"><span class="form">they are</span><span class="short">= they're</span><span class="why">много → are</span></div>
+
+  <div class="cell is"><span class="form">the cat is</span><span class="why">один → it → is</span></div>
+  <div class="cell are"><span class="form">my friends are</span><span class="why">хвостик -s: много → are</span></div>
+  <div class="cell is"><span class="form">my mum is</span><span class="why">одна → she → is</span></div>
+
+  <div class="cell is"><span class="form">Almaty is</span><span class="why">один город → it → is</span></div>
+  <div class="cell are"><span class="form">Katie and I are</span><span class="why">я и Katie → we → are</span></div>
+  <div class="cell are"><span class="form">the cats are</span><span class="why">хвостик -s: много → are</span></div>
+
+  <div class="cell are"><span class="form">people are</span><span class="why">люди — много, хоть и без -s</span></div>
+  <div class="cell are"><span class="form">the children are</span><span class="why">дети — много, хоть и без -s</span></div>
+  <div class="cell are"><span class="form">London and Tokyo are</span><span class="why">два города → they → are</span></div>
+
+  <div class="cell is"><span class="form">this book is</span><span class="why">одна книга → it → is</span></div>
+  <div class="cell are"><span class="form">you and your sister are</span><span class="why">вы двое → you → are</span></div>
+  <div class="cell is"><span class="form">my brother is</span><span class="why">один → he → is</span></div>
+</div>
+
+</body>
+</html>

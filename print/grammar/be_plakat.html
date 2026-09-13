@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Плакат — глагол be (am / is / are)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #24304a; --soft: #56627a; --faint: #8a95aa;
+    --red: #d3564d; --red-bg: #fbe4e1;
+    --line: #aecdea; --line-soft: #e6eff8;
+    --am: #a8561f; --am-bg: #f8e3d3;
+    --is: #2f7d4f; --is-bg: #dff1e5;
+    --are: #2a64a3; --are-bg: #dde9f7;
+    --good: #2f7d4f; --bad: #c0463c;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #eceae3; color: var(--ink); font-family: 'PT Sans', Arial, sans-serif; line-height: 1.35; padding: 16px; }
+  .poster { width: 210mm; min-height: 297mm; max-width: 100%; margin: 0 auto; background: #fff; padding: 9mm 11mm 6mm; box-shadow: 0 4px 18px rgba(0,0,0,.18); }
+  .top { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; border-bottom: 3px solid var(--red); padding-bottom: 6px; margin-bottom: 10px; }
+  h1 { font-family: 'Caveat', cursive; font-size: 60px; line-height: 0.9; margin: 0; white-space: nowrap; }
+  h1 .forms { font-size: 44px; }
+  .top .sub { font-size: 15px; color: var(--soft); text-align: right; }
+  .top .sub b { color: var(--ink); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+  .box { border: 1.5px solid var(--line); border-radius: 8px; padding: 11px 14px 13px; }
+  .box.wide { grid-column: 1 / -1; }
+  h2 { font-family: 'Caveat', cursive; font-size: 33px; line-height: 1; margin: 0 0 8px; }
+  h2 .n { display: inline-block; width: 30px; height: 30px; border-radius: 50%; background: var(--red); color: #fff; font-family: 'PT Sans', sans-serif; font-size: 17px; text-align: center; line-height: 30px; margin-right: 6px; vertical-align: 3px; }
+  p { margin: 5px 0; font-size: 16px; }
+  .src { font-family: 'PT Sans', sans-serif; font-size: 12px; color: var(--faint); font-weight: 400; }
+  .ex { font-style: italic; }
+  table { border-collapse: collapse; width: 100%; font-size: 16px; margin: 5px 0; }
+  th, td { border: 1px solid var(--line); padding: 4px 8px; white-space: nowrap; text-align: left; vertical-align: top; }
+  th { background: var(--line-soft); font-size: 14.5px; }
+  .c-am { color: var(--am); font-weight: 700; }
+  .c-is { color: var(--is); font-weight: 700; }
+  .c-are { color: var(--are); font-weight: 700; }
+  .q { display: inline-block; border: 2px dashed var(--red); border-radius: 5px; padding: 0 5px; color: var(--red); font-weight: 700; line-height: 1.1; }
+  .pairs { display: grid; grid-template-columns: auto auto; gap: 3px 12px; font-size: 16px; margin: 6px 0; justify-content: start; }
+  .pairs .ru { color: var(--soft); }
+  .check { display: flex; flex-wrap: wrap; gap: 6px 8px; margin-top: 6px; }
+  .check > span { font-size: 14.5px; border: 1px solid var(--line); border-radius: 12px; padding: 2px 10px; }
+  .num { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
+  .col { border-radius: 6px; padding: 8px 12px 10px; border-top: 6px solid; }
+  .col.is { background: var(--is-bg); border-color: var(--is); }
+  .col.are { background: var(--are-bg); border-color: var(--are); }
+  .col .big { font-size: 34px; font-weight: 700; line-height: 1; }
+  .col.is .big { color: var(--is); }
+  .col.are .big { color: var(--are); }
+  .col .when { font-size: 15.5px; font-weight: 700; margin: 3px 0 5px; }
+  .col .w { font-size: 16px; line-height: 1.5; }
+  .more { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; margin-top: 9px; font-size: 15.5px; }
+  .more div::before { content: "• "; color: var(--red); font-weight: 700; }
+  .tip { margin-top: 8px; font-size: 15px; border: 1.5px dashed var(--red); border-radius: 6px; padding: 5px 12px; }
+  .mist { list-style: none; margin: 2px 0 0; padding: 0; font-size: 15.5px; line-height: 1.3; }
+  .mist li { margin-bottom: 2px; }
+  .no { color: var(--bad); text-decoration: line-through; }
+  .yes { color: var(--good); font-weight: 700; }
+  .foot { margin-top: 6px; font-size: 12px; color: var(--faint); display: flex; justify-content: space-between; gap: 10px; }
+  @media (max-width: 600px) {
+    .grid, .num, .more { grid-template-columns: 1fr; }
+    .poster { padding: 16px; min-height: 0; }
+    h1 { white-space: normal; }
+  }
+  @media print {
+    @page { size: A4; margin: 10mm; }
+    body { background: #fff !important; padding: 0; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+    .poster, .page { zoom: 0.88; box-shadow: none !important; }
+    .poster *, .page * { box-shadow: none !important; }
+    .poster { width: auto; min-height: 0; margin: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <div class="top">
+    <h1>Глагол be <span class="forms">am / is / are</span></h1>
+    <div class="sub"><b>быть · являться · находиться</b><br>English Plus 5 · Unit 1–2<br>стр. 5, 7, 15, 17</div>
+  </div>
+
+  <div class="grid">
+
+    <div class="box">
+      <h2><span class="n">1</span>Зачем нужен be? <span class="src">✏️</span></h2>
+      <p>В русском глагола может не быть, <b>в английском — нельзя</b>. Ставим am / is / are:</p>
+      <div class="pairs">
+        <span class="ru">Я <span class="q">?</span> красивая.</span><span>I <span class="c-am">am</span> beautiful.</span>
+        <span class="ru">Мне <span class="q">?</span> 10 лет.</span><span>I <span class="c-am">am</span> ten.</span>
+        <span class="ru">Кошка <span class="q">?</span> на столе.</span><span>The cat <span class="c-is">is</span> on the table.</span>
+      </div>
+      <p style="font-size:15px">Кто · какой · сколько лет · откуда · где</p>
+    </div>
+
+    <div class="box">
+      <h2><span class="n">2</span>am, is или are? <span class="src">📖 стр. 5, 7</span></h2>
+      <table>
+        <tr><td>I <span class="c-am">am</span></td><td>I'm</td></tr>
+        <tr><td>he / she / it <span class="c-is">is</span></td><td>he's · she's · it's</td></tr>
+        <tr><td>we / you / they <span class="c-are">are</span></td><td>we're · you're · they're</td></tr>
+      </table>
+      <p><b>Проверка</b> <span class="src">✏️</span> — замени на местоимение:</p>
+      <div class="check">
+        <span>Harry → <b>he</b> → <span class="c-is">is</span></span>
+        <span>Harry and Nic → <b>they</b> → <span class="c-are">are</span></span>
+      </div>
+    </div>
+
+    <div class="box wide">
+      <h2><span class="n">3</span>Один или много? <span class="src">✏️ + 📖 стр. 7, 15</span></h2>
+      <div class="num">
+        <div class="col is">
+          <div class="big">is</div>
+          <div class="when">один человек или предмет</div>
+          <div class="w">My friend <span class="c-is">is</span> ten.<br>The cat <span class="c-is">is</span> black.<br>Almaty <span class="c-is">is</span> a city.</div>
+        </div>
+        <div class="col are">
+          <div class="big">are</div>
+          <div class="when">много — два и больше</div>
+          <div class="w">My friend<b>s</b> <span class="c-are">are</span> ten.<br>The cat<b>s</b> <span class="c-are">are</span> black.<br>London <b>and</b> Tokyo <span class="c-are">are</span> capitals.</div>
+        </div>
+      </div>
+      <div class="more">
+        <div><b>два через and</b> → are: <span class="ex">Harry and Nic are friends.</span></div>
+        <div><b>я и кто-то = we</b> → are: <span class="ex">Katie and I are in the club.</span></div>
+        <div><b>you</b> (ты и вы) → всегда <span class="c-are">are</span></div>
+        <div><b>children, people</b> — много без -s → <span class="c-are">are</span></div>
+      </div>
+      <div class="tip">💡 У существительного хвостик <b>-s</b> (friend<b>s</b>, cat<b>s</b>) → много → <span class="c-are">are</span>. Нет хвостика → один → <span class="c-is">is</span>.</div>
+    </div>
+
+    <div class="box">
+      <h2><span class="n">4</span>Отрицание <span class="src">📖 стр. 15</span></h2>
+      <table>
+        <tr><td>I am not</td><td><b>I'm not</b></td></tr>
+        <tr><td>he / she / it is not</td><td><b>isn't</b></td></tr>
+        <tr><td>we / you / they are not</td><td><b>aren't</b></td></tr>
+      </table>
+      <p><span class="ex">Harry isn't at school. · My friends aren't here.</span></p>
+    </div>
+
+    <div class="box">
+      <h2><span class="n">5</span>Вопрос и ответ <span class="src">📖 стр. 17</span></h2>
+      <p>am / is / are — <b>в начало</b>:</p>
+      <table>
+        <tr><td><b>Are</b> you OK?</td><td>Yes, I am. / No, I'm not.</td></tr>
+        <tr><td><b>Is</b> he ten?</td><td>Yes, he is. / No, he isn't.</td></tr>
+        <tr><td><b>Are</b> they OK?</td><td>Yes, they are. / No, they aren't.</td></tr>
+      </table>
+      <p><span class="ex">Where <b>are</b> you from? · How old <b>are</b> you?</span></p>
+    </div>
+
+    <div class="box">
+      <h2><span class="n">6</span>be или другой глагол? <span class="src">✏️</span></h2>
+      <p>Есть глагол-действие (play, like, go) — <b>am / is / are не нужен</b>:</p>
+      <p><span class="no">I am play football.</span><br>→ <span class="yes">I play football.</span></p>
+      <p>Нет другого глагола — нужен: <span class="yes">I am a student.</span></p>
+    </div>
+
+    <div class="box">
+      <h2><span class="n">7</span>Не ошибись! <span class="src">✏️</span></h2>
+      <ul class="mist">
+        <li><span class="no">I beautiful</span> → <span class="yes">I am beautiful</span></li>
+        <li><span class="no">I have ten years</span> → <span class="yes">I am ten</span></li>
+        <li><span class="no">My friends is</span> → <span class="yes">My friends are</span></li>
+        <li><span class="no">You is</span> → <span class="yes">You are</span></li>
+        <li><span class="no">Is you OK?</span> → <span class="yes">Are you OK?</span></li>
+        <li><span class="no">Yes, I'm.</span> → <span class="yes">Yes, I am.</span></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="foot">
+    <span>📖 — из учебника English Plus 5 · ✏️ — объяснение и примеры добавлены для понятности</span>
+    <span>домашняя тетрадь · грамматика</span>
+  </div>
+</div>
+</body>
+</html>
