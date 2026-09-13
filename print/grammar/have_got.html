@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Печать карточек — have got / has got</title>
+<style>
+  body {
+    font-family: 'PT Sans', Arial, sans-serif;
+    color: #222;
+    max-width: 800px;
+    margin: 20px auto;
+  }
+  .instructions {
+    background: #f2f5fa;
+    border: 1px solid #c7d3e3;
+    border-radius: 6px;
+    padding: 14px 18px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .instructions b { color: #1a3a66; }
+  .page-label {
+    font-size: 13px;
+    color: #888;
+    margin: 26px 0 6px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 26mm;
+    border: 1px solid #333; }
+  .grid.p2 { page-break-before: always; padding-top: 20px; }
+  .cell {
+    border: 1px dashed #999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    text-align: center;
+    padding: 4px 6px;
+  }
+  .cell .word { font-size: 16px; font-weight: bold; line-height: 1.25; }
+  .cell .form { font-size: 18px; font-weight: bold; }
+  .cell .sent { font-size: 12px; color: #333; line-height: 1.2; }
+  .cell .why { font-size: 11px; color: #555; margin-top: 2px; }
+  .cell.has { background: #e6f4ea; }
+  .cell.have { background: #e3edf8; }
+  @media print {
+    .instructions { display: none; }
+    .page-label { display: none; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="instructions">
+  <p><b>Если принтер печатает с двух сторон (дуплекс):</b> в диалоге печати
+  включите "Печать на двух сторонах" / "Two-sided" и переплёт по
+  <b>длинному краю</b>. Тогда предложение и ответ сразу окажутся на разных
+  сторонах одной карточки. Разрежьте лист по пунктирным линиям — получится
+  21 двусторонняя карточка.</p>
+  <p><b>Если принтер печатает только с одной стороны:</b> напечатайте
+  первый лист (предложения с пропуском), затем переверните эту же стопку листов и
+  вставьте обратно в лоток, чтобы напечатать второй лист (ответы) на
+  обратной стороне. Направление переворота зависит от принтера — лучше
+  сначала попробовать на одном листе и проверить, совпали ли стороны
+  одной карточки, прежде чем печатать весь тираж.</p>
+  <p><b>Как играть:</b> ребёнок читает предложение, говорит have got или has got
+  и переворачивает карточку. Цвет обратной стороны: зелёный — has got (один:
+  he / she / it), синий — have got (I, you и много). На чёрно-белом принтере
+  ответ всё равно подписан на карточке.</p>
+</div>
+
+<p class="page-label">Лист 1 — предложения с пропуском (лицевая сторона)</p>
+<div class="grid">
+  <div class="cell"><span class="word">I ___ a cat.</span></div>
+  <div class="cell"><span class="word">You ___ a big bedroom.</span></div>
+  <div class="cell"><span class="word">He ___ a bike.</span></div>
+
+  <div class="cell"><span class="word">She ___ long hair.</span></div>
+  <div class="cell"><span class="word">It ___ four legs.</span></div>
+  <div class="cell"><span class="word">We ___ English every day.</span></div>
+
+  <div class="cell"><span class="word">They ___ a big house.</span></div>
+  <div class="cell"><span class="word">Harry ___ a dog.</span></div>
+  <div class="cell"><span class="word">Harry and Nic ___ bikes.</span></div>
+
+  <div class="cell"><span class="word">My mum ___ blue eyes.</span></div>
+  <div class="cell"><span class="word">My parents ___ a car.</span></div>
+  <div class="cell"><span class="word">The cat ___ green eyes.</span></div>
+
+  <div class="cell"><span class="word">The cats ___ long tails.</span></div>
+  <div class="cell"><span class="word">Katie and I ___ new phones.</span></div>
+  <div class="cell"><span class="word">My brother ___ a computer.</span></div>
+
+  <div class="cell"><span class="word">My friends ___ mobile phones.</span></div>
+  <div class="cell"><span class="word">The children ___ a ball.</span></div>
+  <div class="cell"><span class="word">Aliya ___ two sisters.</span></div>
+
+  <div class="cell"><span class="word">You and your sister ___ a dog.</span></div>
+  <div class="cell"><span class="word">My grandmother ___ a Ferrari.</span></div>
+  <div class="cell"><span class="word">Our house ___ a garden.</span></div>
+</div>
+
+<p class="page-label">Лист 2 — ответы (обратная сторона, ячейки в каждом ряду зеркальны — для совпадения при печати)</p>
+<div class="grid p2">
+  <div class="cell has"><span class="form">has got</span><span class="sent">He has got a bike.</span><span class="why">= he's got · he → has got</span></div>
+  <div class="cell have"><span class="form">have got</span><span class="sent">You have got a big bedroom.</span><span class="why">= you've got · you → have got</span></div>
+  <div class="cell have"><span class="form">have got</span><span class="sent">I have got a cat.</span><span class="why">= I've got · I → have got</span></div>
+
+  <div class="cell have"><span class="form">have got</span><span class="sent">We have got English every day.</span><span class="why">= we've got · we → have got</span></div>
+  <div class="cell has"><span class="form">has got</span><span class="sent">It has got four legs.</span><span class="why">= it's got · it → has got</span></div>
+  <div class="cell has"><span class="form">has got</span><span class="sent">She has got long hair.</span><span class="why">= she's got · she → has got</span></div>
+
+  <div class="cell have"><span class="form">have got</span><span class="sent">Harry and Nic have got bikes.</span><span class="why">двое → they → have got</span></div>
+  <div class="cell has"><span class="form">has got</span><span class="sent">Harry has got a dog.</span><span class="why">один → he → has got</span></div>
+  <div class="cell have"><span class="form">have got</span><span class="sent">They have got a big house.</span><span class="why">= they've got · they → have got</span></div>
+
+  <div class="cell has"><span class="form">has got</span><span class="sent">The cat has got green eyes.</span><span class="why">один → it → has got</span></div>
+  <div class="cell have"><span class="form">have got</span><span class="sent">My parents have got a car.</span><span class="why">много → they → have got</span></div>
+  <div class="cell has"><span class="form">has got</span><span class="sent">My mum has got blue eyes.</span><span class="why">одна → she → has got</span></div>
+
+  <div class="cell has"><span class="form">has got</span><span class="sent">My brother has got a computer.</span><span class="why">один → he → has got</span></div>
+  <div class="cell have"><span class="form">have got</span><span class="sent">Katie and I have got new phones.</span><span class="why">я и Katie → we → have got</span></div>
+  <div class="cell have"><span class="form">have got</span><span class="sent">The cats have got long tails.</span><span class="why">хвостик -s: много → have got</span></div>
+
+  <div class="cell has"><span class="form">has got</span><span class="sent">Aliya has got two sisters.</span><span class="why">одна → she → has got</span></div>
+  <div class="cell have"><span class="form">have got</span><span class="sent">The children have got a ball.</span><span class="why">дети — много, хоть и без -s</span></div>
+  <div class="cell have"><span class="form">have got</span><span class="sent">My friends have got mobile phones.</span><span class="why">хвостик -s: много → have got</span></div>
+
+  <div class="cell has"><span class="form">has got</span><span class="sent">Our house has got a garden.</span><span class="why">один дом → it → has got</span></div>
+  <div class="cell has"><span class="form">has got</span><span class="sent">My grandmother has got a Ferrari.</span><span class="why">одна → she → has got</span></div>
+  <div class="cell have"><span class="form">have got</span><span class="sent">You and your sister have got a dog.</span><span class="why">вы двое → you → have got</span></div>
+</div>
+
+</body>
+</html>
