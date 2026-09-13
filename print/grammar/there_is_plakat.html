@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Плакат — there is / there are</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #24304a; --soft: #56627a; --faint: #8a95aa;
+    --red: #d3564d; --red-bg: #fbe4e1;
+    --line: #aecdea; --line-soft: #e6eff8;
+    --is: #2f7d4f; --is-bg: #dff1e5;
+    --are: #2a64a3; --are-bg: #dde9f7;
+    --not: #a8561f; --not-bg: #f8e3d3;
+    --good: #2f7d4f; --bad: #c0463c;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #eceae3; color: var(--ink); font-family: 'PT Sans', Arial, sans-serif; line-height: 1.35; padding: 16px; }
+  .poster { width: 210mm; min-height: 297mm; max-width: 100%; margin: 0 auto; background: #fff; padding: 9mm 11mm 6mm; box-shadow: 0 4px 18px rgba(0,0,0,.18); }
+  .top { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; border-bottom: 3px solid var(--red); padding-bottom: 6px; margin-bottom: 10px; }
+  h1 { font-family: 'Caveat', cursive; font-size: 60px; line-height: 0.9; margin: 0; white-space: nowrap; }
+  .top .sub { font-size: 15px; color: var(--soft); text-align: right; }
+  .top .sub b { color: var(--ink); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+  .box { border: 1.5px solid var(--line); border-radius: 8px; padding: 11px 14px 13px; }
+  .box.wide { grid-column: 1 / -1; }
+  h2 { font-family: 'Caveat', cursive; font-size: 33px; line-height: 1; margin: 0 0 8px; }
+  h2 .n { display: inline-block; width: 30px; height: 30px; border-radius: 50%; background: var(--red); color: #fff; font-family: 'PT Sans', sans-serif; font-size: 17px; text-align: center; line-height: 30px; margin-right: 6px; vertical-align: 3px; }
+  .u { display: inline-block; font-family: 'PT Sans', sans-serif; font-size: 12px; font-weight: 700; color: var(--red); border: 1.5px solid var(--red); border-radius: 9px; padding: 0 6px; vertical-align: 5px; line-height: 1.4; }
+  p { margin: 5px 0; font-size: 16px; }
+  .src { font-family: 'PT Sans', sans-serif; font-size: 12px; color: var(--faint); font-weight: 400; }
+  .ex { font-style: italic; }
+  table { border-collapse: collapse; width: 100%; font-size: 16px; margin: 5px 0; }
+  th, td { border: 1px solid var(--line); padding: 4px 8px; white-space: nowrap; text-align: left; vertical-align: top; }
+  .c-is { color: var(--is); font-weight: 700; }
+  .c-are { color: var(--are); font-weight: 700; }
+  .pairs { display: grid; grid-template-columns: auto auto; gap: 3px 12px; font-size: 16px; margin: 6px 0; justify-content: start; }
+  .pairs .ru { color: var(--soft); }
+  .order { display: flex; align-items: center; gap: 5px; margin: 6px 0 2px; font-size: 16px; font-weight: 700; flex-wrap: wrap; }
+  .order .part { border: 2px solid var(--line); border-radius: 7px; padding: 1px 8px; }
+  .order .part.t { border-color: var(--red); }
+  .cols3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 4px; }
+  .col { border-radius: 6px; padding: 8px 12px 10px; border-top: 6px solid; }
+  .col.is { background: var(--is-bg); border-color: var(--is); }
+  .col.are { background: var(--are-bg); border-color: var(--are); }
+  .col.not { background: var(--not-bg); border-color: var(--not); }
+  .col .big { font-size: 26px; font-weight: 700; line-height: 1.05; }
+  .col.is .big { color: var(--is); }
+  .col.are .big { color: var(--are); }
+  .col.not .big { color: var(--not); }
+  .col .when { font-size: 15px; font-weight: 700; margin: 3px 0 5px; }
+  .col .w { font-size: 16px; line-height: 1.5; }
+  .tip { margin-top: 9px; font-size: 15.5px; border: 1.5px dashed var(--red); border-radius: 6px; padding: 5px 12px; }
+  .cmp { display: grid; grid-template-columns: auto auto; gap: 3px 10px; font-size: 15.5px; justify-content: start; }
+  .cmp .ru { color: var(--soft); }
+  .mist { list-style: none; margin: 2px 0 0; padding: 0; font-size: 15.5px; line-height: 1.3; }
+  .mist li { margin-bottom: 2px; }
+  .no { color: var(--bad); text-decoration: line-through; }
+  .yes { color: var(--good); font-weight: 700; }
+  .foot { margin-top: 6px; font-size: 12px; color: var(--faint); display: flex; justify-content: space-between; gap: 10px; }
+  @media (max-width: 600px) {
+    .grid, .cols3 { grid-template-columns: 1fr; }
+    .poster { padding: 16px; min-height: 0; }
+    h1 { white-space: normal; }
+    th, td { white-space: normal; }
+  }
+  @media print {
+    @page { size: A4; margin: 10mm; }
+    body { background: #fff !important; padding: 0; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+    .poster, .page { zoom: 0.88; box-shadow: none !important; }
+    .poster *, .page * { box-shadow: none !important; }
+    .poster { width: auto; min-height: 0; margin: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <div class="top">
+    <h1>there is / there are</h1>
+    <div class="sub"><b>«есть, находится»</b><br>English Plus 5 · Unit 1 (стр. 9)<br>Unit 3 (стр. 29, 31)</div>
+  </div>
+
+  <div class="grid">
+
+    <div class="box">
+      <h2><span class="n">1</span>Что значит? <span class="u">U1</span> <span class="src">✏️</span></h2>
+      <div class="pairs">
+        <span class="ru">На столе книга.</span><span><span class="c-is">There is</span> a book on the table.</span>
+        <span class="ru">В классе 7 мальчиков.</span><span><span class="c-are">There are</span> seven boys.</span>
+      </div>
+      <p><b>Порядок слов:</b></p>
+      <div class="order"><span class="part t">There is / are</span>+<span class="part">что?</span>+<span class="part">где?</span></div>
+      <p style="font-size:15px"><span class="no">On the table is a book.</span></p>
+    </div>
+
+    <div class="box">
+      <h2><span class="n">2</span>is или are? <span class="u">U1</span> <span class="src">📖 стр. 9</span></h2>
+      <table>
+        <tr><td>один</td><td><span class="c-is">There is</span> = There's a teacher.</td></tr>
+        <tr><td>много</td><td><span class="c-are">There are</span> seven boys.</td></tr>
+      </table>
+      <p><b>Считаем</b> — число: <span class="ex">There's one computer.</span></p>
+      <p><b>Не считаем:</b> <b>a / an</b> — один · <b>some</b> — несколько · <b>a lot of</b> — много</p>
+      <p style="font-size:15px"><span class="ex">There are some posters. · There are a lot of books.</span></p>
+    </div>
+
+    <div class="box wide">
+      <h2><span class="n">3</span>Один, много или нет? <span class="u">U1</span> <span class="u">U3</span> <span class="src">📖 стр. 9, 29</span></h2>
+      <div class="cols3">
+        <div class="col is">
+          <div class="big">There's a…</div>
+          <div class="when">один</div>
+          <div class="w">There's a park.<br>There's an interesting shop.</div>
+        </div>
+        <div class="col are">
+          <div class="big">There are some…</div>
+          <div class="when">много</div>
+          <div class="w">There are two restaurants.<br>There are some museums.</div>
+        </div>
+        <div class="col not">
+          <div class="big">isn't a / aren't any</div>
+          <div class="when">нет (Unit 3)</div>
+          <div class="w">There isn't a park.<br>There aren't any shops.</div>
+        </div>
+      </div>
+      <div class="tip">💡 <b>some</b> — в утверждении · <b>any</b> — в отрицании и вопросе. <span class="src">📖 стр. 29, 31</span> &nbsp; <span class="no">There aren't some shops.</span></div>
+    </div>
+
+    <div class="box">
+      <h2><span class="n">4</span>Вопрос и ответ <span class="u">U3</span> <span class="src">📖 стр. 31</span></h2>
+      <table>
+        <tr><td><b>Is there</b> a cinema?</td><td>Yes, there is. / No, there isn't.</td></tr>
+        <tr><td><b>Are there any</b> cafés?</td><td>Yes, there are. / No, there aren't.</td></tr>
+      </table>
+      <p><span class="ex">How many shops <b>are there</b>? — Two thousand.</span></p>
+    </div>
+
+    <div class="box">
+      <h2><span class="n">5</span>Где или у кого? <span class="src">✏️</span></h2>
+      <div class="cmp">
+        <span class="ru"><b>Где</b> есть? В комнате кошка.</span><span class="yes">There is a cat in the room.</span>
+        <span class="ru"><b>У кого</b> есть? У меня кошка.</span><span class="yes">I have got a cat.</span>
+      </div>
+      <p style="font-size:15px">где → there is / are · у кого → have got / has got</p>
+    </div>
+
+    <div class="box wide">
+      <h2><span class="n">6</span>Не ошибись! <span class="src">✏️</span></h2>
+      <div class="cols3" style="gap:4px 16px;grid-template-columns:1fr 1fr">
+        <ul class="mist">
+          <li><span class="no">There are a book.</span> → <span class="yes">There is a book.</span></li>
+          <li><span class="no">There is two cats.</span> → <span class="yes">There are two cats.</span></li>
+        </ul>
+        <ul class="mist">
+          <li><span class="no">There are some poster.</span> → <span class="yes">posters</span></li>
+          <li><span class="no">Is there any cafés?</span> → <span class="yes">Are there…</span></li>
+        </ul>
+        <ul class="mist">
+          <li><span class="no">Yes, there's.</span> → <span class="yes">Yes, there is.</span></li>
+          <li><span class="no">There is a cat at me.</span> → <span class="yes">I have got a cat.</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="foot">
+    <span>📖 — из учебника English Plus 5 · ✏️ — объяснение и примеры добавлены для понятности · U1 / U3 — в каком юните учат</span>
+    <span style="white-space:nowrap">домашняя тетрадь</span>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Печать карточек — there is / there are</title>
+<style>
+  body {
+    font-family: 'PT Sans', Arial, sans-serif;
+    color: #222;
+    max-width: 800px;
+    margin: 20px auto;
+  }
+  .instructions {
+    background: #f2f5fa;
+    border: 1px solid #c7d3e3;
+    border-radius: 6px;
+    padding: 14px 18px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .instructions b { color: #1a3a66; }
+  .page-label {
+    font-size: 13px;
+    color: #888;
+    margin: 26px 0 6px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 26mm;
+    border: 1px solid #333; }
+  .grid.p2 { page-break-before: always; padding-top: 20px; }
+  .cell {
+    border: 1px dashed #999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    text-align: center;
+    padding: 4px 6px;
+  }
+  .cell .word { font-size: 16px; font-weight: bold; line-height: 1.25; }
+  .cell .form { font-size: 18px; font-weight: bold; }
+  .cell .sent { font-size: 12px; color: #333; line-height: 1.2; }
+  .cell .why { font-size: 11px; color: #555; margin-top: 2px; }
+  .cell.is { background: #e6f4ea; }
+  .cell.are { background: #e3edf8; }
+  @media print {
+    .instructions { display: none; }
+    .page-label { display: none; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="instructions">
+  <p><b>Если принтер печатает с двух сторон (дуплекс):</b> в диалоге печати
+  включите "Печать на двух сторонах" / "Two-sided" и переплёт по
+  <b>длинному краю</b>. Тогда предложение и ответ сразу окажутся на разных
+  сторонах одной карточки. Разрежьте лист по пунктирным линиям — получится
+  21 двусторонняя карточка.</p>
+  <p><b>Если принтер печатает только с одной стороны:</b> напечатайте
+  первый лист (предложения с пропуском), затем переверните эту же стопку листов и
+  вставьте обратно в лоток, чтобы напечатать второй лист (ответы) на
+  обратной стороне. Направление переворота зависит от принтера — лучше
+  сначала попробовать на одном листе и проверить, совпали ли стороны
+  одной карточки, прежде чем печатать весь тираж.</p>
+  <p><b>Как играть:</b> ребёнок читает предложение, говорит There is или There are
+  и переворачивает карточку. Цвет обратной стороны: зелёный — there is (один),
+  синий — there are (много). На чёрно-белом принтере ответ всё равно подписан.
+  Карточки — для Unit 1.</p>
+</div>
+
+<p class="page-label">Лист 1 — предложения с пропуском (лицевая сторона)</p>
+<div class="grid">
+  <div class="cell"><span class="word">___ a cat on the sofa.</span></div>
+  <div class="cell"><span class="word">___ two cats on the sofa.</span></div>
+  <div class="cell"><span class="word">___ a teacher in the class.</span></div>
+
+  <div class="cell"><span class="word">___ seven boys in the class.</span></div>
+  <div class="cell"><span class="word">___ some posters on the wall.</span></div>
+  <div class="cell"><span class="word">___ a lot of books in my bag.</span></div>
+
+  <div class="cell"><span class="word">___ one computer in the room.</span></div>
+  <div class="cell"><span class="word">___ an apple in my bag.</span></div>
+  <div class="cell"><span class="word">___ some children in the park.</span></div>
+
+  <div class="cell"><span class="word">___ a lot of people in Almaty.</span></div>
+  <div class="cell"><span class="word">___ a park near my house.</span></div>
+  <div class="cell"><span class="word">___ three bedrooms in our flat.</span></div>
+
+  <div class="cell"><span class="word">___ a big shop in our town.</span></div>
+  <div class="cell"><span class="word">___ some museums in London.</span></div>
+  <div class="cell"><span class="word">___ a dog in the garden.</span></div>
+
+  <div class="cell"><span class="word">___ twenty students in my class.</span></div>
+  <div class="cell"><span class="word">___ a clock on the wall.</span></div>
+  <div class="cell"><span class="word">___ some pens on the desk.</span></div>
+
+  <div class="cell"><span class="word">___ a café opposite the school.</span></div>
+  <div class="cell"><span class="word">___ a lot of cars in New York.</span></div>
+  <div class="cell"><span class="word">___ a bus stop near the school.</span></div>
+</div>
+
+<p class="page-label">Лист 2 — ответы (обратная сторона, ячейки в каждом ряду зеркальны — для совпадения при печати)</p>
+<div class="grid p2">
+  <div class="cell is"><span class="form">There is</span><span class="sent">There is a teacher in the class.</span><span class="why">a teacher — один</span></div>
+  <div class="cell are"><span class="form">There are</span><span class="sent">There are two cats on the sofa.</span><span class="why">two cats — много</span></div>
+  <div class="cell is"><span class="form">There is</span><span class="sent">There is a cat on the sofa.</span><span class="why">a cat — один</span></div>
+
+  <div class="cell are"><span class="form">There are</span><span class="sent">There are a lot of books in my bag.</span><span class="why">a lot of books — много</span></div>
+  <div class="cell are"><span class="form">There are</span><span class="sent">There are some posters on the wall.</span><span class="why">some posters — несколько</span></div>
+  <div class="cell are"><span class="form">There are</span><span class="sent">There are seven boys in the class.</span><span class="why">seven boys — много</span></div>
+
+  <div class="cell are"><span class="form">There are</span><span class="sent">There are some children in the park.</span><span class="why">children — много, хоть и без -s</span></div>
+  <div class="cell is"><span class="form">There is</span><span class="sent">There is an apple in my bag.</span><span class="why">an apple — одно</span></div>
+  <div class="cell is"><span class="form">There is</span><span class="sent">There is one computer in the room.</span><span class="why">one — один</span></div>
+
+  <div class="cell are"><span class="form">There are</span><span class="sent">There are three bedrooms in our flat.</span><span class="why">three — много</span></div>
+  <div class="cell is"><span class="form">There is</span><span class="sent">There is a park near my house.</span><span class="why">a park — один</span></div>
+  <div class="cell are"><span class="form">There are</span><span class="sent">There are a lot of people in Almaty.</span><span class="why">people — много, хоть и без -s</span></div>
+
+  <div class="cell is"><span class="form">There is</span><span class="sent">There is a dog in the garden.</span><span class="why">a dog — одна</span></div>
+  <div class="cell are"><span class="form">There are</span><span class="sent">There are some museums in London.</span><span class="why">some museums — несколько</span></div>
+  <div class="cell is"><span class="form">There is</span><span class="sent">There is a big shop in our town.</span><span class="why">a shop — один</span></div>
+
+  <div class="cell are"><span class="form">There are</span><span class="sent">There are some pens on the desk.</span><span class="why">some pens — несколько</span></div>
+  <div class="cell is"><span class="form">There is</span><span class="sent">There is a clock on the wall.</span><span class="why">a clock — один предмет</span></div>
+  <div class="cell are"><span class="form">There are</span><span class="sent">There are twenty students in my class.</span><span class="why">twenty — много</span></div>
+
+  <div class="cell is"><span class="form">There is</span><span class="sent">There is a bus stop near the school.</span><span class="why">a bus stop — одна</span></div>
+  <div class="cell are"><span class="form">There are</span><span class="sent">There are a lot of cars in New York.</span><span class="why">a lot of cars — много</span></div>
+  <div class="cell is"><span class="form">There is</span><span class="sent">There is a café opposite the school.</span><span class="why">a café — одно</span></div>
+</div>
+
+</body>
+</html>

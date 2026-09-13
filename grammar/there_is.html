@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>there is / there are</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #faf9f4; --paper-raised: #ffffff;
+    --rule: #aecdea; --rule-soft: #d7e6f5;
+    --margin: #d3564d; --margin-soft: #f1c3bf;
+    --ink: #24304a; --ink-soft: #647089; --ink-faint: #97a2b8;
+    --good: #3c8a5c; --good-bg: #dff1e5;
+    --bad: #c85a4f; --bad-bg: #fbe4e1;
+    --is: #3c8a5c; --is-bg: #dff1e5;
+    --are: #2f6fb0; --are-bg: #dde9f7;
+    --not: #b0602a; --not-bg: #f8e3d3;
+    --shadow: rgba(36, 48, 74, 0.14);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1b2431; --paper-raised: #232f3f;
+      --rule: #3c4d68; --rule-soft: #2a374a;
+      --margin: #e08078; --margin-soft: #4a3339;
+      --ink: #eceff5; --ink-soft: #a7b2c8; --ink-faint: #6d788e;
+      --good: #6fcb93; --good-bg: #23392c;
+      --bad: #e0847a; --bad-bg: #402b2a;
+      --is: #6fcb93; --is-bg: #23392c;
+      --are: #7fb3ea; --are-bg: #22324a;
+      --not: #eba674; --not-bg: #402f22;
+      --shadow: rgba(0, 0, 0, 0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1b2431; --paper-raised: #232f3f;
+    --rule: #3c4d68; --rule-soft: #2a374a;
+    --margin: #e08078; --margin-soft: #4a3339;
+    --ink: #eceff5; --ink-soft: #a7b2c8; --ink-faint: #6d788e;
+    --good: #6fcb93; --good-bg: #23392c;
+    --bad: #e0847a; --bad-bg: #402b2a;
+    --is: #6fcb93; --is-bg: #23392c;
+    --are: #7fb3ea; --are-bg: #22324a;
+    --not: #eba674; --not-bg: #402f22;
+    --shadow: rgba(0, 0, 0, 0.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: 'PT Sans', Arial, sans-serif; line-height: 1.5; -webkit-tap-highlight-color: transparent; }
+  h1, h2, h3, .hand { font-family: 'Caveat', 'Comic Sans MS', cursive; font-weight: 700; text-wrap: balance; }
+  .back-link { font-size: 13px; color: var(--ink-faint); text-decoration: none; margin-right: 14px; }
+  .back-link:hover { color: var(--margin); }
+  .sheet { max-width: 680px; margin: 0 auto; padding: 22px 20px 60px 44px; position: relative;
+    background-image: repeating-linear-gradient(to bottom, transparent, transparent 37px, var(--rule-soft) 38px);
+    background-position: 0 150px; }
+  .sheet::before { content: ""; position: absolute; top: 0; bottom: 0; left: 26px; width: 2px; background: var(--margin); opacity: 0.75; }
+  header.page { padding-top: 6px; padding-bottom: 10px; }
+  h1 { font-size: 42px; margin: 8px 0 2px; line-height: 1.1; }
+  .subtitle { font-size: 16px; color: var(--ink-soft); margin: 0 0 10px; }
+  .print-links { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; }
+  .print-links a { color: var(--margin); }
+  nav.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 20px; }
+  .tab { font-family: 'Caveat', cursive; font-size: 20px; font-weight: 600; background: var(--paper-raised); border: 1px solid var(--rule); border-bottom-width: 3px; color: var(--ink-soft); padding: 7px 16px 6px; border-radius: 8px 8px 4px 4px; cursor: pointer; box-shadow: 1px 2px 0 var(--shadow); }
+  .tab:nth-child(1) { transform: rotate(-1.2deg); }
+  .tab:nth-child(2) { transform: rotate(0.8deg); }
+  .tab:nth-child(3) { transform: rotate(-0.6deg); }
+  .tab[aria-selected="true"] { color: var(--paper); background: var(--margin); border-color: var(--margin); }
+  .tab:focus-visible, button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid var(--margin); outline-offset: 2px; }
+  section.page { display: none; }
+  section.page.active { display: block; }
+  .lead { font-size: 14px; color: var(--ink-soft); margin: 0 0 16px; }
+  .counter { font-family: 'Caveat', cursive; font-size: 21px; font-weight: 700; color: var(--margin); margin-bottom: 12px; }
+
+  /* Rule */
+  .legend { font-size: 12px; color: var(--ink-faint); margin: -6px 0 14px; }
+  .block { background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 6px; box-shadow: 2px 3px 0 var(--shadow); padding: 12px 16px 14px; margin-bottom: 18px; }
+  .block h2 { font-size: 27px; margin: 0 0 6px; line-height: 1.15; }
+  .block h2 .num { color: var(--margin); margin-right: 4px; }
+  .block p { margin: 6px 0; font-size: 15px; }
+  .block ul { margin: 6px 0; padding-left: 20px; font-size: 15px; }
+  .block li { margin-bottom: 3px; }
+  .block a { color: var(--margin); }
+  .src { font-size: 12px; color: var(--ink-faint); white-space: nowrap; }
+  .unit-tag { display: inline-block; font-family: 'Caveat', cursive; font-size: 17px; font-weight: 700; color: var(--margin); border: 1px solid var(--margin-soft); border-radius: 10px; padding: 0 8px; margin-left: 4px; vertical-align: 2px; line-height: 1.3; }
+  .ex { font-style: italic; }
+  .when-list { list-style: none; padding: 0 !important; }
+  .when-list li { display: flex; gap: 10px; align-items: baseline; padding: 4px 0; border-bottom: 1px dashed var(--rule-soft); }
+  .when-list li:last-child { border-bottom: none; }
+  .when-list .unit { font-family: 'Caveat', cursive; font-size: 19px; font-weight: 700; color: var(--margin); min-width: 104px; }
+  .table-wrap { overflow-x: auto; }
+  table.forms { border-collapse: collapse; margin: 8px 0; font-size: 15px; width: 100%; }
+  table.forms th, table.forms td { border: 1px solid var(--rule); padding: 6px 10px; text-align: left; vertical-align: top; }
+  table.forms th { background: var(--rule-soft); font-weight: 700; }
+  .c-is { color: var(--is); font-weight: 700; }
+  .c-are { color: var(--are); font-weight: 700; }
+  .c-not { color: var(--not); font-weight: 700; }
+  .ru-en { display: grid; grid-template-columns: auto auto; gap: 4px 14px; margin: 8px 0; font-size: 15px; justify-content: start; }
+  .ru-en .ru { color: var(--ink-soft); }
+  .order { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 10px 0; font-size: 16px; font-weight: 700; }
+  .order .part { border: 2px solid var(--rule); border-radius: 8px; padding: 3px 10px; background: var(--paper); }
+  .order .part.t { border-color: var(--margin); }
+  .words3 { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 8px; }
+  @media (min-width: 560px) { .words3 { grid-template-columns: 1fr 1fr 1fr; } }
+  .w-col { border-top: 5px solid; border-radius: 4px; padding: 8px 12px; font-size: 14.5px; }
+  .w-col.is { border-color: var(--is); background: var(--is-bg); }
+  .w-col.are { border-color: var(--are); background: var(--are-bg); }
+  .w-col.not { border-color: var(--not); background: var(--not-bg); }
+  .w-col .head { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .w-col ul { margin: 0; padding-left: 16px; font-size: 14.5px; }
+  .tip { border: 1.5px dashed var(--margin); border-radius: 6px; padding: 8px 12px; margin-top: 10px; font-size: 14.5px; }
+  .note { font-size: 14px; color: var(--ink-soft); margin-top: 6px; }
+  .mistakes { list-style: none; padding: 0 !important; }
+  .mistakes li { display: flex; flex-wrap: wrap; gap: 4px 12px; padding: 4px 0; }
+  .wrong { color: var(--bad); text-decoration: line-through; }
+  .right { color: var(--good); font-weight: 700; }
+
+  /* Cards */
+  .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  @media (min-width: 480px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+  .card { perspective: 800px; height: 104px; }
+  .card-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.45s cubic-bezier(.4,.2,.2,1); cursor: pointer; }
+  .card.flipped .card-inner { transform: rotateY(180deg); }
+  .card-face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; backface-visibility: hidden; border-radius: 6px; border: 1px solid var(--rule); background: var(--paper-raised); box-shadow: 2px 3px 0 var(--shadow); padding: 6px 8px; text-align: center; }
+  .card-face.back { transform: rotateY(180deg); }
+  .card-face.back.is { background: var(--is-bg); border-color: var(--is); }
+  .card-face.back.are { background: var(--are-bg); border-color: var(--are); }
+  .card-face .word { font-size: 16px; font-weight: 700; line-height: 1.25; }
+  .card-face .form { font-size: 15px; font-weight: 700; line-height: 1.25; }
+  .card-face .why { font-size: 12px; color: var(--ink-soft); line-height: 1.25; margin-top: 2px; }
+  .speak-btn { position: absolute; top: 3px; right: 3px; width: 22px; height: 22px; border-radius: 50%;
+    border: 1px solid var(--rule); background: var(--paper); color: var(--ink-soft); font-size: 12px;
+    line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+  .speak-btn:hover { border-color: var(--margin); color: var(--margin); }
+  @media (prefers-reduced-motion: reduce) { .card-inner { transition: none; } }
+
+  /* Trainer */
+  .ex-block { margin-bottom: 30px; }
+  .ex-block h2 { font-size: 27px; margin: 0 0 2px; }
+  .ex-block .lead { margin-bottom: 10px; }
+  .q { margin-bottom: 12px; }
+  .q-text { font-size: 16px; margin-bottom: 5px; }
+  .q-text .gap { display: inline-block; min-width: 64px; border-bottom: 2px solid var(--ink-faint); text-align: center; font-weight: 700; }
+  .q-text .gap.ok { border-bottom-color: var(--good); color: var(--good); }
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .opt { font-family: 'PT Sans', sans-serif; font-size: 15px; background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 5px; padding: 5px 14px; cursor: pointer; color: var(--ink); box-shadow: 1px 2px 0 var(--shadow); text-align: left; }
+  .opt:hover { border-color: var(--margin); }
+  .opt.ok { background: var(--good-bg); border-color: var(--good); color: var(--good); }
+  .opt.no { background: var(--bad-bg); border-color: var(--bad); color: var(--bad); }
+  .feedback { font-size: 14px; min-height: 1em; }
+  .feedback.good { color: var(--good); }
+  .feedback.bad { color: var(--bad); }
+  .reset-btn { font-family: 'Caveat', cursive; font-size: 17px; background: none; border: none; color: var(--ink-faint); text-decoration: underline; cursor: pointer; padding: 0; }
+  .reset-btn:hover { color: var(--margin); }
+  footer.page { margin-top: 30px; font-size: 12px; color: var(--ink-faint); }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="page">
+    <a class="back-link" href="../index.html">← ко всем урокам</a>
+    <a class="back-link" href="index.html">← все правила грамматики</a>
+    <h1>there is / there are</h1>
+    <p class="subtitle">«есть, находится» · Unit 1 и Unit 3</p>
+    <div class="print-links">
+      <a href="../print/grammar/there_is_plakat.html" target="_blank" rel="noopener">Плакат для печати (A4) →</a>
+      <a href="../print/grammar/there_is.html" target="_blank" rel="noopener">Карточки для печати →</a>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Разделы">
+    <button class="tab" role="tab" aria-selected="true" data-target="rule">Правило</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="cards">Карточки is / are</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="trainer">Тренажёр</button>
+  </nav>
+
+  <!-- ============ RULE ============ -->
+  <section class="page active" id="rule">
+    <p class="legend">📖 — из учебника English Plus 5 (страница указана) · ✏️ — объяснение и примеры добавлены для понятности · <span class="unit-tag" style="margin:0">U1</span> — в каком юните учат эту часть</p>
+
+    <div class="block">
+      <h2>Когда это учат</h2>
+      <ul class="when-list">
+        <li><span class="unit">Unit 1, стр. 9</span><span>разделы 1–3: there is / there are, a, some, a lot of, числа <span class="src">📖</span></span></li>
+        <li><span class="unit">Unit 3, стр. 29</span><span>раздел 4: отрицание — there isn't a… / there aren't any…; some или any <span class="src">📖</span></span></li>
+        <li><span class="unit">Unit 3, стр. 31</span><span>раздел 5: вопросы — Is there…? Are there any…? How many…? <span class="src">📖</span></span></li>
+      </ul>
+      <p class="note">Сейчас в Unit 1 достаточно разделов 1–3. Разделы 4–5 понадобятся в Unit 3.</p>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">1</span>Что значит there is <span class="unit-tag">U1</span> <span class="src">✏️</span></h2>
+      <p>Так говорят, что где-то <b>есть</b> или <b>находится</b> что-то:</p>
+      <div class="ru-en">
+        <span class="ru">На столе книга.</span><span><span class="c-is">There is</span> a book on the table.</span>
+        <span class="ru">В классе семь мальчиков.</span><span><span class="c-are">There are</span> seven boys in the class.</span>
+        <span class="ru">В нашем городе есть парк.</span><span><span class="c-is">There is</span> a park in our town.</span>
+      </div>
+      <p><b>Порядок слов другой, чем в русском!</b> По-русски начинаем с места («На столе…»), по-английски — с there:</p>
+      <div class="order">
+        <span class="part t">There is / There are</span><span>+</span><span class="part">что?</span><span>+</span><span class="part">где?</span>
+      </div>
+      <p class="note"><span class="wrong">On the table is a book.</span> → <span class="right">There is a book on the table.</span> Слово there здесь не переводится — это просто «начало» предложения.</p>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">2</span>is или are? <span class="unit-tag">U1</span> <span class="src">📖 стр. 9</span></h2>
+      <div class="table-wrap">
+        <table class="forms">
+          <tr><th></th><th>полная форма</th><th>короткая</th><th>пример</th></tr>
+          <tr><td>один предмет</td><td><span class="c-is">there is</span></td><td>there's</td><td>There's a teacher.</td></tr>
+          <tr><td>много</td><td><span class="c-are">there are</span></td><td>—</td><td>There are seven boys.</td></tr>
+        </table>
+      </div>
+      <p><b>Как в теме <a href="be.html">be</a></b> <span class="src">✏️</span>: смотрим, <b>один</b> или <b>много</b> того, о чём говорим — хвостик -s, числа (two, seven), some, a lot of, children, people → <span class="c-are">are</span>.</p>
+      <p class="note">✏️ «There are» обычно не сокращают — говорят полностью.</p>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">3</span>a, some, a lot of или число? <span class="unit-tag">U1</span> <span class="src">📖 стр. 9</span></h2>
+      <p><b>Если считаем</b> — ставим число: <span class="ex">There's <b>one</b> computer. There are <b>seven</b> boys and there are <b>nine</b> girls.</span></p>
+      <p><b>Если не считаем:</b></p>
+      <ul>
+        <li><b>a / an</b> — один: <span class="ex">There's <b>a</b> teacher.</span> · <span class="ex">There's <b>an</b> interesting shop.</span> <span class="src">📖 стр. 29</span></li>
+        <li><b>some</b> — несколько: <span class="ex">There are <b>some</b> posters.</span></li>
+        <li><b>a lot of</b> — много: <span class="ex">There are <b>a lot of</b> books.</span></li>
+      </ul>
+      <p class="note">✏️ После some и a lot of — всегда <span class="c-are">are</span> и слово с -s: <span class="ex">There are some poster<b>s</b>.</span></p>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">4</span>Отрицание: some или any? <span class="unit-tag">U3</span> <span class="src">📖 стр. 29</span></h2>
+      <div class="words3">
+        <div class="w-col is">
+          <div class="head">один — утверждение</div>
+          There<b>'s</b> a park.<br>There<b>'s</b> an interesting shop.
+        </div>
+        <div class="w-col are">
+          <div class="head">много — утверждение</div>
+          There are two restaurants.<br>There are <b>some</b> museums.
+        </div>
+        <div class="w-col not">
+          <div class="head">нет — отрицание</div>
+          There <b>isn't</b> a park.<br>There <b>aren't any</b> shops.
+        </div>
+      </div>
+      <div class="tip">💡 <b>Правило из учебника:</b> <b>some</b> — в утверждении, <b>any</b> — в отрицании (и в вопросе). <span class="src">📖 стр. 29, 31</span><br>
+      <span class="wrong">There aren't some shops.</span> → <span class="right">There aren't any shops.</span> <span class="src">✏️</span></div>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">5</span>Вопрос и краткий ответ <span class="unit-tag">U3</span> <span class="src">📖 стр. 31</span></h2>
+      <p><b>is / are — в начало</b>, there — сразу после:</p>
+      <div class="table-wrap">
+        <table class="forms">
+          <tr><th>Вопрос</th><th>Да</th><th>Нет</th></tr>
+          <tr><td><b>Is there</b> a cinema?</td><td>Yes, there is.</td><td>No, there isn't.</td></tr>
+          <tr><td><b>Are there any</b> cafés?</td><td>Yes, there are.</td><td>No, there aren't.</td></tr>
+        </table>
+      </div>
+      <p><b>Сколько?</b> <span class="ex">How many shops <b>are there</b>? — Two thousand.</span> <span class="src">📖</span></p>
+      <p class="note">✏️ После How many — всегда <b>are there</b> (много). В «да» не сокращаем: <span class="wrong">Yes, there's.</span> → <span class="right">Yes, there is.</span></p>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">6</span>there is или have got? <span class="src">✏️</span></h2>
+      <p>Оба переводятся «есть», но спрашивают разное:</p>
+      <div class="ru-en">
+        <span class="ru"><b>Где</b> есть? — В комнате есть кошка.</span><span class="right">There is a cat in the room.</span>
+        <span class="ru"><b>У кого</b> есть? — У меня есть кошка.</span><span class="right">I have got a cat.</span>
+        <span class="ru">В нашем городе есть парк.</span><span class="right">There is a park in our town.</span>
+        <span class="ru">У Aliya есть брат.</span><span class="right">Aliya has got a brother.</span>
+      </div>
+      <p class="note">Подробно про «у меня есть» — <a href="have_got.html">have got / has got →</a></p>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">7</span>Частые ошибки <span class="src">✏️</span></h2>
+      <ul class="mistakes">
+        <li><span class="wrong">There are a book on the table.</span><span class="right">There is a book on the table.</span></li>
+        <li><span class="wrong">There is two cats.</span><span class="right">There are two cats.</span></li>
+        <li><span class="wrong">On the table is a book.</span><span class="right">There is a book on the table.</span></li>
+        <li><span class="wrong">There are some poster.</span><span class="right">There are some posters.</span></li>
+        <li><span class="wrong">There aren't some shops.</span><span class="right">There aren't any shops.</span></li>
+        <li><span class="wrong">Is there any cafés?</span><span class="right">Are there any cafés?</span></li>
+        <li><span class="wrong">Yes, there's.</span><span class="right">Yes, there is.</span></li>
+        <li><span class="wrong">There is a cat at me.</span> (у меня есть кошка) <span class="right">I have got a cat.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CARDS ============ -->
+  <section class="page" id="cards">
+    <p class="lead">Прочитай предложение и скажи: There is или There are? Нажми — проверь себя. Цвет подсказывает: зелёный — <span class="c-is">there is</span> (один), синий — <span class="c-are">there are</span> (много).</p>
+    <div class="cards" id="cardsGrid"></div>
+  </section>
+
+  <!-- ============ TRAINER ============ -->
+  <section class="page" id="trainer">
+    <p class="counter" id="totalCounter">Всего верно: 0 из 0</p>
+    <p class="lead">Задания 1 и 5 — для Unit 1. Задания 2–4 — для Unit 3 (some / any, отрицание, вопросы). Ошибся — прочитай подсказку и попробуй ещё раз.</p>
+
+    <div class="ex-block">
+      <h2>1. There is или There are? <span class="unit-tag">U1</span></h2>
+      <p class="lead">Один или много?</p>
+      <div id="ex1"></div>
+    </div>
+
+    <div class="ex-block">
+      <h2>2. a, an, some или any? <span class="unit-tag">U1–U3</span></h2>
+      <div id="ex2"></div>
+    </div>
+
+    <div class="ex-block">
+      <h2>3. Отрицание: isn't или aren't? <span class="unit-tag">U3</span></h2>
+      <div id="ex3"></div>
+    </div>
+
+    <div class="ex-block">
+      <h2>4. Вопрос и краткий ответ <span class="unit-tag">U3</span></h2>
+      <div id="ex4"></div>
+    </div>
+
+    <div class="ex-block">
+      <h2>5. Как сказать по-английски? <span class="unit-tag">U1</span></h2>
+      <p class="lead">Помни про порядок слов и про разницу «где есть» и «у кого есть».</p>
+      <div id="ex5"></div>
+    </div>
+
+    <button class="reset-btn" id="resetAll" type="button">начать заново</button>
+  </section>
+
+  <footer class="page">English Plus 5 · Грамматика · there is / there are · домашняя тетрадь</footer>
+</div>
+
+<script>
+(function () {
+  var CARDS = [
+    { w: "___ a cat on the sofa.", t: "is", why: "a cat — один" },
+    { w: "___ two cats on the sofa.", t: "are", why: "two cats — много" },
+    { w: "___ a teacher in the class.", t: "is", why: "a teacher — один" },
+    { w: "___ seven boys in the class.", t: "are", why: "seven boys — много" },
+    { w: "___ some posters on the wall.", t: "are", why: "some posters — несколько" },
+    { w: "___ a lot of books in my bag.", t: "are", why: "a lot of books — много" },
+    { w: "___ one computer in the room.", t: "is", why: "one — один" },
+    { w: "___ an apple in my bag.", t: "is", why: "an apple — одно" },
+    { w: "___ some children in the park.", t: "are", why: "children — много, хоть и без -s" },
+    { w: "___ a lot of people in Almaty.", t: "are", why: "people — много, хоть и без -s" },
+    { w: "___ a park near my house.", t: "is", why: "a park — один" },
+    { w: "___ three bedrooms in our flat.", t: "are", why: "three — много" },
+    { w: "___ a big shop in our town.", t: "is", why: "a shop — один" },
+    { w: "___ some museums in London.", t: "are", why: "some museums — несколько" },
+    { w: "___ a dog in the garden.", t: "is", why: "a dog — одна" },
+    { w: "___ twenty students in my class.", t: "are", why: "twenty — много" },
+    { w: "___ a clock on the wall.", t: "is", why: "a clock — один предмет" },
+    { w: "___ some pens on the desk.", t: "are", why: "some pens — несколько" },
+    { w: "___ a café opposite the school.", t: "is", why: "a café — одно" },
+    { w: "___ a lot of cars in New York.", t: "are", why: "a lot of cars — много" },
+    { w: "___ a bus stop near the school.", t: "is", why: "a bus stop — одна" }
+  ];
+
+  var TT = ["There is", "There are"];
+  var EX1 = [
+    { s: "___ a book on the desk.", o: TT, a: "There is", h: "a book — одна → There is" },
+    { s: "___ two books on the desk.", o: TT, a: "There are", h: "two books — много → There are" },
+    { s: "___ a teacher in the class.", o: TT, a: "There is", h: "a teacher — один → There is" },
+    { s: "___ nine girls in the class.", o: TT, a: "There are", h: "nine girls — много → There are" },
+    { s: "___ some posters on the wall.", o: TT, a: "There are", h: "some posters — несколько → There are" },
+    { s: "___ a lot of cars in the street.", o: TT, a: "There are", h: "a lot of cars — много → There are" },
+    { s: "___ one computer in the room.", o: TT, a: "There is", h: "one — один → There is" },
+    { s: "___ an apple in my bag.", o: TT, a: "There is", h: "an apple — одно → There is" },
+    { s: "___ some children in the park.", o: TT, a: "There are", h: "children — дети, много → There are" },
+    { s: "___ a cat under the table.", o: TT, a: "There is", h: "a cat — одна → There is" },
+    { s: "___ a lot of people at the concert.", o: TT, a: "There are", h: "people — люди, много → There are" },
+    { s: "___ three parks in our town.", o: TT, a: "There are", h: "three parks — много → There are" }
+  ];
+
+  var EX2 = [
+    { s: "There's ___ park.", o: ["a", "some", "any"], a: "a", h: "один парк → a" },
+    { s: "There are ___ museums.", o: ["a", "some", "any"], a: "some", h: "много, утверждение → some" },
+    { s: "There aren't ___ shops.", o: ["a", "some", "any"], a: "any", h: "отрицание → any" },
+    { s: "There isn't ___ cinema.", o: ["a", "some", "any"], a: "a", h: "один, отрицание → isn't a" },
+    { s: "Are there ___ cafés?", o: ["a", "some", "any"], a: "any", h: "вопрос → any" },
+    { s: "There are ___ posters on the wall.", o: ["a", "some", "any"], a: "some", h: "много, утверждение → some" },
+    { s: "Is there ___ bus stop near here?", o: ["a", "some", "any"], a: "a", h: "одна остановка → Is there a…?" },
+    { s: "There aren't ___ famous people here.", o: ["a", "some", "any"], a: "any", h: "отрицание → any" },
+    { s: "There's ___ interesting book.", o: ["a", "an", "some"], a: "an", h: "interesting начинается с гласного звука → an" },
+    { s: "There are ___ trees in the park.", o: ["a", "some", "any"], a: "some", h: "много, утверждение → some" }
+  ];
+
+  var NG = ["isn't", "aren't"];
+  var EX3 = [
+    { s: "There ___ a park in my street.", o: NG, a: "isn't", h: "a park — один → isn't" },
+    { s: "There ___ any shops here.", o: NG, a: "aren't", h: "any shops — много → aren't" },
+    { s: "There ___ a TV in my room.", o: NG, a: "isn't", h: "a TV — один → isn't" },
+    { s: "There ___ any children in the garden.", o: NG, a: "aren't", h: "children — много → aren't" },
+    { s: "There ___ a cinema in the village.", o: NG, a: "isn't", h: "a cinema — один → isn't" },
+    { s: "There ___ any cars in the street.", o: NG, a: "aren't", h: "cars — много → aren't" },
+    { s: "There ___ an airport in our town.", o: NG, a: "isn't", h: "an airport — один → isn't" },
+    { s: "There ___ any people in the museum.", o: NG, a: "aren't", h: "people — много → aren't" },
+    { s: "There ___ a lift in our building.", o: NG, a: "isn't", h: "a lift — один → isn't" },
+    { s: "There ___ any buses at night.", o: NG, a: "aren't", h: "buses — много → aren't" }
+  ];
+
+  var EX4 = [
+    { s: "___ there a cinema?", o: ["Is", "Are"], a: "Is", h: "a cinema — один → Is there…?" },
+    { s: "___ there any cafés?", o: ["Is", "Are"], a: "Are", h: "any cafés — много → Are there…?" },
+    { s: "___ there a park near your house?", o: ["Is", "Are"], a: "Is", h: "a park — один → Is there…?" },
+    { s: "___ there any famous people at your school?", o: ["Is", "Are"], a: "Are", h: "people — много → Are there…?" },
+    { s: "How many teachers ___ there at your school?", o: ["is", "are"], a: "are", h: "How many — много → are there" },
+    { s: "Is there a shop here? — Yes, there ___.", o: ["is", "'s", "are"], a: "is", h: "в «да» не сокращаем: Yes, there is." },
+    { s: "Are there any parks? — No, there ___.", o: ["aren't", "isn't", "don't"], a: "aren't", h: "вопрос с Are → No, there aren't." },
+    { s: "Is there a TV in your room? — No, there ___.", o: ["isn't", "aren't", "hasn't"], a: "isn't", h: "вопрос с Is → No, there isn't." },
+    { s: "Are there any pens on the desk? — Yes, there ___.", o: ["are", "is", "'re"], a: "are", h: "вопрос с Are → Yes, there are." },
+    { s: "How many shops ___?", o: ["are there", "there are", "is there"], a: "are there", h: "в вопросе are — перед there: How many shops are there?" }
+  ];
+
+  var EX5 = [
+    { s: "В комнате есть кошка. ___", o: ["There is a cat in the room.", "In the room is a cat.", "In the room a cat."], a: "There is a cat in the room.", h: "начинаем с There is, место — в конце" },
+    { s: "У меня есть кошка. ___", o: ["I have got a cat.", "There is a cat at me.", "There is me a cat."], a: "I have got a cat.", h: "«у кого есть» → have got" },
+    { s: "На столе две книги. ___", o: ["There are two books on the table.", "On the table two books.", "There is two books on the table."], a: "There are two books on the table.", h: "two books — много → There are" },
+    { s: "У Aliya есть брат. ___", o: ["Aliya has got a brother.", "There is a brother at Aliya.", "Aliya is a brother."], a: "Aliya has got a brother.", h: "«у кого есть» → has got" },
+    { s: "В нашем городе есть парк. ___", o: ["There is a park in our town.", "In our town is park.", "There are a park in our town."], a: "There is a park in our town.", h: "«где есть», один парк → There is" },
+    { s: "В классе много детей. ___", o: ["There are a lot of children in the class.", "There is a lot of children in the class.", "In the class a lot of children."], a: "There are a lot of children in the class.", h: "a lot of children — много → There are" },
+    { s: "У нас нет машины. ___", o: ["We haven't got a car.", "There isn't a car at us.", "We aren't a car."], a: "We haven't got a car.", h: "«у кого нет» → haven't got" },
+    { s: "В холодильнике нет яблок. ___", o: ["There aren't any apples in the fridge.", "There aren't some apples in the fridge.", "There isn't any apples in the fridge."], a: "There aren't any apples in the fridge.", h: "много, отрицание → aren't any" }
+  ];
+
+  var TOTAL = EX1.length + EX2.length + EX3.length + EX4.length + EX5.length;
+
+  function speak(text) {
+    try {
+      if (!window.speechSynthesis) return;
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = "en-US";
+      window.speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+  function shuffled(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+
+  /* Tabs */
+  var tabs = document.querySelectorAll(".tab");
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      tabs.forEach(function (t) { t.setAttribute("aria-selected", "false"); });
+      document.querySelectorAll("section.page").forEach(function (s) { s.classList.remove("active"); });
+      tab.setAttribute("aria-selected", "true");
+      document.getElementById(tab.dataset.target).classList.add("active");
+    });
+  });
+
+  /* Cards */
+  var cardsGrid = document.getElementById("cardsGrid");
+  CARDS.forEach(function (c) {
+    var full = c.w.replace("___", c.t === "is" ? "There is" : "There are");
+    var card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML =
+      '<div class="card-inner">' +
+        '<div class="card-face front">' +
+          '<span class="word">' + esc(c.w) + '</span>' +
+        '</div>' +
+        '<div class="card-face back ' + c.t + '">' +
+          '<button class="speak-btn" type="button" title="озвучить" aria-label="озвучить">&#128266;</button>' +
+          '<span class="form">' + esc(full) + '</span>' +
+          '<span class="why">' + c.why + '</span>' +
+        '</div>' +
+      '</div>';
+    card.querySelector(".card-inner").addEventListener("click", function (e) {
+      if (e.target.classList.contains("speak-btn")) return;
+      card.classList.toggle("flipped");
+    });
+    card.querySelector(".speak-btn").addEventListener("click", function (e) { e.stopPropagation(); speak(full); });
+    cardsGrid.appendChild(card);
+  });
+
+  /* Trainer */
+  var solved = {};
+  var totalCounter = document.getElementById("totalCounter");
+  function updateTotal() {
+    var n = 0;
+    for (var k in solved) if (solved[k]) n++;
+    totalCounter.textContent = "Всего верно: " + n + " из " + TOTAL;
+  }
+
+  function buildChoice(containerId, items, prefix) {
+    var box = document.getElementById(containerId);
+    box.innerHTML = "";
+    items.forEach(function (it, idx) {
+      var key = prefix + idx;
+      solved[key] = false;
+      var q = document.createElement("div");
+      q.className = "q";
+      var parts = it.s.split("___");
+      q.innerHTML =
+        '<div class="q-text">' + (idx + 1) + '. ' + esc(parts[0]) + '<span class="gap">&nbsp;</span>' + esc(parts[1] || "") + '</div>' +
+        '<div class="opts"></div>' +
+        '<div class="feedback"></div>';
+      var gap = q.querySelector(".gap");
+      var opts = q.querySelector(".opts");
+      var fb = q.querySelector(".feedback");
+      shuffled(it.o).forEach(function (o) {
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "opt"; b.textContent = o;
+        b.addEventListener("click", function () {
+          if (solved[key]) return;
+          if (o === it.a) {
+            b.classList.add("ok");
+            gap.textContent = o; gap.classList.add("ok");
+            fb.textContent = "верно! " + it.h; fb.className = "feedback good";
+            solved[key] = true; updateTotal();
+          } else {
+            b.classList.add("no");
+            fb.textContent = "не то. Подсказка: " + it.h; fb.className = "feedback bad";
+          }
+        });
+        opts.appendChild(b);
+      });
+      box.appendChild(q);
+    });
+  }
+
+  function buildAll() {
+    solved = {};
+    buildChoice("ex1", EX1, "a");
+    buildChoice("ex2", EX2, "b");
+    buildChoice("ex3", EX3, "c");
+    buildChoice("ex4", EX4, "d");
+    buildChoice("ex5", EX5, "e");
+    updateTotal();
+  }
+  buildAll();
+  document.getElementById("resetAll").addEventListener("click", function () {
+    buildAll();
+    document.getElementById("trainer").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+})();
+</script>
+</body>
+</html>

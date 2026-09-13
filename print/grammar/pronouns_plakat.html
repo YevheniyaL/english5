@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Плакат — местоимения I / me / my / mine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #24304a; --soft: #56627a; --faint: #8a95aa;
+    --red: #d3564d; --red-bg: #fbe4e1;
+    --line: #aecdea; --line-soft: #e6eff8;
+    --subj: #7a3fa0; --subj-bg: #efe4f7;
+    --obj: #a8561f; --obj-bg: #f8e3d3;
+    --adj: #2f7d4f; --adj-bg: #dff1e5;
+    --pron: #2a64a3; --pron-bg: #dde9f7;
+    --good: #2f7d4f; --bad: #c0463c;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #eceae3; color: var(--ink); font-family: 'PT Sans', Arial, sans-serif; line-height: 1.35; padding: 16px; }
+  .poster { width: 210mm; min-height: 297mm; max-width: 100%; margin: 0 auto; background: #fff; padding: 9mm 11mm 6mm; box-shadow: 0 4px 18px rgba(0,0,0,.18); }
+  .top { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; border-bottom: 3px solid var(--red); padding-bottom: 6px; margin-bottom: 10px; }
+  h1 { font-family: 'Caveat', cursive; font-size: 58px; line-height: 0.9; margin: 0; white-space: nowrap; }
+  .top .sub { font-size: 15px; color: var(--soft); text-align: right; }
+  .top .sub b { color: var(--ink); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+  .box { border: 1.5px solid var(--line); border-radius: 8px; padding: 11px 14px 13px; }
+  .box.wide { grid-column: 1 / -1; }
+  h2 { font-family: 'Caveat', cursive; font-size: 31px; line-height: 1; margin: 0 0 8px; }
+  h2 .n { display: inline-block; width: 30px; height: 30px; border-radius: 50%; background: var(--red); color: #fff; font-family: 'PT Sans', sans-serif; font-size: 17px; text-align: center; line-height: 30px; margin-right: 6px; vertical-align: 3px; }
+  .u { display: inline-block; font-family: 'PT Sans', sans-serif; font-size: 12px; font-weight: 700; color: var(--red); border: 1.5px solid var(--red); border-radius: 9px; padding: 0 6px; vertical-align: 5px; line-height: 1.4; }
+  .ext { display: inline-block; font-family: 'PT Sans', sans-serif; font-size: 11px; font-weight: 700; color: #8a5f14; background: #fbedd0; border: 1px solid #e3a836; border-radius: 9px; padding: 0 6px; vertical-align: 5px; }
+  p { margin: 5px 0; font-size: 16px; }
+  .src { font-family: 'PT Sans', sans-serif; font-size: 12px; color: var(--faint); font-weight: 400; }
+  .ex { font-style: italic; }
+  table.main { border-collapse: collapse; width: 100%; margin: 2px 0 4px; }
+  table.main th, table.main td { border: 1.5px solid #fff; padding: 5px 10px; text-align: center; }
+  table.main th { font-size: 15px; line-height: 1.2; }
+  table.main th .q { display: block; font-size: 12.5px; font-weight: 400; color: var(--soft); }
+  table.main td { font-size: 23px; font-weight: 700; }
+  table.main td.ru { font-size: 15px; font-weight: 400; color: var(--soft); text-align: right; background: #fff; }
+  .subj { background: var(--subj-bg); color: var(--subj); }
+  .obj { background: var(--obj-bg); color: var(--obj); }
+  .adj { background: var(--adj-bg); color: var(--adj); }
+  .pron { background: var(--pron-bg); color: var(--pron); }
+  .c-subj { color: var(--subj); font-weight: 700; }
+  .c-obj { color: var(--obj); font-weight: 700; }
+  .c-adj { color: var(--adj); font-weight: 700; }
+  .c-pron { color: var(--pron); font-weight: 700; }
+  .chain { font-size: 16px; margin-top: 6px; text-align: center; }
+  .tip { margin-top: 7px; font-size: 15px; border: 1.5px dashed var(--red); border-radius: 6px; padding: 4px 10px; }
+  .mist { list-style: none; margin: 2px 0 0; padding: 0; font-size: 15.5px; line-height: 1.3; }
+  .mist li { margin-bottom: 2px; }
+  .no { color: var(--bad); text-decoration: line-through; }
+  .yes { color: var(--good); font-weight: 700; }
+  .cols3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px 16px; }
+  .foot { margin-top: 6px; font-size: 12px; color: var(--faint); display: flex; justify-content: space-between; gap: 10px; }
+  @media (max-width: 600px) {
+    .grid, .cols3 { grid-template-columns: 1fr; }
+    .poster { padding: 16px; min-height: 0; }
+    h1 { white-space: normal; }
+    .table-wrap { overflow-x: auto; }
+  }
+  @media print {
+    @page { size: A4; margin: 10mm; }
+    body { background: #fff !important; padding: 0; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+    .poster, .page { zoom: 0.88; box-shadow: none !important; }
+    .poster *, .page * { box-shadow: none !important; }
+    .poster { width: auto; min-height: 0; margin: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <div class="top">
+    <h1>Местоимения</h1>
+    <div class="sub"><b>кто? · кого? · чей?</b><br>English Plus 5 · Unit 1, 4, 6, 7<br>стр. 7, 43, 71, 90</div>
+  </div>
+
+  <div class="grid">
+
+    <div class="box wide">
+      <h2><span class="n">1</span>Вся таблица <span class="src">📖 стр. 7, 43, 71, 90</span></h2>
+      <div class="table-wrap">
+      <table class="main">
+        <tr>
+          <th style="background:#fff"></th>
+          <th class="subj">кто? <span class="u">U1</span><span class="q">перед глаголом</span></th>
+          <th class="obj">кого? кому? <span class="u">U6</span><span class="q">после глагола</span></th>
+          <th class="adj">чей? + предмет <span class="u">U4</span><span class="q">my bag</span></th>
+          <th class="pron">чей? без предмета <span class="u">U7</span><span class="q">it's mine · расширение</span></th>
+        </tr>
+        <tr><td class="ru">я</td><td class="subj">I</td><td class="obj">me</td><td class="adj">my</td><td class="pron">mine</td></tr>
+        <tr><td class="ru">ты / вы</td><td class="subj">you</td><td class="obj">you</td><td class="adj">your</td><td class="pron">yours</td></tr>
+        <tr><td class="ru">он</td><td class="subj">he</td><td class="obj">him</td><td class="adj">his</td><td class="pron">his</td></tr>
+        <tr><td class="ru">она</td><td class="subj">she</td><td class="obj">her</td><td class="adj">her</td><td class="pron">hers</td></tr>
+        <tr><td class="ru">оно</td><td class="subj">it</td><td class="obj">it</td><td class="adj">its</td><td class="pron">—</td></tr>
+        <tr><td class="ru">мы</td><td class="subj">we</td><td class="obj">us</td><td class="adj">our</td><td class="pron">ours</td></tr>
+        <tr><td class="ru">они</td><td class="subj">they</td><td class="obj">them</td><td class="adj">their</td><td class="pron">theirs</td></tr>
+      </table>
+      </div>
+      <p class="chain"><span class="c-subj">I</span> have got a dog. · <span class="c-adj">My</span> dog is black. · It loves <span class="c-obj">me</span>. · The dog is <span class="c-pron">mine</span>. <span class="src">✏️</span></p>
+    </div>
+
+    <div class="box">
+      <h2><span class="n">2</span>Кто? <span class="u">U1</span> <span class="src">📖 стр. 7</span></h2>
+      <p><span class="ex">Astana is the capital city. <b>It</b> is big.</span></p>
+      <p><b>he</b> — он · <b>she</b> — она · <b>it</b> — предмет, животное, город <span class="src">✏️</span></p>
+      <p><b>you</b> — ты и вы · <b>I</b> — всегда с большой буквы <span class="src">✏️</span></p>
+    </div>
+
+    <div class="box">
+      <h2><span class="n">3</span>Чей? + предмет <span class="u">U4</span> <span class="src">📖 стр. 43</span></h2>
+      <p><span class="ex">Alina is a Chelsea fan, but <b>her</b> brother is an Aktobe fan.</span></p>
+      <div class="tip">⚠️ Смотрим на <b>хозяина</b> <span class="src">✏️</span>: Harry and <b>his</b> mum · Aliya and <b>her</b> dad</div>
+      <div class="tip">⚠️ <b>its</b> tail (его хвост) ≠ <b>it's</b> = it is <span class="src">✏️</span></div>
+    </div>
+
+    <div class="box">
+      <h2><span class="n">4</span>Кого? кому? <span class="u">U6</span> <span class="src">📖 стр. 71</span></h2>
+      <p>После глагола и после with, for, to, at:</p>
+      <p><span class="ex">The students like <b>her</b>. · I play with <b>him</b>.</span></p>
+      <p><span class="no">He likes she.</span> → <span class="yes">He likes her.</span> <span class="src">✏️</span></p>
+    </div>
+
+    <div class="box">
+      <h2><span class="n">5</span>Без предмета <span class="u">U7</span> <span class="ext">расширение</span> <span class="src">📖 стр. 90</span></h2>
+      <p>This is <span class="c-adj">my</span> bag. → The bag is <span class="c-pron">mine</span>.</p>
+      <p><span class="ex">Is this your dictionary? — No, it's not <b>mine</b>.</span></p>
+      <p><span class="no">It's mine bag.</span> → <span class="yes">It's my bag. / It's mine.</span> <span class="src">✏️</span></p>
+    </div>
+
+    <div class="box wide">
+      <h2><span class="n">6</span>Не ошибись! <span class="src">✏️</span></h2>
+      <div class="cols3">
+        <ul class="mist">
+          <li><span class="no">Me am ten.</span> → <span class="yes">I am ten.</span></li>
+          <li><span class="no">Them are my friends.</span> → <span class="yes">They are</span></li>
+        </ul>
+        <ul class="mist">
+          <li><span class="no">She likes he.</span> → <span class="yes">She likes him.</span></li>
+          <li><span class="no">This is me bag.</span> → <span class="yes">my bag</span></li>
+        </ul>
+        <ul class="mist">
+          <li><span class="no">Aliya and his dad</span> → <span class="yes">her dad</span></li>
+          <li><span class="no">The bag is my.</span> → <span class="yes">mine</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="foot">
+    <span>📖 — из учебника English Plus 5 · ✏️ — объяснение и примеры добавлены для понятности · U1–U7 — в каком юните учат</span>
+    <span style="white-space:nowrap">домашняя тетрадь</span>
+  </div>
+</div>
+</body>
+</html>
