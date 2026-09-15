@@ -314,14 +314,16 @@
     <a class="back-link" href="index.html">← ко всем урокам</a>
     <h1>Глаголы заданий</h1>
     <p class="subtitle">Все юниты · формулировки упражнений</p>
-    <span class="skill">Глаголы, которыми учебник ставит задачу («Listen…», «Match…», «Complete…») — общие для всего курса, не привязаны к теме одного юнита. Пока здесь только Unit 1 (29 слов); страница будет пополняться по мере разбора следующих юнитов.</span>
+    <span class="skill">Глаголы, которыми учебник ставит задачу («Listen…», «Match…», «Complete…») — общие для всего курса, не привязаны к теме одного юнита. Сейчас здесь Unit 1–2 (39 слов); страница пополняется по мере разбора следующих юнитов.</span>
     <a class="sibling-link" href="unit1/verbs.html">← Глаголы текста Unit 1 (тема и навыки юнита)</a>
+    <a class="sibling-link" href="unit2/verbs.html">← Глаголы текста Unit 2</a>
   </header>
 
   <nav class="tabs" role="tablist" aria-label="Странички">
     <button class="tab" role="tab" aria-selected="true" data-target="p1">Стр. 1 · 10 слов</button>
     <button class="tab" role="tab" aria-selected="false" data-target="p2">Стр. 2 · 10 слов</button>
-    <button class="tab" role="tab" aria-selected="false" data-target="p3">Стр. 3 · 9 слов</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="p3">Стр. 3 · 10 слов</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="p4">Стр. 4 · 9 слов</button>
   </nav>
 
   <section class="page active" id="p1">
@@ -350,8 +352,18 @@
     <h2 class="section-title hand">Карточки</h2>
     <div class="cards" data-cards="3"></div>
     <h2 class="section-title hand">Проверь себя</h2>
-    <p class="counter" data-counter="3">Верно: 0 из 9</p>
+    <p class="counter" data-counter="3">Верно: 0 из 10</p>
     <div data-fib="3"></div>
+  </section>
+
+  <section class="page" id="p4">
+    <p class="lead">Нажми на карточку — она перевернётся. Отметь, знаешь слово или ещё учишь.</p>
+    <a class="print-link" href="print/instruction_verbs.html#p4" target="_blank" rel="noopener">Распечатать карточки этой странички →</a>
+    <h2 class="section-title hand">Карточки</h2>
+    <div class="cards" data-cards="4"></div>
+    <h2 class="section-title hand">Проверь себя</h2>
+    <p class="counter" data-counter="4">Верно: 0 из 9</p>
+    <div data-fib="4"></div>
   </section>
 
   <footer class="page">English Plus 5 · глаголы формулировок заданий · копится по юнитам · домашняя тетрадь</footer>
@@ -368,6 +380,9 @@
   4. Пересчитай PAGES: раздели ALL_WORDS на группы по 10 слов (последняя
      группа может быть короче), обнови число вкладок nav.tabs и число
      <section class="page">, а также счётчики "Верно: 0 из N" в разметке.
+  5. Пересобери print/instruction_verbs.html теми же страничками: у каждой
+     лист со словами (class="grid p1", у самой первой — просто "grid") и
+     зеркальный лист переводов (class="grid p2"); страниц = 2 × число страничек.
 */
 (function () {
   var ALL_WORDS = [
@@ -401,13 +416,25 @@
     { en: "match", ru: "соотносить, подбирать пару", sent: "___ the countries to the capitals.", ans: ["match"], unit: "Unit 1" },
     { en: "check", ru: "проверять (ответы)", sent: "Listen and ___ your answers.", ans: ["check"], unit: "Unit 1" },
     { en: "replace", ru: "заменять", sent: "___ the words in blue with words in the box.", ans: ["replace"], unit: "Unit 1" },
-    { en: "invent", ru: "придумывать (в задании)", sent: "Practise the dialogue, but ___ new information.", ans: ["invent"], unit: "Unit 1" }
+    { en: "invent", ru: "придумывать (в задании)", sent: "Practise the dialogue, but ___ new information.", ans: ["invent"], unit: "Unit 1" },
+    { en: "do", ru: "делать, выполнять", sent: "___ the adjective treasure hunt.", ans: ["do"], unit: "Unit 2" },
+
+    { en: "study", ru: "изучать, рассматривать", sent: "___ the key phrases.", ans: ["study"], unit: "Unit 2" },
+    { en: "guess", ru: "угадывать, догадываться", sent: "Can you ___ their meanings?", ans: ["guess"], unit: "Unit 2" },
+    { en: "hear", ru: "слышать", sent: "Listen and draw the times you ___.", ans: ["hear"], unit: "Unit 2" },
+    { en: "prepare", ru: "готовить, подготовить", sent: "___ a new dialogue.", ans: ["prepare"], unit: "Unit 2" },
+    { en: "rewrite", ru: "переписывать", sent: "___ the paragraph from Dilnaz.", ans: ["rewrite", "re-write"], unit: "Unit 2" },
+    { en: "include", ru: "включать (в текст)", sent: "Write your email. ___ these things.", ans: ["include"], unit: "Unit 2" },
+    { en: "put", ru: "класть, вешать, помещать", sent: "___ all of the posters on the wall.", ans: ["put"], unit: "Unit 2" },
+    { en: "unscramble", ru: "расставить перепутанные буквы по порядку", sent: "___ the letters and label the picture.", ans: ["unscramble"], unit: "Unit 2" },
+    { en: "label", ru: "подписывать (картинку)", sent: "Unscramble the letters and ___ the picture.", ans: ["label"], unit: "Unit 2" }
   ];
 
   var PAGES = {
     1: ALL_WORDS.slice(0, 10),
     2: ALL_WORDS.slice(10, 20),
-    3: ALL_WORDS.slice(20, 29)
+    3: ALL_WORDS.slice(20, 30),
+    4: ALL_WORDS.slice(30, 39)
   };
 
   var LS_KEY = "edu5_en_instruction_verbs";
