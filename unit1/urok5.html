@@ -195,6 +195,7 @@
   <footer class="page">English Plus 5 · Unit 1, Урок 1.5 · домашняя тетрадь</footer>
 </div>
 
+<script src="../js/ru_answer.js"></script>
 <script>
 (function () {
   var NUMBERS = [
@@ -402,6 +403,7 @@
   document.getElementById("sortReset").addEventListener("click", buildSort);
 
   /* Listen and translate */
+  var LISTEN_ALT = (function () { var m = {}; NUMBERS.forEach(function (x) { m[x.word] = [String(x.n)]; }); return m; })();
   var listenList = document.getElementById("listenList");
   var listenCounter = document.getElementById("listenCounter");
   var listenCorrectCount = 0;
@@ -424,7 +426,7 @@
     listenBtn.addEventListener("click", function () { speak(nObj.word); });
     function check() {
       var val = input.value.trim().toLowerCase();
-      var ok = val === nObj.ru.toLowerCase();
+      var ok = RuAnswer.check(val, nObj.ru, LISTEN_ALT[nObj.word]);
       input.classList.toggle("correct", ok);
       input.classList.toggle("incorrect", val.length > 0 && !ok);
       if (ok) {

@@ -173,6 +173,7 @@
   <footer class="page">English Plus 5 · Unit 1, Урок 1.4 · домашняя тетрадь</footer>
 </div>
 
+<script src="../js/ru_answer.js"></script>
 <script>
 (function () {
   var PHRASES = [
@@ -353,6 +354,11 @@
   document.getElementById("dlgReset").addEventListener("click", buildDialogue);
 
   /* Listen and translate */
+  var LISTEN_ALT = {
+    "What's your name?": ["как вас зовут", "как твое имя", "как ваше имя"],
+    "How old are you?": ["сколько вам лет"],
+    "Where are you from?": ["откуда вы", "ты откуда", "вы откуда", "откуда ты родом", "откуда вы родом"]
+  };
   var listenList = document.getElementById("listenList");
   var listenCounter = document.getElementById("listenCounter");
   var listenCorrectCount = 0;
@@ -375,7 +381,7 @@
     listenBtn.addEventListener("click", function () { speak(p.en); });
     function check() {
       var val = input.value.trim().toLowerCase();
-      var ok = val === p.ru.toLowerCase();
+      var ok = RuAnswer.check(val, p.ru, LISTEN_ALT[p.en]);
       input.classList.toggle("correct", ok);
       input.classList.toggle("incorrect", val.length > 0 && !ok);
       if (ok) {

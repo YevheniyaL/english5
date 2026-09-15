@@ -173,6 +173,7 @@
   <footer class="page">English Plus 5 · Unit 1, Урок 1.2 · домашняя тетрадь</footer>
 </div>
 
+<script src="../js/ru_answer.js"></script>
 <script>
 (function () {
   var PHRASES = [
@@ -347,6 +348,13 @@
   document.getElementById("dlgReset").addEventListener("click", buildDialogue);
 
   /* Listen and translate */
+  var LISTEN_ALT = {
+    "How are you?": ["как ты", "как у тебя дела", "как поживаешь", "как вы", "как у вас дела", "как поживаете"],
+    "Fine, thanks.": ["отлично спасибо", "нормально спасибо", "хорошо благодарю", "прекрасно спасибо"],
+    "This is my friend…": ["это моя подруга", "это мой друг"],
+    "See you later.": ["до встречи", "увидимся", "до скорого", "увидимся потом"],
+    "Bye!": ["до свидания"]
+  };
   var listenList = document.getElementById("listenList");
   var listenCounter = document.getElementById("listenCounter");
   var listenCorrectCount = 0;
@@ -369,7 +377,7 @@
     listenBtn.addEventListener("click", function () { speak(p.en); });
     function check() {
       var val = input.value.trim().toLowerCase();
-      var ok = val === p.ru.toLowerCase();
+      var ok = RuAnswer.check(val, p.ru, LISTEN_ALT[p.en]);
       input.classList.toggle("correct", ok);
       input.classList.toggle("incorrect", val.length > 0 && !ok);
       if (ok) {

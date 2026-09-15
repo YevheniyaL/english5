@@ -112,7 +112,10 @@
     margin: 0 0 16px;
   }
   footer.page { margin-top: 30px; font-size: 12px; color: var(--ink-faint); }
-</style>
+  .listen-btn { font-family: 'PT Sans', sans-serif; font-size: 14px; background: var(--paper-raised); color: var(--ink); border: 1px solid var(--rule); border-radius: 5px; padding: 8px 14px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; box-shadow: 1px 2px 0 var(--shadow); }
+  .listen-btn:hover { border-color: var(--margin); color: var(--margin); }
+  .listen-btn:active { transform: scale(0.97); }
+  .tab:nth-child(5) { transform: rotate(-0.8deg); }</style>
 </head>
 <body>
 <div class="sheet">
@@ -129,6 +132,7 @@
     <button class="tab" role="tab" aria-selected="true" data-target="cards">Карточки</button>
     <button class="tab" role="tab" aria-selected="false" data-target="match">Пример → категория</button>
     <button class="tab" role="tab" aria-selected="false" data-target="fib">Впиши категорию</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="listen">Слушай и переводи</button>
   </nav>
 
   <section class="page active" id="cards">
@@ -153,9 +157,16 @@
     <div id="fibList"></div>
   </section>
 
+  <section class="page" id="listen">
+    <p class="lead">Нажми на кнопку — услышишь слово по-английски. Напиши его перевод по-русски.</p>
+    <p class="counter" id="listenCounter">Верно: 0 из 0</p>
+    <div id="listenList"></div>
+  </section>
+
   <footer class="page">English Plus 5 · Unit 2, Урок 2.4 · домашняя тетрадь</footer>
 </div>
 
+<script src="../js/ru_answer.js"></script>
 <script>
 (function () {
   var CATS = [
@@ -306,6 +317,52 @@
     fibList.appendChild(item);
   });
   function updateFibCounter() { fibCounter.textContent = "Верно: " + fibCorrectCount + " из 10"; }
+  /* Listen and translate */
+  var LISTEN_ALT = {
+    "food": ["пища"],
+    "TV programme": ["телепрограмма", "тв программа", "тв-программа", "передача", "программа"],
+    "film": ["кино", "кинофильм"],
+    "singer": ["певица"],
+    "film star": ["звезда кино"]
+  };
+  var listenItems = CATS;
+  var listenList = document.getElementById("listenList");
+  var listenCounter = document.getElementById("listenCounter");
+  var listenCorrectCount = 0;
+  shuffled(listenItems).forEach(function (w, idx) {
+    var item = document.createElement("div");
+    item.className = "fib-item";
+    item.innerHTML =
+      '<div class="fib-sentence">' + (idx + 1) + '. ' +
+        '<button class="listen-btn" type="button">&#128266; Слушай</button></div>' +
+      '<div class="fib-row">' +
+        '<input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="перевод по-русски">' +
+        '<button class="check-btn" type="button">Проверить</button>' +
+        '<span class="fib-mark"></span>' +
+      '</div>';
+    var input = item.querySelector("input");
+    var mark = item.querySelector(".fib-mark");
+    var checkedRight = false;
+    item.querySelector(".listen-btn").addEventListener("click", function () { speak(w.en); });
+    function check() {
+      var val = input.value.trim();
+      var ok = RuAnswer.check(val, w.ru, LISTEN_ALT[w.en]);
+      input.classList.toggle("correct", ok);
+      input.classList.toggle("incorrect", val.length > 0 && !ok);
+      if (ok) {
+        mark.textContent = "верно!"; mark.className = "fib-mark good-mark";
+        if (!checkedRight) { listenCorrectCount++; checkedRight = true; updateListenCounter(); }
+      } else {
+        mark.textContent = "верный ответ: " + w.ru; mark.className = "fib-mark bad-mark";
+        if (checkedRight) { listenCorrectCount--; checkedRight = false; updateListenCounter(); }
+      }
+    }
+    item.querySelector(".check-btn").addEventListener("click", check);
+    input.addEventListener("keydown", function (e) { if (e.key === "Enter") check(); });
+    listenList.appendChild(item);
+  });
+  function updateListenCounter() { listenCounter.textContent = "Верно: " + listenCorrectCount + " из " + listenItems.length; }
+  updateListenCounter();
 })();
 </script>
 </body>

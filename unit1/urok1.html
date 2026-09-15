@@ -460,6 +460,7 @@
   <footer class="page">English Plus 5 · Unit 1, Урок 1.1 · домашняя тетрадь</footer>
 </div>
 
+<script src="../js/ru_answer.js"></script>
 <script>
 (function () {
   var WORDS = [
@@ -729,6 +730,13 @@
   document.getElementById("sortReset").addEventListener("click", buildSort);
 
   /* 5. Listen and translate */
+  var LISTEN_ALT = {
+    "bag": ["портфель", "рюкзак"],
+    "bicycle": ["велик"],
+    "car": ["автомобиль"],
+    "poster": ["плакат"],
+    "teacher": ["учительница"]
+  };
   var listenList = document.getElementById("listenList");
   var listenCounter = document.getElementById("listenCounter");
   var listenCorrectCount = 0;
@@ -751,7 +759,7 @@
     listenBtn.addEventListener("click", function () { speak(w.en); });
     function check() {
       var val = input.value.trim().toLowerCase();
-      var ok = val === w.ru.toLowerCase();
+      var ok = RuAnswer.check(val, w.ru, LISTEN_ALT[w.en]);
       input.classList.toggle("correct", ok);
       input.classList.toggle("incorrect", val.length > 0 && !ok);
       if (ok) {

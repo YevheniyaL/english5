@@ -166,6 +166,7 @@
   <footer class="page">English Plus 5 · Unit 1, Урок 1.3 · домашняя тетрадь</footer>
 </div>
 
+<script src="../js/ru_answer.js"></script>
 <script>
 (function () {
   var COUNTRIES = [
@@ -316,6 +317,11 @@
   function updateFibCounter() { fibCounter.textContent = "Верно: " + fibCorrectCount + " из 9"; }
 
   /* Listen and translate */
+  var LISTEN_ALT = {
+    "the Czech Republic": ["чешская республика"],
+    "the United States": ["соединенные штаты", "соединенные штаты америки", "америка"],
+    "Great Britain": ["британия"]
+  };
   var listenList = document.getElementById("listenList");
   var listenCounter = document.getElementById("listenCounter");
   var listenCorrectCount = 0;
@@ -338,7 +344,7 @@
     listenBtn.addEventListener("click", function () { speak(c.en); });
     function check() {
       var val = input.value.trim().toLowerCase();
-      var ok = val === c.ru.toLowerCase();
+      var ok = RuAnswer.check(val, c.ru, LISTEN_ALT[c.en]);
       input.classList.toggle("correct", ok);
       input.classList.toggle("incorrect", val.length > 0 && !ok);
       if (ok) {
