@@ -34,7 +34,7 @@
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: 26mm;
     border: 1px solid #333; }
-  .grid.p2 { page-break-before: always; padding-top: 20px; }
+  .grid.p2, .grid.p1 { page-break-before: always; padding-top: 20px; }
   .cell {
     border: 1px dashed #999;
     display: flex;
@@ -59,9 +59,9 @@
   <p><b>Если принтер печатает с двух сторон (дуплекс):</b> в диалоге печати
   включите "Печать на двух сторонах" / "Two-sided" и переплёт по
   <b>длинному краю</b>. Тогда слово и перевод сразу окажутся на разных
-  сторонах одной карточки. Каждую пару листов (английские слова / переводы)
-  печатайте отдельно — они относятся к одной страничке. Разрежьте лист по
-  пунктирным линиям.</p>
+  сторонах одной карточки. Каждая страничка занимает свою пару страниц
+  (1–2, 3–4, 5–6…): английские слова и переводы на обороте. Можно печатать всё
+  сразу или только нужные страницы. Разрежьте лист по пунктирным линиям.</p>
   <p><b>Если принтер печатает только с одной стороны:</b> напечатайте
   сначала лист с английскими словами, затем переверните эту же стопку
   листов и вставьте обратно в лоток, чтобы напечатать лист с переводами на
@@ -102,7 +102,7 @@
 
 <h2 class="group-title" id="p2">Страничка 2 · 10 слов</h2>
 <p class="page-label">Лист 1 — английские слова (лицевая сторона)</p>
-<div class="grid">
+<div class="grid p1">
   <div class="cell en">test</div>
   <div class="cell en">draw</div>
   <div class="cell en">compare</div>
@@ -115,7 +115,7 @@
   <div class="cell en">give</div>
 </div>
 <p class="page-label">Лист 2 — переводы (обратная сторона, ячейки в каждом ряду зеркальны — для совпадения при печати)</p>
-<div class="grid">
+<div class="grid p2">
   <div class="cell">сравнивать</div>
   <div class="cell">рисовать</div>
   <div class="cell">проверять, тестировать</div>
@@ -132,7 +132,7 @@
 
 <h2 class="group-title" id="p3">Страничка 3 · 9 слов</h2>
 <p class="page-label">Лист 1 — английские слова (лицевая сторона)</p>
-<div class="grid">
+<div class="grid p1">
   <div class="cell en">reorder</div>
   <div class="cell en">find</div>
   <div class="cell en">translate</div>
@@ -144,7 +144,7 @@
   <div class="cell en">invent</div>
 </div>
 <p class="page-label">Лист 2 — переводы (обратная сторона, ячейки в каждом ряду зеркальны — для совпадения при печати)</p>
-<div class="grid">
+<div class="grid p2">
   <div class="cell">переводить</div>
   <div class="cell">находить</div>
   <div class="cell">переставлять в правильном порядке</div>
