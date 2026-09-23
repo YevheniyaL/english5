@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Семейное дерево Алана</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;800&display=swap">
+</head>
+<body>
+<style>
+  :root{
+    --bg:#f1efe4; --card:#ffffff; --paper:#fdfbf5; --border:#ddd7c6;
+    --ink:#2c3a29; --muted:#5f6d58;
+    --crown:#e9f3db; --crownline:#7ea457;
+    --bark:#8a6a45; --barkfill:#f4e9d7;
+    --rule:#b3c0a6; --accent:#c4741a; --accent-soft:#f7e3c6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0f130f; --card:#181e17; --paper:#1c221a; --border:#2d3629;
+      --ink:#e8ede2; --muted:#a6b39d;
+      --crown:#1f2c1b; --crownline:#7ea457;
+      --bark:#a8825a; --barkfill:#26201a;
+      --rule:#4c5945; --accent:#e79a45; --accent-soft:#3a2c17;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0f130f; --card:#181e17; --paper:#1c221a; --border:#2d3629;
+    --ink:#e8ede2; --muted:#a6b39d;
+    --crown:#1f2c1b; --crownline:#7ea457;
+    --bark:#a8825a; --barkfill:#26201a;
+    --rule:#4c5945; --accent:#e79a45; --accent-soft:#3a2c17;
+  }
+
+  body{background:var(--bg);color:var(--ink);font-family:Nunito,"Segoe UI",system-ui,sans-serif;font-size:15px;line-height:1.5}
+  .wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:22px 40px}
+
+  .ui{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 20px;margin-bottom:18px}
+  .ui h1{font-family:Caveat,Nunito,cursive;font-weight:700;font-size:38px;line-height:1.05;margin:0 0 6px;color:var(--ink);text-wrap:balance}
+  .ui p{margin:0;max-width:64ch;color:var(--muted)}
+  .ui b{color:var(--ink)}
+  .row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:14px}
+  .btn{font:inherit;font-weight:800;border:none;border-radius:999px;padding:11px 22px;background:var(--accent);color:#fff;cursor:pointer}
+  .btn:hover{filter:brightness(1.07)}
+  .btn:focus-visible,.chk:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+  .toggle{display:inline-flex;gap:8px;align-items:center;cursor:pointer;color:var(--muted);font-weight:600}
+
+  .key{margin-top:16px;border-top:1px dashed var(--border);padding-top:14px}
+  .key h2{font-size:13px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;font-weight:800}
+  .key ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:5px 20px;counter-reset:k}
+  .key li{counter-increment:k;display:flex;gap:9px;align-items:baseline;font-size:14px}
+  .key li::before{content:counter(k);flex:0 0 22px;height:22px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:800;font-size:12px;display:grid;place-items:center}
+
+  .sheet{background:var(--paper);border:1px solid var(--border);border-radius:16px;padding:12px}
+  .sheet svg{display:block;width:100%;height:auto}
+  .sheet .hints{display:none}
+  .sheet.hints-on .hints{display:block}
+
+  @page{size:A4 landscape;margin:7mm}
+  @media print{
+    :root{
+      --bg:#fff; --card:#fff; --paper:#fff; --border:#fff;
+      --ink:#243020; --muted:#6b7863;
+      --crown:#eef6e4; --crownline:#6f9a4b;
+      --bark:#7d5f3d; --barkfill:#faf3e8;
+      --rule:#9fae91; --accent:#a8600f; --accent-soft:#fbeed8;
+    }
+    body{background:#fff;margin:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    html{margin:0}
+    .wrap{max-width:none;padding:0}
+    .ui{display:none}
+    .sheet{border:none;border-radius:0;padding:0;background:#fff}
+    .sheet svg{width:100%;height:190mm}
+  }
+</style>
+
+<div class="wrap">
+  <div class="ui">
+    <h1>Семейное дерево — пустой лист</h1>
+    <p>Печатать на <b>A4 горизонтально</b>, один лист. В каждой рамке две линейки: на
+      <b>верхней</b> ребёнок пишет, кто это по-английски (<i>mother, uncle, cousin…</i>), на
+      <b>нижней</b> — имя. Подсказки только про пол и поколение: чубчик — мальчик или мужчина,
+      бантик — девочка или женщина, очки с усами — дедушка, очки и пучок с бантиком — бабушка.
+      Крупная рамка на стволе — Алан. Лица пустые, дерево без цвета: можно дорисовать и раскрасить.</p>
+    <div class="row">
+      <button class="btn" id="print" type="button">Печать</button>
+      <label class="toggle"><input class="chk" type="checkbox" id="hints"> показать номера-подсказки (для взрослого)</label>
+    </div>
+    <div class="key">
+      <h2>Кто в какой рамке</h2>
+      <ol>
+        <li>дедушка — папин папа</li>
+        <li>бабушка — папина мама</li>
+        <li>дедушка — мамин папа</li>
+        <li>бабушка — мамина мама</li>
+        <li>дядя — родной брат папы</li>
+        <li>тётя — жена дяди</li>
+        <li>папа</li>
+        <li>мама</li>
+        <li>тётя — родная сестра мамы</li>
+        <li>двоюродный брат — сын дяди и тёти</li>
+        <li>двоюродный брат — второй сын дяди и тёти</li>
+        <li>Алан</li>
+      </ol>
+    </div>
+  </div>
+  <div class="sheet" id="sheet"></div>
+</div>
+
+<script>
+(function(){
+  var A={w:150,h:104,r:20}, K={w:132,h:90,r:17};
+  function P(n,x,y,base,k,extra){
+    var p={n:n,x:x,y:y,w:base.w,h:base.h,r:base.r,k:k};
+    if(extra){ for(var q in extra){ p[q]=extra[q]; } }
+    return p;
+  }
+  var people=[
+    P(1,225,105,A,'grandpa'), P(2,465,105,A,'grandma'),
+    P(3,745,105,A,'grandpa'), P(4,985,105,A,'grandma'),
+    P(6,75,300,A,'woman'),    P(5,305,300,A,'man'),
+    P(7,525,300,A,'man'),     P(8,755,300,A,'woman'), P(9,975,300,A,'woman'),
+    P(10,95,478,K,'boy'),     P(11,285,478,K,'boy'),
+    P(12,615,468,{w:200,h:126,r:23},'boy',{star:true})
+  ];
+  function get(n){ for(var i=0;i<people.length;i++){ if(people[i].n===n){ return people[i]; } } }
+  function cx(p){ return p.x+p.w/2; }
+  function cyMid(p){ return p.y+p.h/2; }
+  function headCy(p){ return p.y-(p.r+10); }
+  function headTop(p){ return headCy(p)-p.r; }
+
+  var ink='var(--ink)', bark='var(--bark)', crown='var(--crown)', line='var(--crownline)',
+      paper='var(--card)', rule='var(--rule)', acc='var(--accent)', accSoft='var(--accent-soft)';
+  var out=[];
+
+  /* ствол и корни — рисуются первыми, крона их накрывает */
+  out.push('<path d="M672 590 C660 660 648 742 630 826 L800 826 C782 742 770 660 758 590 Z" fill="var(--barkfill)" stroke="'+bark+'" stroke-width="4" stroke-linejoin="round"/>');
+  out.push('<g fill="none" stroke="'+bark+'" stroke-width="8" stroke-linecap="round" opacity=".85">'+
+           '<path d="M636 812 C596 818 566 808 536 816"/><path d="M795 812 C835 818 866 808 896 816"/>'+
+           '<path d="M650 826 C620 832 596 832 574 830"/><path d="M782 826 C812 832 838 832 860 830"/></g>');
+  out.push('<g fill="none" stroke="'+bark+'" stroke-width="2.5" opacity=".5">'+
+           '<path d="M692 636 C684 700 678 764 670 816"/><path d="M740 636 C745 700 750 764 757 816"/></g>');
+
+  /* крона — фестончатый контур вокруг эллипса */
+  (function(){
+    var C=605, Y=285, RX=608, RY=328, N=26, B=1.35, pts=[], i, a;
+    for(i=0;i<N;i++){ a=i/N*Math.PI*2; pts.push([C+RX*Math.cos(a), Y+RY*Math.sin(a)]); }
+    var d='M'+pts[0][0].toFixed(1)+' '+pts[0][1].toFixed(1), j, p1, p2, dx, dy, r;
+    for(j=0;j<N;j++){
+      p1=pts[j]; p2=pts[(j+1)%N];
+      dx=p2[0]-p1[0]; dy=p2[1]-p1[1]; r=Math.sqrt(dx*dx+dy*dy)/2*B;
+      d+=' A'+r.toFixed(1)+' '+r.toFixed(1)+' 0 0 1 '+p2[0].toFixed(1)+' '+p2[1].toFixed(1);
+    }
+    out.push('<path d="'+d+' Z" fill="'+crown+'" stroke="'+line+'" stroke-width="3.5"/>');
+  })();
+
+  /* ветки: брак — двойная линия, от неё спуск и перекладина к детям */
+  function marriage(a,b){
+    var y=cyMid(a), x1=a.x+a.w, x2=b.x;
+    out.push('<path d="M'+x1+' '+(y-3)+' H'+x2+' M'+x1+' '+(y+3)+' H'+x2+'" fill="none" stroke="'+bark+'" stroke-width="4" stroke-linecap="round"/>');
+    return {x:(x1+x2)/2, y:y+3};
+  }
+  function children(from, kids, barY){
+    var d='M'+from.x+' '+from.y+' V'+barY, xs=[from.x], k, p;
+    for(k=0;k<kids.length;k++){ xs.push(cx(get(kids[k]))); }
+    if(kids.length>1){
+      d+=' M'+Math.min.apply(null,xs)+' '+barY+' H'+Math.max.apply(null,xs);
+    }
+    for(k=0;k<kids.length;k++){ p=get(kids[k]); d+=' M'+cx(p)+' '+barY+' V'+headTop(p); }
+    out.push('<path d="'+d+'" fill="none" stroke="'+bark+'" stroke-width="4" stroke-linecap="round"/>');
+  }
+  children(marriage(get(1),get(2)), [5,7], 245);
+  children(marriage(get(3),get(4)), [8,9], 245);
+  children(marriage(get(6),get(5)), [10,11], 424);
+  children(marriage(get(7),get(8)), [12], 400);
+
+  /* листочки */
+  function leaf(x,y,rot,s){
+    return '<g transform="translate('+x+' '+y+') rotate('+rot+') scale('+s+')">'+
+      '<path d="M0 0 C10 -12 26 -12 34 0 C26 12 10 12 0 0 Z" fill="'+crown+'" stroke="'+line+'" stroke-width="2.6"/>'+
+      '<path d="M3 0 H30" fill="none" stroke="'+line+'" stroke-width="1.6" opacity=".85"/></g>';
+  }
+  var leaves=[[55,35,-20,1],[150,152,12,.95],[58,218,-38,1],[675,66,16,1],[672,180,-14,.95],
+    [1155,60,22,1],[1180,178,-12,.95],[1168,300,26,1],[18,300,-22,.95],[22,424,14,1],
+    [246,238,-30,.9],[704,246,10,.95],[480,430,-20,1],[930,432,20,.95],[1140,440,-16,1],
+    [468,542,26,1],[510,616,-20,.9],[176,606,15,1],[352,614,-26,.95],[868,600,20,1],
+    [1000,528,-14,.95],[60,528,20,.9],[556,612,-34,.8],[900,470,-24,.85]];
+  for(var li=0;li<leaves.length;li++){ out.push(leaf(leaves[li][0],leaves[li][1],leaves[li][2],leaves[li][3])); }
+
+  /* головы: пол и поколение — причёской, без надписей */
+  function head(p){
+    var r=p.r, x=cx(p), y=headCy(p), g=[], st=p.star?acc:ink, sw=p.star?3.4:3,
+        glasses=(p.k==='grandpa'||p.k==='grandma'), bx, by, wx, wy;
+    if(p.k==='grandma'){
+      g.push('<circle cx="'+x+'" cy="'+(y-r*1.02)+'" r="'+(r*0.46)+'" fill="'+paper+'" stroke="'+ink+'" stroke-width="2.6"/>');
+      bx=x+r*0.36; by=y-r*1.46;
+      g.push('<g fill="'+accSoft+'" stroke="'+ink+'" stroke-width="2">'+
+             '<path d="M'+bx+' '+by+' l'+(-r*0.42)+' '+(-r*0.28)+' l0 '+(r*0.56)+' Z"/>'+
+             '<path d="M'+bx+' '+by+' l'+(r*0.42)+' '+(-r*0.28)+' l0 '+(r*0.56)+' Z"/>'+
+             '<circle cx="'+bx+'" cy="'+by+'" r="'+(r*0.13)+'"/></g>');
+    }
+    g.push('<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+paper+'" stroke="'+st+'" stroke-width="'+sw+'"/>');
+    if(p.k==='man'||p.k==='grandpa'){
+      g.push('<path d="M'+(x-r*0.42)+' '+(y-r*0.88)+' C'+(x-r*0.5)+' '+(y-r*1.7)+' '+(x+r*0.62)+' '+(y-r*1.78)+' '+(x+r*0.44)+' '+(y-r*0.9)+'" fill="none" stroke="'+ink+'" stroke-width="3" stroke-linecap="round"/>');
+    }
+    if(p.k==='boy'){
+      g.push('<path d="M'+(x-r*0.3)+' '+(y-r*0.95)+' Q'+(x+r*0.02)+' '+(y-r*2.0)+' '+(x+r*0.5)+' '+(y-r*1.05)+'" fill="none" stroke="'+st+'" stroke-width="3" stroke-linecap="round"/>');
+    }
+    if(p.k==='woman'||p.k==='grandma'){
+      g.push('<path d="M'+(x-r*0.82)+' '+(y-r*0.42)+' Q'+x+' '+(y-r*1.08)+' '+(x+r*0.82)+' '+(y-r*0.42)+'" fill="none" stroke="'+ink+'" stroke-width="2.6"/>');
+    }
+    if(p.k==='woman'){
+      wx=x+r*0.95; wy=y-r*0.6;
+      g.push('<g fill="'+accSoft+'" stroke="'+ink+'" stroke-width="2">'+
+             '<path d="M'+wx+' '+wy+' l'+(-r*0.48)+' '+(-r*0.32)+' l0 '+(r*0.64)+' Z"/>'+
+             '<path d="M'+wx+' '+wy+' l'+(r*0.48)+' '+(-r*0.32)+' l0 '+(r*0.64)+' Z"/>'+
+             '<circle cx="'+wx+'" cy="'+wy+'" r="'+(r*0.15)+'"/></g>');
+    }
+    var ey=y-r*0.08, ex=r*0.36;
+    if(glasses){
+      g.push('<g fill="none" stroke="'+ink+'" stroke-width="2.2">'+
+        '<circle cx="'+(x-ex)+'" cy="'+ey+'" r="'+(r*0.31)+'"/><circle cx="'+(x+ex)+'" cy="'+ey+'" r="'+(r*0.31)+'"/>'+
+        '<path d="M'+(x-r*0.05)+' '+ey+' H'+(x+r*0.05)+'"/>'+
+        '<path d="M'+(x-ex-r*0.31)+' '+ey+' H'+(x-r*0.93)+'"/>'+
+        '<path d="M'+(x+ex+r*0.31)+' '+ey+' H'+(x+r*0.93)+'"/></g>');
+    }
+    g.push('<circle cx="'+(x-ex)+'" cy="'+ey+'" r="'+Math.max(1.9,r*0.085)+'" fill="'+ink+'"/>'+
+           '<circle cx="'+(x+ex)+'" cy="'+ey+'" r="'+Math.max(1.9,r*0.085)+'" fill="'+ink+'"/>');
+    if(p.k==='grandpa'){
+      g.push('<path d="M'+(x-r*0.52)+' '+(y+r*0.34)+' Q'+(x-r*0.24)+' '+(y+r*0.62)+' '+x+' '+(y+r*0.34)+
+             ' Q'+(x+r*0.24)+' '+(y+r*0.62)+' '+(x+r*0.52)+' '+(y+r*0.34)+'" fill="none" stroke="'+ink+'" stroke-width="2.8" stroke-linecap="round"/>');
+    } else {
+      g.push('<path d="M'+(x-r*0.3)+' '+(y+r*0.3)+' Q'+x+' '+(y+r*0.6)+' '+(x+r*0.3)+' '+(y+r*0.3)+'" fill="none" stroke="'+ink+'" stroke-width="2.4" stroke-linecap="round"/>');
+    }
+    return g.join('');
+  }
+
+  /* рамки: две пустые линейки — кто это и имя */
+  function box(p){
+    var g=[], l1=p.y+p.h*0.46, l2=p.y+p.h*0.86;
+    if(p.star){
+      g.push('<rect x="'+(p.x-8)+'" y="'+(p.y-8)+'" width="'+(p.w+16)+'" height="'+(p.h+16)+'" rx="22" fill="none" stroke="'+acc+'" stroke-width="2.4" opacity=".5"/>');
+    }
+    g.push('<rect x="'+p.x+'" y="'+p.y+'" width="'+p.w+'" height="'+p.h+'" rx="15" fill="'+paper+'" stroke="'+(p.star?acc:ink)+'" stroke-width="'+(p.star?4.4:3)+'"/>');
+    g.push('<path d="M'+(p.x+14)+' '+l1.toFixed(1)+' H'+(p.x+p.w-14)+'" fill="none" stroke="'+rule+'" stroke-width="2.2"/>');
+    g.push('<path d="M'+(p.x+26)+' '+l2.toFixed(1)+' H'+(p.x+p.w-26)+'" fill="none" stroke="'+rule+'" stroke-width="2.2"/>');
+    return g.join('');
+  }
+
+  out.push(leaf(596,452,-42,.8));
+  out.push(leaf(818,566,18,.8));
+  for(var pi=0;pi<people.length;pi++){ out.push('<g>'+head(people[pi])+box(people[pi])+'</g>'); }
+
+  /* номера-подсказки: по умолчанию скрыты */
+  var hints=['<g class="hints" font-family="Nunito, sans-serif" font-weight="800" font-size="15" text-anchor="middle">'];
+  for(var hi=0;hi<people.length;hi++){
+    var hp=people[hi];
+    hints.push('<circle cx="'+(hp.x+17)+'" cy="'+(hp.y+17)+'" r="13" fill="'+accSoft+'" stroke="'+acc+'" stroke-width="1.8"/>'+
+      '<text x="'+(hp.x+17)+'" y="'+(hp.y+22)+'" fill="'+acc+'">'+hp.n+'</text>');
+  }
+  hints.push('</g>');
+  out.push(hints.join(''));
+
+  out.push('<text x="-28" y="822" font-family="Nunito, sans-serif" font-size="17" fill="var(--muted)">English &#183; Unit 4 &#183; ур. 4.1 &#183; Family tree</text>');
+
+  document.getElementById('sheet').innerHTML =
+    '<svg viewBox="-40 -80 1290 912" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Пустое семейное дерево на 12 человек для заполнения">'+out.join('')+'</svg>';
+
+  document.getElementById('print').addEventListener('click', function(){ window.print(); });
+  document.getElementById('hints').addEventListener('change', function(e){
+    document.getElementById('sheet').classList.toggle('hints-on', e.target.checked);
+  });
+})();
+</script>
+</body>
+</html>
