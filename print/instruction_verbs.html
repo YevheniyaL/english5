@@ -46,15 +46,16 @@
     padding: 4px;
   }
   .cell.en { font-weight: bold; }
+  .lesson-mark { font-size: 11px; color: #555; margin: 0 0 4px; }
+  .lesson-mark.brk { page-break-before: always; }
+  .grid.p1, .grid.p2 { page-break-before: auto; }
   @media print {
     .instructions { display: none; }
     .page-label, .group-title { display: none; }
   }
 </style>
 </head>
-<body>
-
-<div class="instructions">
+<body><div class="instructions">
   <p>Эта страница копится по всем юнитам — при добавлении новых слов из
   следующих юнитов здесь появятся новые странички.</p>
   <p><b>Если принтер печатает с двух сторон (дуплекс):</b> в диалоге печати
@@ -73,6 +74,7 @@
 
 <h2 class="group-title" id="p1">Страничка 1 · 10 слов</h2>
 <p class="page-label">Лист 1 — английские слова (лицевая сторона)</p>
+<p class="lesson-mark">English · глаголы заданий · страничка 1</p>
 <div class="grid">
   <div class="cell en">listen</div>
   <div class="cell en">read</div>
@@ -85,7 +87,9 @@
   <div class="cell en">ask</div>
   <div class="cell en">answer</div>
 </div>
+
 <p class="page-label">Лист 2 — переводы (обратная сторона, ячейки в каждом ряду зеркальны — для совпадения при печати)</p>
+<p class="lesson-mark brk">English · глаголы заданий · страничка 1</p>
 <div class="grid p2">
   <div class="cell">выбирать</div>
   <div class="cell">читать</div>
@@ -103,7 +107,8 @@
 
 <h2 class="group-title" id="p2">Страничка 2 · 10 слов</h2>
 <p class="page-label">Лист 1 — английские слова (лицевая сторона)</p>
-<div class="grid p1">
+<p class="lesson-mark brk">English · глаголы заданий · страничка 2</p>
+<div class="grid">
   <div class="cell en">test</div>
   <div class="cell en">draw</div>
   <div class="cell en">compare</div>
@@ -115,7 +120,9 @@
   <div class="cell en">follow</div>
   <div class="cell en">give</div>
 </div>
+
 <p class="page-label">Лист 2 — переводы (обратная сторона, ячейки в каждом ряду зеркальны — для совпадения при печати)</p>
+<p class="lesson-mark brk">English · глаголы заданий · страничка 2</p>
 <div class="grid p2">
   <div class="cell">сравнивать</div>
   <div class="cell">рисовать</div>
@@ -133,7 +140,8 @@
 
 <h2 class="group-title" id="p3">Страничка 3 · 10 слов</h2>
 <p class="page-label">Лист 1 — английские слова (лицевая сторона)</p>
-<div class="grid p1">
+<p class="lesson-mark brk">English · глаголы заданий · страничка 3</p>
+<div class="grid">
   <div class="cell en">reorder</div>
   <div class="cell en">find</div>
   <div class="cell en">translate</div>
@@ -145,7 +153,9 @@
   <div class="cell en">invent</div>
   <div class="cell en">do</div>
 </div>
+
 <p class="page-label">Лист 2 — переводы (обратная сторона, ячейки в каждом ряду зеркальны — для совпадения при печати)</p>
+<p class="lesson-mark brk">English · глаголы заданий · страничка 3</p>
 <div class="grid p2">
   <div class="cell">переводить</div>
   <div class="cell">находить</div>
@@ -161,9 +171,10 @@
   <div class="cell">делать, выполнять</div>
 </div>
 
-<h2 class="group-title" id="p4">Страничка 4 · 9 слов</h2>
+<h2 class="group-title" id="p4">Страничка 4 · 10 слов</h2>
 <p class="page-label">Лист 1 — английские слова (лицевая сторона)</p>
-<div class="grid p1">
+<p class="lesson-mark brk">English · глаголы заданий · страничка 4</p>
+<div class="grid">
   <div class="cell en">study</div>
   <div class="cell en">guess</div>
   <div class="cell en">hear</div>
@@ -173,8 +184,11 @@
   <div class="cell en">put</div>
   <div class="cell en">unscramble</div>
   <div class="cell en">label</div>
+  <div class="cell en">order</div>
 </div>
+
 <p class="page-label">Лист 2 — переводы (обратная сторона, ячейки в каждом ряду зеркальны — для совпадения при печати)</p>
+<p class="lesson-mark brk">English · глаголы заданий · страничка 4</p>
 <div class="grid p2">
   <div class="cell">слышать</div>
   <div class="cell">угадывать, догадываться</div>
@@ -185,6 +199,36 @@
   <div class="cell">подписывать (картинку)</div>
   <div class="cell">расставить перепутанные буквы по порядку</div>
   <div class="cell">класть, вешать, помещать</div>
+  <div class="cell"></div>
+  <div class="cell"></div>
+  <div class="cell">расставить по порядку</div>
+</div>
+
+<h2 class="group-title" id="p5">Страничка 5 · 7 слов</h2>
+<p class="page-label">Лист 1 — английские слова (лицевая сторона)</p>
+<p class="lesson-mark brk">English · глаголы заданий · страничка 5</p>
+<div class="grid">
+  <div class="cell en">substitute</div>
+  <div class="cell en">divide</div>
+  <div class="cell en">spot</div>
+  <div class="cell en">correct</div>
+  <div class="cell en">retell</div>
+  <div class="cell en">illustrate</div>
+  <div class="cell en">vote</div>
+</div>
+
+<p class="page-label">Лист 2 — переводы (обратная сторона, ячейки в каждом ряду зеркальны — для совпадения при печати)</p>
+<p class="lesson-mark brk">English · глаголы заданий · страничка 5</p>
+<div class="grid p2">
+  <div class="cell">заметить, найти</div>
+  <div class="cell">делить на части</div>
+  <div class="cell">заменять одно на другое</div>
+  <div class="cell">иллюстрировать, рисовать к тексту</div>
+  <div class="cell">пересказывать</div>
+  <div class="cell">исправлять</div>
+  <div class="cell"></div>
+  <div class="cell"></div>
+  <div class="cell">голосовать</div>
 </div>
 
 </body>
