@@ -30,7 +30,7 @@
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: 26mm;
     border: 1px solid #333; }
-  .grid.p2 { page-break-before: always; padding-top: 20px; }
+  .grid.p2 { page-break-before: always; margin-top: 20px; }
   .cell {
     border: 1px dashed #999;
     display: flex;
@@ -49,7 +49,7 @@
   .cell.obj { background: #f9e8db; }
   .cell.adj { background: #e6f4ea; }
   .cell.pron { background: #e3edf8; }
-  @media print {
+  @media print { @page { size: A4; margin: 10mm; }
     .instructions { display: none; }
     .page-label { display: none; }
     * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }

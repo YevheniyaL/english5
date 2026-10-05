@@ -30,7 +30,7 @@
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: 26mm;
     border: 1px solid #333; }
-  .grid.p2 { page-break-before: always; padding-top: 20px; }
+  .grid.p2 { page-break-before: always; margin-top: 20px; }
   .cell {
     border: 1px dashed #999;
     display: flex;
@@ -41,7 +41,7 @@
     padding: 4px;
   }
   .cell.en { font-weight: bold; }
-  @media print {
+  @media print { @page { size: A4; margin: 10mm; }
     .instructions { display: none; }
     .page-label { display: none; }
   }
