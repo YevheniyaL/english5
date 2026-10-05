@@ -30,7 +30,7 @@
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: 26mm;
     border: 1px solid #333; }
-  .grid.p2 { page-break-before: always; margin-top: 20px; }
+  .grid.p2 { page-break-before: always; }
   .cell {
     border: 1px dashed #999;
     display: flex;
@@ -47,6 +47,9 @@
   .cell .why { font-size: 11px; color: #555; margin-top: 2px; }
   .cell.is { background: #e6f4ea; }
   .cell.are { background: #e3edf8; }
+  .lesson-mark { font-size: 11px; color: #555; margin: 0 0 4px; }
+  .lesson-mark.brk { page-break-before: always; padding-top: 20px; }
+  .grid.p1, .grid.p2 { page-break-before: auto; }
   @media print { @page { size: A4; margin: 10mm; }
     .instructions { display: none; }
     .page-label { display: none; }
@@ -75,6 +78,7 @@
 </div>
 
 <p class="page-label">Лист 1 — предложения с пропуском (лицевая сторона)</p>
+<p class="lesson-mark">English · грамматика · there is / there are · Unit 1, 3</p>
 <div class="grid">
   <div class="cell"><span class="word">___ a cat on the sofa.</span></div>
   <div class="cell"><span class="word">___ two cats on the sofa.</span></div>
@@ -106,6 +110,7 @@
 </div>
 
 <p class="page-label">Лист 2 — ответы (обратная сторона, ячейки в каждом ряду зеркальны — для совпадения при печати)</p>
+<p class="lesson-mark brk">English · грамматика · there is / there are · Unit 1, 3</p>
 <div class="grid p2">
   <div class="cell is"><span class="form">There is</span><span class="sent">There is a teacher in the class.</span><span class="why">a teacher — один</span></div>
   <div class="cell are"><span class="form">There are</span><span class="sent">There are two cats on the sofa.</span><span class="why">two cats — много</span></div>
