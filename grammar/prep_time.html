@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Английский · грамматика · on / at</title>
+<link rel="icon" href="data:image/svg+xml,<svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22><text%20y=%22.9em%22%20font-size=%2290%22>🔤</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #faf9f4; --paper-raised: #ffffff;
+    --rule: #aecdea; --rule-soft: #d7e6f5;
+    --margin: #d3564d; --margin-soft: #f1c3bf;
+    --ink: #24304a; --ink-soft: #647089; --ink-faint: #97a2b8;
+    --good: #3c8a5c; --good-bg: #dff1e5;
+    --bad: #c85a4f; --bad-bg: #fbe4e1;
+    --mark: #e3a836; --mark-bg: #fbedd0;
+    --s: #3c8a5c; --s-bg: #dff1e5;
+    --es: #2f6fb0; --es-bg: #dde9f7;
+    --ies: #b0602a; --ies-bg: #f8e3d3;
+    --shadow: rgba(36, 48, 74, 0.14);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1b2431; --paper-raised: #232f3f;
+      --rule: #3c4d68; --rule-soft: #2a374a;
+      --margin: #e08078; --margin-soft: #4a3339;
+      --ink: #eceff5; --ink-soft: #a7b2c8; --ink-faint: #6d788e;
+      --good: #6fcb93; --good-bg: #23392c;
+      --bad: #e0847a; --bad-bg: #402b2a;
+      --mark: #f0c463; --mark-bg: #3d3320;
+      --s: #6fcb93; --s-bg: #23392c;
+      --es: #7fb3ea; --es-bg: #22324a;
+      --ies: #eba674; --ies-bg: #402f22;
+      --shadow: rgba(0, 0, 0, 0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1b2431; --paper-raised: #232f3f;
+    --rule: #3c4d68; --rule-soft: #2a374a;
+    --margin: #e08078; --margin-soft: #4a3339;
+    --ink: #eceff5; --ink-soft: #a7b2c8; --ink-faint: #6d788e;
+    --good: #6fcb93; --good-bg: #23392c;
+    --bad: #e0847a; --bad-bg: #402b2a;
+    --mark: #f0c463; --mark-bg: #3d3320;
+    --s: #6fcb93; --s-bg: #23392c;
+    --es: #7fb3ea; --es-bg: #22324a;
+    --ies: #eba674; --ies-bg: #402f22;
+    --shadow: rgba(0, 0, 0, 0.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: 'PT Sans', Arial, sans-serif; line-height: 1.5; -webkit-tap-highlight-color: transparent; }
+  h1, h2, h3, .hand { font-family: 'Caveat', 'Comic Sans MS', cursive; font-weight: 700; text-wrap: balance; }
+  .back-link { font-size: 13px; color: var(--ink-faint); text-decoration: none; margin-right: 14px; }
+  .back-link:hover { color: var(--margin); }
+  .sheet { max-width: 680px; margin: 0 auto; padding: 22px 20px 60px 44px; position: relative;
+    background-image: repeating-linear-gradient(to bottom, transparent, transparent 37px, var(--rule-soft) 38px);
+    background-position: 0 150px; }
+  .sheet::before { content: ""; position: absolute; top: 0; bottom: 0; left: 26px; width: 2px; background: var(--margin); opacity: 0.75; }
+  header.page { padding-top: 6px; padding-bottom: 10px; }
+  h1 { font-size: 42px; margin: 8px 0 2px; line-height: 1.1; }
+  .subtitle { font-size: 16px; color: var(--ink-soft); margin: 0 0 10px; }
+  .print-links { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; }
+  .print-links a { color: var(--margin); }
+  nav.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 20px; }
+  .tab { font-family: 'Caveat', cursive; font-size: 20px; font-weight: 600; background: var(--paper-raised); border: 1px solid var(--rule); border-bottom-width: 3px; color: var(--ink-soft); padding: 7px 16px 6px; border-radius: 8px 8px 4px 4px; cursor: pointer; box-shadow: 1px 2px 0 var(--shadow); }
+  .tab:nth-child(1) { transform: rotate(-1.2deg); }
+  .tab:nth-child(2) { transform: rotate(0.8deg); }
+  .tab:nth-child(3) { transform: rotate(-0.6deg); }
+  .tab[aria-selected="true"] { color: var(--paper); background: var(--margin); border-color: var(--margin); }
+  .tab:focus-visible, button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid var(--margin); outline-offset: 2px; }
+  section.page { display: none; }
+  section.page.active { display: block; }
+  .lead { font-size: 14px; color: var(--ink-soft); margin: 0 0 16px; }
+  .counter { font-family: 'Caveat', cursive; font-size: 21px; font-weight: 700; color: var(--margin); margin-bottom: 12px; }
+
+  /* Rule */
+  .legend { font-size: 12px; color: var(--ink-faint); margin: -6px 0 14px; }
+  .block { background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 6px; box-shadow: 2px 3px 0 var(--shadow); padding: 12px 16px 14px; margin-bottom: 18px; }
+  .block h2 { font-size: 27px; margin: 0 0 6px; line-height: 1.15; }
+  .block h2 .num { color: var(--margin); margin-right: 4px; }
+  .block p { margin: 6px 0; font-size: 15px; }
+  .block ul { margin: 6px 0; padding-left: 20px; font-size: 15px; }
+  .block li { margin-bottom: 3px; }
+  .src { font-size: 12px; color: var(--ink-faint); white-space: nowrap; }
+  .en { font-weight: 700; }
+  .ex { font-style: italic; }
+  .when-list { list-style: none; padding: 0 !important; }
+  .when-list li { display: flex; gap: 10px; align-items: baseline; padding: 4px 0; border-bottom: 1px dashed var(--rule-soft); }
+  .when-list li:last-child { border-bottom: none; }
+  .when-list .unit { font-family: 'Caveat', cursive; font-size: 19px; font-weight: 700; color: var(--margin); min-width: 104px; }
+  .table-wrap { overflow-x: auto; }
+  table.forms { border-collapse: collapse; margin: 8px 0; font-size: 15px; width: 100%; }
+  table.forms th, table.forms td { border: 1px solid var(--rule); padding: 6px 10px; text-align: left; vertical-align: top; }
+  table.forms th { background: var(--rule-soft); font-weight: 700; }
+  .hl { color: var(--margin); font-weight: 700; }
+  .check-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+  .check-row > span { font-size: 14px; background: var(--paper); border: 1px solid var(--rule); border-radius: 12px; padding: 3px 10px; }
+  .spell { display: grid; gap: 10px; margin-top: 8px; }
+  .spell-rule { border-left: 5px solid; border-radius: 4px; padding: 8px 12px; }
+  .spell-rule.s { border-color: var(--s); background: var(--s-bg); }
+  .spell-rule.es { border-color: var(--es); background: var(--es-bg); }
+  .spell-rule.ies { border-color: var(--ies); background: var(--ies-bg); }
+  .spell-rule.exc { border-color: var(--margin); background: var(--bad-bg); }
+  .spell-rule .head { font-weight: 700; font-size: 15px; }
+  .spell-rule .words { font-size: 15px; margin-top: 2px; }
+  .end-s { color: var(--s); font-weight: 700; }
+  .end-es { color: var(--es); font-weight: 700; }
+  .end-ies { color: var(--ies); font-weight: 700; }
+  .note { font-size: 14px; color: var(--ink-soft); margin-top: 6px; }
+  .mistakes { list-style: none; padding: 0 !important; }
+  .mistakes li { display: flex; flex-wrap: wrap; gap: 4px 12px; padding: 4px 0; }
+  .wrong { color: var(--bad); text-decoration: line-through; }
+  .right { color: var(--good); font-weight: 700; }
+
+  /* Cards */
+  .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  @media (min-width: 480px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+  .card { perspective: 800px; height: 96px; }
+  .card-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.45s cubic-bezier(.4,.2,.2,1); cursor: pointer; }
+  .card.flipped .card-inner { transform: rotateY(180deg); }
+  .card-face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; backface-visibility: hidden; border-radius: 6px; border: 1px solid var(--rule); background: var(--paper-raised); box-shadow: 2px 3px 0 var(--shadow); padding: 6px; text-align: center; }
+  .card-face.back { transform: rotateY(180deg); }
+  .card-face.back.s { background: var(--s-bg); border-color: var(--s); }
+  .card-face.back.es { background: var(--es-bg); border-color: var(--es); }
+  .card-face.back.ies { background: var(--ies-bg); border-color: var(--ies); }
+  .card-face.back.exc { background: var(--bad-bg); border-color: var(--margin); }
+  .card-face .who { font-size: 12px; color: var(--ink-faint); }
+  .card-face .verb { font-size: 19px; font-weight: 700; line-height: 1.2; }
+  .card-face .form { font-size: 18px; font-weight: 700; line-height: 1.2; }
+  .card-face .why { font-size: 12px; color: var(--ink-soft); line-height: 1.25; margin-top: 2px; }
+  .speak-btn { position: absolute; top: 3px; right: 3px; width: 22px; height: 22px; border-radius: 50%;
+    border: 1px solid var(--rule); background: var(--paper); color: var(--ink-soft); font-size: 12px;
+    line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+  .speak-btn:hover { border-color: var(--margin); color: var(--margin); }
+  @media (prefers-reduced-motion: reduce) { .card-inner { transition: none; } }
+
+  /* Trainer */
+  .ex-block { margin-bottom: 30px; }
+  .ex-block h2 { font-size: 27px; margin: 0 0 2px; }
+  .ex-block .lead { margin-bottom: 10px; }
+  .q { margin-bottom: 12px; }
+  .q-text { font-size: 16px; margin-bottom: 5px; }
+  .q-text .gap { display: inline-block; min-width: 64px; border-bottom: 2px solid var(--ink-faint); text-align: center; font-weight: 700; }
+  .q-text .gap.ok { border-bottom-color: var(--good); color: var(--good); }
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .opt { font-family: 'PT Sans', sans-serif; font-size: 15px; background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 5px; padding: 5px 14px; cursor: pointer; color: var(--ink); box-shadow: 1px 2px 0 var(--shadow); }
+  .opt:hover { border-color: var(--margin); }
+  .opt.ok { background: var(--good-bg); border-color: var(--good); color: var(--good); }
+  .opt.no { background: var(--bad-bg); border-color: var(--bad); color: var(--bad); }
+  .feedback { font-size: 14px; min-height: 1em; }
+  .feedback.good { color: var(--good); }
+  .feedback.bad { color: var(--bad); }
+  .fib-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .fib-row input[type="text"] { font-family: 'PT Sans', sans-serif; font-size: 15px; padding: 5px 9px; border: none; border-bottom: 2px solid var(--ink-faint); background: transparent; color: var(--ink); width: 140px; }
+  .fib-row input[type="text"]:focus { border-bottom-color: var(--margin); outline: none; }
+  .fib-row input.correct { border-bottom-color: var(--good); color: var(--good); }
+  .fib-row input.incorrect { border-bottom-color: var(--bad); color: var(--bad); }
+  .check-btn { font-family: 'PT Sans', sans-serif; font-size: 13px; background: var(--ink); color: var(--paper); border: none; border-radius: 5px; padding: 6px 12px; cursor: pointer; }
+  .check-btn:hover { opacity: 0.88; }
+  .reset-btn { font-family: 'Caveat', cursive; font-size: 17px; background: none; border: none; color: var(--ink-faint); text-decoration: underline; cursor: pointer; padding: 0; }
+  .reset-btn:hover { color: var(--margin); }
+  footer.page { margin-top: 30px; font-size: 12px; color: var(--ink-faint); }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="page">
+    <a class="back-link" href="../index.html">← ко всем урокам</a>
+    <a class="back-link" href="index.html">← все правила грамматики</a>
+    <h1>on / at (in)</h1>
+    <p class="subtitle">предлоги времени · Unit 2 (стр. 15) · in — дополнение ✏️</p>
+    <div class="print-links">
+      <a href="../print/grammar/prep_time_plakat.html" target="_blank" rel="noopener">Плакат для печати (A4) →</a>
+      <a href="../print/grammar/prep_time.html" target="_blank" rel="noopener">Карточки для печати →</a>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Разделы">
+    <button class="tab" role="tab" aria-selected="true" data-target="rule">Правило</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="cards">Карточки on / at / in</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="trainer">Тренажёр</button>
+  </nav>
+
+  <!-- ============ RULE ============ -->
+  <section class="page active" id="rule">
+    <p class="legend">📖 — из учебника English Plus 5 (страница указана) · ✏️ — объяснение и примеры добавлены для понятности</p>
+
+    <div class="block">
+      <h2>Когда это учат</h2>
+      <ul class="when-list">
+        <li><span class="unit">Unit 2, стр. 15</span><span>on — с днями, at — со временем <span class="src">📖</span></span></li>
+        <li><span class="unit">Unit 5, стр. 54</span><span>on my birthday, at Christmas <span class="src">📖</span></span></li>
+        <li><span class="unit">Unit 5–7</span><span>in July, in the summer, in the afternoon — встречается в текстах, правила в учебнике нет <span class="src">✏️</span></span></li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">1</span>Правило учебника <span class="src">📖 стр. 15</span></h2>
+      <div class="spell">
+        <div class="spell-rule s">
+          <div class="head"><span class="end-s">on</span> — с <b>днями</b> <span class="src">📖</span></div>
+          <div class="words">on Monday · on Thursday · on Friday</div>
+        </div>
+        <div class="spell-rule es">
+          <div class="head"><span class="end-es">at</span> — со <b>временем</b> по часам <span class="src">📖</span></div>
+          <div class="words">at five o'clock · at four o'clock · at half past three</div>
+        </div>
+      </div>
+      <p>Вместе — сначала день, потом время: <span class="ex">The club is <b>on</b> Thursday <b>at</b> five o'clock.</span> <span class="src">📖</span></p>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">2</span>Что ещё бывает с on и at <span class="src">✏️</span></h2>
+      <ul>
+        <li><b>on</b> — ещё и с <b>датами и особыми днями</b>: <span class="ex">on 25th December, on my birthday</span> (📖 стр. 54), <span class="ex">on Saturday morning</span>.</li>
+        <li><b>at</b> — ещё и с «точками» во времени: <span class="ex">at midnight</span> (📖 стр. 62), <span class="ex">at night, at Christmas</span>.</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">3</span>in — с месяцами, временами года и частями дня <span class="src">✏️</span></h2>
+      <div class="spell">
+        <div class="spell-rule ies">
+          <div class="head"><span class="end-ies">in</span> — с тем, что <b>длинное</b>: месяц, время года, утро / вечер, год</div>
+          <div class="words">in July · in March · in the summer · in winter · in the morning · in the evening · in 2026</div>
+        </div>
+      </div>
+      <p class="note">✏️ Как запомнить: <b>at</b> — точка на часах, <b>on</b> — один день в календаре, <b>in</b> — что-то длинное, «внутри» чего мы находимся.</p>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">4</span>Ловушки русскоязычного ребёнка <span class="src">✏️</span></h2>
+      <p>По-русски везде «в»: <i>в понедельник, в пять часов, в июле</i>. А по-английски — три разных слова:</p>
+      <div class="check-row">
+        <span>в понедельник → <b>on</b> Monday</span>
+        <span>в пять часов → <b>at</b> five o'clock</span>
+        <span>в июле → <b>in</b> July</span>
+      </div>
+      <p><b>Утро:</b> <span class="ex"><b>in</b> the morning</span>, но если есть день — решает день: <span class="ex"><b>on</b> Saturday morning</span>.</p>
+      <p><b>Без предлога</b> — со словами every, next, this, today, tomorrow: <span class="ex">every Monday, next Friday, today</span>.</p>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">5</span>Частые ошибки <span class="src">✏️</span></h2>
+      <ul class="mistakes">
+        <li><span class="wrong">in Monday</span><span class="right">on Monday</span></li>
+        <li><span class="wrong">on five o'clock</span><span class="right">at five o'clock</span></li>
+        <li><span class="wrong">at July</span><span class="right">in July</span></li>
+        <li><span class="wrong">in Sunday morning</span><span class="right">on Sunday morning</span></li>
+        <li><span class="wrong">on every Monday</span><span class="right">every Monday</span></li>
+        <li><span class="wrong">The club is at five o'clock on Thursday.</span><span class="right">The club is on Thursday at five o'clock.</span></li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- ============ CARDS ============ -->
+  <section class="page" id="cards">
+    <p class="lead">На карточке день или время. Скажи с нужным предлогом и нажми — проверь себя. Цвет: <span class="end-s">зелёный — on</span>, <span class="end-es">синий — at</span>, <span class="end-ies">оранжевый — in</span>.</p>
+    <div class="cards" id="cardsGrid"></div>
+  </section>
+
+  <!-- ============ TRAINER ============ -->
+  <section class="page" id="trainer">
+    <p class="counter" id="totalCounter">Всего верно: 0 из 0</p>
+    <p class="lead">Пять заданий — от простого к сложному. Ошибся — прочитай подсказку и попробуй ещё раз.</p>
+
+    <div class="ex-block">
+      <h2>1. on или at?</h2>
+      <p class="lead">День — on, время по часам — at.</p>
+      <div id="ex1"></div>
+    </div>
+
+    <div class="ex-block">
+      <h2>2. on, at или in?</h2>
+      <p class="lead">Месяц, время года, утро и вечер — in.</p>
+      <div id="ex2"></div>
+    </div>
+
+    <div class="ex-block">
+      <h2>3. Впиши on, at или in</h2>
+      <p class="lead">Записки с доски объявлений — как в задании 5 на стр. 15.</p>
+      <div id="ex3"></div>
+    </div>
+
+    <div class="ex-block">
+      <h2>4. Какое предложение верное?</h2>
+      <p class="lead">Сначала день, потом время.</p>
+      <div id="ex4"></div>
+    </div>
+
+    <div class="ex-block">
+      <h2>5. Нужен предлог или нет?</h2>
+      <p class="lead">«—» значит: предлог не нужен. Со словами every, next, this, today, tomorrow предлога нет.</p>
+      <div id="ex5"></div>
+    </div>
+
+    <button class="reset-btn" id="resetAll" type="button">начать заново</button>
+  </section>
+
+  <footer class="page">English Plus 5 · Грамматика · on / at · домашняя тетрадь</footer>
+</div>
+
+<script>
+(function () {
+  var CARDS = [
+    {"f1": "on / at / in ?", "f2": "Monday", "b1": "on Monday", "b2": "день → on", "t": "s"},
+    {"f1": "on / at / in ?", "f2": "five o'clock", "b1": "at five o'clock", "b2": "время → at", "t": "es"},
+    {"f1": "on / at / in ?", "f2": "July", "b1": "in July", "b2": "месяц → in", "t": "ies"},
+    {"f1": "on / at / in ?", "f2": "Thursday", "b1": "on Thursday", "b2": "день → on", "t": "s"},
+    {"f1": "on / at / in ?", "f2": "half past three", "b1": "at half past three", "b2": "время → at", "t": "es"},
+    {"f1": "on / at / in ?", "f2": "March", "b1": "in March", "b2": "месяц → in", "t": "ies"},
+    {"f1": "on / at / in ?", "f2": "Friday", "b1": "on Friday", "b2": "день → on", "t": "s"},
+    {"f1": "on / at / in ?", "f2": "9.30", "b1": "at 9.30", "b2": "время → at", "t": "es"},
+    {"f1": "on / at / in ?", "f2": "summer", "b1": "in summer", "b2": "время года → in", "t": "ies"},
+    {"f1": "on / at / in ?", "f2": "Sunday", "b1": "on Sunday", "b2": "день → on", "t": "s"},
+    {"f1": "on / at / in ?", "f2": "quarter to four", "b1": "at quarter to four", "b2": "время → at", "t": "es"},
+    {"f1": "on / at / in ?", "f2": "winter", "b1": "in winter", "b2": "время года → in", "t": "ies"},
+    {"f1": "on / at / in ?", "f2": "Saturday morning", "b1": "on Saturday morning", "b2": "есть день → on", "t": "s"},
+    {"f1": "on / at / in ?", "f2": "midnight", "b1": "at midnight", "b2": "точка во времени → at", "t": "es"},
+    {"f1": "on / at / in ?", "f2": "the morning", "b1": "in the morning", "b2": "часть дня → in", "t": "ies"},
+    {"f1": "on / at / in ?", "f2": "my birthday", "b1": "on my birthday", "b2": "особый день → on", "t": "s"},
+    {"f1": "on / at / in ?", "f2": "night", "b1": "at night", "b2": "так говорят → at", "t": "es"},
+    {"f1": "on / at / in ?", "f2": "the evening", "b1": "in the evening", "b2": "часть дня → in", "t": "ies"},
+    {"f1": "on / at / in ?", "f2": "14th February", "b1": "on 14th February", "b2": "дата → on", "t": "s"},
+    {"f1": "on / at / in ?", "f2": "seven o'clock", "b1": "at seven o'clock", "b2": "время → at", "t": "es"},
+    {"f1": "on / at / in ?", "f2": "2026", "b1": "in 2026", "b2": "год → in", "t": "ies"}
+  ];
+  var EXS = [
+    {"type": "choice", "cs": false, "items": [{"s": "The club is ___ Thursday.", "o": ["on", "at"], "a": "on", "h": "Thursday — день → on"}, {"s": "It's ___ five o'clock.", "o": ["on", "at"], "a": "at", "h": "время → at"}, {"s": "Piano classes are ___ Monday and Wednesday.", "o": ["on", "at"], "a": "on", "h": "дни → on"}, {"s": "The English exam is ___ 10 o'clock.", "o": ["on", "at"], "a": "at", "h": "время → at"}, {"s": "The chess club is ___ Tuesday.", "o": ["on", "at"], "a": "on", "h": "день → on"}, {"s": "The concert is ___ 7.00.", "o": ["on", "at"], "a": "at", "h": "время → at"}, {"s": "We have PE ___ Friday.", "o": ["on", "at"], "a": "on", "h": "день → on"}, {"s": "School starts ___ half past eight.", "o": ["on", "at"], "a": "at", "h": "время → at"}, {"s": "My birthday party is ___ Saturday.", "o": ["on", "at"], "a": "on", "h": "день → on"}, {"s": "The film starts ___ quarter to six.", "o": ["on", "at"], "a": "at", "h": "время → at"}, {"s": "I go swimming ___ Sundays.", "o": ["on", "at"], "a": "on", "h": "дни → on"}, {"s": "Lunch is ___ one o'clock.", "o": ["on", "at"], "a": "at", "h": "время → at"}]},
+    {"type": "choice", "cs": false, "items": [{"s": "Nauryz is ___ March.", "o": ["on", "at", "in"], "a": "in", "h": "месяц → in"}, {"s": "My birthday is ___ 12th July.", "o": ["on", "at", "in"], "a": "on", "h": "дата → on"}, {"s": "It's very cold ___ winter.", "o": ["on", "at", "in"], "a": "in", "h": "время года → in"}, {"s": "I get up ___ seven o'clock.", "o": ["on", "at", "in"], "a": "at", "h": "время → at"}, {"s": "I do my homework ___ the evening.", "o": ["on", "at", "in"], "a": "in", "h": "часть дня → in"}, {"s": "We play football ___ Saturday morning.", "o": ["on", "at", "in"], "a": "on", "h": "есть день (Saturday) → on"}, {"s": "There are fireworks ___ midnight.", "o": ["on", "at", "in"], "a": "at", "h": "midnight — точка во времени → at"}, {"s": "We go to the sea ___ the summer.", "o": ["on", "at", "in"], "a": "in", "h": "время года → in"}, {"s": "I get presents ___ my birthday.", "o": ["on", "at", "in"], "a": "on", "h": "особый день → on"}, {"s": "The shop opens ___ nine o'clock.", "o": ["on", "at", "in"], "a": "at", "h": "время → at"}, {"s": "I read ___ the morning.", "o": ["on", "at", "in"], "a": "in", "h": "часть дня → in"}, {"s": "Owls hunt ___ night.", "o": ["on", "at", "in"], "a": "at", "h": "так говорят: at night"}]},
+    {"type": "typing", "cs": false, "items": [{"s": "Climbing club: ___ Friday, 5.00.", "v": "", "a": "on", "h": "день → on"}, {"s": "Guitar concert: Friday ___ 7.00.", "v": "", "a": "at", "h": "время → at"}, {"s": "Chess club: ___ Tuesday, 3 pm.", "v": "", "a": "on", "h": "день → on"}, {"s": "English exam: Thursday ___ 10 o'clock.", "v": "", "a": "at", "h": "время → at"}, {"s": "Summer camp: ___ July.", "v": "", "a": "in", "h": "месяц → in"}, {"s": "Judo club: ___ Monday and Thursday.", "v": "", "a": "on", "h": "дни → on"}, {"s": "Snow festival: ___ winter.", "v": "", "a": "in", "h": "время года → in"}, {"s": "Disco: Saturday ___ 8 pm.", "v": "", "a": "at", "h": "время → at"}, {"s": "Football match: ___ Sunday morning.", "v": "", "a": "on", "h": "есть день → on"}, {"s": "Art club: ___ the afternoon.", "v": "", "a": "in", "h": "часть дня → in"}]},
+    {"type": "choice", "cs": false, "items": [{"s": "Клуб — в четверг в пять часов.", "o": ["The club is on Thursday at five o'clock.", "The club is at Thursday on five o'clock."], "a": "The club is on Thursday at five o'clock.", "h": "день → on, время → at"}, {"s": "Урок — в понедельник в девять.", "o": ["The lesson is in Monday at nine.", "The lesson is on Monday at nine."], "a": "The lesson is on Monday at nine.", "h": "Monday → on"}, {"s": "Мой день рождения в мае.", "o": ["My birthday is in May.", "My birthday is on May."], "a": "My birthday is in May.", "h": "месяц → in"}, {"s": "Я встаю в семь часов.", "o": ["I get up at seven o'clock.", "I get up in seven o'clock."], "a": "I get up at seven o'clock.", "h": "время → at"}, {"s": "Летом мы ездим к бабушке.", "o": ["We visit Grandma on summer.", "We visit Grandma in summer."], "a": "We visit Grandma in summer.", "h": "время года → in"}, {"s": "Концерт — в пятницу вечером.", "o": ["The concert is on Friday evening.", "The concert is in Friday evening."], "a": "The concert is on Friday evening.", "h": "есть день → on"}]},
+    {"type": "choice", "cs": false, "items": [{"s": "I play football ___ every Saturday.", "o": ["on", "—"], "a": "—", "h": "every → без предлога"}, {"s": "See you ___ tomorrow!", "o": ["on", "—"], "a": "—", "h": "tomorrow → без предлога"}, {"s": "I go swimming ___ Sundays.", "o": ["on", "—"], "a": "on", "h": "день → on"}, {"s": "We have English ___ today.", "o": ["on", "—"], "a": "—", "h": "today → без предлога"}, {"s": "The party is ___ next Friday.", "o": ["on", "—"], "a": "—", "h": "next → без предлога"}, {"s": "My birthday is ___ 12th July.", "o": ["on", "—"], "a": "on", "h": "дата → on"}]}
+  ];
+
+  var TOTAL = 0; EXS.forEach(function (e) { TOTAL += e.items.length; });
+  function speak(text) {
+    try {
+      if (!window.speechSynthesis) return;
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text.replace(/___/g, "").replace(/\s*\(.*?\)/g, ""));
+      u.lang = "en-US";
+      window.speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+  function shuffled(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; }
+    return a;
+  }
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+
+  var tabs = document.querySelectorAll(".tab");
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      tabs.forEach(function (t) { t.setAttribute("aria-selected", "false"); });
+      document.querySelectorAll("section.page").forEach(function (s) { s.classList.remove("active"); });
+      tab.setAttribute("aria-selected", "true");
+      document.getElementById(tab.dataset.target).classList.add("active");
+    });
+  });
+
+  var cardsGrid = document.getElementById("cardsGrid");
+  CARDS.forEach(function (c) {
+    var card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML =
+      '<div class="card-inner">' +
+        '<div class="card-face front">' +
+          '<button class="speak-btn" type="button" title="озвучить" aria-label="озвучить">&#128266;</button>' +
+          '<span class="who">' + esc(c.f1) + '</span><span class="verb">' + esc(c.f2) + '</span>' +
+        '</div>' +
+        '<div class="card-face back ' + c.t + '">' +
+          '<button class="speak-btn" type="button" title="озвучить" aria-label="озвучить">&#128266;</button>' +
+          '<span class="form">' + esc(c.b1) + '</span><span class="why">' + esc(c.b2) + '</span>' +
+        '</div>' +
+      '</div>';
+    card.querySelector(".card-inner").addEventListener("click", function (e) {
+      if (e.target.classList.contains("speak-btn")) return;
+      card.classList.toggle("flipped");
+    });
+    var btns = card.querySelectorAll(".speak-btn");
+    btns[0].addEventListener("click", function (e) { e.stopPropagation(); speak(c.f2); });
+    btns[1].addEventListener("click", function (e) { e.stopPropagation(); speak(c.b1); });
+    cardsGrid.appendChild(card);
+  });
+
+  var solved = {};
+  var totalCounter = document.getElementById("totalCounter");
+  function updateTotal() {
+    var n = 0; for (var k in solved) if (solved[k]) n++;
+    totalCounter.textContent = "Всего верно: " + n + " из " + TOTAL;
+  }
+  function buildChoice(box, items, prefix) {
+    items.forEach(function (it, idx) {
+      var key = prefix + idx; solved[key] = false;
+      var q = document.createElement("div"); q.className = "q";
+      var parts = it.s.split("___");
+      q.innerHTML = '<div class="q-text">' + (idx + 1) + '. ' + esc(parts[0]) +
+        (parts.length > 1 ? '<span class="gap">&nbsp;</span>' + esc(parts[1]) : '') + '</div>' +
+        '<div class="opts"></div><div class="feedback"></div>';
+      var gap = q.querySelector(".gap"), opts = q.querySelector(".opts"), fb = q.querySelector(".feedback");
+      shuffled(it.o).forEach(function (o) {
+        var b = document.createElement("button"); b.type = "button"; b.className = "opt"; b.textContent = o;
+        b.addEventListener("click", function () {
+          if (solved[key]) return;
+          if (o === it.a) {
+            b.classList.add("ok");
+            if (gap) { gap.textContent = o === "—" ? "✓" : o; gap.classList.add("ok"); }
+            fb.textContent = "верно! " + it.h; fb.className = "feedback good";
+            solved[key] = true; updateTotal();
+          } else {
+            b.classList.add("no");
+            fb.textContent = "не то. Подсказка: " + it.h; fb.className = "feedback bad";
+          }
+        });
+        opts.appendChild(b);
+      });
+      box.appendChild(q);
+    });
+  }
+  function buildTyping(box, items, prefix, cs) {
+    items.forEach(function (it, idx) {
+      var key = prefix + idx; solved[key] = false;
+      var q = document.createElement("div"); q.className = "q";
+      q.innerHTML = '<div class="q-text">' + (idx + 1) + '. ' + esc(it.s.replace("___", "______")) +
+        (it.v ? ' <span style="color:var(--ink-faint)">(' + esc(it.v) + ')</span>' : '') + '</div>' +
+        '<div class="fib-row"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="ответ">' +
+        '<button class="check-btn" type="button">Проверить</button></div><div class="feedback"></div>';
+      var input = q.querySelector("input"), fb = q.querySelector(".feedback");
+      function norm(s) { s = s.trim().replace(/\s+/g, " "); return cs ? s : s.toLowerCase(); }
+      function check() {
+        var val = norm(input.value); if (!val) return;
+        var ok = val === norm(it.a);
+        input.classList.toggle("correct", ok); input.classList.toggle("incorrect", !ok);
+        if (ok) { fb.textContent = "верно! " + it.h; fb.className = "feedback good"; }
+        else { fb.textContent = "не то. Подсказка: " + it.h + ". Попробуй ещё раз."; fb.className = "feedback bad"; }
+        if (solved[key] !== ok) { solved[key] = ok; updateTotal(); }
+      }
+      q.querySelector(".check-btn").addEventListener("click", check);
+      input.addEventListener("keydown", function (e) { if (e.key === "Enter") check(); });
+      box.appendChild(q);
+    });
+  }
+  function buildAll() {
+    solved = {};
+    EXS.forEach(function (e, i) {
+      var box = document.getElementById("ex" + (i + 1)); box.innerHTML = "";
+      if (e.type === "typing") buildTyping(box, e.items, "t" + i + "_", e.cs);
+      else buildChoice(box, e.items, "c" + i + "_");
+    });
+    updateTotal();
+  }
+  buildAll();
+  document.getElementById("resetAll").addEventListener("click", function () {
+    buildAll();
+    document.getElementById("trainer").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+})();
+</script>
+</body>
+</html>
