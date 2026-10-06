@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Английский · грамматика · Imperatives</title>
+<link rel="icon" href="data:image/svg+xml,<svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22><text%20y=%22.9em%22%20font-size=%2290%22>🔤</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #faf9f4; --paper-raised: #ffffff;
+    --rule: #aecdea; --rule-soft: #d7e6f5;
+    --margin: #d3564d; --margin-soft: #f1c3bf;
+    --ink: #24304a; --ink-soft: #647089; --ink-faint: #97a2b8;
+    --good: #3c8a5c; --good-bg: #dff1e5;
+    --bad: #c85a4f; --bad-bg: #fbe4e1;
+    --mark: #e3a836; --mark-bg: #fbedd0;
+    --s: #3c8a5c; --s-bg: #dff1e5;
+    --es: #2f6fb0; --es-bg: #dde9f7;
+    --ies: #b0602a; --ies-bg: #f8e3d3;
+    --shadow: rgba(36, 48, 74, 0.14);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1b2431; --paper-raised: #232f3f;
+      --rule: #3c4d68; --rule-soft: #2a374a;
+      --margin: #e08078; --margin-soft: #4a3339;
+      --ink: #eceff5; --ink-soft: #a7b2c8; --ink-faint: #6d788e;
+      --good: #6fcb93; --good-bg: #23392c;
+      --bad: #e0847a; --bad-bg: #402b2a;
+      --mark: #f0c463; --mark-bg: #3d3320;
+      --s: #6fcb93; --s-bg: #23392c;
+      --es: #7fb3ea; --es-bg: #22324a;
+      --ies: #eba674; --ies-bg: #402f22;
+      --shadow: rgba(0, 0, 0, 0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1b2431; --paper-raised: #232f3f;
+    --rule: #3c4d68; --rule-soft: #2a374a;
+    --margin: #e08078; --margin-soft: #4a3339;
+    --ink: #eceff5; --ink-soft: #a7b2c8; --ink-faint: #6d788e;
+    --good: #6fcb93; --good-bg: #23392c;
+    --bad: #e0847a; --bad-bg: #402b2a;
+    --mark: #f0c463; --mark-bg: #3d3320;
+    --s: #6fcb93; --s-bg: #23392c;
+    --es: #7fb3ea; --es-bg: #22324a;
+    --ies: #eba674; --ies-bg: #402f22;
+    --shadow: rgba(0, 0, 0, 0.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: 'PT Sans', Arial, sans-serif; line-height: 1.5; -webkit-tap-highlight-color: transparent; }
+  h1, h2, h3, .hand { font-family: 'Caveat', 'Comic Sans MS', cursive; font-weight: 700; text-wrap: balance; }
+  .back-link { font-size: 13px; color: var(--ink-faint); text-decoration: none; margin-right: 14px; }
+  .back-link:hover { color: var(--margin); }
+  .sheet { max-width: 680px; margin: 0 auto; padding: 22px 20px 60px 44px; position: relative;
+    background-image: repeating-linear-gradient(to bottom, transparent, transparent 37px, var(--rule-soft) 38px);
+    background-position: 0 150px; }
+  .sheet::before { content: ""; position: absolute; top: 0; bottom: 0; left: 26px; width: 2px; background: var(--margin); opacity: 0.75; }
+  header.page { padding-top: 6px; padding-bottom: 10px; }
+  h1 { font-size: 42px; margin: 8px 0 2px; line-height: 1.1; }
+  .subtitle { font-size: 16px; color: var(--ink-soft); margin: 0 0 10px; }
+  .print-links { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; }
+  .print-links a { color: var(--margin); }
+  nav.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 20px; }
+  .tab { font-family: 'Caveat', cursive; font-size: 20px; font-weight: 600; background: var(--paper-raised); border: 1px solid var(--rule); border-bottom-width: 3px; color: var(--ink-soft); padding: 7px 16px 6px; border-radius: 8px 8px 4px 4px; cursor: pointer; box-shadow: 1px 2px 0 var(--shadow); }
+  .tab:nth-child(1) { transform: rotate(-1.2deg); }
+  .tab:nth-child(2) { transform: rotate(0.8deg); }
+  .tab:nth-child(3) { transform: rotate(-0.6deg); }
+  .tab[aria-selected="true"] { color: var(--paper); background: var(--margin); border-color: var(--margin); }
+  .tab:focus-visible, button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid var(--margin); outline-offset: 2px; }
+  section.page { display: none; }
+  section.page.active { display: block; }
+  .lead { font-size: 14px; color: var(--ink-soft); margin: 0 0 16px; }
+  .counter { font-family: 'Caveat', cursive; font-size: 21px; font-weight: 700; color: var(--margin); margin-bottom: 12px; }
+
+  /* Rule */
+  .legend { font-size: 12px; color: var(--ink-faint); margin: -6px 0 14px; }
+  .block { background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 6px; box-shadow: 2px 3px 0 var(--shadow); padding: 12px 16px 14px; margin-bottom: 18px; }
+  .block h2 { font-size: 27px; margin: 0 0 6px; line-height: 1.15; }
+  .block h2 .num { color: var(--margin); margin-right: 4px; }
+  .block p { margin: 6px 0; font-size: 15px; }
+  .block ul { margin: 6px 0; padding-left: 20px; font-size: 15px; }
+  .block li { margin-bottom: 3px; }
+  .src { font-size: 12px; color: var(--ink-faint); white-space: nowrap; }
+  .en { font-weight: 700; }
+  .ex { font-style: italic; }
+  .when-list { list-style: none; padding: 0 !important; }
+  .when-list li { display: flex; gap: 10px; align-items: baseline; padding: 4px 0; border-bottom: 1px dashed var(--rule-soft); }
+  .when-list li:last-child { border-bottom: none; }
+  .when-list .unit { font-family: 'Caveat', cursive; font-size: 19px; font-weight: 700; color: var(--margin); min-width: 104px; }
+  .table-wrap { overflow-x: auto; }
+  table.forms { border-collapse: collapse; margin: 8px 0; font-size: 15px; width: 100%; }
+  table.forms th, table.forms td { border: 1px solid var(--rule); padding: 6px 10px; text-align: left; vertical-align: top; }
+  table.forms th { background: var(--rule-soft); font-weight: 700; }
+  .hl { color: var(--margin); font-weight: 700; }
+  .check-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+  .check-row > span { font-size: 14px; background: var(--paper); border: 1px solid var(--rule); border-radius: 12px; padding: 3px 10px; }
+  .spell { display: grid; gap: 10px; margin-top: 8px; }
+  .spell-rule { border-left: 5px solid; border-radius: 4px; padding: 8px 12px; }
+  .spell-rule.s { border-color: var(--s); background: var(--s-bg); }
+  .spell-rule.es { border-color: var(--es); background: var(--es-bg); }
+  .spell-rule.ies { border-color: var(--ies); background: var(--ies-bg); }
+  .spell-rule.exc { border-color: var(--margin); background: var(--bad-bg); }
+  .spell-rule .head { font-weight: 700; font-size: 15px; }
+  .spell-rule .words { font-size: 15px; margin-top: 2px; }
+  .end-s { color: var(--s); font-weight: 700; }
+  .end-es { color: var(--es); font-weight: 700; }
+  .end-ies { color: var(--ies); font-weight: 700; }
+  .note { font-size: 14px; color: var(--ink-soft); margin-top: 6px; }
+  .mistakes { list-style: none; padding: 0 !important; }
+  .mistakes li { display: flex; flex-wrap: wrap; gap: 4px 12px; padding: 4px 0; }
+  .wrong { color: var(--bad); text-decoration: line-through; }
+  .right { color: var(--good); font-weight: 700; }
+
+  /* Cards */
+  .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  @media (min-width: 480px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+  .card { perspective: 800px; height: 96px; }
+  .card-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.45s cubic-bezier(.4,.2,.2,1); cursor: pointer; }
+  .card.flipped .card-inner { transform: rotateY(180deg); }
+  .card-face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; backface-visibility: hidden; border-radius: 6px; border: 1px solid var(--rule); background: var(--paper-raised); box-shadow: 2px 3px 0 var(--shadow); padding: 6px; text-align: center; }
+  .card-face.back { transform: rotateY(180deg); }
+  .card-face.back.s { background: var(--s-bg); border-color: var(--s); }
+  .card-face.back.es { background: var(--es-bg); border-color: var(--es); }
+  .card-face.back.ies { background: var(--ies-bg); border-color: var(--ies); }
+  .card-face.back.exc { background: var(--bad-bg); border-color: var(--margin); }
+  .card-face .who { font-size: 12px; color: var(--ink-faint); }
+  .card-face .verb { font-size: 19px; font-weight: 700; line-height: 1.2; }
+  .card-face .form { font-size: 18px; font-weight: 700; line-height: 1.2; }
+  .card-face .why { font-size: 12px; color: var(--ink-soft); line-height: 1.25; margin-top: 2px; }
+  .speak-btn { position: absolute; top: 3px; right: 3px; width: 22px; height: 22px; border-radius: 50%;
+    border: 1px solid var(--rule); background: var(--paper); color: var(--ink-soft); font-size: 12px;
+    line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+  .speak-btn:hover { border-color: var(--margin); color: var(--margin); }
+  @media (prefers-reduced-motion: reduce) { .card-inner { transition: none; } }
+
+  /* Trainer */
+  .ex-block { margin-bottom: 30px; }
+  .ex-block h2 { font-size: 27px; margin: 0 0 2px; }
+  .ex-block .lead { margin-bottom: 10px; }
+  .q { margin-bottom: 12px; }
+  .q-text { font-size: 16px; margin-bottom: 5px; }
+  .q-text .gap { display: inline-block; min-width: 64px; border-bottom: 2px solid var(--ink-faint); text-align: center; font-weight: 700; }
+  .q-text .gap.ok { border-bottom-color: var(--good); color: var(--good); }
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .opt { font-family: 'PT Sans', sans-serif; font-size: 15px; background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 5px; padding: 5px 14px; cursor: pointer; color: var(--ink); box-shadow: 1px 2px 0 var(--shadow); }
+  .opt:hover { border-color: var(--margin); }
+  .opt.ok { background: var(--good-bg); border-color: var(--good); color: var(--good); }
+  .opt.no { background: var(--bad-bg); border-color: var(--bad); color: var(--bad); }
+  .feedback { font-size: 14px; min-height: 1em; }
+  .feedback.good { color: var(--good); }
+  .feedback.bad { color: var(--bad); }
+  .fib-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .fib-row input[type="text"] { font-family: 'PT Sans', sans-serif; font-size: 15px; padding: 5px 9px; border: none; border-bottom: 2px solid var(--ink-faint); background: transparent; color: var(--ink); width: 140px; }
+  .fib-row input[type="text"]:focus { border-bottom-color: var(--margin); outline: none; }
+  .fib-row input.correct { border-bottom-color: var(--good); color: var(--good); }
+  .fib-row input.incorrect { border-bottom-color: var(--bad); color: var(--bad); }
+  .check-btn { font-family: 'PT Sans', sans-serif; font-size: 13px; background: var(--ink); color: var(--paper); border: none; border-radius: 5px; padding: 6px 12px; cursor: pointer; }
+  .check-btn:hover { opacity: 0.88; }
+  .reset-btn { font-family: 'Caveat', cursive; font-size: 17px; background: none; border: none; color: var(--ink-faint); text-decoration: underline; cursor: pointer; padding: 0; }
+  .reset-btn:hover { color: var(--margin); }
+  footer.page { margin-top: 30px; font-size: 12px; color: var(--ink-faint); }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="page">
+    <a class="back-link" href="../index.html">← ко всем урокам</a>
+    <a class="back-link" href="index.html">← все правила грамматики</a>
+    <h1>Imperatives</h1>
+    <p class="subtitle">повелительное наклонение: Open! Don't run! · Unit 7</p>
+    <div class="print-links">
+      <a href="../print/grammar/imperatives_plakat.html" target="_blank" rel="noopener">Плакат для печати (A4) →</a>
+      <a href="../print/grammar/imperatives.html" target="_blank" rel="noopener">Карточки для печати →</a>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Разделы">
+    <button class="tab" role="tab" aria-selected="true" data-target="rule">Правило</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="cards">Карточки «делай / не делай»</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="trainer">Тренажёр</button>
+  </nav>
+
+  <!-- ============ RULE ============ -->
+  <section class="page active" id="rule">
+    <p class="legend">📖 — из учебника English Plus 5 (страница указана) · ✏️ — объяснение и примеры добавлены для понятности</p>
+
+    <div class="block">
+      <h2>Когда это учат</h2>
+      <ul class="when-list">
+        <li><span class="unit">Unit 7, стр. 82–83</span><span>Language point: Imperatives — Fly north. Don't swim in the river. Travel quiz <span class="src">📖</span></span></li>
+        <li><span class="unit">с первого урока</span><span>задания учебника — тоже повелительное: Read, Listen, Complete, Match <span class="src">✏️</span></span></li>
+      </ul>
+      <p class="note">✏️ Связанная страница: <a href="../instruction_verbs.html" style="color:var(--margin)">глаголы заданий</a> — почти все они стоят в повелительном наклонении.</p>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">1</span>Что это <span class="src">📖 стр. 82</span></h2>
+      <p><b>Imperative</b> — когда мы говорим кому-то, <b>что делать</b> или <b>чего не делать</b>: просьба, совет, указание, правило.</p>
+      <div class="check-row">
+        <span>Открой! → <b>Open</b> the door.</span>
+        <span>Читай! → <b>Read</b> the text.</span>
+        <span>Не беги! → <b>Don't run</b>!</span>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">2</span>Как строится <span class="src">📖 стр. 82</span></h2>
+      <div class="spell">
+        <div class="spell-rule s">
+          <div class="head"><span class="end-s">делай</span> — просто глагол, как в словаре <span class="src">📖</span></div>
+          <div class="words"><b>Fly</b> north. · <b>Swim</b> in the river. · <b>Speak</b> English in class. · <b>Do</b> your homework.</div>
+        </div>
+        <div class="spell-rule es">
+          <div class="head"><span class="end-es">не делай</span> — <b>Don't</b> + глагол <span class="src">📖</span></div>
+          <div class="words"><b>Don't fly</b> north. · <b>Don't swim</b> in the river. · <b>Don't eat</b> in class. · <b>Don't copy</b> your friends' homework.</div>
+        </div>
+      </div>
+      <p class="note">✏️ Подлежащего нет: не «You open», а просто <b>Open</b>. Глагол одинаковый — говоришь ли ты одному человеку или всему классу.</p>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">3</span>Вежливо — с please <span class="src">✏️</span></h2>
+      <div class="spell">
+        <div class="spell-rule ies">
+          <div class="head"><span class="end-ies">please</span> — в начале или в конце <span class="src">✏️</span></div>
+          <div class="words"><b>Please</b> sit down. · Open the window, <b>please</b>. · <b>Please</b> don't shout.</div>
+        </div>
+      </div>
+      <p class="note">✏️ Без please просьба звучит резко, как приказ. Ещё вежливее — вопрос с <a href="can.html" style="color:var(--margin)">can</a>: Can you open the window, please?</p>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">4</span>Правила класса — из учебника <span class="src">📖 стр. 82, задание 5</span></h2>
+      <div class="check-row">
+        <span><b>Speak</b> English in class.</span>
+        <span><b>Don't dance</b> samba on the tables.</span>
+        <span><b>Do</b> your homework.</span>
+        <span><b>Don't copy</b> your friends' homework.</span>
+        <span><b>Don't run</b> in the school building.</span>
+      </div>
+      <p class="note">✏️ Советы туристам (задание 6): <span class="ex">Eat the ice cream here. It's very good. Don't swim in the Black Sea in December!</span> 📖</p>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">5</span>Частые ошибки <span class="src">✏️</span></h2>
+      <ul class="mistakes">
+        <li><span class="wrong">No run!</span><span class="right">Don't run!</span></li>
+        <li><span class="wrong">Not swim here.</span><span class="right">Don't swim here.</span></li>
+        <li><span class="wrong">Doesn't eat in class.</span><span class="right">Don't eat in class.</span></li>
+        <li><span class="wrong">Don't to run.</span><span class="right">Don't run.</span></li>
+        <li><span class="wrong">Opens the door.</span><span class="right">Open the door.</span></li>
+        <li><span class="wrong">Don't running!</span><span class="right">Don't run!</span></li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- ============ CARDS ============ -->
+  <section class="page" id="cards">
+    <p class="lead">На карточке фраза по-русски. Скажи её по-английски и нажми — проверь себя. Цвет: <span class="end-s">зелёный — делай (просто глагол)</span>, <span class="end-es">синий — не делай (Don't)</span>, <span class="end-ies">оранжевый — вежливо (please)</span>.</p>
+    <div class="cards" id="cardsGrid"></div>
+  </section>
+
+  <!-- ============ TRAINER ============ -->
+  <section class="page" id="trainer">
+    <p class="counter" id="totalCounter">Всего верно: 0 из 0</p>
+    <p class="lead">Пять заданий — от простого к сложному. Ошибся — прочитай подсказку и попробуй ещё раз.</p>
+
+    <div class="ex-block">
+      <h2>1. Какая форма?</h2>
+      <p class="lead">Делай — просто глагол. Не делай — Don't + глагол.</p>
+      <div id="ex1"></div>
+    </div>
+
+    <div class="ex-block">
+      <h2>2. Сделай отрицание</h2>
+      <p class="lead">Впиши запрет: Don't + глагол.</p>
+      <div id="ex2"></div>
+    </div>
+
+    <div class="ex-block">
+      <h2>3. Правила класса</h2>
+      <p class="lead">Хорошее правило — делай, плохое — Don't. Как в задании 5, стр. 82.</p>
+      <div id="ex3"></div>
+    </div>
+
+    <div class="ex-block">
+      <h2>4. Вежливо или нет?</h2>
+      <p class="lead">please делает просьбу вежливой — в начале или в конце.</p>
+      <div id="ex4"></div>
+    </div>
+
+    <div class="ex-block">
+      <h2>5. Как сказать по-английски?</h2>
+      <p class="lead">Выбери правильный вариант.</p>
+      <div id="ex5"></div>
+    </div>
+
+    <button class="reset-btn" id="resetAll" type="button">начать заново</button>
+  </section>
+
+  <footer class="page">English Plus 5 · Грамматика · Imperatives · домашняя тетрадь</footer>
+</div>
+
+<script>
+(function () {
+  var CARDS = [
+    {"f1": "скажи по-английски", "f2": "Открой дверь.", "b1": "Open the door.", "b2": "делай → просто глагол", "t": "s"},
+    {"f1": "скажи по-английски", "f2": "Не беги!", "b1": "Don't run!", "b2": "не делай → Don't + глагол", "t": "es"},
+    {"f1": "скажи вежливо", "f2": "Садись, пожалуйста.", "b1": "Please sit down.", "b2": "вежливо → please", "t": "ies"},
+    {"f1": "скажи по-английски", "f2": "Говори по-английски на уроке.", "b1": "Speak English in class.", "b2": "делай → просто глагол · 📖 стр. 82", "t": "s"},
+    {"f1": "скажи по-английски", "f2": "Не ешь на уроке.", "b1": "Don't eat in class.", "b2": "Don't + глагол · 📖 стр. 82", "t": "es"},
+    {"f1": "скажи вежливо", "f2": "Закрой окно, пожалуйста.", "b1": "Close the window, please.", "b2": "вежливо → please", "t": "ies"},
+    {"f1": "скажи по-английски", "f2": "Сделай домашку.", "b1": "Do your homework.", "b2": "делай → просто глагол · 📖 стр. 82", "t": "s"},
+    {"f1": "скажи по-английски", "f2": "Не списывай домашку друзей.", "b1": "Don't copy your friends' homework.", "b2": "Don't + глагол · 📖 стр. 82", "t": "es"},
+    {"f1": "скажи вежливо", "f2": "Пожалуйста, не кричи.", "b1": "Please don't shout.", "b2": "вежливо → please", "t": "ies"},
+    {"f1": "скажи по-английски", "f2": "Слушай и повторяй.", "b1": "Listen and repeat.", "b2": "делай → просто глагол", "t": "s"},
+    {"f1": "скажи по-английски", "f2": "Не плавай в реке.", "b1": "Don't swim in the river.", "b2": "Don't + глагол · 📖 стр. 82", "t": "es"},
+    {"f1": "скажи вежливо", "f2": "Помоги мне, пожалуйста.", "b1": "Help me, please.", "b2": "вежливо → please", "t": "ies"},
+    {"f1": "скажи по-английски", "f2": "Прочитай текст.", "b1": "Read the text.", "b2": "делай → просто глагол", "t": "s"},
+    {"f1": "скажи по-английски", "f2": "Не волнуйся.", "b1": "Don't worry.", "b2": "не делай → Don't + глагол", "t": "es"},
+    {"f1": "скажи вежливо", "f2": "Говори медленно, пожалуйста.", "b1": "Speak slowly, please.", "b2": "вежливо → please", "t": "ies"},
+    {"f1": "скажи по-английски", "f2": "Посмотри на картинку.", "b1": "Look at the picture.", "b2": "делай → просто глагол", "t": "s"},
+    {"f1": "скажи по-английски", "f2": "Не трогай!", "b1": "Don't touch!", "b2": "не делай → Don't + глагол", "t": "es"},
+    {"f1": "скажи вежливо", "f2": "Пожалуйста, слушай.", "b1": "Please listen.", "b2": "вежливо → please", "t": "ies"},
+    {"f1": "скажи по-английски", "f2": "Лети на север.", "b1": "Fly north.", "b2": "делай → просто глагол · 📖 стр. 82", "t": "s"},
+    {"f1": "скажи по-английски", "f2": "Не танцуй на столах.", "b1": "Don't dance on the tables.", "b2": "Don't + глагол · 📖 стр. 82", "t": "es"},
+    {"f1": "скажи вежливо", "f2": "Передай мне ручку, пожалуйста.", "b1": "Give me the pen, please.", "b2": "вежливо → please", "t": "ies"}
+  ];
+  var EXS = [
+    {"type": "choice", "cs": false, "items": [{"s": "___ the door, please.", "o": ["Open", "Opens", "You open"], "a": "Open", "h": "просто глагол, без подлежащего"}, {"s": "___ in the corridor!", "o": ["Don't run", "No run", "Not run"], "a": "Don't run", "h": "не делай → Don't + глагол"}, {"s": "___ English in class.", "o": ["Speak", "Speaks", "Speaking"], "a": "Speak", "h": "просто глагол"}, {"s": "___ in class.", "o": ["Don't eat", "Doesn't eat", "Not eat"], "a": "Don't eat", "h": "всегда Don't, даже одному человеку"}, {"s": "___ your homework.", "o": ["Do", "Does", "To do"], "a": "Do", "h": "просто глагол"}, {"s": "___ your friends' homework.", "o": ["Don't copy", "Don't copying", "No copy"], "a": "Don't copy", "h": "Don't + глагол без -ing"}, {"s": "___ and repeat.", "o": ["Listen", "Listens", "Listening"], "a": "Listen", "h": "просто глагол"}, {"s": "___ in the river. It's dangerous.", "o": ["Don't swim", "Not swim", "Don't to swim"], "a": "Don't swim", "h": "Don't + глагол без to"}, {"s": "___ at the picture.", "o": ["Look", "Looks", "You look"], "a": "Look", "h": "просто глагол"}, {"s": "___ worry!", "o": ["Don't", "Doesn't", "Not"], "a": "Don't", "h": "Don't worry!"}, {"s": "___ north.", "o": ["Fly", "Flies", "To fly"], "a": "Fly", "h": "📖 стр. 82: Fly north."}, {"s": "___ samba on the tables.", "o": ["Don't dance", "No dance", "Don't dancing"], "a": "Don't dance", "h": "📖 стр. 82"}]},
+    {"type": "typing", "cs": false, "items": [{"s": "Run in the school building. → ___ in the school building.", "v": "", "a": "Don't run", "h": "Don't + run"}, {"s": "Swim in the river. → ___ in the river.", "v": "", "a": "Don't swim", "h": "Don't + swim"}, {"s": "Fly north. → ___ north.", "v": "", "a": "Don't fly", "h": "Don't + fly"}, {"s": "Eat in class. → ___ in class.", "v": "", "a": "Don't eat", "h": "Don't + eat"}, {"s": "Open the window. → ___ the window.", "v": "", "a": "Don't open", "h": "Don't + open"}, {"s": "Shout. → ___.", "v": "", "a": "Don't shout", "h": "Don't + shout"}, {"s": "Copy the answers. → ___ the answers.", "v": "", "a": "Don't copy", "h": "Don't + copy"}, {"s": "Touch the cat. → ___ the cat.", "v": "", "a": "Don't touch", "h": "Don't + touch"}, {"s": "Talk in class. → ___ in class.", "v": "", "a": "Don't talk", "h": "Don't + talk"}, {"s": "Sit here. → ___ here.", "v": "", "a": "Don't sit", "h": "Don't + sit"}]},
+    {"type": "choice", "cs": false, "items": [{"s": "___ English in class.", "o": ["Speak", "Don't speak"], "a": "Speak", "h": "на уроке английского говорим по-английски"}, {"s": "___ samba on the tables.", "o": ["Dance", "Don't dance"], "a": "Don't dance", "h": "на столах не танцуют"}, {"s": "___ your homework.", "o": ["Do", "Don't do"], "a": "Do", "h": "домашку надо делать"}, {"s": "___ your friends' homework.", "o": ["Copy", "Don't copy"], "a": "Don't copy", "h": "списывать нельзя"}, {"s": "___ in the school building.", "o": ["Run", "Don't run"], "a": "Don't run", "h": "в школе не бегают"}, {"s": "___ to the teacher.", "o": ["Listen", "Don't listen"], "a": "Listen", "h": "учителя слушают"}, {"s": "___ your phone in class.", "o": ["Use", "Don't use"], "a": "Don't use", "h": "телефон на уроке нельзя"}, {"s": "___ your hand.", "o": ["Put up", "Don't put up"], "a": "Put up", "h": "хочешь ответить — подними руку"}]},
+    {"type": "choice", "cs": false, "items": [{"s": "Садитесь, пожалуйста.", "o": ["Please sit down.", "Please sits down."], "a": "Please sit down.", "h": "please + глагол"}, {"s": "Закрой дверь, пожалуйста.", "o": ["Close the door, please.", "Close please the door."], "a": "Close the door, please.", "h": "please — в начале или в конце"}, {"s": "Пожалуйста, не кричи.", "o": ["Please don't shout.", "Please not shout."], "a": "Please don't shout.", "h": "Please + Don't + глагол"}, {"s": "Говори медленнее, пожалуйста.", "o": ["Speak slowly, please.", "Speaks slowly, please."], "a": "Speak slowly, please.", "h": "просто глагол"}, {"s": "Помоги мне, пожалуйста.", "o": ["Help me, please.", "You help me, please."], "a": "Help me, please.", "h": "без you"}, {"s": "Пожалуйста, не трогай.", "o": ["Please don't touch.", "Please doesn't touch."], "a": "Please don't touch.", "h": "всегда don't"}, {"s": "Что вежливее?", "o": ["Give me the pen!", "Give me the pen, please."], "a": "Give me the pen, please.", "h": "с please — вежливо"}, {"s": "Ещё вежливее (Unit 6)", "o": ["Open the window.", "Can you open the window, please?"], "a": "Can you open the window, please?", "h": "вопрос с can + please"}]},
+    {"type": "choice", "cs": false, "items": [{"s": "Не беги!", "o": ["No run!", "Don't run!"], "a": "Don't run!", "h": "Don't + глагол"}, {"s": "Открой книгу.", "o": ["Open the book.", "Opens the book."], "a": "Open the book.", "h": "просто глагол"}, {"s": "Не волнуйся.", "o": ["Don't worry.", "Not worry."], "a": "Don't worry.", "h": "Don't + глагол"}, {"s": "Слушай и повторяй.", "o": ["Listen and repeat.", "You listen and repeat."], "a": "Listen and repeat.", "h": "без you"}, {"s": "Не ешь на уроке.", "o": ["Doesn't eat in class.", "Don't eat in class."], "a": "Don't eat in class.", "h": "всегда Don't"}, {"s": "Сделай домашку.", "o": ["Do your homework.", "Does your homework."], "a": "Do your homework.", "h": "просто глагол"}, {"s": "Не плавай в Чёрном море в декабре!", "o": ["Don't swim in the Black Sea in December!", "Don't swimming in the Black Sea in December!"], "a": "Don't swim in the Black Sea in December!", "h": "📖 стр. 82, без -ing"}, {"s": "Посмотри на картинку, пожалуйста.", "o": ["Look at the picture, please.", "Please looks at the picture."], "a": "Look at the picture, please.", "h": "просто глагол + please"}]}
+  ];
+
+  var TOTAL = 0; EXS.forEach(function (e) { TOTAL += e.items.length; });
+  function speak(text) {
+    try {
+      if (!window.speechSynthesis) return;
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text.replace(/___/g, "").replace(/\s*\(.*?\)/g, ""));
+      u.lang = "en-US";
+      window.speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+  function shuffled(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; }
+    return a;
+  }
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+
+  var tabs = document.querySelectorAll(".tab");
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      tabs.forEach(function (t) { t.setAttribute("aria-selected", "false"); });
+      document.querySelectorAll("section.page").forEach(function (s) { s.classList.remove("active"); });
+      tab.setAttribute("aria-selected", "true");
+      document.getElementById(tab.dataset.target).classList.add("active");
+    });
+  });
+
+  var cardsGrid = document.getElementById("cardsGrid");
+  CARDS.forEach(function (c) {
+    var card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML =
+      '<div class="card-inner">' +
+        '<div class="card-face front">' +
+          '<button class="speak-btn" type="button" title="озвучить" aria-label="озвучить">&#128266;</button>' +
+          '<span class="who">' + esc(c.f1) + '</span><span class="verb">' + esc(c.f2) + '</span>' +
+        '</div>' +
+        '<div class="card-face back ' + c.t + '">' +
+          '<button class="speak-btn" type="button" title="озвучить" aria-label="озвучить">&#128266;</button>' +
+          '<span class="form">' + esc(c.b1) + '</span><span class="why">' + esc(c.b2) + '</span>' +
+        '</div>' +
+      '</div>';
+    card.querySelector(".card-inner").addEventListener("click", function (e) {
+      if (e.target.classList.contains("speak-btn")) return;
+      card.classList.toggle("flipped");
+    });
+    var btns = card.querySelectorAll(".speak-btn");
+    btns[0].addEventListener("click", function (e) { e.stopPropagation(); speak(c.f2); });
+    btns[1].addEventListener("click", function (e) { e.stopPropagation(); speak(c.b1); });
+    cardsGrid.appendChild(card);
+  });
+
+  var solved = {};
+  var totalCounter = document.getElementById("totalCounter");
+  function updateTotal() {
+    var n = 0; for (var k in solved) if (solved[k]) n++;
+    totalCounter.textContent = "Всего верно: " + n + " из " + TOTAL;
+  }
+  function buildChoice(box, items, prefix) {
+    items.forEach(function (it, idx) {
+      var key = prefix + idx; solved[key] = false;
+      var q = document.createElement("div"); q.className = "q";
+      var parts = it.s.split("___");
+      q.innerHTML = '<div class="q-text">' + (idx + 1) + '. ' + esc(parts[0]) +
+        (parts.length > 1 ? '<span class="gap">&nbsp;</span>' + esc(parts[1]) : '') + '</div>' +
+        '<div class="opts"></div><div class="feedback"></div>';
+      var gap = q.querySelector(".gap"), opts = q.querySelector(".opts"), fb = q.querySelector(".feedback");
+      shuffled(it.o).forEach(function (o) {
+        var b = document.createElement("button"); b.type = "button"; b.className = "opt"; b.textContent = o;
+        b.addEventListener("click", function () {
+          if (solved[key]) return;
+          if (o === it.a) {
+            b.classList.add("ok");
+            if (gap) { gap.textContent = o === "—" ? "✓" : o; gap.classList.add("ok"); }
+            fb.textContent = "верно! " + it.h; fb.className = "feedback good";
+            solved[key] = true; updateTotal();
+          } else {
+            b.classList.add("no");
+            fb.textContent = "не то. Подсказка: " + it.h; fb.className = "feedback bad";
+          }
+        });
+        opts.appendChild(b);
+      });
+      box.appendChild(q);
+    });
+  }
+  function buildTyping(box, items, prefix, cs) {
+    items.forEach(function (it, idx) {
+      var key = prefix + idx; solved[key] = false;
+      var q = document.createElement("div"); q.className = "q";
+      q.innerHTML = '<div class="q-text">' + (idx + 1) + '. ' + esc(it.s.replace("___", "______")) +
+        (it.v ? ' <span style="color:var(--ink-faint)">(' + esc(it.v) + ')</span>' : '') + '</div>' +
+        '<div class="fib-row"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="ответ">' +
+        '<button class="check-btn" type="button">Проверить</button></div><div class="feedback"></div>';
+      var input = q.querySelector("input"), fb = q.querySelector(".feedback");
+      function norm(s) { s = s.trim().replace(/\s+/g, " ").replace(/[‘’]/g, "'"); return cs ? s : s.toLowerCase(); }
+      function check() {
+        var val = norm(input.value); if (!val) return;
+        var ok = val === norm(it.a);
+        input.classList.toggle("correct", ok); input.classList.toggle("incorrect", !ok);
+        if (ok) { fb.textContent = "верно! " + it.h; fb.className = "feedback good"; }
+        else { fb.textContent = "не то. Подсказка: " + it.h + ". Попробуй ещё раз."; fb.className = "feedback bad"; }
+        if (solved[key] !== ok) { solved[key] = ok; updateTotal(); }
+      }
+      q.querySelector(".check-btn").addEventListener("click", check);
+      input.addEventListener("keydown", function (e) { if (e.key === "Enter") check(); });
+      box.appendChild(q);
+    });
+  }
+  function buildAll() {
+    solved = {};
+    EXS.forEach(function (e, i) {
+      var box = document.getElementById("ex" + (i + 1)); box.innerHTML = "";
+      if (e.type === "typing") buildTyping(box, e.items, "t" + i + "_", e.cs);
+      else buildChoice(box, e.items, "c" + i + "_");
+    });
+    updateTotal();
+  }
+  buildAll();
+  document.getElementById("resetAll").addEventListener("click", function () {
+    buildAll();
+    document.getElementById("trainer").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+})();
+</script>
+</body>
+</html>
