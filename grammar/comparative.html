@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Английский · грамматика · big → bigger → the biggest</title>
+<link rel="icon" href="data:image/svg+xml,<svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22><text%20y=%22.9em%22%20font-size=%2290%22>🔤</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #faf9f4; --paper-raised: #ffffff;
+    --rule: #aecdea; --rule-soft: #d7e6f5;
+    --margin: #d3564d; --margin-soft: #f1c3bf;
+    --ink: #24304a; --ink-soft: #647089; --ink-faint: #97a2b8;
+    --good: #3c8a5c; --good-bg: #dff1e5;
+    --bad: #c85a4f; --bad-bg: #fbe4e1;
+    --mark: #e3a836; --mark-bg: #fbedd0;
+    --s: #3c8a5c; --s-bg: #dff1e5;
+    --es: #2f6fb0; --es-bg: #dde9f7;
+    --ies: #b0602a; --ies-bg: #f8e3d3;
+    --shadow: rgba(36, 48, 74, 0.14);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1b2431; --paper-raised: #232f3f;
+      --rule: #3c4d68; --rule-soft: #2a374a;
+      --margin: #e08078; --margin-soft: #4a3339;
+      --ink: #eceff5; --ink-soft: #a7b2c8; --ink-faint: #6d788e;
+      --good: #6fcb93; --good-bg: #23392c;
+      --bad: #e0847a; --bad-bg: #402b2a;
+      --mark: #f0c463; --mark-bg: #3d3320;
+      --s: #6fcb93; --s-bg: #23392c;
+      --es: #7fb3ea; --es-bg: #22324a;
+      --ies: #eba674; --ies-bg: #402f22;
+      --shadow: rgba(0, 0, 0, 0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1b2431; --paper-raised: #232f3f;
+    --rule: #3c4d68; --rule-soft: #2a374a;
+    --margin: #e08078; --margin-soft: #4a3339;
+    --ink: #eceff5; --ink-soft: #a7b2c8; --ink-faint: #6d788e;
+    --good: #6fcb93; --good-bg: #23392c;
+    --bad: #e0847a; --bad-bg: #402b2a;
+    --mark: #f0c463; --mark-bg: #3d3320;
+    --s: #6fcb93; --s-bg: #23392c;
+    --es: #7fb3ea; --es-bg: #22324a;
+    --ies: #eba674; --ies-bg: #402f22;
+    --shadow: rgba(0, 0, 0, 0.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: 'PT Sans', Arial, sans-serif; line-height: 1.5; -webkit-tap-highlight-color: transparent; }
+  h1, h2, h3, .hand { font-family: 'Caveat', 'Comic Sans MS', cursive; font-weight: 700; text-wrap: balance; }
+  .back-link { font-size: 13px; color: var(--ink-faint); text-decoration: none; margin-right: 14px; }
+  .back-link:hover { color: var(--margin); }
+  .sheet { max-width: 680px; margin: 0 auto; padding: 22px 20px 60px 44px; position: relative;
+    background-image: repeating-linear-gradient(to bottom, transparent, transparent 37px, var(--rule-soft) 38px);
+    background-position: 0 150px; }
+  .sheet::before { content: ""; position: absolute; top: 0; bottom: 0; left: 26px; width: 2px; background: var(--margin); opacity: 0.75; }
+  header.page { padding-top: 6px; padding-bottom: 10px; }
+  h1 { font-size: 42px; margin: 8px 0 2px; line-height: 1.1; }
+  .subtitle { font-size: 16px; color: var(--ink-soft); margin: 0 0 10px; }
+  .print-links { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; }
+  .print-links a { color: var(--margin); }
+  nav.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 20px; }
+  .tab { font-family: 'Caveat', cursive; font-size: 20px; font-weight: 600; background: var(--paper-raised); border: 1px solid var(--rule); border-bottom-width: 3px; color: var(--ink-soft); padding: 7px 16px 6px; border-radius: 8px 8px 4px 4px; cursor: pointer; box-shadow: 1px 2px 0 var(--shadow); }
+  .tab:nth-child(1) { transform: rotate(-1.2deg); }
+  .tab:nth-child(2) { transform: rotate(0.8deg); }
+  .tab:nth-child(3) { transform: rotate(-0.6deg); }
+  .tab[aria-selected="true"] { color: var(--paper); background: var(--margin); border-color: var(--margin); }
+  .tab:focus-visible, button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid var(--margin); outline-offset: 2px; }
+  section.page { display: none; }
+  section.page.active { display: block; }
+  .lead { font-size: 14px; color: var(--ink-soft); margin: 0 0 16px; }
+  .counter { font-family: 'Caveat', cursive; font-size: 21px; font-weight: 700; color: var(--margin); margin-bottom: 12px; }
+
+  /* Rule */
+  .legend { font-size: 12px; color: var(--ink-faint); margin: -6px 0 14px; }
+  .block { background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 6px; box-shadow: 2px 3px 0 var(--shadow); padding: 12px 16px 14px; margin-bottom: 18px; }
+  .block h2 { font-size: 27px; margin: 0 0 6px; line-height: 1.15; }
+  .block h2 .num { color: var(--margin); margin-right: 4px; }
+  .block p { margin: 6px 0; font-size: 15px; }
+  .block ul { margin: 6px 0; padding-left: 20px; font-size: 15px; }
+  .block li { margin-bottom: 3px; }
+  .src { font-size: 12px; color: var(--ink-faint); white-space: nowrap; }
+  .en { font-weight: 700; }
+  .ex { font-style: italic; }
+  .when-list { list-style: none; padding: 0 !important; }
+  .when-list li { display: flex; gap: 10px; align-items: baseline; padding: 4px 0; border-bottom: 1px dashed var(--rule-soft); }
+  .when-list li:last-child { border-bottom: none; }
+  .when-list .unit { font-family: 'Caveat', cursive; font-size: 19px; font-weight: 700; color: var(--margin); min-width: 104px; }
+  .table-wrap { overflow-x: auto; }
+  table.forms { border-collapse: collapse; margin: 8px 0; font-size: 15px; width: 100%; }
+  table.forms th, table.forms td { border: 1px solid var(--rule); padding: 6px 10px; text-align: left; vertical-align: top; }
+  table.forms th { background: var(--rule-soft); font-weight: 700; }
+  .hl { color: var(--margin); font-weight: 700; }
+  .check-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+  .check-row > span { font-size: 14px; background: var(--paper); border: 1px solid var(--rule); border-radius: 12px; padding: 3px 10px; }
+  .spell { display: grid; gap: 10px; margin-top: 8px; }
+  .spell-rule { border-left: 5px solid; border-radius: 4px; padding: 8px 12px; }
+  .spell-rule.s { border-color: var(--s); background: var(--s-bg); }
+  .spell-rule.es { border-color: var(--es); background: var(--es-bg); }
+  .spell-rule.ies { border-color: var(--ies); background: var(--ies-bg); }
+  .spell-rule.exc { border-color: var(--margin); background: var(--bad-bg); }
+  .spell-rule .head { font-weight: 700; font-size: 15px; }
+  .spell-rule .words { font-size: 15px; margin-top: 2px; }
+  .end-s { color: var(--s); font-weight: 700; }
+  .end-es { color: var(--es); font-weight: 700; }
+  .end-ies { color: var(--ies); font-weight: 700; }
+  .note { font-size: 14px; color: var(--ink-soft); margin-top: 6px; }
+  .mistakes { list-style: none; padding: 0 !important; }
+  .mistakes li { display: flex; flex-wrap: wrap; gap: 4px 12px; padding: 4px 0; }
+  .wrong { color: var(--bad); text-decoration: line-through; }
+  .right { color: var(--good); font-weight: 700; }
+
+  /* Cards */
+  .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  @media (min-width: 480px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+  .card { perspective: 800px; height: 96px; }
+  .card-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.45s cubic-bezier(.4,.2,.2,1); cursor: pointer; }
+  .card.flipped .card-inner { transform: rotateY(180deg); }
+  .card-face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; backface-visibility: hidden; border-radius: 6px; border: 1px solid var(--rule); background: var(--paper-raised); box-shadow: 2px 3px 0 var(--shadow); padding: 6px; text-align: center; }
+  .card-face.back { transform: rotateY(180deg); }
+  .card-face.back.s { background: var(--s-bg); border-color: var(--s); }
+  .card-face.back.es { background: var(--es-bg); border-color: var(--es); }
+  .card-face.back.ies { background: var(--ies-bg); border-color: var(--ies); }
+  .card-face.back.exc { background: var(--bad-bg); border-color: var(--margin); }
+  .card-face .who { font-size: 12px; color: var(--ink-faint); }
+  .card-face .verb { font-size: 19px; font-weight: 700; line-height: 1.2; }
+  .card-face .form { font-size: 18px; font-weight: 700; line-height: 1.2; }
+  .card-face .why { font-size: 12px; color: var(--ink-soft); line-height: 1.25; margin-top: 2px; }
+  .speak-btn { position: absolute; top: 3px; right: 3px; width: 22px; height: 22px; border-radius: 50%;
+    border: 1px solid var(--rule); background: var(--paper); color: var(--ink-soft); font-size: 12px;
+    line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+  .speak-btn:hover { border-color: var(--margin); color: var(--margin); }
+  @media (prefers-reduced-motion: reduce) { .card-inner { transition: none; } }
+
+  /* Trainer */
+  .ex-block { margin-bottom: 30px; }
+  .ex-block h2 { font-size: 27px; margin: 0 0 2px; }
+  .ex-block .lead { margin-bottom: 10px; }
+  .q { margin-bottom: 12px; }
+  .q-text { font-size: 16px; margin-bottom: 5px; }
+  .q-text .gap { display: inline-block; min-width: 64px; border-bottom: 2px solid var(--ink-faint); text-align: center; font-weight: 700; }
+  .q-text .gap.ok { border-bottom-color: var(--good); color: var(--good); }
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .opt { font-family: 'PT Sans', sans-serif; font-size: 15px; background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 5px; padding: 5px 14px; cursor: pointer; color: var(--ink); box-shadow: 1px 2px 0 var(--shadow); }
+  .opt:hover { border-color: var(--margin); }
+  .opt.ok { background: var(--good-bg); border-color: var(--good); color: var(--good); }
+  .opt.no { background: var(--bad-bg); border-color: var(--bad); color: var(--bad); }
+  .feedback { font-size: 14px; min-height: 1em; }
+  .feedback.good { color: var(--good); }
+  .feedback.bad { color: var(--bad); }
+  .fib-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .fib-row input[type="text"] { font-family: 'PT Sans', sans-serif; font-size: 15px; padding: 5px 9px; border: none; border-bottom: 2px solid var(--ink-faint); background: transparent; color: var(--ink); width: 140px; }
+  .fib-row input[type="text"]:focus { border-bottom-color: var(--margin); outline: none; }
+  .fib-row input.correct { border-bottom-color: var(--good); color: var(--good); }
+  .fib-row input.incorrect { border-bottom-color: var(--bad); color: var(--bad); }
+  .check-btn { font-family: 'PT Sans', sans-serif; font-size: 13px; background: var(--ink); color: var(--paper); border: none; border-radius: 5px; padding: 6px 12px; cursor: pointer; }
+  .check-btn:hover { opacity: 0.88; }
+  .reset-btn { font-family: 'Caveat', cursive; font-size: 17px; background: none; border: none; color: var(--ink-faint); text-decoration: underline; cursor: pointer; padding: 0; }
+  .reset-btn:hover { color: var(--margin); }
+  footer.page { margin-top: 30px; font-size: 12px; color: var(--ink-faint); }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="page">
+    <a class="back-link" href="../index.html">← ко всем урокам</a>
+    <a class="back-link" href="index.html">← все правила грамматики</a>
+    <h1>big → bigger → the biggest</h1>
+    <p class="subtitle">сравнительная и превосходная степень · Unit 4 — расширение</p>
+    <div class="print-links">
+      <a href="../print/grammar/comparative_plakat.html" target="_blank" rel="noopener">Плакат для печати (A4) →</a>
+      <a href="../print/grammar/comparative.html" target="_blank" rel="noopener">Карточки для печати →</a>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Разделы">
+    <button class="tab" role="tab" aria-selected="true" data-target="rule">Правило</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="cards">Карточки «больше — самый»</button>
+    <button class="tab" role="tab" aria-selected="false" data-target="trainer">Тренажёр</button>
+  </nav>
+
+  <!-- ============ RULE ============ -->
+  <section class="page active" id="rule">
+    <p class="legend">📖 — из учебника English Plus 5 (страница указана) · ✏️ — объяснение и примеры добавлены для понятности</p>
+
+    <div class="block">
+      <h2>Когда это учат</h2>
+      <ul class="when-list">
+        <li><span class="unit">Unit 4, стр. 48</span><span>My Country: Animals quiz — comparatives and superlatives — <b>расширение</b> <span class="src">📖</span></span></li>
+      </ul>
+      <p class="note">✏️ Связанные темы: <a href="articles.html" style="color:var(--margin)">the</a> — всегда перед «самый» · <a href="modifiers.html" style="color:var(--margin)">very, really</a>.</p>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">1</span>Три ступеньки <span class="src">✏️</span></h2>
+      <div class="check-row">
+        <span>big — большой</span>
+        <span>bigger — <b>больше</b> (сравниваем двоих)</span>
+        <span>the biggest — <b>самый большой</b> (из всех)</span>
+      </div>
+      <p>При сравнении двоих — слово <b>than</b> («чем»): <span class="ex">A cat is smaller <b>than</b> a leopard.</span> <span class="src">📖</span></p>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">2</span>Короткие слова — -er и the -est <span class="src">📖 стр. 48</span></h2>
+      <div class="spell">
+        <div class="spell-rule s">
+          <div class="head"><span class="end-s">+ er / the + est</span> — короткие прилагательные <span class="src">📖</span></div>
+          <div class="words">small → smaller → the smallest · fast → faster → the fastest · tall → taller → the tallest</div>
+        </div>
+        <div class="spell-rule es">
+          <div class="head"><span class="end-es">написание меняется</span> <span class="src">📖 + ✏️</span></div>
+          <div class="words">big → bi<b>gg</b>er → the bi<b>gg</b>est (удвоить) 📖 · heavy → heav<b>ier</b> → the heav<b>iest</b> (y → i) 📖 · nice → nice<b>r</b> → the nice<b>st</b> (уже есть e) ✏️</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">3</span>Длинные слова — more и the most <span class="src">📖 стр. 48</span></h2>
+      <div class="spell">
+        <div class="spell-rule ies">
+          <div class="head"><span class="end-ies">more / the most</span> + прилагательное — длинные (2–3 слога и больше) <span class="src">📖</span></div>
+          <div class="words">popular → more popular → the most popular · beautiful → more beautiful → the most beautiful · dangerous → more dangerous → the most dangerous · intelligent → more intelligent</div>
+        </div>
+      </div>
+      <p>Примеры из учебника: <span class="ex">Horses are <b>more intelligent than</b> sheep. The snow leopard is one of <b>the most beautiful</b> animals.</span> <span class="src">📖</span></p>
+      <p class="note">✏️ Либо -er, либо more — вместе нельзя: не «more bigger».</p>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">4</span>Исключения — учить <span class="src">✏️</span></h2>
+      <div class="spell">
+        <div class="spell-rule exc">
+          <div class="head"><b>своя форма</b></div>
+          <div class="words">good → <b>better</b> → <b>the best</b> · bad → <b>worse</b> → <b>the worst</b></div>
+        </div>
+      </div>
+      <p class="note">✏️ В учебнике уже встречалось: <span class="ex">Astana is the best city in the world!</span> (📖 стр. 20).</p>
+    </div>
+
+    <div class="block">
+      <h2><span class="num">5</span>Частые ошибки <span class="src">✏️</span></h2>
+      <ul class="mistakes">
+        <li><span class="wrong">A camel is faster that a wolf.</span><span class="right">A camel is faster than a wolf.</span></li>
+        <li><span class="wrong">more bigger</span><span class="right">bigger</span></li>
+        <li><span class="wrong">beautifuller</span><span class="right">more beautiful</span></li>
+        <li><span class="wrong">the most smallest</span><span class="right">the smallest</span></li>
+        <li><span class="wrong">biger, heavyer</span><span class="right">bigger, heavier</span></li>
+        <li><span class="wrong">gooder, the goodest</span><span class="right">better, the best</span></li>
+        <li><span class="wrong">It is biggest city.</span><span class="right">It is the biggest city.</span></li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- ============ CARDS ============ -->
+  <section class="page" id="cards">
+    <p class="lead">На карточке прилагательное. Скажи «больше» и «самый» и нажми — проверь себя. Цвет: <span class="end-s">зелёный — -er / -est</span>, <span class="end-es">синий — меняется написание</span>, <span class="end-ies">оранжевый — more / the most</span>, красный — исключение.</p>
+    <div class="cards" id="cardsGrid"></div>
+  </section>
+
+  <!-- ============ TRAINER ============ -->
+  <section class="page" id="trainer">
+    <p class="counter" id="totalCounter">Всего верно: 0 из 0</p>
+    <p class="lead">Пять заданий — от простого к сложному. Ошибся — прочитай подсказку и попробуй ещё раз.</p>
+
+    <div class="ex-block">
+      <h2>1. -er или more?</h2>
+      <p class="lead">Короткое слово — -er. Длинное — more.</p>
+      <div id="ex1"></div>
+    </div>
+
+    <div class="ex-block">
+      <h2>2. Напиши «самый»</h2>
+      <p class="lead">Впиши the + -est или the most +.</p>
+      <div id="ex2"></div>
+    </div>
+
+    <div class="ex-block">
+      <h2>3. than — «чем»</h2>
+      <p class="lead">Сравниваем двоих: -er / more + than.</p>
+      <div id="ex3"></div>
+    </div>
+
+    <div class="ex-block">
+      <h2>4. Больше или самый?</h2>
+      <p class="lead">Двое — -er / more + than. Из всех — the -est / the most.</p>
+      <div id="ex4"></div>
+    </div>
+
+    <div class="ex-block">
+      <h2>5. Как сказать по-английски?</h2>
+      <p class="lead">Выбери правильный вариант.</p>
+      <div id="ex5"></div>
+    </div>
+
+    <button class="reset-btn" id="resetAll" type="button">начать заново</button>
+  </section>
+
+  <footer class="page">English Plus 5 · Грамматика · big → bigger → the biggest · домашняя тетрадь</footer>
+</div>
+
+<script>
+(function () {
+  var CARDS = [
+    {"f1": "→ больше → самый", "f2": "small", "b1": "smaller · the smallest", "b2": "короткое → -er / -est", "t": "s"},
+    {"f1": "→ больше → самый", "f2": "big", "b1": "bigger · the biggest", "b2": "удвоить g", "t": "es"},
+    {"f1": "→ больше → самый", "f2": "popular", "b1": "more popular · the most popular", "b2": "длинное → more / the most", "t": "ies"},
+    {"f1": "→ больше → самый", "f2": "fast", "b1": "faster · the fastest", "b2": "короткое → -er / -est", "t": "s"},
+    {"f1": "→ больше → самый", "f2": "heavy", "b1": "heavier · the heaviest", "b2": "y → ier / iest", "t": "es"},
+    {"f1": "→ больше → самый", "f2": "beautiful", "b1": "more beautiful · the most beautiful", "b2": "длинное → more / the most", "t": "ies"},
+    {"f1": "→ больше → самый", "f2": "tall", "b1": "taller · the tallest", "b2": "короткое → -er / -est", "t": "s"},
+    {"f1": "→ больше → самый", "f2": "hot", "b1": "hotter · the hottest", "b2": "удвоить t", "t": "es"},
+    {"f1": "→ больше → самый", "f2": "dangerous", "b1": "more dangerous · the most dangerous", "b2": "длинное → more / the most", "t": "ies"},
+    {"f1": "→ больше → самый", "f2": "good", "b1": "better · the best", "b2": "исключение!", "t": "exc"},
+    {"f1": "→ больше → самый", "f2": "old", "b1": "older · the oldest", "b2": "короткое → -er / -est", "t": "s"},
+    {"f1": "→ больше → самый", "f2": "happy", "b1": "happier · the happiest", "b2": "y → ier / iest", "t": "es"},
+    {"f1": "→ больше → самый", "f2": "interesting", "b1": "more interesting · the most interesting", "b2": "длинное → more / the most", "t": "ies"},
+    {"f1": "→ больше → самый", "f2": "bad", "b1": "worse · the worst", "b2": "исключение!", "t": "exc"},
+    {"f1": "→ больше → самый", "f2": "long", "b1": "longer · the longest", "b2": "короткое → -er / -est", "t": "s"},
+    {"f1": "→ больше → самый", "f2": "easy", "b1": "easier · the easiest", "b2": "y → ier / iest", "t": "es"},
+    {"f1": "→ больше → самый", "f2": "intelligent", "b1": "more intelligent · the most intelligent", "b2": "длинное → more / the most", "t": "ies"},
+    {"f1": "→ больше → самый", "f2": "cold", "b1": "colder · the coldest", "b2": "короткое → -er / -est", "t": "s"},
+    {"f1": "→ больше → самый", "f2": "nice", "b1": "nicer · the nicest", "b2": "уже есть e → + r / + st", "t": "es"},
+    {"f1": "→ больше → самый", "f2": "expensive", "b1": "more expensive · the most expensive", "b2": "длинное → more / the most", "t": "ies"},
+    {"f1": "→ больше → самый", "f2": "young", "b1": "younger · the youngest", "b2": "короткое → -er / -est", "t": "s"}
+  ];
+  var EXS = [
+    {"type": "choice", "cs": false, "items": [{"s": "small → ___", "o": ["smaller", "more small"], "a": "smaller", "h": "короткое → -er"}, {"s": "popular → ___", "o": ["popularer", "more popular"], "a": "more popular", "h": "длинное → more (📖 стр. 48)"}, {"s": "big → ___", "o": ["biger", "bigger"], "a": "bigger", "h": "удвоить g (📖 стр. 48)"}, {"s": "heavy → ___", "o": ["heavyer", "heavier"], "a": "heavier", "h": "y → ier (📖 стр. 48)"}, {"s": "beautiful → ___", "o": ["more beautiful", "beautifuller"], "a": "more beautiful", "h": "длинное → more"}, {"s": "fast → ___", "o": ["faster", "more fast"], "a": "faster", "h": "короткое → -er"}, {"s": "dangerous → ___", "o": ["dangerouser", "more dangerous"], "a": "more dangerous", "h": "длинное → more"}, {"s": "good → ___", "o": ["gooder", "better"], "a": "better", "h": "исключение: good → better"}, {"s": "tall → ___", "o": ["taller", "more tall"], "a": "taller", "h": "короткое → -er"}, {"s": "intelligent → ___", "o": ["more intelligent", "intelligenter"], "a": "more intelligent", "h": "длинное → more (📖 стр. 48)"}, {"s": "hot → ___", "o": ["hoter", "hotter"], "a": "hotter", "h": "удвоить t"}, {"s": "bad → ___", "o": ["badder", "worse"], "a": "worse", "h": "исключение: bad → worse"}]},
+    {"type": "typing", "cs": false, "items": [{"s": "The Samoan moss spider is ___ spider in the world.", "v": "small", "a": "the smallest", "h": "the + small + est (📖 стр. 48)"}, {"s": "What is ___ animal in the world?", "v": "dangerous", "a": "the most dangerous", "h": "длинное → the most (📖 стр. 48)"}, {"s": "Astana is ___ city in the world!", "v": "good", "a": "the best", "h": "good → the best (📖 стр. 20)"}, {"s": "A cheetah is ___ animal.", "v": "fast", "a": "the fastest", "h": "the + fast + est"}, {"s": "This is ___ book in the library.", "v": "interesting", "a": "the most interesting", "h": "длинное → the most"}, {"s": "The elephant is ___ animal in the zoo.", "v": "big", "a": "the biggest", "h": "удвоить g"}, {"s": "Is the Caspian seal ___ seal?", "v": "heavy", "a": "the heaviest", "h": "y → iest"}, {"s": "It's ___ day of the year.", "v": "hot", "a": "the hottest", "h": "удвоить t"}, {"s": "Football is ___ sport in my country.", "v": "popular", "a": "the most popular", "h": "длинное → the most"}, {"s": "It's ___ film I know!", "v": "bad", "a": "the worst", "h": "bad → the worst"}]},
+    {"type": "choice", "cs": false, "items": [{"s": "A camel is faster ___ a wolf.", "o": ["than", "that", "then"], "a": "than", "h": "чем → than"}, {"s": "A cat is smaller ___ a leopard.", "o": ["than", "as", "that"], "a": "than", "h": "📖 стр. 48: smaller than"}, {"s": "Horses are ___ than sheep.", "o": ["more intelligent", "intelligenter"], "a": "more intelligent", "h": "📖 стр. 48"}, {"s": "My brother is ___ than me.", "o": ["older", "more old"], "a": "older", "h": "короткое → -er"}, {"s": "Kazakhstan is ___ than Britain.", "o": ["bigger", "more big"], "a": "bigger", "h": "короткое → -er"}, {"s": "The male seal is ___ than the female.", "o": ["heavier", "more heavy"], "a": "heavier", "h": "📖 стр. 48: bigger and heavier"}, {"s": "Maths is ___ than art for me.", "o": ["more difficult", "difficulter"], "a": "more difficult", "h": "длинное → more"}, {"s": "Today is ___ than yesterday.", "o": ["better", "gooder"], "a": "better", "h": "good → better"}]},
+    {"type": "choice", "cs": false, "items": [{"s": "A camel is ___ a wolf. (быстрее)", "o": ["the fastest", "faster than"], "a": "faster than", "h": "двое → faster than (📖 стр. 48)"}, {"s": "What is ___ animal in the world? (самое опасное)", "o": ["the most dangerous", "more dangerous"], "a": "the most dangerous", "h": "из всех → the most"}, {"s": "The snow leopard is one of ___ animals. (самых красивых)", "o": ["the most beautiful", "more beautiful"], "a": "the most beautiful", "h": "📖 стр. 48"}, {"s": "My sister is ___ me. (выше)", "o": ["taller than", "the tallest"], "a": "taller than", "h": "двое → taller than"}, {"s": "Astana is ___ city in the world! (лучший)", "o": ["better", "the best"], "a": "the best", "h": "📖 стр. 20"}, {"s": "This exercise is ___ that one. (легче)", "o": ["easier than", "the easiest"], "a": "easier than", "h": "двое → easier than"}, {"s": "It's ___ spider in the world. (самый маленький)", "o": ["the smallest", "smaller"], "a": "the smallest", "h": "из всех → the smallest"}, {"s": "Cats are ___ dogs. (меньше)", "o": ["smaller than", "the smallest"], "a": "smaller than", "h": "двое → smaller than"}]},
+    {"type": "choice", "cs": false, "items": [{"s": "Верблюд быстрее волка.", "o": ["A camel is faster than a wolf.", "A camel is more faster than a wolf."], "a": "A camel is faster than a wolf.", "h": "только -er, без more"}, {"s": "Лошади умнее овец.", "o": ["Horses are more intelligent than sheep.", "Horses are intelligenter than sheep."], "a": "Horses are more intelligent than sheep.", "h": "📖 стр. 48"}, {"s": "Это самый большой город.", "o": ["It's the biggest city.", "It's biggest city."], "a": "It's the biggest city.", "h": "самый → the"}, {"s": "Мой брат старше меня.", "o": ["My brother is older than me.", "My brother is older that me."], "a": "My brother is older than me.", "h": "чем → than"}, {"s": "Это лучший день!", "o": ["It's the best day!", "It's the goodest day!"], "a": "It's the best day!", "h": "good → the best"}, {"s": "Сегодня жарче, чем вчера.", "o": ["Today is hotter than yesterday.", "Today is hoter than yesterday."], "a": "Today is hotter than yesterday.", "h": "удвоить t"}, {"s": "самое популярное животное", "o": ["the most popular animal", "the popularest animal"], "a": "the most popular animal", "h": "длинное → the most"}, {"s": "Это хуже.", "o": ["It's worse.", "It's badder."], "a": "It's worse.", "h": "bad → worse"}]}
+  ];
+
+  var TOTAL = 0; EXS.forEach(function (e) { TOTAL += e.items.length; });
+  function speak(text) {
+    try {
+      if (!window.speechSynthesis) return;
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text.replace(/___/g, "").replace(/\s*\(.*?\)/g, ""));
+      u.lang = "en-US";
+      window.speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+  function shuffled(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; }
+    return a;
+  }
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+
+  var tabs = document.querySelectorAll(".tab");
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      tabs.forEach(function (t) { t.setAttribute("aria-selected", "false"); });
+      document.querySelectorAll("section.page").forEach(function (s) { s.classList.remove("active"); });
+      tab.setAttribute("aria-selected", "true");
+      document.getElementById(tab.dataset.target).classList.add("active");
+    });
+  });
+
+  var cardsGrid = document.getElementById("cardsGrid");
+  CARDS.forEach(function (c) {
+    var card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML =
+      '<div class="card-inner">' +
+        '<div class="card-face front">' +
+          '<button class="speak-btn" type="button" title="озвучить" aria-label="озвучить">&#128266;</button>' +
+          '<span class="who">' + esc(c.f1) + '</span><span class="verb">' + esc(c.f2) + '</span>' +
+        '</div>' +
+        '<div class="card-face back ' + c.t + '">' +
+          '<button class="speak-btn" type="button" title="озвучить" aria-label="озвучить">&#128266;</button>' +
+          '<span class="form">' + esc(c.b1) + '</span><span class="why">' + esc(c.b2) + '</span>' +
+        '</div>' +
+      '</div>';
+    card.querySelector(".card-inner").addEventListener("click", function (e) {
+      if (e.target.classList.contains("speak-btn")) return;
+      card.classList.toggle("flipped");
+    });
+    var btns = card.querySelectorAll(".speak-btn");
+    btns[0].addEventListener("click", function (e) { e.stopPropagation(); speak(c.f2); });
+    btns[1].addEventListener("click", function (e) { e.stopPropagation(); speak(c.b1); });
+    cardsGrid.appendChild(card);
+  });
+
+  var solved = {};
+  var totalCounter = document.getElementById("totalCounter");
+  function updateTotal() {
+    var n = 0; for (var k in solved) if (solved[k]) n++;
+    totalCounter.textContent = "Всего верно: " + n + " из " + TOTAL;
+  }
+  function buildChoice(box, items, prefix) {
+    items.forEach(function (it, idx) {
+      var key = prefix + idx; solved[key] = false;
+      var q = document.createElement("div"); q.className = "q";
+      var parts = it.s.split("___");
+      q.innerHTML = '<div class="q-text">' + (idx + 1) + '. ' + esc(parts[0]) +
+        (parts.length > 1 ? '<span class="gap">&nbsp;</span>' + esc(parts[1]) : '') + '</div>' +
+        '<div class="opts"></div><div class="feedback"></div>';
+      var gap = q.querySelector(".gap"), opts = q.querySelector(".opts"), fb = q.querySelector(".feedback");
+      shuffled(it.o).forEach(function (o) {
+        var b = document.createElement("button"); b.type = "button"; b.className = "opt"; b.textContent = o;
+        b.addEventListener("click", function () {
+          if (solved[key]) return;
+          if (o === it.a) {
+            b.classList.add("ok");
+            if (gap) { gap.textContent = o === "—" ? "✓" : o; gap.classList.add("ok"); }
+            fb.textContent = "верно! " + it.h; fb.className = "feedback good";
+            solved[key] = true; updateTotal();
+          } else {
+            b.classList.add("no");
+            fb.textContent = "не то. Подсказка: " + it.h; fb.className = "feedback bad";
+          }
+        });
+        opts.appendChild(b);
+      });
+      box.appendChild(q);
+    });
+  }
+  function buildTyping(box, items, prefix, cs) {
+    items.forEach(function (it, idx) {
+      var key = prefix + idx; solved[key] = false;
+      var q = document.createElement("div"); q.className = "q";
+      q.innerHTML = '<div class="q-text">' + (idx + 1) + '. ' + esc(it.s.replace("___", "______")) +
+        (it.v ? ' <span style="color:var(--ink-faint)">(' + esc(it.v) + ')</span>' : '') + '</div>' +
+        '<div class="fib-row"><input type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="ответ">' +
+        '<button class="check-btn" type="button">Проверить</button></div><div class="feedback"></div>';
+      var input = q.querySelector("input"), fb = q.querySelector(".feedback");
+      function norm(s) { s = s.trim().replace(/\s+/g, " ").replace(/[‘’]/g, "'"); return cs ? s : s.toLowerCase(); }
+      function check() {
+        var val = norm(input.value); if (!val) return;
+        var ok = val === norm(it.a);
+        input.classList.toggle("correct", ok); input.classList.toggle("incorrect", !ok);
+        if (ok) { fb.textContent = "верно! " + it.h; fb.className = "feedback good"; }
+        else { fb.textContent = "не то. Подсказка: " + it.h + ". Попробуй ещё раз."; fb.className = "feedback bad"; }
+        if (solved[key] !== ok) { solved[key] = ok; updateTotal(); }
+      }
+      q.querySelector(".check-btn").addEventListener("click", check);
+      input.addEventListener("keydown", function (e) { if (e.key === "Enter") check(); });
+      box.appendChild(q);
+    });
+  }
+  function buildAll() {
+    solved = {};
+    EXS.forEach(function (e, i) {
+      var box = document.getElementById("ex" + (i + 1)); box.innerHTML = "";
+      if (e.type === "typing") buildTyping(box, e.items, "t" + i + "_", e.cs);
+      else buildChoice(box, e.items, "c" + i + "_");
+    });
+    updateTotal();
+  }
+  buildAll();
+  document.getElementById("resetAll").addEventListener("click", function () {
+    buildAll();
+    document.getElementById("trainer").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+})();
+</script>
+</body>
+</html>
