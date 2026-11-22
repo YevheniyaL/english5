@@ -351,6 +351,7 @@ function warmup() {
     steps: [
       { type: 'tap', q: 'Нажми на того, кто делает', correct: 'who', code: 'term' },
       { type: 'tap', q: 'Нажми на глагол', correct: 'verb', code: 'term' },
+      pronStep(p),
       groupStep(p),
       { ...groupStep(p2), q: `А «${p2.pr}» — из какой группы?` },
     ],
