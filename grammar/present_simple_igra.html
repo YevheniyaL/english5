@@ -1,0 +1,1068 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Английский · грамматика · Present Simple · игра</title>
+<link rel="icon" href="data:image/svg+xml,<svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22><text%20y=%22.9em%22%20font-size=%2290%22>🐝</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #faf9f4; --paper-raised: #ffffff; --rule: #b9cfe0; --rule-soft: #dbe8f1;
+    --margin: #2f6690; --margin-soft: #c7dbea; --ink: #24304a; --ink-soft: #647089; --ink-faint: #97a2b8;
+    --good: #3c8a5c; --good-bg: #dff1e5; --bad: #c85a4f; --bad-bg: #fbe4e1;
+    --mark: #2f9e8f; --mark-bg: #d7f0ec; --shadow: rgba(36, 48, 74, 0.14); --star: #e0a526;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1b2431; --paper-raised: #232f3f; --rule: #3c5468; --rule-soft: #29394a;
+      --margin: #7fb1de; --margin-soft: #2c3f4f; --ink: #eceff5; --ink-soft: #a7b2c8; --ink-faint: #6d788e;
+      --good: #6fcb93; --good-bg: #23392c; --bad: #e0847a; --bad-bg: #402b2a;
+      --mark: #5fd0bd; --mark-bg: #1f3d38; --shadow: rgba(0, 0, 0, 0.35); --star: #f0c04a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1b2431; --paper-raised: #232f3f; --rule: #3c5468; --rule-soft: #29394a;
+    --margin: #7fb1de; --margin-soft: #2c3f4f; --ink: #eceff5; --ink-soft: #a7b2c8; --ink-faint: #6d788e;
+    --good: #6fcb93; --good-bg: #23392c; --bad: #e0847a; --bad-bg: #402b2a;
+    --mark: #5fd0bd; --mark-bg: #1f3d38; --shadow: rgba(0, 0, 0, 0.35); --star: #f0c04a;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: 'PT Sans', Arial, sans-serif; line-height: 1.5; -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
+  h1, .hand { font-family: 'Caveat', 'Comic Sans MS', cursive; font-weight: 700; text-wrap: balance; }
+  .back-link { font-size: 13px; color: var(--ink-faint); text-decoration: none; }
+  .back-link:hover { color: var(--margin); }
+  .sheet { max-width: 640px; margin: 0 auto; padding: 22px 16px 60px 44px; position: relative; min-height: 100vh; }
+  .sheet::before { content: ""; position: absolute; top: 0; bottom: 0; left: 26px; width: 2px; background: var(--margin); opacity: 0.75; }
+  header.page { padding-top: 6px; padding-bottom: 10px; }
+  h1 { font-size: 36px; margin: 0 0 2px; line-height: 1.1; }
+  .subtitle { font-size: 15px; color: var(--ink-soft); margin: 0 0 6px; }
+  .rule-btn { font-family: 'PT Sans', sans-serif; font-size: 14px; background: none; border: 2px solid var(--margin); color: var(--margin); border-radius: 8px; padding: 4px 10px; cursor: pointer; }
+  .rule-btn:hover { background: var(--margin-soft); }
+
+  .progress { display: flex; justify-content: space-between; align-items: center; font-family: 'Caveat', cursive; font-size: 22px; font-weight: 700; color: var(--margin); margin: 10px 0 8px; }
+  .stars { color: var(--star); letter-spacing: 2px; }
+
+  .card { background: var(--paper-raised); border: 1px solid var(--rule); border-radius: 10px; padding: 16px 16px 18px; box-shadow: 1px 2px 0 var(--shadow); }
+  .task-title { font-size: 17px; font-weight: 700; margin: 0 0 6px; }
+  .task-show { font-size: 30px; margin: 6px 0 10px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .task-text { font-size: 16px; margin: 4px 0 10px; }
+
+  .frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; line-height: 1.1; margin: 0 2px; }
+  .frac > span:first-child { border-bottom: 2px solid currentColor; padding: 0 4px 2px; }
+  .frac > span:last-child { padding: 2px 4px 0; }
+  /* дополнительный множитель — маленькая цифра над числителем справа, как в учебнике (стр. 103) */
+  .dm { font-size: 0.55em; vertical-align: super; margin-left: 2px; color: var(--mark); font-weight: 700; }
+  .dm input { font-size: 15px !important; width: 40px !important; padding: 1px 2px !important; vertical-align: super; }
+  .pair { display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+  details.rule { font-size: 14px; color: var(--ink-soft); margin: 0 0 12px; }
+  details.rule summary { cursor: pointer; color: var(--margin); }
+  details.rule p { margin: 6px 0 0; padding: 8px 10px; background: var(--mark-bg); border-radius: 6px; color: var(--ink); }
+
+  .step { border-top: 1px dashed var(--rule); padding: 12px 0 4px; }
+  .step-q { font-weight: 700; font-size: 15px; margin-bottom: 8px; }
+  .step.done { opacity: 0.72; }
+  .step.done .step-q::after { content: "  ✓"; color: var(--good); }
+  .step-body { font-size: 22px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .step-body input { font-family: 'PT Sans', sans-serif; font-size: 22px; width: 58px; text-align: center; padding: 3px 4px; border: 2px solid var(--ink-faint); border-radius: 6px; background: var(--paper); color: var(--ink); }
+  .step-body input:focus { outline: none; border-color: var(--margin); }
+  .step-body input.bad { border-color: var(--bad); background: var(--bad-bg); }
+  .step-body input.ok { border-color: var(--good); background: var(--good-bg); color: var(--good); }
+  .frac input { margin: 2px 0; }
+
+  .choices { display: flex; flex-direction: column; gap: 8px; }
+  .choice { font-family: 'PT Sans', sans-serif; font-size: 16px; text-align: left; padding: 10px 12px; border-radius: 8px; border: 2px solid var(--rule); background: var(--paper); color: var(--ink); cursor: pointer; }
+  .choice:hover:not(:disabled) { border-color: var(--margin); }
+  .choice.wrong { border-color: var(--bad); background: var(--bad-bg); text-decoration: line-through; cursor: default; }
+  .choice.right { border-color: var(--good); background: var(--good-bg); }
+
+  .tok { font-family: 'PT Sans', sans-serif; font-size: 26px; padding: 2px 10px; border-radius: 8px; border: 2px dashed var(--margin); background: var(--paper); color: var(--ink); cursor: pointer; }
+  .dm .tok { font-size: 16px; padding: 0 6px; color: var(--mark); }
+  .tok:hover:not(:disabled) { background: var(--margin-soft); }
+  .tok.wrong { border-style: solid; border-color: var(--bad); background: var(--bad-bg); }
+  .tok.right { border-style: solid; border-color: var(--good); background: var(--good-bg); color: var(--good); }
+  .frac .tok { margin: 3px 0; }
+  .picks { display: flex; gap: 10px; flex-wrap: wrap; font-size: 26px; }
+  .ptok { font-family: 'PT Sans', sans-serif; font-size: 24px; padding: 4px 12px; border-radius: 10px; border: 2px dashed var(--margin); background: var(--paper); color: var(--ink); cursor: pointer; }
+  .ptok:hover { background: var(--margin-soft); }
+  .ptok.sel { border-style: solid; border-color: var(--mark); background: var(--mark-bg); }
+  .ptok.right { border-style: solid; border-color: var(--good); background: var(--good-bg); }
+
+  .btn { font-family: 'PT Sans', sans-serif; font-size: 16px; font-weight: 700; background: var(--margin); color: var(--paper); border: none; border-radius: 8px; padding: 9px 18px; cursor: pointer; margin-top: 10px; }
+  .btn:hover { opacity: 0.9; }
+  .btn.big { font-size: 19px; padding: 12px 22px; }
+  .btn.ghost { background: none; color: var(--margin); border: 2px solid var(--margin); }
+  .hint { margin-top: 8px; padding: 8px 11px; border-radius: 6px; background: var(--bad-bg); color: var(--ink); font-size: 15px; }
+  .hint.show-answer { background: var(--margin-soft); }
+  .away-note { margin: 0 0 12px; padding: 9px 12px; border-radius: 8px; border: 2px solid var(--star); background: var(--paper); font-size: 15px; }
+  .praise { margin-top: 12px; font-family: 'Caveat', cursive; font-size: 26px; font-weight: 700; color: var(--good); }
+
+  /* объяснение правила */
+  .intro-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-family: 'Caveat', cursive; font-size: 22px; font-weight: 700; color: var(--margin); margin: 10px 0 8px; }
+  .skip { font-family: 'PT Sans', sans-serif; font-size: 14px; font-weight: 400; color: var(--ink-faint); background: none; border: none; cursor: pointer; text-decoration: underline; }
+  .intro-h { font-family: 'Caveat', cursive; font-size: 30px; font-weight: 700; margin: 0 0 4px; line-height: 1.15; }
+  .demo-cap p { margin: 8px 0; font-size: 17px; animation: capin 0.4s ease-out both; }
+  @keyframes capin { from { opacity: 0; transform: translateY(6px); } }
+  .demo-big { font-size: 28px; display: inline-flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 4px 6px; vertical-align: middle; }
+  .src { font-size: 13px; color: var(--ink-faint); margin: 8px 0 0; }
+  .sum-row { display: flex; gap: 12px; align-items: center; padding: 10px 0; border-top: 1px dashed var(--rule); font-size: 17px; }
+  .sum-row:first-of-type { border-top: none; }
+  .sum-key { font-family: 'Caveat', cursive; font-size: 34px; font-weight: 700; color: var(--margin); min-width: 46px; text-align: center; }
+  .overlay { position: fixed; inset: 0; background: var(--paper); z-index: 8; overflow-y: auto; }
+  .overlay .sheet { min-height: auto; }
+
+  /* награда */
+  .reward { text-align: center; }
+  .reward h2 { font-family: 'Caveat', cursive; font-size: 40px; margin: 6px 0 0; color: var(--margin); }
+  .hero-wrap { width: 220px; max-width: 64vw; margin: 0 auto; }
+  .hero-wrap svg { width: 100%; height: auto; overflow: visible; }
+  .dance { animation: dance 0.9s ease-in-out infinite; transform-origin: 50% 90%; }
+  @keyframes dance { 0%,100% { transform: rotate(-6deg) translateY(0); } 50% { transform: rotate(6deg) translateY(-12px); } }
+  .arm-l, .arm-r { transform-box: fill-box; animation: wave 0.45s ease-in-out infinite alternate; }
+  .arm-l { transform-origin: right bottom; }
+  .arm-r { transform-origin: left bottom; animation-delay: 0.2s; }
+  @keyframes wave { from { transform: rotate(-25deg); } to { transform: rotate(25deg); } }
+  .eye { transform-box: fill-box; transform-origin: center; animation: blink 3s infinite; }
+  @keyframes blink { 0%,92%,100% { transform: scaleY(1); } 95% { transform: scaleY(0.1); } }
+  .badge { transform-box: fill-box; transform-origin: center; }
+  .badge.pulse { animation: pop 0.5s ease-out; }
+  .whole-count { font-family: 'Caveat', cursive; font-size: 26px; font-weight: 700; color: var(--ink); min-height: 56px; margin: 4px 0; display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; }
+  .joke { margin: 14px auto 0; max-width: 460px; padding: 12px 14px; border-radius: 10px; background: var(--mark-bg); font-size: 16px; text-align: left; }
+  .joke b { font-family: 'Caveat', cursive; font-size: 21px; color: var(--mark); }
+  .stickers { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin: 10px 0 4px; }
+  .sticker { width: 64px; height: 64px; border-radius: 50%; border: 2px dashed var(--rule); display: flex; align-items: center; justify-content: center; position: relative; font-family: 'Caveat', cursive; font-size: 28px; color: var(--ink-faint); }
+  .sticker.got { border: 2px solid var(--star); background: var(--paper-raised); cursor: pointer; }
+  .sticker.new { animation: pop 0.8s ease-out 2; }
+  @keyframes pop { 50% { transform: scale(1.25) rotate(8deg); } }
+  .sticker.got:hover { transform: scale(1.08); }
+  .sticker.picked { box-shadow: 0 0 0 3px var(--mark); }
+  .sticker svg { width: 46px; height: 46px; }
+  .sticker .acc { position: absolute; top: -10px; font-size: 26px; }
+  .sticker.gold { border: 3px solid var(--star); background: radial-gradient(circle at 35% 30%, #fff8dc, #f3c54d 85%); }
+  .sticker.gold-empty { border-color: var(--star); color: var(--star); }
+  .album-h { font-family: 'Caveat', cursive; font-size: 24px; font-weight: 700; color: var(--star); margin: 12px 0 0; }
+  .joke .res { margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--rule); }
+  .joke .res pre { white-space: pre-wrap; font-family: 'PT Sans', sans-serif; font-size: 14px; margin: 4px 0 0; }
+  .report-box { margin-top: 18px; text-align: left; }
+  .report-box pre { white-space: pre-wrap; font-family: 'PT Sans', sans-serif; font-size: 14px; background: var(--paper); border: 1px solid var(--rule); border-radius: 8px; padding: 10px 12px; color: var(--ink); }
+  .sent-note { font-size: 14px; color: var(--good); min-height: 20px; }
+
+  .confetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 9; }
+  .confetti i { position: absolute; top: -20px; width: 9px; height: 14px; border-radius: 2px; animation: fall linear forwards; }
+  @keyframes fall { to { transform: translateY(110vh) rotate(720deg); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dance, .arm-l, .arm-r, .eye, .sticker.new, .confetti i, .demo-cap p, .badge.pulse { animation: none; }
+  }
+
+  .sent { font-size: 22px; line-height: 1.6; }
+  .sent .tok { font-size: 20px; padding: 2px 8px; margin: 2px 0; }
+  .sent-sm { font-size: 20px; }
+  .base { font-size: 15px; color: var(--ink-faint); }
+  .bigq { font-size: 24px; font-weight: 700; color: var(--margin); }
+  .chip { display: inline-block; font-size: 16px; padding: 1px 9px; border: 1px solid var(--rule); border-radius: 12px; background: var(--paper); margin: 2px 1px; }
+  .step-body { font-size: 20px; }
+  .step-body input.txt { width: 150px; text-align: left; font-size: 20px; }
+  .step-body input.txt.aux { width: 92px; }
+  .step-body input.txt.tail { width: 64px; margin-left: 1px; }
+  .stem { font-weight: 700; }
+  .ex { font-family: 'PT Sans', sans-serif; background: var(--mark-bg); border-radius: 5px; padding: 0 5px; white-space: nowrap; }
+  .t { color: var(--bad); }
+  .wrong { color: var(--bad); text-decoration: line-through; }
+  .choice { font-size: 17px; }
+  @media (max-width: 480px) { .ex { white-space: normal; } .sent { font-size: 19px; } }
+  footer.page { margin-top: 30px; font-size: 12px; color: var(--ink-faint); }
+  footer.page a { color: var(--ink-faint); }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <header class="page">
+    <a class="back-link" href="present_simple.html">&larr; Present Simple</a> &nbsp; <a class="back-link" href="../index.html">главная</a>
+    <h1>Пчёлка Эс: Present Simple</h1>
+    <p class="subtitle">Unit 5–6 · стр. 57, 59, 71, 73 · do или does, -s / -es / -ies, вопросы про работу и семью · <b>сначала правило, потом разминка + 6 заданий, в каждом раунде новые предложения</b></p>
+    <button class="rule-btn" id="ruleBtn" hidden>🐝 Объяснение правила ещё раз</button>
+  </header>
+
+  <div class="progress"><span id="progress"></span><span class="stars" id="stars"></span></div>
+  <main id="app"></main>
+
+  <footer class="page">Правило: утверждение (📖 стр. 57), отрицание don't / doesn't (📖 стр. 59), -s / -es / -ies (📖 стр. 71), вопросы Do / Does и с where / what (📖 стр. 73). «Гласная + y → просто +s» — пояснение к правилу «большинство глаголов +s» (play — в упр. 4 на стр. 71). Глаголы и вопросы про работу и семью — от учителя; ответы — от мамы; was — прошедшее время (Unit 6, стр. 76 и дальше); would like — ⚠ нет в учебнике. Предложения, подсказки и Пчёлка Эс — ✏️ мои.</footer>
+</div>
+<div class="confetti" id="confetti"></div>
+
+<script>
+// ---------- помощники ----------
+const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const pick = arr => arr[rnd(0, arr.length - 1)];
+const shuffle = arr => { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = rnd(0, i); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const E = (hint, code, bad) => ({ hint, code, bad: bad || [] });
+const IN = (name, cls) => `<input data-f="${name}" class="txt${cls ? ' ' + cls : ''}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="14">`;
+const reduceMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+const num = steps => steps.map((s, i) => ({ ...s, q: `Шаг ${i + 1}. ${s.q}` }));
+const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+const norm = s => String(s).trim().toLowerCase().replace(/[’‘`´]/g, "'").replace(/\s+/g, ' ');
+const B = s => `<b>${s}</b>`;
+
+// ---------- глаголы: -s / -es / -ies (📖 стр. 71) ----------
+// es — на o, sh, ch, x, ss; ies — согласная + y; vy — гласная + y (просто +s); s — все остальные
+const cat = v => /(o|sh|ch|x|ss)$/.test(v) ? 'es' : /[^aeiou]y$/.test(v) ? 'ies' : /[aeiou]y$/.test(v) ? 'vy' : 's';
+const third = v => { const c = cat(v); return c === 'es' ? v + 'es' : c === 'ies' ? v.slice(0, -1) + 'ies' : v + 's'; };
+const esEnd = v => (v.match(/(sh|ch|ss|x|o)$/) || ['', ''])[1];
+
+// ✏️ предложения мои; глаголы — список учителя (+ work)
+const VERBS = [
+  { v: 'read', obj: 'books in the evening' }, { v: 'practise', obj: 'the piano every day' },
+  { v: 'cry', obj: 'at sad films' }, { v: 'buy', obj: 'bread every morning' },
+  { v: 'brush', obj: '{P} teeth twice a day' }, { v: 'wear', obj: 'a school uniform' },
+  { v: 'live', obj: 'in a big city' }, { v: 'enjoy', obj: 'music' },
+  { v: 'fly', obj: 'to London every summer' }, { v: 'say', obj: '"Good morning" to the teacher' },
+  { v: 'go', obj: 'to school by bus' }, { v: 'arrive', obj: 'at school at eight' },
+  { v: 'teach', obj: 'maths at school' }, { v: 'carry', obj: 'a heavy bag' },
+  { v: 'drink', obj: 'milk for breakfast' }, { v: 'cook', obj: 'dinner on Sundays' },
+  { v: 'sing', obj: 'songs at home' }, { v: 'study', obj: 'English at school' },
+  { v: 'work', obj: 'in an office' },
+];
+const verbsOf = c => VERBS.filter(x => cat(x.v) === c);
+
+// кто делает: g1 — группа he / she / it (глаголу нужен хвостик)
+const P = (en, pr, poss) => ({ en, pr, poss, g1: ['he', 'she', 'it'].includes(pr), noun: en !== pr });
+const PEOPLE = [P('I', 'I', 'my'), P('you', 'you', 'your'), P('we', 'we', 'our'), P('they', 'they', 'their'),
+  P('he', 'he', 'his'), P('she', 'she', 'her'),
+  P('my mother', 'she', 'her'), P('my father', 'he', 'his'), P('my grandmother', 'she', 'her'), P('my grandpa', 'he', 'his'),
+  P('my cousin', 'he', 'his'), P('my sister', 'she', 'her'), P('my teacher', 'she', 'her'),
+  P('my parents', 'they', 'their'), P('my friends', 'they', 'their'), P('Tom and Ann', 'they', 'their'), P('Tom', 'he', 'his')];
+const QPEOPLE = [P('you', 'you', 'your'), P('he', 'he', 'his'), P('she', 'she', 'her'), P('they', 'they', 'their'),
+  P('your mother', 'she', 'her'), P('your father', 'he', 'his'), P('your grandmother', 'she', 'her'), P('your grandpa', 'he', 'his'),
+  P('your cousin', 'he', 'his'), P('your sister', 'she', 'her'), P('your parents', 'they', 'their'), P('your friends', 'they', 'their'), P('Ann', 'she', 'her')];
+const ansPr = p => p.pr === 'you' ? 'I' : p.pr;               // на вопрос про «you» отвечаю «I»
+const ansG1 = p => p.pr !== 'you' && p.g1;
+const objFor = (vb, p) => vb.obj.replace('{P}', p.poss);
+const S_ = p => cap(p.en);
+const GROUP = g1 => g1 ? 'he / she / it' : 'I / you / we / they';
+
+// ---------- проверка написанного глагола ----------
+// need3 — нужен ли хвостик; o.who — местоимение; o.aux — если глагол стоит после does / doesn't / don't / do
+function verbErr(w, v, need3, o, f) {
+  const t3 = third(v), c = cat(v), bad = [f || 'w'];
+  if (!need3) {
+    if (w === v) return null;
+    if (w === t3 || w === v + 's' || w === v + 'es' || w === v.slice(0, -1) + 'ies') {
+      if (o.aux) return E(o.aux === "doesn't" || o.aux === 'does' ? `После ${o.aux} хвостика нет — он уже «переехал» в does. Глагол пишем как в словаре.` : `После ${o.aux} хвостика никогда нет. Глагол пишем как в словаре.`, 'tail_after_aux', bad);
+      return E(`«${o.who}» — группа I / you / we / they: глагол без хвостика, как в словаре.`, 'tail_extra', bad);
+    }
+    return E(`Проверь буквы: глагол ${B(v)}.`, 'spell', bad);
+  }
+  if (w === t3) return null;
+  if (w === v) return E(`«${o.who}» — группа he / she / it: глаголу нужен хвостик.`, 'tail_none', bad);
+  if (c === 'ies' && (w === v + 's' || w === v + 'es')) return E(`Перед y стоит согласная «${v.at(-2)}» → y убираем и пишем ies.`, 'y_keep', bad);
+  if (c === 'vy' && w === v.slice(0, -1) + 'ies') return E(`Перед y стоит гласная «${v.at(-2)}» → y не трогаем, просто добавляем s.`, 'ies_vowel', bad);
+  if (c === 'es' && w === v + 's') return E(`${B(v)} кончается на «${esEnd(v)}» → добавляем es, а не просто s.`, 'es_missing', bad);
+  if ((c === 's' || c === 'vy') && w === v + 'es') return E(`${B(v)} не кончается на o, sh, ch, x, ss — добавляем только s.`, 'es_extra', bad);
+  return E(`Проверь буквы. Глагол ${B(v)}, ему нужен хвостик.`, 'spell', bad);
+}
+// типичные ошибки для автотеста: значение → код
+function typFor(v, need3, aux) {
+  if (!need3) return [{ w: third(v), code: aux ? 'tail_after_aux' : 'tail_extra' }];
+  const c = cat(v), t = [{ w: v, code: 'tail_none' }];
+  if (c === 'ies') t.push({ w: v + 's', code: 'y_keep' });
+  if (c === 'vy') t.push({ w: v.slice(0, -1) + 'ies', code: 'ies_vowel' });
+  if (c === 'es') t.push({ w: v + 's', code: 'es_missing' });
+  if (c === 's') t.push({ w: v + 'es', code: 'es_extra' });
+  return t;
+}
+
+// ---------- общие шаги ----------
+function pronStep(p) {
+  const others = shuffle(['he', 'she', 'it', 'they', 'I', 'we'].filter(x => x !== p.pr)).slice(0, 2);
+  const hint = x => {
+    if (x === 'it') return 'it — это предмет или животное, а не человек.';
+    if (x === 'I' || x === 'we') return `I — это «я», we — «мы». А «${p.en}» — не ты сам.`;
+    if (x === 'they') return `«${p.en}» — один человек, а they — это «они».`;
+    if (p.pr === 'they') return `«${p.en}» — их несколько: это «они».`;
+    return p.pr === 'she' ? `«${p.en}» — женщина или девочка.` : `«${p.en}» — мужчина или мальчик.`;
+  };
+  return { type: 'choice', q: `Кто делает? Замени «${p.en}» одним словом`, options: [
+    { t: p.pr, ok: true }, ...others.map(x => ({ t: x, hint: hint(x), code: 'pron_err' }))] };
+}
+function groupStep(p) {
+  const why = p.g1 ? `«${p.pr}» — один человек, не я и не ты. Это группа he / she / it.`
+    : p.pr === 'they' ? `«${p.pr}» — их несколько. Это группа I / you / we / they.` : `«${p.pr}» — из группы I / you / we / they.`;
+  return { type: 'choice', q: `«${p.pr}» — из какой группы?`, options: [
+    { t: 'he / she / it', ok: p.g1, hint: why, code: 'group_err' },
+    { t: 'I / you / we / they', ok: !p.g1, hint: why, code: 'group_err' }] };
+}
+function needTailStep(p) {
+  return { type: 'choice', q: 'Нужен ли глаголу хвостик (-s / -es / -ies)?', options: [
+    { t: 'да, нужен', ok: p.g1, hint: `${p.pr} — группа I / you / we / they: глагол как в словаре, без хвостика.`, code: 'tail_extra' },
+    { t: 'нет, глагол как в словаре', ok: !p.g1, hint: `${p.pr} — группа he / she / it: хвостик нужен.`, code: 'tail_need' }] };
+}
+const END_T = { es: 'на o, sh, ch, x или ss', ies: 'на согласную + y (как study)', vy: 'на гласную + y (как play)', s: 'по-другому — обычный глагол' };
+function endHint(v) {
+  const c = cat(v);
+  if (c === 'es') return `${B(v)} кончается на «${esEnd(v)}» — это из списка o, sh, ch, x, ss.`;
+  if (c === 'ies') return `Посмотри на букву перед y: «${v.at(-2)}» — согласная (не a, e, i, o, u).`;
+  if (c === 'vy') return `Посмотри на букву перед y: «${v.at(-2)}» — гласная (a, e, i, o, u).`;
+  return `${B(v)} кончается на «${v.at(-1)}» — это не o, sh, ch, x, ss и не y. Обычный глагол.`;
+}
+function endStep(v) {
+  const c = cat(v);
+  return { type: 'choice', q: `Чем кончается глагол ${B(v)}?`, options: ['es', 'ies', 'vy', 's'].map(k => ({ t: END_T[k], ok: k === c, hint: endHint(v), code: 'end_err' })) };
+}
+function addStep(v) {
+  const c = cat(v), want = c === 'es' ? 'es' : c === 'ies' ? 'ies' : 's';
+  const why = { es: `На o, sh, ch, x, ss → добавляем es.`, ies: `Согласная + y → y убираем, пишем ies.`, s: c === 'vy' ? `Гласная + y → y не трогаем, просто +s.` : `Обычный глагол → просто +s.` }[want];
+  return { type: 'choice', q: 'Что делаем с глаголом?', options: [
+    { t: '+ s', ok: want === 's', hint: why, code: 'ending_err' },
+    { t: '+ es', ok: want === 'es', hint: why, code: 'ending_err' },
+    { t: 'y убираем → + ies', ok: want === 'ies', hint: why, code: 'ending_err' }] };
+}
+const auxErr = (a, aux, f) => {
+  if (a === aux) return null;
+  if (a.replace(/'/g, '') === aux.replace(/'/g, '') && aux.includes("'")) return E(`Не забудь апостроф: ${B(aux)}.`, 'apos', [f]);
+  return null;
+};
+
+// ---------- правила для «Вспомнить правило» ----------
+const R_POS = 'Кто делает? I / you / we / they → глагол как в словаре: I read. He / she / it → глагол с хвостиком: she reads (📖 стр. 57). Хвостик: обычный глагол +s; на o, sh, ch, x, ss → +es; согласная + y → ies (📖 стр. 71). Гласная + y → просто +s: plays, buys (✏️ по правилу «большинство глаголов +s»).';
+const R_NEG = "Отрицание: I / you / we / they + don't + глагол; he / she / it + doesn't + глагол (📖 стр. 59). Хвостик уже в doesn't — у глагола его нет: She doesn't cook.";
+const R_Q = "Вопрос: Do / Does + кто + глагол? Does — для he / she / it. После Does у глагола нет хвостика. Краткий ответ — без глагола: Yes, she does. / No, she doesn't. (📖 стр. 73)";
+const R_WH = 'Вопрос со словом where / what: сначала вопросительное слово, потом do / does, потом кто, потом глагол: Where does she work? (📖 стр. 73) Ответ — полным предложением, хвостик возвращается к глаголу: She works in an office.';
+
+// ---------- задания раунда ----------
+const ROLES = {
+  who: { name: 'тот, кто делает', desc: 'отвечает на вопрос «кто?» и стоит перед глаголом' },
+  verb: { name: 'глагол', desc: 'отвечает на вопрос «что делает?»' },
+  obj: { name: 'остальное предложение', desc: 'что, где, когда — не тот, кто делает, и не глагол' },
+};
+const TOK = (v, role) => `<button class="tok" data-role="${role}">${v}</button>`;
+
+function warmup() {
+  const p = pick(PEOPLE.filter(x => x.noun)), vb = pick(VERBS), form = p.g1 ? third(vb.v) : vb.v;
+  const p2 = pick(PEOPLE.filter(x => x.g1 !== p.g1 && x.en !== p.en));
+  return {
+    title: 'Разминка: кто делает?', label: 'разминка',
+    show: `<div class="sent">${TOK(S_(p), 'who')} ${TOK(form, 'verb')} ${TOK(objFor(vb, p), 'obj')}.</div>`,
+    rule: 'В английском предложении сначала тот, кто делает, потом глагол. От того, КТО делает, зависит, нужен ли глаголу хвостик (📖 стр. 57).',
+    steps: [
+      { type: 'tap', q: 'Нажми на того, кто делает', correct: 'who', code: 'term' },
+      { type: 'tap', q: 'Нажми на глагол', correct: 'verb', code: 'term' },
+      groupStep(p),
+      { ...groupStep(p2), q: `А «${p2.pr}» — из какой группы?` },
+    ],
+  };
+}
+
+function positive() {
+  const p = pick(PEOPLE), vb = pick(VERBS), v = vb.v, obj = objFor(vb, p), t3 = third(v), form = p.g1 ? t3 : v;
+  const steps = [];
+  if (p.noun) steps.push(pronStep(p));
+  steps.push(groupStep(p), needTailStep(p));
+  if (p.g1) steps.push(endStep(v), addStep(v));
+  steps.push({ type: 'inputs', q: 'Впиши глагол в предложение', body: `${S_(p)} ${IN('w')} ${obj}.`, sol: { w: form },
+    typ: typFor(v, p.g1).map(t => ({ v: { w: t.w }, code: t.code })),
+    check: x => verbErr(x.w, v, p.g1, { who: p.pr }),
+    answer: `${S_(p)} ${form} ${obj}.` });
+  return { title: 'Утверждение: впиши глагол', show: `<div class="sent">${S_(p)} ____ ${obj}. <span class="base">(${v})</span></div>`,
+    label: `+ ${S_(p)} ${form} ${obj}`, rule: R_POS, steps: num(steps) };
+}
+
+function negative() {
+  const p = pick(PEOPLE), vb = pick(VERBS), v = vb.v, obj = objFor(vb, p), aux = p.g1 ? "doesn't" : "don't", other = p.g1 ? "don't" : "doesn't";
+  const steps = [];
+  if (p.noun) steps.push(pronStep(p));
+  steps.push(groupStep(p),
+    { type: 'choice', q: "don't или doesn't?", options: [
+      { t: "don't", ok: !p.g1, hint: `${p.pr} — группа ${GROUP(p.g1)} → ${aux}.`, code: 'neg_aux' },
+      { t: "doesn't", ok: p.g1, hint: `${p.pr} — группа ${GROUP(p.g1)} → ${aux}.`, code: 'neg_aux' }] },
+    { type: 'choice', q: `После ${aux} у глагола хвостик…`, options: [
+      { t: 'не нужен — глагол как в словаре', ok: true },
+      { t: 'нужен, если he / she / it', hint: "Хвостик уже «переехал» в doesn't (does = do + es). У глагола его нет.", code: 'tail_after_aux' }] },
+    { type: 'inputs', q: 'Впиши отрицание и глагол', body: `${S_(p)} ${IN('a', 'aux')} ${IN('w')} ${obj}.`, sol: { a: aux, w: v },
+      typ: [{ v: { a: other }, code: 'neg_aux' }, { v: { w: third(v) }, code: 'tail_after_aux' }],
+      check: x => {
+        const ae = auxErr(x.a, aux, 'a'); if (ae) return ae;
+        if (x.a !== aux) return E(`${p.pr} — группа ${GROUP(p.g1)} → ${aux}.`, 'neg_aux', ['a']);
+        return verbErr(x.w, v, false, { who: p.pr, aux }, 'w');
+      },
+      answer: `${S_(p)} ${aux} ${v} ${obj}.` });
+  return { title: 'Отрицание: don\'t или doesn\'t', show: `<div class="sent">${S_(p)} ____ ____ ${obj}. <span class="base">(не ${v})</span></div>`,
+    label: `− ${S_(p)} ${aux} ${v} ${obj}`, rule: R_NEG, steps: num(steps) };
+}
+
+function question() {
+  const p = pick(QPEOPLE), vb = pick(VERBS), v = vb.v, obj = objFor(vb, p), aux = p.g1 ? 'does' : 'do';
+  const yes = Math.random() < 0.5, ap = cap(ansPr(p)), aaux = ansG1(p) ? 'does' : 'do', abad = aaux === 'does' ? 'do' : 'does';
+  const be = ansPr(p) === 'I' ? 'am' : ansG1(p) ? 'is' : 'are';
+  const short = yes ? `Yes, ${ansPr(p)} ${aaux}.` : `No, ${ansPr(p)} ${aaux}n't.`;
+  const steps = [];
+  if (p.noun) steps.push(pronStep(p));
+  steps.push(groupStep(p),
+    { type: 'choice', q: 'Do или Does?', options: [
+      { t: 'Do', ok: !p.g1, hint: `${p.pr} — группа ${GROUP(p.g1)} → ${cap(aux)}.`, code: 'q_aux' },
+      { t: 'Does', ok: p.g1, hint: `${p.pr} — группа ${GROUP(p.g1)} → ${cap(aux)}.`, code: 'q_aux' }] },
+    { type: 'inputs', q: 'Впиши Do / Does и глагол', body: `${IN('a', 'aux')} ${p.en} ${IN('w')} ${obj}?`, sol: { a: aux, w: v },
+      typ: [{ v: { a: aux === 'do' ? 'does' : 'do' }, code: 'q_aux' }, { v: { w: third(v) }, code: 'tail_after_aux' }],
+      check: x => {
+        if (x.a !== aux) return E(`${p.pr} — группа ${GROUP(p.g1)} → ${cap(aux)}.`, 'q_aux', ['a']);
+        return verbErr(x.w, v, false, { who: p.pr, aux }, 'w');
+      },
+      answer: `${cap(aux)} ${p.en} ${v} ${obj}?` },
+    { type: 'choice', q: `Ответь кратко: «${yes ? 'да' : 'нет'}»`, options: [
+      { t: short, ok: true },
+      { t: yes ? `Yes, ${ansPr(p)} ${abad}.` : `No, ${ansPr(p)} ${abad}n't.`, hint: `Отвечаем про «${ansPr(p)}» → ${aaux}${yes ? '' : "n't"}.`, code: 'short_aux' },
+      { t: yes ? `Yes, ${ansPr(p)} ${be}.` : `No, ${ansPr(p)} ${be === 'am' ? "'m not" : be + "n't"}.`.replace(" 'm", "'m"), hint: `Вопрос начинался с ${cap(aux)} — и отвечаем с ${aaux}. ${cap(be)} — для вопросов с ${cap(be === 'am' ? 'are' : be)}…?`, code: 'short_be' }] });
+  return { title: 'Вопрос: Do или Does', show: `<div class="sent">____ ${p.en} ____ ${obj}? <span class="base">(${v})</span></div>`,
+    label: `? ${cap(aux)} ${p.en} ${v} ${obj}? — ${short}`, rule: R_Q, steps: num(steps) };
+}
+
+// вопросы с where / what (✏️ мои) и ответы на них
+const WH = [
+  { w: 'Where', v: 'live', tail: '', a: 'in Almaty' }, { w: 'Where', v: 'work', tail: '', a: 'in a hospital' },
+  { w: 'What time', v: 'arrive', tail: ' at school', a: 'at school at eight' }, { w: 'What', v: 'cook', tail: ' on Sundays', a: 'pancakes on Sundays' },
+  { w: 'What', v: 'read', tail: ' in the evening', a: 'comics in the evening' }, { w: 'What', v: 'drink', tail: ' for breakfast', a: 'milk for breakfast' },
+  { w: 'What', v: 'study', tail: ' at school', a: 'maths and English at school' }, { w: 'Where', v: 'go', tail: ' on Saturdays', a: 'to the park on Saturdays' },
+  { w: 'What', v: 'buy', tail: ' at the shop', a: 'bread at the shop' }, { w: 'Where', v: 'fly', tail: ' in summer', a: 'to Turkey in summer' },
+  { w: 'Where', v: 'teach', tail: '', a: 'at a school' }, { w: 'What', v: 'do', tail: '', job: 'a doctor' },
+  { w: 'What', v: 'do', tail: '', job: 'a driver' },
+];
+function whq() {
+  const p = pick(QPEOPLE), d = pick(WH), aux = p.g1 ? 'does' : 'do', v = d.v;
+  const sf = p.g1 ? third(v) : v, ap = cap(ansPr(p)), ag = ansG1(p), be = ansPr(p) === 'I' ? 'am' : ag ? 'is' : 'are';
+  const q = `${d.w} ${aux} ${p.en} ${v}${d.tail}?`;
+  const ansV = ag ? third(v) : v, ansBad = ag ? v : third(v);
+  const right = d.job ? `${ap} ${be} ${d.job}.` : `${ap} ${ansV} ${d.a}.`;
+  const order = [
+    { t: q, ok: true },
+    { t: `${d.w} ${p.en} ${sf}${d.tail}?`, hint: `В вопросе с ${d.w.toLowerCase()} нужен помощник: ${d.w} + do / does + кто + глагол.`, code: 'wh_no_aux' },
+    { t: `${d.w} ${p.en} ${aux} ${v}${d.tail}?`, hint: `Порядок: ${d.w} + ${aux} + кто + глагол. ${cap(aux)} стоит перед «${p.en}».`, code: 'wh_order' },
+  ];
+  if (p.g1) order.push({ t: `${d.w} does ${p.en} ${third(v)}${d.tail}?`, hint: 'После does у глагола хвостика нет — он уже в does.', code: 'tail_after_aux' });
+  else order.push({ t: `${d.w} does ${p.en} ${v}${d.tail}?`, hint: `${p.pr} — группа I / you / we / they → do.`, code: 'q_aux' });
+  const ans = [{ t: right, ok: true },
+    { t: `Yes, ${ansPr(p)} ${ag ? 'does' : 'do'}.`, hint: `Вопрос начинается с «${d.w}» — «да» или «нет» тут не ответишь. Нужно полное предложение.`, code: 'wh_yes' }];
+  if (d.job) ans.push({ t: `${ap} ${ag ? 'does' : 'do'} ${d.job}.`, hint: `«What ${aux} … do?» = «Кем работает?». Отвечаем профессией: ${ap} ${be} ${d.job}.`, code: 'do_job' });
+  else ans.push({ t: `${ap} ${ansBad} ${d.a}.`, hint: ag ? `${ansPr(p)} — группа he / she / it: в ответе хвостик возвращается к глаголу.` : `${ansPr(p)} — группа I / you / we / they: в ответе глагол без хвостика.`, code: ag ? 'tail_none' : 'tail_extra' });
+  const parts = shuffle([d.w, aux, p.en, v + d.tail]).map(x => `<span class="chip">${x}</span>`).join(' ');
+  return { title: `Вопрос со словом ${d.w.toLowerCase()}`, text: `Из этих слов получается вопрос: ${parts} ?`,
+    label: `${q} — ${right}`, rule: R_WH + (d.job ? ' «What does … do?» = «Кем работает?» — отвечаем профессией (✏️ вопрос от учителя).' : ''),
+    steps: num([
+      { type: 'choice', q: 'Какой вопрос составлен правильно?', options: order },
+      { type: 'choice', q: `Как ответить на «${q}»?`, options: ans },
+    ]) };
+}
+
+// ---------- вопросы учителя про работу и семью (ответы — как хочет мама) ----------
+const FAMILY = [
+  { q: 'What does your mother do?', t: 'wh', a: 'My mother is a programmer. She writes computer programs.',
+    wrong: [['My mother does a programmer.', 'do_job'], ['Yes, she does.', 'wh_yes']], gap: { pre: 'She ', v: 'write', who: 'she', post: ' computer programs.' } },
+  { q: 'Where does she work?', t: 'wh', a: 'She works in an office.',
+    wrong: [['She work in an office.', 'tail_none'], ['Yes, she does.', 'wh_yes']], gap: { pre: 'She ', v: 'work', who: 'she', post: ' in an office.' } },
+  { q: 'What does your father do?', t: 'wh', a: 'My father is a system administrator. He sets up computers and helps users.',
+    wrong: [['My father does a system administrator.', 'do_job'], ['My father is system administrator.', 'article']], gap: { pre: 'He ', v: 'set', who: 'he', post: ' up computers and helps users.' } },
+  { q: 'Where does he work?', t: 'wh', a: 'He works at Hyundai.',
+    wrong: [['He work at Hyundai.', 'tail_none'], ['Yes, he works.', 'wh_yes']], gap: { pre: 'He ', v: 'work', who: 'he', post: ' at Hyundai.' } },
+  { q: 'Does your grandmother work?', t: 'yn', a: "No, she doesn't. She is retired.",
+    wrong: [["No, she don't. She is retired.", 'short_aux'], ["No, she isn't. She is retired.", 'short_be']],
+    gap: { pre: 'No, she ', ans: "doesn't", bad: "don't", code: 'short_aux', hint: "she — группа he / she / it → doesn't.", post: '. She is retired.' } },
+  { q: 'What is her job?', t: 'wh', a: 'She was a kindergarten teacher.',
+    wrong: [['She is a kindergarten teacher.', 'tense_was'], ['Yes, she was.', 'wh_yes']],
+    gap: { pre: 'She ', ans: 'was', bad: 'is', code: 'tense_was', hint: 'Бабушка сейчас не работает — воспитателем она БЫЛА: was.', post: ' a kindergarten teacher.' } },
+  { q: "What is your cousin's job?", t: 'wh', a: "My cousin doesn't work. He studies at school.",
+    wrong: [["My cousin don't work. He studies at school.", 'neg_aux'], ["My cousin doesn't work. He studys at school.", 'y_keep']],
+    gap: { pre: 'He ', v: 'study', who: 'he', post: ' at school.' } },
+  { q: 'What does your grandpa do?', t: 'wh', a: 'He has got a garden. He grows vegetables and fruit.',
+    wrong: [['He does a garden.', 'do_job'], ['He has got a garden. He grow vegetables and fruit.', 'tail_none']],
+    gap: { pre: 'He ', v: 'grow', who: 'he', post: ' vegetables and fruit.' } },
+  { q: 'What job would you like to have?', t: 'wh', a: 'I would like to be a programmer.',
+    wrong: [['I like a programmer.', 'would'], ['I would like be a programmer.', 'to_be']],
+    gap: { pre: 'I would like to ', ans: 'be', bad: 'am', code: 'to_be', hint: 'После to глагол как в словаре: be.', post: ' a programmer.' } },
+];
+const WRONG_HINT = {
+  do_job: '«What does … do?» = «Кем работает?». Отвечаем профессией: … is a …',
+  wh_yes: 'Вопрос начинается с what / where — «да» или «нет» тут не ответишь. Нужно полное предложение.',
+  tail_none: 'he / she — группа he / she / it: у глагола в ответе нужен хвостик -s.',
+  article: 'Перед профессией нужно a: a system administrator, a programmer.',
+  short_aux: "she — группа he / she / it → doesn't, а не don't.",
+  short_be: "Вопрос начинался с Does — и отвечаем с does: doesn't. Isn't — для вопросов с Is…?",
+  tense_was: 'Бабушка сейчас не работает — воспитателем она БЫЛА: was.',
+  neg_aux: "my cousin = he → doesn't, а не don't.",
+  y_keep: 'study: перед y согласная d → y убираем, пишем ies: studies.',
+  would: 'В вопросе would like — «хотел бы». Отвечаем так же: I would like to be…',
+  to_be: 'После would like нужно to: would like to be.',
+};
+function family() {
+  const f = pick(FAMILY), g = f.gap;
+  const gapStep = g.v
+    ? { type: 'inputs', q: 'Впиши пропущенное слово в ответ', body: `${g.pre}${IN('w')}${g.post} <span class="base">(${g.v})</span>`, sol: { w: third(g.v) },
+        typ: typFor(g.v, true).map(t => ({ v: { w: t.w }, code: t.code })), check: x => verbErr(x.w, g.v, true, { who: g.who }), answer: f.a }
+    : { type: 'inputs', q: 'Впиши пропущенное слово в ответ', body: `${g.pre}${IN('w', g.ans.includes("'") ? 'aux' : '')}${g.post}`, sol: { w: g.ans },
+        typ: [{ v: { w: g.bad }, code: g.code }],
+        check: x => auxErr(x.w, g.ans, 'w') || (x.w === g.ans ? null : E(g.hint, g.code, ['w'])), answer: f.a };
+  return { title: 'Вопрос учителя про семью', text: `<span class="bigq">${f.q}</span>`, label: `семья: ${f.q} — ${f.a}`,
+    rule: (f.t === 'yn' ? R_Q : R_WH) + ' Ответы — про нашу семью (✏️ от мамы и учителя).',
+    steps: num([
+      { type: 'choice', q: 'Что это за вопрос?', options: [
+        { t: 'начинается с Do / Does — вопрос «да или нет», отвечаю кратко', ok: f.t === 'yn', hint: `«${f.q}» начинается с «${f.q.split(' ')[0]}» — ${f.t === 'yn' ? 'это вопрос «да или нет»' : 'это вопросительное слово, «да» или «нет» не подойдёт'}.`, code: 'q_type' },
+        { t: 'начинается с what / where — отвечаю полным предложением', ok: f.t === 'wh', hint: `«${f.q}» начинается с «${f.q.split(' ')[0]}» — ${f.t === 'yn' ? 'это вопрос «да или нет»' : 'это вопросительное слово, «да» или «нет» не подойдёт'}.`, code: 'q_type' }] },
+      { type: 'choice', q: 'Выбери правильный ответ', options: [{ t: f.a, ok: true }, ...f.wrong.map(([t, c]) => ({ t, hint: WRONG_HINT[c], code: c }))] },
+      gapStep,
+    ]) };
+}
+
+// ---------- путалка: основа слова есть, допиши конец ----------
+function mixer() {
+  const kinds = shuffle(['none', 'aux', 's', 'vy', 'es', 'ies']);
+  const used = new Set(), items = [];
+  const freshVerb = list => { const l = list.filter(x => !used.has(x.v)); const x = pick(l.length ? l : list); used.add(x.v); return x; };
+  kinds.forEach(k => {
+    let p, vb, need3 = true, aux = null, pre, end = '.';
+    if (k === 'none') { p = pick(PEOPLE.filter(x => !x.g1)); vb = freshVerb(VERBS); need3 = false; pre = S_(p); }
+    else if (k === 'aux') {
+      need3 = false; vb = freshVerb(VERBS);
+      if (Math.random() < 0.5) { p = pick(PEOPLE.filter(x => x.g1)); aux = "doesn't"; pre = `${S_(p)} doesn't`; }
+      else { p = pick(QPEOPLE.filter(x => x.g1)); aux = 'does'; pre = `Does ${p.en}`; end = '?'; }
+    } else { p = pick(PEOPLE.filter(x => x.g1)); vb = freshVerb(verbsOf(k)); pre = S_(p); }
+    const v = vb.v, stem = v.slice(0, -1), target = need3 ? third(v) : v;
+    items.push({ p, v, stem, need3, aux, line: `${pre} <b class="stem">${stem}</b>${IN('t', 'tail')} ${objFor(vb, p)}${end}`, full: `${pre.replace(/<[^>]+>/g, '')} ${target} ${objFor(vb, p)}${end}`, tail: target.slice(stem.length) });
+  });
+  return { title: 'Путалка: допиши конец глагола', text: 'Начало глагола уже написано. Допиши конец: иногда буква остаётся как была, иногда добавляется s или es, иногда y меняется. Думай: кто делает?',
+    label: 'путалка: ' + items.map(it => it.stem + it.tail).join(', '),
+    rule: R_POS + " После doesn't / does хвостика нет.",
+    steps: num(items.map(it => ({ type: 'inputs', q: `Допиши глагол ${B(it.v)}`, body: `<span class="sent-sm">${it.line}</span>`, sol: { t: it.tail },
+      typ: typFor(it.v, it.need3, it.aux).map(t => ({ v: { t: t.w.slice(it.stem.length) }, code: t.code })),
+      check: x => verbErr(it.stem + x.t, it.v, it.need3, { who: it.p.pr, aux: it.aux }, 't'),
+      answer: it.full }))) };
+}
+
+const MAKERS = [warmup, positive, negative, question, whq, family, mixer];
+const makeRound = () => MAKERS.map(make => make());
+
+const CODE_TEXT = {
+  term: 'путал, кто делает и где глагол', pron_err: 'не мог заменить на he / she / they', group_err: 'путал группу (he / she / it или I / you / we / they)',
+  tail_need: 'не заметил, что нужен хвостик', tail_extra: 'ставил -s там, где не нужно (I, you, we, they)', end_err: 'не узнал, чем кончается глагол',
+  ending_err: 'выбирал не то окончание (-s / -es / -ies)', tail_none: 'забывал -s у he / she / it', y_keep: 'согласная + y: не менял y на ies (studys)',
+  ies_vowel: 'гласная + y: менял y на ies (plaies)', es_missing: 'забывал -es после o, sh, ch, x, ss', es_extra: 'ставил -es у обычного глагола',
+  spell: 'ошибка в буквах глагола', neg_aux: "путал don't и doesn't", q_aux: 'путал Do и Does', tail_after_aux: "ставил -s после does / doesn't",
+  apos: "забывал апостроф (doesnt)", short_aux: 'краткий ответ: путал do / does', short_be: 'краткий ответ: путал does и is',
+  wh_no_aux: 'в вопросе с where / what забывал do / does', wh_order: 'путал порядок слов в вопросе', wh_yes: 'отвечал «Yes» на вопрос с where / what',
+  do_job: 'на «What does … do?» отвечал «does» вместо профессии', article: 'забывал a перед профессией', tense_was: 'путал is и was',
+  would: 'путал would like и like', to_be: 'забывал to / be в would like to be', q_type: 'путал вопрос «да / нет» и вопрос с what / where',
+};
+
+// ✏️ шутки — по одной на наклейку (ждут одобрения пользователя)
+const JOKES = [
+  'Пчёлка Эс прилетела к слову study: «Я твой хвостик!» Study испугался: «А моя y?» — «Твоя y станет ies — будешь studies, как настоящий отличник!»',
+  'Слово play дрожит: «Неужели и мою y отрежут?» Пчёлка: «Не бойся! Перед твоей y гласная a — я просто сяду сзади: plays».',
+  "Пчёлка Эс хотела сесть на глагол после doesn't. А doesn't говорит: «Занято! Хвостик уже у меня».",
+  'Учитель спрашивает: «What does your father do?» Ученик: «He does… does…» Пчёлка шепчет: «Не does, а профессию! He is a system administrator!»',
+  'Почему пчёлка жужжит «с-с-с»? Потому что he, she и it весь день зовут её: «Эс, сюда!»',
+  'Глагол go решил стать модным: «Хочу хвостик!» Пчёлка: «Пожалуйста, но тебе, на o, положено целых две буквы — goes!»',
+];
+
+const STICKERS = [
+  { acc: '🌻', name: 'Пчёлка с подсолнухом', of: 'Пчёлки с подсолнухом' }, { acc: '📚', name: 'Пчёлка-читательница', of: 'Пчёлки-читательницы' },
+  { acc: '🎤', name: 'Пчёлка-певица', of: 'Пчёлки-певицы' }, { acc: '✈️', name: 'Пчёлка-лётчица', of: 'Пчёлки-лётчицы' },
+  { acc: '🍯', name: 'Пчёлка с мёдом', of: 'Пчёлки с мёдом' }, { acc: '💻', name: 'Пчёлка-программистка', of: 'Пчёлки-программистки' },
+];
+
+// ---------- движок шагов (общий для объяснения и для игры) ----------
+function makeCtx(host, steps, onErr, onFinish) {
+  const ctx = { host, stepsEl: host.querySelector('.steps'), steps, i: 0, tries: 0, cur: null, onErr, onFinish };
+  host.addEventListener('click', e => onHostClick(ctx, e));
+  return ctx;
+}
+function runSteps(ctx) { ctx.i = 0; nextStep(ctx); }
+function nextStep(ctx) { ctx.i < ctx.steps.length ? renderStep(ctx, ctx.steps[ctx.i]) : ctx.onFinish(); }
+
+function renderStep(ctx, st) {
+  ctx.tries = 0; ctx.cur = st;
+  const el = document.createElement('div');
+  el.className = 'step';
+  ctx.stepEl = el;
+  ctx.host.querySelectorAll('[data-role]').forEach(b => b.classList.remove('wrong', 'right'));
+  if (st.type === 'tap') {
+    el.innerHTML = `<div class="step-q">${st.q}</div><div class="fb"></div>`;
+  } else if (st.type === 'choice') {
+    el.innerHTML = `<div class="step-q">${st.q}</div><div class="choices">${
+      shuffle(st.options.map((o, i) => i)).map(i => `<button class="choice" data-i="${i}">${st.options[i].t}</button>`).join('')}</div><div class="fb"></div>`;
+    el.querySelectorAll('.choice').forEach(b => b.onclick = () => onChoice(ctx, el, st, b));
+  } else {
+    el.innerHTML = `<div class="step-q">${st.q}</div><div class="step-body">${st.body}</div>
+      <button class="btn">Проверить</button><div class="fb"></div>`;
+    el.querySelector('.btn').onclick = () => onCheck(ctx, el, st);
+    el.querySelectorAll('input').forEach(inp => {
+      inp.addEventListener('keydown', e => { if (e.key === 'Enter') onCheck(ctx, el, st); });
+      inp.addEventListener('input', () => { inp.value = inp.value.replace(/[^A-Za-z'’ ]/g, ''); inp.classList.remove('bad'); });
+      inp.addEventListener('paste', e => e.preventDefault());
+      inp.addEventListener('drop', e => e.preventDefault());
+    });
+  }
+  ctx.stepsEl.appendChild(el);
+  const first = el.querySelector('input'); if (first) first.focus({ preventScroll: true });
+  el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function onHostClick(ctx, e) {
+  const st = ctx.cur;
+  if (!st || st.type !== 'tap') return;
+  const b = e.target.closest('[data-role]');
+  if (b && ctx.host.contains(b) && !b.classList.contains('wrong')) onTap(ctx, st, b);
+}
+
+function onTap(ctx, st, b) {
+  const role = b.dataset.role;
+  if (role === st.correct) { b.classList.add('right'); stepDone(ctx); return; }
+  b.classList.add('wrong');
+  ctx.onErr(st.code);
+  const got = ROLES[role], want = ROLES[st.correct];
+  ctx.stepEl.querySelector('.fb').innerHTML = `<div class="hint">Это ${got.name} — ${got.desc}. А ${want.name} — ${want.desc}.</div>`;
+}
+
+function onChoice(ctx, el, st, btn) {
+  const o = st.options[+btn.dataset.i];
+  if (o.ok) {
+    btn.classList.add('right');
+    el.querySelectorAll('.choice').forEach(b => b.disabled = true);
+    stepDone(ctx);
+    return;
+  }
+  btn.classList.add('wrong'); btn.disabled = true;
+  ctx.onErr(o.code);
+  el.querySelector('.fb').innerHTML = `<div class="hint">${o.hint}</div>`;
+}
+
+function onCheck(ctx, el, st) {
+  if (ctx.cur !== st) return;
+  const inputs = [...el.querySelectorAll('input')];
+  const fb = el.querySelector('.fb');
+  const empty = inputs.filter(x => x.value.trim() === '');
+  if (empty.length) {
+    empty.forEach(x => x.classList.add('bad'));
+    fb.innerHTML = '<div class="hint">Заполни все окошки.</div>';
+    return;
+  }
+  const v = {}; inputs.forEach(x => v[x.dataset.f] = norm(x.value));
+  const err = st.check(v);
+  if (!err) {
+    inputs.forEach(x => { x.classList.add('ok'); x.disabled = true; });
+    el.querySelector('.btn').remove();
+    stepDone(ctx);
+    return;
+  }
+  ctx.onErr(err.code);
+  ctx.tries++;
+  inputs.forEach(x => { if (err.bad.includes(x.dataset.f)) x.classList.add('bad'); });
+  // после 3 ошибок показываем ответ, но вписать его всё равно нужно самому
+  fb.innerHTML = `<div class="hint">${err.hint}</div>` +
+    (ctx.tries >= 3 ? `<div class="hint show-answer">Подсказка-ответ: ${st.answer} Впиши и нажми «Проверить».</div>` : '');
+}
+
+function stepDone(ctx) {
+  const el = ctx.stepEl;
+  ctx.cur = null;
+  el.classList.add('done');
+  el.querySelector('.fb').innerHTML = '';
+  ctx.i++;
+  nextStep(ctx);
+}
+
+// ---------- объяснение правила (📖 стр. 57, 59, 71, 73; слова и примеры — ✏️) ----------
+const SLIDES = [
+  { h: 'Шаг 1 — кто делает?',
+    demo: [
+      [300, c => c('В Present Simple (простое настоящее время) сначала смотрим, <b>кто делает</b>. От этого зависит всё остальное.')],
+      [2200, c => c('<b>I, you, we, they</b> → глагол как в словаре: <span class="ex">I read. They read.</span>')],
+      [4200, c => c('<b>he, she, it</b> → у глагола хвостик: <span class="ex">She read<b class="t">s</b>.</span> (📖 стр. 57)')],
+      [6200, c => c('Если вместо местоимения слова — мысленно замени: <span class="ex">my mother = she, my grandpa = he, my parents = they</span>.')],
+    ],
+    steps: [
+      { type: 'choice', q: 'Теперь ты: «my cousin» (кузен) — это…', options: [
+        { t: 'he — значит, хвостик нужен', ok: true },
+        { t: 'they — значит, без хвостика', hint: 'Кузен один — это he, а не they («они»).', code: 'pron_err' },
+        { t: 'I — значит, без хвостика', hint: 'I — это «я». А кузен — he.', code: 'pron_err' }] }] },
+  { h: 'Шаг 2 — какой хвостик?',
+    demo: [
+      [300, c => c('Обычный глагол → <b>+s</b>: <span class="ex">read → read<b class="t">s</b>, cook → cook<b class="t">s</b></span>')],
+      [2200, c => c('На <b>o, sh, ch, x, ss</b> → <b>+es</b>: <span class="ex">go → go<b class="t">es</b>, brush → brush<b class="t">es</b>, teach → teach<b class="t">es</b></span>')],
+      [4400, c => c('<b>Согласная + y</b> → y убираем, пишем <b>ies</b>: <span class="ex">study → stud<b class="t">ies</b>, cry → cr<b class="t">ies</b></span> (📖 стр. 71)')],
+    ],
+    steps: [
+      { type: 'inputs', q: 'Теперь ты: she + carry (нести)', body: `She ${IN('w')} a bag.`, sol: { w: 'carries' },
+        typ: [{ v: { w: 'carrys' }, code: 'y_keep' }],
+        check: x => verbErr(x.w, 'carry', true, { who: 'she' }), answer: 'carries.' }] },
+  { h: 'Ловушка: буква перед y',
+    demo: [
+      [300, c => c('Смотри на букву <b>перед y</b>.')],
+      [1800, c => c('<b>Гласная</b> (a, e, i, o, u) + y → y не трогаем, просто <b>+s</b>: <span class="ex">play → play<b class="t">s</b>, buy → buy<b class="t">s</b>, enjoy → enjoy<b class="t">s</b>, say → say<b class="t">s</b></span>')],
+      [4000, c => c('<b>Согласная</b> + y → <b>ies</b>: <span class="ex">fly → fl<b class="t">ies</b>, carry → carr<b class="t">ies</b></span>')],
+    ],
+    steps: [
+      { type: 'choice', q: 'Теперь ты: he + enjoy', options: [
+        { t: 'enjoys', ok: true },
+        { t: 'enjoies', hint: 'Перед y стоит o — гласная. y не трогаем, просто +s.', code: 'ies_vowel' },
+        { t: 'enjoy', hint: 'he — группа he / she / it: хвостик нужен.', code: 'tail_none' }] }] },
+  { h: "Отрицание — don't / doesn't",
+    demo: [
+      [300, c => c("I / you / we / they → <b>don't</b> + глагол: <span class=\"ex\">I don't cook.</span>")],
+      [2000, c => c("he / she / it → <b>doesn't</b> + глагол: <span class=\"ex\">She doesn't cook.</span> (📖 стр. 59)")],
+      [3800, c => c("Хвостик уже «переехал» в does<b class=\"t\">n't</b> (do + es), поэтому у глагола его <b>нет</b>: <span class=\"wrong\">She doesn't cooks.</span>")],
+    ],
+    steps: [
+      { type: 'choice', q: 'Теперь ты: My dad ___ milk.', options: [
+        { t: "doesn't drink", ok: true },
+        { t: "don't drink", hint: "my dad = he → doesn't.", code: 'neg_aux' },
+        { t: "doesn't drinks", hint: "Хвостик уже в doesn't — у глагола его нет.", code: 'tail_after_aux' }] }] },
+  { h: 'Вопрос — Do / Does',
+    demo: [
+      [300, c => c('Вопрос начинается с <b>Do</b> или <b>Does</b>: <span class="ex">Do you sing? Does she sing?</span> (📖 стр. 73)')],
+      [2200, c => c('После Does у глагола тоже <b>нет</b> хвостика: <span class="wrong">Does she sings?</span>')],
+      [4000, c => c("Краткий ответ — <b>без глагола</b>, с тем же do / does: <span class=\"ex\">Yes, she does. / No, she doesn't.</span>")],
+    ],
+    steps: [
+      { type: 'choice', q: 'Теперь ты: Does your grandma work? — Нет.', options: [
+        { t: "No, she doesn't.", ok: true },
+        { t: "No, she don't.", hint: "she — группа he / she / it → doesn't.", code: 'short_aux' },
+        { t: "No, she isn't.", hint: "Вопрос начинался с Does — и отвечаем с does. Isn't — для вопросов с Is…?", code: 'short_be' }] }] },
+  { h: 'Вопрос с where / what',
+    demo: [
+      [300, c => c('Вопросительное слово — <b>первым</b>: <span class="ex">Where does she work?</span> (📖 стр. 73)')],
+      [2000, c => c('Порядок: <b>где / что</b> + <b>do / does</b> + <b>кто</b> + <b>глагол</b>.')],
+      [3800, c => c('Ответ — полным предложением, хвостик вернулся к глаголу: <span class="ex">She work<b class="t">s</b> in an office.</span>')],
+      [5600, c => c('<b>What does she do?</b> = «Кем она работает?» Отвечаем профессией: <span class="ex">She is a programmer.</span> (✏️ вопрос от учителя)')],
+    ],
+    steps: [
+      { type: 'choice', q: 'Теперь ты: Where does your dad work?', options: [
+        { t: 'He works at Hyundai.', ok: true },
+        { t: 'He work at Hyundai.', hint: 'he — группа he / she / it: в ответе у глагола хвостик.', code: 'tail_none' },
+        { t: 'Yes, he does.', hint: 'Вопрос начинается с Where — «да» тут не ответишь. Нужно полное предложение.', code: 'wh_yes' }] }] },
+];
+
+let introOpen = false, introTimers = [];
+function clearIntroTimers() { introTimers.forEach(clearTimeout); introTimers = []; }
+
+function renderIntro(container, onEnd, canSkip, endLabel) {
+  introOpen = true;
+  let idx = 0;
+  const finish = () => { clearIntroTimers(); introOpen = false; try { localStorage.setItem('pchelka_intro_done', '1'); } catch (e) {} onEnd(); };
+  const top = () => `<div class="intro-top"><span>Сначала правило · ${idx + 1} из ${SLIDES.length + 1}</span>${canSkip ? '<button class="skip" data-skip>пропустить →</button>' : ''}</div>`;
+  function show() {
+    clearIntroTimers();
+    if (idx >= SLIDES.length) { summary(); return; }
+    const sl = SLIDES[idx];
+    container.innerHTML = `${top()}<div class="card">
+        <p class="intro-h">${sl.h}</p>
+        <div class="demo-cap"></div>
+        <button class="btn ghost" data-replay hidden>▶ Показать ещё раз</button>
+        <button class="btn big" data-try hidden>Понятно, теперь я сам →</button>
+        <div class="steps"></div>
+      </div>`;
+    const card = container.querySelector('.card');
+    const ctx = makeCtx(card, sl.steps, () => S.introErr++, () => {
+      const b = document.createElement('div');
+      b.innerHTML = `<div class="praise">Верно!</div><button class="btn big">Дальше →</button>`;
+      ctx.stepsEl.appendChild(b);
+      b.querySelector('button').onclick = () => { idx++; show(); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+      b.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+    window.__introCtx = ctx;
+    const capEl = card.querySelector('.demo-cap');
+    const c = html => capEl.insertAdjacentHTML('beforeend', `<p>${html}</p>`);
+    const replay = card.querySelector('[data-replay]'), tryBtn = card.querySelector('[data-try]');
+    function play() {
+      clearIntroTimers(); capEl.innerHTML = '';
+      const fast = reduceMotion();
+      sl.demo.forEach(([ms, fn], i) => introTimers.push(setTimeout(() => {
+        fn(c);
+        if (i === sl.demo.length - 1) { replay.hidden = false; tryBtn.hidden = false; }
+      }, fast ? 0 : ms)));
+    }
+    replay.onclick = play;
+    tryBtn.onclick = () => {
+      clearIntroTimers();
+      if (capEl.children.length < sl.demo.length) { capEl.innerHTML = ''; sl.demo.forEach(([, fn]) => fn(c)); }
+      replay.hidden = true; tryBtn.hidden = true;
+      runSteps(ctx);
+    };
+    play();
+  }
+  function summary() {
+    container.innerHTML = `${top()}<div class="card">
+        <p class="intro-h">Запомни</p>
+        <div class="sum-row"><span class="sum-key">1</span><span><b>Кто делает?</b> I / you / we / they → глагол как в словаре. He / she / it → с хвостиком.</span></div>
+        <div class="sum-row"><span class="sum-key">2</span><span><b>Какой хвостик?</b> обычный +s · o, sh, ch, x, ss → +es · согласная + y → ies · гласная + y → просто +s.</span></div>
+        <div class="sum-row"><span class="sum-key">−</span><span><b>don't / doesn't</b> + глагол без хвостика: <span class="ex">She doesn't cook.</span></span></div>
+        <div class="sum-row"><span class="sum-key">?</span><span><b>Do / Does</b> + кто + глагол без хвостика: <span class="ex">Does she cook? — Yes, she does.</span></span></div>
+        <div class="sum-row"><span class="sum-key">W</span><span><b>Where / What</b> + do / does + кто + глагол: <span class="ex">Where does she work? — She works in an office.</span></span></div>
+        <p class="src">Правило — 📖 стр. 57, 59, 71, 73. Слова объяснения и примеры — ✏️ мои.</p>
+        <button class="btn big" data-go>${endLabel}</button>
+      </div>`;
+    container.querySelector('[data-go]').onclick = finish;
+  }
+  container.onclick = e => { if (e.target.closest('[data-skip]')) finish(); };
+  show();
+}
+
+// ---------- игра ----------
+let TASKS = makeRound();
+const S = { round: 1, task: 0, stars: [], log: [], history: [], away: [], notice: false, start: Date.now(), introErr: 0, introSeen: true };
+const app = document.getElementById('app');
+let ctx = null;
+
+function logErr(code) {
+  S.log.push({ round: S.round, task: S.task, code });
+  S.taskErrors++;
+}
+
+function renderProgress() {
+  const p = document.getElementById('progress');
+  if (S.task >= TASKS.length) p.textContent = `Раунд ${S.round} пройден!`;
+  else p.textContent = `Раунд ${S.round} · ` + (S.task === 0 ? 'разминка' : `задание ${S.task} из ${TASKS.length - 1}`);
+  document.getElementById('stars').textContent = S.stars.slice(1).map(n => '★'.repeat(n) + '☆'.repeat(3 - n)).join(' ');
+}
+
+function renderTask(keepErrors) {
+  renderProgress();
+  const t = TASKS[S.task];
+  if (!keepErrors) S.taskErrors = 0;
+  app.innerHTML = `<div class="card">
+      ${S.notice ? '<div class="away-note">Ты уходил со страницы, поэтому задание заменено новым. Думай сам, без переводчика 🙂</div>' : ''}
+      <p class="task-title">${t.title}</p>
+      ${t.text ? `<p class="task-text">${t.text}</p>` : ''}
+      ${t.show ? `<div class="task-show">${t.show}</div>` : ''}
+      <details class="rule"><summary>Вспомнить правило</summary><p>${t.rule}</p></details>
+      <div class="steps"></div>
+    </div>`;
+  ctx = makeCtx(app.querySelector('.card'), t.steps, logErr, taskDone);
+  runSteps(ctx);
+}
+
+function taskDone() {
+  const stars = S.taskErrors === 0 ? 3 : S.taskErrors <= 2 ? 2 : 1;
+  S.stars[S.task] = stars;
+  renderProgress();
+  const last = S.task + 1 >= TASKS.length;
+  const box = document.createElement('div');
+  box.innerHTML = `<div class="praise">${['Разминка пройдена!', 'Отлично!', 'Молодец!', 'Супер!', 'Класс!', 'Здорово!', 'Ура!'][S.task] || 'Отлично!'} ${S.task ? '★'.repeat(stars) : ''}</div>
+    <button class="btn big" id="next">${last ? 'Забрать награду 🎁' : S.task === 0 ? 'К заданиям →' : 'Дальше →'}</button>`;
+  ctx.stepsEl.appendChild(box);
+  box.querySelector('button').onclick = () => {
+    S.task++;
+    S.task < TASKS.length ? renderTask() : renderReward();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// уход со страницы (переводчик, другая вкладка) дольше 3 с — текущее задание заменяется новым,
+// пройденные задания раунда остаются; на экране награды, в объяснении и после решённого задания не реагируем
+let awaySince = null;
+function goneAway() { if (awaySince === null) awaySince = Date.now(); }
+function cameBack() {
+  if (awaySince === null) return;
+  const sec = (Date.now() - awaySince) / 1000;
+  awaySince = null;
+  if (sec < 3 || introOpen || !ctx || S.task >= TASKS.length || ctx.i >= ctx.steps.length) return;
+  S.away.push({ round: S.round, task: S.task });
+  TASKS[S.task] = MAKERS[S.task]();
+  S.notice = true;
+  renderTask(true);
+  S.notice = false;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+window.addEventListener('blur', goneAway);
+window.addEventListener('focus', cameBack);
+document.addEventListener('visibilitychange', () => document.hidden ? goneAway() : cameBack());
+
+function newRound() {
+  S.round++; S.task = 0; S.stars = [];
+  TASKS = makeRound();
+  renderTask();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ---------- Пчёлка Эс (✏️ пчёлка с хвостиком-буквой s) ----------
+let beeN = 0;
+function beeSVG(mini) {
+  const id = 'bc' + (beeN++);
+  const body = `<defs><clipPath id="${id}"><ellipse cx="96" cy="122" rx="56" ry="44"/></clipPath></defs>
+    <path d="M40,122 L22,114 L24,130 Z" fill="#24304a"/>
+    <ellipse cx="96" cy="122" rx="56" ry="44" fill="#f6c945"/>
+    <g clip-path="url(#${id})"><rect x="70" y="70" width="14" height="110" fill="#24304a"/><rect x="100" y="70" width="14" height="110" fill="#24304a"/></g>
+    <ellipse cx="96" cy="122" rx="56" ry="44" fill="none" stroke="#24304a" stroke-width="4"/>
+    <circle cx="152" cy="104" r="30" fill="#f6c945" stroke="#24304a" stroke-width="4"/>
+    <line x1="146" y1="76" x2="136" y2="50" stroke="#24304a" stroke-width="4" stroke-linecap="round"/><circle cx="135" cy="47" r="5" fill="#24304a"/>
+    <line x1="160" y1="76" x2="170" y2="50" stroke="#24304a" stroke-width="4" stroke-linecap="round"/><circle cx="171" cy="47" r="5" fill="#24304a"/>
+    <circle class="eye" cx="142" cy="100" r="8" fill="#fff" stroke="#24304a" stroke-width="2"/><circle class="eye" cx="164" cy="100" r="8" fill="#fff" stroke="#24304a" stroke-width="2"/>
+    <circle cx="144" cy="102" r="4" fill="#24304a"/><circle cx="166" cy="102" r="4" fill="#24304a"/>
+    <path d="M144,116 Q153,124 162,116" fill="none" stroke="#8a2f2f" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="134" cy="114" r="4.5" fill="#f2a0a0" opacity=".7"/><circle cx="172" cy="114" r="4.5" fill="#f2a0a0" opacity=".7"/>`;
+  const wings = cls => `<ellipse class="${cls ? 'arm-l' : ''}" cx="80" cy="74" rx="22" ry="30" fill="#dff3ff" fill-opacity=".9" stroke="#7fb1de" stroke-width="3"/>
+    <ellipse class="${cls ? 'arm-r' : ''}" cx="112" cy="70" rx="20" ry="28" fill="#dff3ff" fill-opacity=".9" stroke="#7fb1de" stroke-width="3"/>`;
+  if (mini) return `<svg viewBox="14 36 176 136">${wings(false)}${body}</svg>`;
+  return `<svg viewBox="0 0 220 200" role="img" aria-label="Пчёлка Эс машет крыльями и танцует">
+    ${wings(true)}${body}
+    <g class="badge" id="badge"><circle cx="190" cy="40" r="24" fill="#f3c54d" stroke="#b8862b" stroke-width="3"/>
+    <text id="badgeT" x="190" y="48" text-anchor="middle" font-family="PT Sans, sans-serif" font-weight="700" font-size="22" fill="#24304a">-s</text></g></svg>`;
+}
+
+function confetti() {
+  if (reduceMotion()) return;
+  const box = document.getElementById('confetti');
+  const colors = ['#e0a526', '#2f9e8f', '#c85a4f', '#2f6690', '#8f6cc8', '#3c8a5c'];
+  let html = '';
+  for (let i = 0; i < 70; i++) {
+    html += `<i style="left:${Math.random() * 100}%;background:${colors[i % colors.length]};animation-duration:${2.5 + Math.random() * 2.5}s;animation-delay:${Math.random() * 1.5}s"></i>`;
+  }
+  box.innerHTML = html;
+  setTimeout(() => box.innerHTML = '', 7000);
+}
+
+// ---------- альбом: 6 обычных наклеек, потом 6 золотых — только за раунд, где везде не меньше ★★ ----------
+const ALBUM_KEY = 'pchelka_album', GOLD_RULE = 'в каждом задании не меньше ★★';
+const MINI = () => beeSVG(true);
+let albumMem = null;
+const ddmm = () => { const d = new Date(); return `${String(d.getDate()).padStart(2, '0')}.${String(d.getMonth() + 1).padStart(2, '0')}`; };
+const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+function loadAlbum() {
+  if (albumMem) return albumMem;
+  let a = null;
+  try { a = JSON.parse(localStorage.getItem(ALBUM_KEY) || 'null'); } catch (e) {}
+  return Array.isArray(a) ? a : [];
+}
+function takeSticker(ok, text) {
+  const album = loadAlbum(), N = STICKERS.length;
+  let idx = -1;
+  if (album.length < N || (album.length < 2 * N && ok)) { album.push({ g: album.length >= N ? 1 : 0, d: ddmm(), t: text }); idx = album.length - 1; }
+  albumMem = album;
+  try { localStorage.setItem(ALBUM_KEY, JSON.stringify(album)); } catch (e) {}
+  return { album, idx };
+}
+function albumHTML(album, idx) {
+  const N = STICKERS.length;
+  const cell = i => album[i]
+    ? `<div class="sticker got${album[i].g ? ' gold' : ''}${i === idx ? ' new picked' : ''}" data-i="${i}" title="${STICKERS[i % N].name} — нажми: шутка и результат">${MINI()}<span class="acc">${STICKERS[i % N].acc}</span></div>`
+    : `<div class="sticker${i >= N ? ' gold-empty' : ''}">?</div>`;
+  const row = from => `<div class="stickers">${STICKERS.map((s, i) => cell(from + i)).join('')}</div>`;
+  return row(0) + (album.length >= N ? `<p class="album-h">✨ Золотой альбом — за раунд, где ${GOLD_RULE}</p>${row(N)}` : '');
+}
+function stickerInfo(album, i) {
+  const s = album[i], st = STICKERS[i % STICKERS.length];
+  return `<b>${s.g ? '✨ ' : ''}Шутка от ${st.of}:</b><br>${JOKES[i % JOKES.length]}
+    <div class="res"><b>Результат за эту наклейку${s.d ? ' · ' + s.d : ''}:</b><pre>${s.t ? esc(s.t) : 'не сохранился'}</pre></div>`;
+}
+function albumTitle(album, idx) {
+  const N = STICKERS.length;
+  if (idx >= 0) return `Новая ${album[idx].g ? 'золотая ' : ''}наклейка: ${STICKERS[idx % N].name}!`;
+  if (album.length >= 2 * N) return 'Все наклейки собраны, и золотые тоже! 🏆';
+  return `Золотая наклейка — за раунд, где ${GOLD_RULE}. В этот раз не вышло — попробуй ещё!`;
+}
+function againText(album) {
+  const N = STICKERS.length;
+  return '🔄 Ещё раунд с новыми предложениями' + (album.length < N ? ` — открыть наклейку ${album.length + 1}` : album.length < 2 * N ? ' — за золотой наклейкой' : '');
+}
+function bindAlbum(album) {
+  app.querySelectorAll('.sticker.got').forEach(st => st.onclick = () => {
+    app.querySelectorAll('.sticker').forEach(x => x.classList.remove('picked'));
+    st.classList.add('picked');
+    document.getElementById('joke').innerHTML = stickerInfo(album, +st.dataset.i);
+  });
+}
+
+function renderReward() {
+  S.history.push({ round: S.round, stars: S.stars.slice(), labels: TASKS.map(t => t.label) });
+  ctx = null;
+  renderProgress();
+  const h = S.history[S.history.length - 1];
+  const { album, idx } = takeSticker(h.stars.slice(1).every(n => n >= 2), roundLines(h).join('\n'));
+  const shown = idx >= 0 ? idx : album.length - 1;
+  app.innerHTML = `<div class="card reward">
+      <h2>Ура! Раунд ${S.round} пройден!</h2>
+      <div class="hero-wrap"><div class="dance">${beeSVG(false)}</div></div>
+      <div class="whole-count" id="wc">Я Пчёлка Эс! Смотри, куда я сажусь…</div>
+      <p class="hand" style="font-size:22px;margin:16px 0 0">${albumTitle(album, idx)}</p>
+      ${albumHTML(album, idx)}
+      <div class="joke" id="joke">${shown >= 0 ? stickerInfo(album, shown) : ''}</div>
+      <p style="font-size:14px;color:var(--ink-soft);margin:8px 0 0">Нажми на любую открытую наклейку — увидишь шутку и результат, за который она получена.</p>
+      <button class="btn big" id="again">${againText(album)}</button>
+      <div class="report-box">
+        <button class="btn big" id="send">📨 Отправить маме</button>
+        <div class="sent-note" id="sent"></div>
+        <pre id="report"></pre>
+      </div>
+    </div>`;
+  confetti();
+  bindAlbum(album);
+  document.getElementById('again').onclick = newRound;
+  const badge = document.getElementById('badge'), bt = document.getElementById('badgeT'), wc = document.getElementById('wc');
+  [['-s', 'she read → she read<b>s</b>'], ['-es', 'he go → he go<b>es</b>'], ['-ies', 'she study → she stud<b>ies</b>'], ['-s', 'he play → he play<b>s</b>']].forEach(([b, t], i) => setTimeout(() => {
+    bt.textContent = b;
+    badge.classList.remove('pulse'); void badge.getBBox(); badge.classList.add('pulse');
+    wc.innerHTML = t;
+  }, 800 + i * 1300));
+  setTimeout(() => { wc.innerHTML = 'he, she, it — и я тут как тут! 🐝'; }, 6200);
+
+  const report = buildReport();
+  document.getElementById('report').textContent = report;
+  document.getElementById('send').onclick = () => sendReport(report);
+}
+
+function buildReport() {
+  const mins = Math.max(1, Math.round((Date.now() - S.start) / 60000));
+  const lines = [`Игра Present Simple · ${ddmm()} · ${mins} мин · раундов: ${S.history.length}`];
+  lines.push(S.introSeen ? `Объяснение правила пройдено, ошибок в нём: ${S.introErr}` : 'Объяснение правила пропущено (уже проходил раньше)');
+  S.history.forEach(h => lines.push('', ...roundLines(h)));
+  return lines.join('\n');
+}
+
+function roundLines(h) {
+  const lines = [`Раунд ${h.round}: ${h.stars.slice(1).map(n => '★'.repeat(n) + '☆'.repeat(3 - n)).join(' ')}`];
+  const away = S.away.filter(a => a.round === h.round);
+  if (away.length) lines.push(`⚠ уходил со страницы: ${away.length} р. (${away.map(a => a.task ? 'задание ' + a.task : 'разминка').join(', ')})`);
+  h.labels.forEach((label, t) => {
+    const errs = S.log.filter(e => e.round === h.round && e.task === t);
+    if (!errs.length) { lines.push(`• ${label} — ✓`); return; }
+    const byCode = {};
+    errs.forEach(e => byCode[e.code] = (byCode[e.code] || 0) + 1);
+    lines.push(`• ${label} — ` + Object.entries(byCode).map(([c, k]) => `${CODE_TEXT[c] || c} (${k})`).join('; '));
+  });
+  return lines;
+}
+
+async function sendReport(text) {
+  const note = document.getElementById('sent');
+  if (navigator.share) {
+    try { await navigator.share({ title: 'Игра Present Simple', text }); note.textContent = 'Отправлено!'; return; }
+    catch (e) { if (e.name === 'AbortError') return; }
+  }
+  try { await navigator.clipboard.writeText(text); note.textContent = 'Скопировано! Вставь в сообщение маме (Ctrl+V).'; }
+  catch (e) { note.textContent = 'Выдели текст ниже и скопируй его маме.'; }
+}
+
+// ---------- старт: сначала объяснение правила ----------
+const ruleBtn = document.getElementById('ruleBtn');
+function startGame() {
+  ruleBtn.hidden = false;
+  renderTask();
+  window.scrollTo({ top: 0 });
+}
+ruleBtn.onclick = () => {
+  const ov = document.createElement('div');
+  ov.className = 'overlay';
+  ov.innerHTML = '<div class="sheet"><div></div></div>';
+  document.body.appendChild(ov);
+  renderIntro(ov.querySelector('.sheet > div'), () => ov.remove(), true, 'Вернуться к игре →');
+};
+let seenBefore = false;
+try { seenBefore = localStorage.getItem('pchelka_intro_done') === '1'; } catch (e) {}
+document.getElementById('progress').textContent = '';
+renderIntro(app, startGame, seenBefore, 'Начать игру ▶');
+app.addEventListener('click', e => { if (e.target.closest('[data-skip]')) S.introSeen = false; }, true);
+
+</script>
+</body>
+</html>
